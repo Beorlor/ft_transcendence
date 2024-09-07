@@ -1,5 +1,9 @@
 # ft_transcendence
 
+add healt endpoint on each micro service
+ameliorer git ignore
+rajouter env postgre sur user management pour db acces
+
 ```
 ft_transcendence/
 ├── .env
