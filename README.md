@@ -3,6 +3,7 @@
 add healt endpoint on each micro service
 ameliorer git ignore
 rajouter env postgre sur user management pour db acces
+choisir entre rerun et guard pour hot reloading
 
 ```
 ft_transcendence/
