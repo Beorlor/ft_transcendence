@@ -41,7 +41,7 @@ services:
       - ruby_user_management
       - ruby_ssr
     ports:
-      - "80:80"
+      - "8082:80"
       - "443:443"
 
 volumes:
