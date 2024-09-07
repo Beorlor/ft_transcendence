@@ -1,6 +1,6 @@
 require 'socket'
 require_relative 'config/environment'
-require_relative 'app/controllers/main_controller'
+require_relative 'app/controllers/auth_controller'
 
 server = TCPServer.new('0.0.0.0', 4567)
 puts "Ruby User Management server running on port 4567"
