@@ -1,0 +1,13 @@
+# Ignore les fichiers d'environnement
+ft_transcendence/.env
+
+# Ignore les logs
+ft_transcendence/logs
+ft_transcendence/ruby_user_management/logs/app.log
+
+# Ignore les fichiers temporaires et les fichiers générés
+ft_transcendence/tmp/*
+ft_transcendence/*.lock
+
+# Ignore les dossiers d'installation locale
+ft_transcendence/.bundle
