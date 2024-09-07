@@ -5,8 +5,8 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
-# not sur for this line, dunno
-RUN gem install rerun
+# hot reload
+RUN gem install guard
 
 COPY . .
 
