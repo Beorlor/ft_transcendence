@@ -21,28 +21,63 @@ class MainController
     [method, path, headers, body]
   end
 
+  def self.route_request(client, method, path, body, headers)
+    case [method, path]
+    when ['POST', '/auth/signup']
+      signup(client, body)
+    when ['POST', '/auth/login']
+      login(client, body)
+    when ['POST', '/auth/refresh']
+      refresh(client, body)
+    when ['GET', '/auth/verify']
+      verify(client, headers)
+    when ['GET', '/user']
+      get_user(client)
+    when ['PUT', '/user']
+      update_user(client)
+    when ['DELETE', '/user']
+      delete_user(client)
+    else
+      not_found(client)
+    end
+  end
+
   def self.signup(client, body)
     CustomLogger.log("User signup request received.")
-    # Your signup logic
     respond(client, 200, "Signup successful.")
   end
 
   def self.login(client, body)
     CustomLogger.log("User login request received.")
-    # Your login logic
-    respond(client, 200, "Login successful.")
+    tokens = TokenManager.generate_tokens(body)
+    respond(client, 200, tokens)
   end
 
   def self.refresh(client, body)
     CustomLogger.log("Token refresh request received.")
-    # Your refresh token logic
-    respond(client, 200, "Token refreshed.")
+    new_access_token = TokenManager.refresh_access_token(body)
+    respond(client, 200, { access_token: new_access_token })
   end
 
   def self.verify(client, headers)
     CustomLogger.log("Token verification request received.")
-    # Your token verification logic
-    respond(client, 200, "Token verified.")
+    if TokenManager.verify_access_token(headers['Authorization'])
+      respond(client, 200, "Access token is valid.")
+    else
+      respond(client, 401, "Invalid token.")
+    end
+  end
+
+  def self.get_user(client)
+    respond(client, 200, "User information")
+  end
+
+  def self.update_user(client)
+    respond(client, 200, "User updated")
+  end
+
+  def self.delete_user(client)
+    respond(client, 200, "User deleted")
   end
 
   def self.not_found(client)
@@ -55,6 +90,6 @@ class MainController
     client.puts "HTTP/1.1 #{status}"
     client.puts "Content-Type: application/json"
     client.puts
-    client.puts({ message: message }.to_json)
+    client.puts message.is_a?(String) ? { message: message }.to_json : message.to_json
   end
 end

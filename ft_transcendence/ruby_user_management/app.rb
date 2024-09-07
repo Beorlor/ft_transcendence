@@ -9,18 +9,7 @@ loop do
   client = server.accept
   method, path, headers, body = MainController.parse_request(client)
 
-  case [method, path]
-  when ['POST', '/auth/signup']
-    MainController.signup(client, body)
-  when ['POST', '/auth/login']
-    MainController.login(client, body)
-  when ['POST', '/auth/refresh']
-    MainController.refresh(client, body)
-  when ['GET', '/auth/verify']
-    MainController.verify(client, headers)
-  else
-    MainController.not_found(client)
-  end
+  MainController.route_request(client, method, path, body, headers)
 
   client.close
 end
