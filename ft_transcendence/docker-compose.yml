@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  postgres:
+    build: ./postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  ruby_user_management:
+    build: ./ruby_user_management
+    environment:
+      DATABASE_URL: postgres://user:password@postgres:5432/ft_transcendence_db
+      SECRET_KEY: ${SECRET_KEY}
+    depends_on:
+      - postgres
+    volumes:
+      - ./ruby_user_management:/app
+    ports:
+      - "4567:4567"
+
+  ruby_ssr:
+    build: ./ruby_ssr
+    environment:
+      SECRET_KEY: ${SECRET_KEY}
+    depends_on:
+      - postgres
+    volumes:
+      - ./ruby_ssr:/app
+    ports:
+      - "4568:4568"
+
+  nginx:
+    build: ./nginx
+    depends_on:
+      - ruby_user_management
+      - ruby_ssr
+    ports:
+      - "80:80"
+      - "443:443"
+
+volumes:
+  postgres-data:
