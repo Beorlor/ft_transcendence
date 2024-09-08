@@ -1,5 +1,8 @@
 require_relative '../services/token_manager'
 require_relative '../log/custom_logger'
+require 'uri'
+require 'net/http'
+require 'json'
 
 class MainController
   def self.parse_request(client)
@@ -22,7 +25,12 @@ class MainController
   end
 
   def self.route_request(client, method, path, body, headers)
-    case [method, path]
+    uri = URI.parse(path)
+    query_string = uri.query
+    params = query_string ? URI.decode_www_form(query_string).to_h : {}
+    clean_path = uri.path
+  
+    case [method, clean_path]
     when ['POST', '/auth/signup']
       signup(client, body)
     when ['POST', '/auth/login']
@@ -37,9 +45,80 @@ class MainController
       update_user(client)
     when ['DELETE', '/user']
       delete_user(client)
+    when ['GET', '/auth/logwith42']
+      logwith42(client)
+    when ['GET', '/auth/callback']
+      handle_callback(client, params)
     else
       not_found(client)
     end
+  end
+  
+  def self.get_access_token(client, authorization_code)
+    uri = URI.parse("https://api.intra.42.fr/oauth/token")
+    
+    params = {
+      grant_type: 'authorization_code',
+      client_id: 'u-s4t2ud-3d09d3fd60430ebcfc5a7129e2f5e6715d915c409f6f4aa19a5340c8893c073f',
+      client_secret: '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',
+      code: authorization_code,
+      redirect_uri: 'http://localhost:8082/auth/callback'
+    }
+  
+    response = Net::HTTP.post_form(uri, params)
+  
+    if response.is_a?(Net::HTTPSuccess)
+      response_body = JSON.parse(response.body)
+      access_token = response_body['access_token']
+      access_token
+    else
+      CustomLogger.log("Failed to fetch access token: #{response.body}")
+      client.respond_with_error("Failed to fetch access token")
+      nil
+    end
+  end
+
+  def self.handle_callback(client, params)
+    authorization_code = params['code']
+  
+    if authorization_code
+      access_token = get_access_token(client, authorization_code)
+      if access_token
+        get_user_info(client, access_token)
+      else
+        respond(client, 500, 'Failed to obtain access token')
+      end
+    else
+      respond(client, 400, 'Authorization failed')
+    end
+  end
+  
+  
+
+  def self.get_user_info(client, access_token)
+    uri = URI.parse("https://api.intra.42.fr/v2/me")
+    request = Net::HTTP::Get.new(uri)
+    request["Authorization"] = "Bearer #{access_token}"
+  
+    response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+      http.request(request)
+    end
+  
+    if response.code == '200'
+      user_info = JSON.parse(response.body)
+      respond(client, 200, "User info: #{user_info}")
+    else
+      respond(client, 500, "Failed to fetch user info")
+    end
+  end
+  
+
+  def self.logwith42(client)
+    redirect_url = "https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-3d09d3fd60430ebcfc5a7129e2f5e6715d915c409f6f4aa19a5340c8893c073f&redirect_uri=http%3A%2F%2Flocalhost%3A8082%2Fauth%2Fcallback&response_type=code"
+    
+    client.write "HTTP/1.1 302 Found\r\n"
+    client.write "Location: #{redirect_url}\r\n"
+    client.write "\r\n"
   end
 
   def self.signup(client, body)
