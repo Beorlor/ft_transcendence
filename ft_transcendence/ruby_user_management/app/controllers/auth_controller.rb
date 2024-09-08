@@ -60,13 +60,26 @@ class MainController
   end
 
   def self.verify(client, headers)
-    CustomLogger.log("Token verification request received.")
-    if TokenManager.verify_access_token(headers['Authorization'])
-      respond(client, 200, "Access token is valid.")
-    else
-      respond(client, 401, "Invalid token.")
-    end
+	CustomLogger.log("Token verification request received.")
+
+	# Check if the Authorization header is present
+	authorization_header = headers['Authorization']
+
+	if authorization_header.nil? || authorization_header.strip.empty?
+	  CustomLogger.log("Authorization header is missing.")
+	  respond(client, 400, "Authorization header is missing.")  # 400 Bad Request for missing header
+	  return
+	end
+
+	# Verify the access token
+	if TokenManager.verify_access_token(authorization_header)
+	  respond(client, 200, "Access token is valid.")
+	else
+	  CustomLogger.log("Invalid access token.")
+	  respond(client, 401, "Invalid access token.")  # 401 Unauthorized for invalid token
+	end
   end
+
 
   def self.get_user(client)
     respond(client, 200, "User information")

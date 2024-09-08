@@ -33,11 +33,15 @@ module TokenManager
   end
 
   def self.decode(token)
-    begin
-      decoded = JWT.decode(token, SECRET_KEY, true, { algorithm: 'HS256' })
-      decoded[0]
-    rescue
-      nil
-    end
+	begin
+	  decoded = JWT.decode(token.split(' ').last, SECRET_KEY, true, { algorithm: 'HS256' })
+	  decoded[0]
+	rescue JWT::ExpiredSignature
+	  CustomLogger.log("Token has expired.")
+	  nil  # Or raise an appropriate exception or return a specific error message
+	rescue JWT::DecodeError
+	  CustomLogger.log("Failed to decode token.")
+	  nil
+	end
   end
 end
