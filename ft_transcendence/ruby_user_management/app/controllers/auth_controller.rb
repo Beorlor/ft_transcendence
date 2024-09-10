@@ -61,7 +61,13 @@ class MainController
     if authorization_code
       access_token = AuthManager.get_access_token(client, authorization_code)
       if access_token
-        AuthManager.get_user_info(client, access_token)
+        user = AuthManager.get_user_info(client, access_token)
+        if user
+          AuthManager.registerUser42(user);
+          respond(client, 200, "User info: #{user}")
+        else
+          respond(client, 500, 'Failed to fetch user info')
+        end
       else
         respond(client, 500, 'Failed to obtain access token')
       end
@@ -72,37 +78,31 @@ class MainController
   
 
   def self.logwith42(client)
-    redirect_url = "https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-3d09d3fd60430ebcfc5a7129e2f5e6715d915c409f6f4aa19a5340c8893c073f&redirect_uri=http%3A%2F%2Flocalhost%3A8082%2Fauth%2Fcallback&response_type=code"
-    
+    redirect_url = ENV['REDIR_URL']
     client.write "HTTP/1.1 302 Found\r\n"
     client.write "Location: #{redirect_url}\r\n"
     client.write "\r\n"
   end
 
   def self.signup(client, body)
-    CustomLogger.log("User signup request received.")
     respond(client, 200, "Signup successful.")
   end
 
   def self.login(client, body)
-    CustomLogger.log("User login request received.")
     tokens = TokenManager.generate_tokens(body)
     respond(client, 200, tokens)
   end
 
   def self.refresh(client, body)
-    CustomLogger.log("Token refresh request received.")
     new_access_token = TokenManager.refresh_access_token(body)
     respond(client, 200, { access_token: new_access_token })
   end
 
   def self.verify(client, headers)
-    CustomLogger.log("Token verification request received.")
 
     authorization_header = headers['Authorization']
 
     if authorization_header.nil? || authorization_header.strip.empty?
-      CustomLogger.log("Authorization header is missing.")
       respond(client, 400, "Authorization header is missing.")
       return
     end
@@ -110,7 +110,6 @@ class MainController
     if TokenManager.verify_access_token(authorization_header)
       respond(client, 200, "Access token is valid.")
     else
-      CustomLogger.log("Invalid access token.")
       respond(client, 401, "Invalid access token.")
     end
   end

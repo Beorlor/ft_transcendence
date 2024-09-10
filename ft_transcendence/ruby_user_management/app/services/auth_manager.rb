@@ -1,4 +1,20 @@
+require_relative '../repository/auth_repository'
+require 'uri'
+require 'net/http'
+require 'json'
+
 module AuthManager
+
+  def self.registerUser42(user)
+    user_info = {
+      username: user['login'],
+      email: user['email'],
+      role: 0,
+      login_type: 1,
+      updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
+    }
+    AuthRepository.registerUser42(user_info)
+  end
 
   def self.get_user_info(client, access_token)
     uri = URI.parse("https://api.intra.42.fr/v2/me")
@@ -11,9 +27,9 @@ module AuthManager
   
     if response.code == '200'
       user_info = JSON.parse(response.body)
-      respond(client, 200, "User info: #{user_info}")
+      return user_info
     else
-      respond(client, 500, "Failed to fetch user info")
+      return nil
     end
   end
 
@@ -22,8 +38,8 @@ module AuthManager
     
     params = {
       grant_type: 'authorization_code',
-      client_id: 'u-s4t2ud-3d09d3fd60430ebcfc5a7129e2f5e6715d915c409f6f4aa19a5340c8893c073f',
-      client_secret: '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',
+      client_id: ENV['API_CLIENT'],
+      client_secret: ENV['API_SECRET'],
       code: authorization_code,
       redirect_uri: 'http://localhost:8082/auth/callback'
     }
@@ -35,7 +51,6 @@ module AuthManager
       access_token = response_body['access_token']
       access_token
     else
-      CustomLogger.log("Failed to fetch access token: #{response.body}")
       client.respond_with_error("Failed to fetch access token")
       nil
     end
