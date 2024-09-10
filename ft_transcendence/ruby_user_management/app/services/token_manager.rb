@@ -19,7 +19,7 @@ module TokenManager
   def self.refresh_access_token(refresh_token)
     decoded_token = decode(refresh_token)
     if decoded_token
-      encode({ user_id: decoded_token['user_id'] }, exp: 600)  # New access token for 10 minutes
+      encode({ user_id: decoded_token['user_id'] }, exp: 600)
     else
       nil
     end
@@ -37,10 +37,8 @@ module TokenManager
 	  decoded = JWT.decode(token.split(' ').last, SECRET_KEY, true, { algorithm: 'HS256' })
 	  decoded[0]
 	rescue JWT::ExpiredSignature
-	  CustomLogger.log("Token has expired.")
 	  nil  # Or raise an appropriate exception or return a specific error message
 	rescue JWT::DecodeError
-	  CustomLogger.log("Failed to decode token.")
 	  nil
 	end
   end
