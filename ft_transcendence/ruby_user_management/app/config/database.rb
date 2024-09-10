@@ -38,4 +38,11 @@ class Database
       puts "Une erreur est survenue lors de l'insertion dans la table #{table_name}: #{e.message}"
     end
   end
+
+  def self.get_one_element_from_table(table_name, column, value)
+    query = "SELECT * FROM #{table_name} WHERE #{column} = '#{value}'"
+    result = execute(query)
+    result.map { |row| row }
+  end
+
 end
