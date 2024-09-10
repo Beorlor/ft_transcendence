@@ -1,0 +1,16 @@
+[2024-09-10 23:56:11] - AuthManager => Getting access token with authorization code: 49a45bdec83d2448802fd228856d3932ddc3f816937af6c674e7a7ac9d5d6f86
+[2024-09-10 23:56:12] - AuthManager => Access token retrieved successfully
+[2024-09-10 23:56:12] - AuthManager => Getting user info with access token: e10d651b34a07061ae12764134b1dcaf73b6a2fdf9615ebcd687d9654494626b
+[2024-09-10 23:56:12] - AuthManager => User info retrieved successfully
+[2024-09-10 23:56:12] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-10 23:56:12] - AuthRepository => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-10 23:56:12] - AuthRepository => User with email thoribal@student.42perpignan.fr registered
+[2024-09-10 23:56:40] - AuthManager => Getting access token with authorization code: 49a45bdec83d2448802fd228856d3932ddc3f816937af6c674e7a7ac9d5d6f86
+[2024-09-10 23:56:40] - AuthManager => Error while getting access token: Unauthorized
+[2024-09-10 23:56:55] - AuthManager => Getting access token with authorization code: 4aea6948257af8896a775961b855579e3436c32892f01d35f94789b75b3e2a12
+[2024-09-10 23:56:55] - AuthManager => Access token retrieved successfully
+[2024-09-10 23:56:55] - AuthManager => Getting user info with access token: e10d651b34a07061ae12764134b1dcaf73b6a2fdf9615ebcd687d9654494626b
+[2024-09-10 23:56:55] - AuthManager => User info retrieved successfully
+[2024-09-10 23:56:55] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-10 23:56:55] - AuthRepository => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-10 23:56:55] - AuthRepository => User with email thoribal@student.42perpignan.fr already exists

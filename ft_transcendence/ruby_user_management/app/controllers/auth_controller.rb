@@ -1,5 +1,9 @@
 require_relative '../services/token_manager'
 require_relative '../log/custom_logger'
+require_relative '../services/auth_manager'
+require 'uri'
+require 'net/http'
+require 'json'
 
 class MainController
   def self.parse_request(client)
@@ -22,7 +26,12 @@ class MainController
   end
 
   def self.route_request(client, method, path, body, headers)
-    case [method, path]
+    uri = URI.parse(path)
+    query_string = uri.query
+    params = query_string ? URI.decode_www_form(query_string).to_h : {}
+    clean_path = uri.path
+  
+    case [method, clean_path]
     when ['POST', '/auth/signup']
       signup(client, body)
     when ['POST', '/auth/login']
@@ -37,47 +46,72 @@ class MainController
       update_user(client)
     when ['DELETE', '/user']
       delete_user(client)
+    when ['GET', '/auth/logwith42']
+      logwith42(client)
+    when ['GET', '/auth/callback']
+      handle_callback(client, params)
     else
       not_found(client)
     end
   end
 
+  def self.handle_callback(client, params)
+    authorization_code = params['code']
+  
+    if authorization_code
+      access_token = AuthManager.get_access_token(client, authorization_code)
+      if access_token
+        user = AuthManager.get_user_info(client, access_token)
+        if user
+          AuthManager.registerUser42(user);
+          respond(client, 200, "User info: #{user}")
+        else
+          respond(client, 500, 'Failed to fetch user info')
+        end
+      else
+        respond(client, 500, 'Failed to obtain access token')
+      end
+    else
+      respond(client, 400, 'Authorization failed')
+    end
+  end
+  
+
+  def self.logwith42(client)
+    redirect_url = ENV['REDIR_URL']
+    client.write "HTTP/1.1 302 Found\r\n"
+    client.write "Location: #{redirect_url}\r\n"
+    client.write "\r\n"
+  end
+
   def self.signup(client, body)
-    CustomLogger.log("User signup request received.")
     respond(client, 200, "Signup successful.")
   end
 
   def self.login(client, body)
-    CustomLogger.log("User login request received.")
     tokens = TokenManager.generate_tokens(body)
     respond(client, 200, tokens)
   end
 
   def self.refresh(client, body)
-    CustomLogger.log("Token refresh request received.")
     new_access_token = TokenManager.refresh_access_token(body)
     respond(client, 200, { access_token: new_access_token })
   end
 
   def self.verify(client, headers)
-	CustomLogger.log("Token verification request received.")
 
-	# Check if the Authorization header is present
-	authorization_header = headers['Authorization']
+    authorization_header = headers['Authorization']
 
-	if authorization_header.nil? || authorization_header.strip.empty?
-	  CustomLogger.log("Authorization header is missing.")
-	  respond(client, 400, "Authorization header is missing.")  # 400 Bad Request for missing header
-	  return
-	end
+    if authorization_header.nil? || authorization_header.strip.empty?
+      respond(client, 400, "Authorization header is missing.")
+      return
+    end
 
-	# Verify the access token
-	if TokenManager.verify_access_token(authorization_header)
-	  respond(client, 200, "Access token is valid.")
-	else
-	  CustomLogger.log("Invalid access token.")
-	  respond(client, 401, "Invalid access token.")  # 401 Unauthorized for invalid token
-	end
+    if TokenManager.verify_access_token(authorization_header)
+      respond(client, 200, "Access token is valid.")
+    else
+      respond(client, 401, "Invalid access token.")
+    end
   end
 
 

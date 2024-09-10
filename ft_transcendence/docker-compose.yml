@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   postgres:
@@ -17,6 +17,12 @@ services:
     environment:
       DATABASE_URL: postgres://user:password@postgres:5432/ft_transcendence_db
       SECRET_KEY: ${SECRET_KEY}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      API_CLIENT: ${API_CLIENT42}
+      API_SECRET: ${API_SECRET42}
+      REDIR_URL: ${REDIR_URL42}
     depends_on:
       - postgres
     volumes:
@@ -43,6 +49,14 @@ services:
     ports:
       - "8082:80"
       - "443:443"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
 
 volumes:
   postgres-data:
