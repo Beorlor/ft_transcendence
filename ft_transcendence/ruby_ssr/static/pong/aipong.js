@@ -29,7 +29,7 @@ let		debugMode = false;
 let		wPressed = false;
 let		sPressed = false;
 
-let		hasAI = false;
+let		hasAI = true;
 
 const Game = 
 {
