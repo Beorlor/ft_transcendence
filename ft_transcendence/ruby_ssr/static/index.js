@@ -17,9 +17,8 @@ const removeAllListeners = (event) => {
 };
 
 const cancelAnimations = () => {
-	WINDOW_ANIMATIONS_FRAMES.forEach((v, i, a) => {
+	for (v in WINDOW_ANIMATIONS_FRAMES)
 		window.cancelAnimationFrame(v);
-	});
 	WINDOW_ANIMATIONS_FRAMES.length = 0;
 };
 
@@ -53,6 +52,7 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 					cancelAnimations();
 					removeAllListeners("keydown");
 					removeAllListeners("keyup");
+					delete window.Game;
 					game.innerHTML = html;
 
 					const script = game.querySelector('script');

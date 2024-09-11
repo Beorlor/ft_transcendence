@@ -8,7 +8,7 @@ import { canvasHeight, barPadding,
 	ballMoveSpeed,
 	ballAcceleration} from "./constants.mjs";
 
-const leftBar = 
+var leftBar = 
 {
 	x: goalWidth,
 	y: canvasHeight / 2 - (barHeight / 2),
@@ -67,6 +67,7 @@ rightBar.ai = {
 	velY: 0.0,
 	targetY: -1
 };
+
 var ball = 
 {
 	x: canvasWidth / 2 - ballRadius,
