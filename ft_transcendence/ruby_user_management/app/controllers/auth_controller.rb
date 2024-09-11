@@ -7,33 +7,59 @@ require 'json'
 
 class MainController
   def self.parse_request(client)
-    request = client.readpartial(2048)
+    begin
+      request = client.readpartial(2048)
+    rescue EOFError
+      return nil
+    end
+
+    return nil if request.lines.empty?
+
     method, path, _version = request.lines[0].split
     headers = {}
     body = nil
 
-    request.lines[1..-1].each do |line|
-      if line == "\r\n"
-        body = request.lines[request.lines.index(line) + 1..-1].join
+    request.lines[1..-1].each_with_index do |line, index|
+      if line.strip.empty?
+        body = request.lines[(index + 2)..-1].join
         break
       end
-
       header, value = line.split(': ', 2)
-      headers[header] = value.strip
+      headers[header] = value.strip if header && value
+    end
+
+    if headers['Content-Type'] && headers['Content-Type'].include?('application/json')
+      begin
+        body = JSON.parse(body) unless body.nil? || body.strip.empty?
+      rescue JSON::ParserError
+        return { error: 'Invalid JSON format' }
+      end
     end
 
     [method, path, headers, body]
   end
 
   def self.route_request(client, method, path, body, headers)
-    uri = URI.parse(path)
+    if path.nil? || path.empty?
+      not_found(client)
+      return
+    end
+  
+    begin
+      uri = URI.parse(path)
+    rescue URI::InvalidURIError => e
+      puts "Erreur lors de l'analyse de l'URI : #{e.message}"
+      not_found(client)
+      return
+    end
+  
     query_string = uri.query
     params = query_string ? URI.decode_www_form(query_string).to_h : {}
     clean_path = uri.path
   
     case [method, clean_path]
-    when ['POST', '/auth/signup']
-      signup(client, body)
+    when ['POST', '/auth/register']
+      register(client, body)
     when ['POST', '/auth/login']
       login(client, body)
     when ['POST', '/auth/refresh']
@@ -54,6 +80,7 @@ class MainController
       not_found(client)
     end
   end
+  
 
   def self.handle_callback(client, params)
     authorization_code = params['code']
@@ -84,13 +111,24 @@ class MainController
     client.write "\r\n"
   end
 
-  def self.signup(client, body)
-    respond(client, 200, "Signup successful.")
+  def self.register(client, body)
+    status = AuthManager.register(body)
+    if status[:error]
+      respond(client, 400, status[:error])
+      return
+    end
+    respond(client, 200, status[:success])
   end
 
   def self.login(client, body)
-    tokens = TokenManager.generate_tokens(body)
-    respond(client, 200, tokens)
+    # tokens = TokenManager.generate_tokens(body)
+    status = AuthManager.login(body)
+    if status[:error]
+      respond(client, 400, status[:error])
+      return
+    end
+    respond(client, 200, status[:success])
+    #respond(client, 200, tokens)
   end
 
   def self.refresh(client, body)
