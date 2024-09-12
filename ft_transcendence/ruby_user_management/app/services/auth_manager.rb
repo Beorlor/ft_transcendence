@@ -83,7 +83,7 @@ module AuthManager
       return {error: 'Invalid password'}
     end
     Logger.log('AuthManager', "User logged in with email: #{body['email']}")
-    return {success: 'User logged in'}
+    return {success: 'User logged in', user: user[0]}
   end
 
   def self.get_user_info(client, access_token)
