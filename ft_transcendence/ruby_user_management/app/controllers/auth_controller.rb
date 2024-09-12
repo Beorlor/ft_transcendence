@@ -121,14 +121,14 @@ class MainController
   end
 
   def self.login(client, body)
-    # tokens = TokenManager.generate_tokens(body)
     status = AuthManager.login(body)
+    tokens = TokenManager.generate_tokens(status[:user])
     if status[:error]
       respond(client, 400, status[:error])
       return
     end
-    respond(client, 200, status[:success])
-    #respond(client, 200, tokens)
+    tokens[:success] = status[:success]
+    respond(client, 200, tokens)
   end
 
   def self.refresh(client, body)
