@@ -1,5 +1,6 @@
-const WINDOW_EVENTS = {};
-const WINDOW_ANIMATIONS_FRAMES = [];
+const 	WINDOW_EVENTS = {};
+const 	WINDOW_ANIMATIONS_FRAMES = [];
+var		PONG_AI_ENABLED = false;
 
 const addListener = (event, handler) => {
 	if (!(event in WINDOW_EVENTS))
@@ -29,10 +30,9 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 				.then(res => res.text())
 				.then(html =>{
 					const game = document.getElementById("game");
-					cancelAnimations();
-					removeAllListeners("keydown");
-					removeAllListeners("keyup");
+					PONG_AI_ENABLED = false;
 					game.innerHTML = html;
+					document.getElementById("game_name").textContent = "Pongpong";
 
 					const script = game.querySelector('script');
 					const newScript = document.createElement('script');
@@ -45,15 +45,13 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 	);
 	document.getElementById("aipong_link").addEventListener("click",
 		function (){
-			fetch("/aipong")
+			fetch("/pong")
 				.then(res => res.text())
 				.then(html =>{
 					const game = document.getElementById("game");
-					cancelAnimations();
-					removeAllListeners("keydown");
-					removeAllListeners("keyup");
-					delete window.Game;
+					PONG_AI_ENABLED = true;
 					game.innerHTML = html;
+					document.getElementById("game_name").textContent = "AI Pongpong";
 
 					const script = game.querySelector('script');
 					const newScript = document.createElement('script');
