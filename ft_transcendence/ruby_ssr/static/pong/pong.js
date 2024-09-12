@@ -83,6 +83,7 @@ function pong_main()
 			this.timer = 0;
 			this.winner = -1;
 			this.updateScore();
+			document.getElementById("game_info_text").textContent = "First to " + winningScore + " points wins !";
 		},
 	
 		playTouchSound: function (){
@@ -136,12 +137,12 @@ function pong_main()
 	function gameLoop(dt)
 	{
 		if (PONG_AI_ENABLED != hasAI){
+			hasAI = PONG_AI_ENABLED;
 			Game.reset();
 			leftBar.reset();
 			rightBar.reset();
 			ball.reset();
 		}
-		hasAI = PONG_AI_ENABLED;
 		if (upPressed && Game.isGameStarted)
 			leftBar.moveUp(dt);
 		else if(downPressed && Game.isGameStarted)
