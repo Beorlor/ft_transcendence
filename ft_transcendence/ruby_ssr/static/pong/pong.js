@@ -178,7 +178,7 @@ function pong_main()
 					if (start.y <= topHitbox || start.y >= canvasHeight - topHitbox)
 						vY *= -1;
 				}
-				rightBar.ai.targetY = start.y - rightBar.height / 2;
+				rightBar.ai.targetY = start.y - ((rightBar.height / 2) * ( 1.0 - Math.random() * 2));
 				rightBar.ai.think_timer = 1.0;
 			}
 		}
