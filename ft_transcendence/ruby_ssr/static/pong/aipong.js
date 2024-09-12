@@ -1,7 +1,7 @@
-import { leftBar, rightBar, ball } from "./game_objects.mjs";
+import { makeBar, makeBall } from "./game_objects.mjs";
 import { canvasWidth, canvasHeight, timeStep,
-			topHitbox, winningScore, barPadding, 
-			barHitboxPadding} from "./constants.mjs";
+			topHitbox, winningScore, 
+			barHitboxPadding, goalWidth, barWidth} from "./constants.mjs";
 
 /* TODO
 	DONE - Peaufiner les collisions
@@ -12,6 +12,8 @@ import { canvasWidth, canvasHeight, timeStep,
 	DONE - Clean le code
 	DONE - Fix le probleme du message infini si la balle est derriere une des barres
 	DONE - Ajouter un cadre pour delimiter l'ecran de jeu
+	- Retravailler le code du pong pour enlever toutes les variables globales
+		et gerer le one page
 	- Calculer un meilleur angle de renvoi de la balle
 	- BONUS
 		- Petite musique
@@ -32,6 +34,18 @@ function pong_main()
 	let		sPressed = false;
 
 	let		hasAI = true;
+
+	const ball = makeBall();
+	const leftBar = makeBar();
+	const rightBar = makeBar();
+	rightBar.x = canvasWidth - goalWidth - barWidth;
+	rightBar.startX = canvasWidth - goalWidth - barWidth;
+	rightBar.color = "#F00000"
+	rightBar.ai = {
+		think_timer: 1.0,
+		velY: 0.0,
+		targetY: -1
+	};
 
 	const Game = 
 	{
@@ -104,7 +118,9 @@ function pong_main()
 	 */
 	function drawLoop()
 	{
-		const canvas = document.getElementById("drawCanvas");
+		const canvas = document.getElementById("drawAICanvas");
+		if (!canvas)
+			return ;
 		if (canvas.getContext)
 		{
 			const ctx = canvas.getContext("2d");
@@ -130,7 +146,7 @@ function pong_main()
 			rightBar.moveDown(dt);
 		if (hasAI)
 			rightBarAI(dt, Game);
-		ball.update(dt, Game);
+		ball.update(dt, Game, leftBar, rightBar);
 		if (ball.velX == 0 && Game.isGameStarted)
 		{
 			Game.isGameStarted = false;

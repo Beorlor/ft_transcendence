@@ -1,7 +1,7 @@
-import { leftBar, rightBar, ball } from "./game_objects.mjs";
+import { makeBar, makeBall } from "./game_objects.mjs";
 import { canvasWidth, canvasHeight, timeStep,
-			topHitbox, winningScore, barPadding, 
-			barHitboxPadding} from "./constants.mjs";
+			topHitbox, winningScore, 
+			barHitboxPadding, goalWidth, barWidth} from "./constants.mjs";
 
 /* TODO
 	DONE - Peaufiner les collisions
@@ -21,10 +21,6 @@ import { canvasWidth, canvasHeight, timeStep,
 		- Petit easter egg
 */
 
-const close_pong = () => {
-	throw new Error("ewghewogh");
-};
-
 function pong_main()
 {
 	let		previousTime = 0.0;
@@ -37,10 +33,21 @@ function pong_main()
 	let		wPressed = false;
 	let		sPressed = false;
 
-	let		hasAI = false;
+	let		hasAI = PONG_AI_ENABLED;
 
-	const Game = 
-	{
+	const ball = makeBall();
+	const leftBar = makeBar();
+	const rightBar = makeBar();
+	rightBar.x = canvasWidth - goalWidth - barWidth;
+	rightBar.startX = canvasWidth - goalWidth - barWidth;
+	rightBar.color = "#F00000"
+	rightBar.ai = {
+		think_timer: 1.0,
+		velY: 0.0,
+		targetY: -1
+	};
+
+	const Game = {
 		playerScore: 0,
 		aiScore: 0,
 		timer: 0,
@@ -48,7 +55,7 @@ function pong_main()
 		winner: -1, // -1 -> No winner, 0 -> Player won, 1 -> Ai won
 		touchSound: new Audio("/static/sounds/bonk.mp3"),
 		scoreSound: new Audio("/static/sounds/winSound.mp3"),
-
+	
 		updateScore: function (){
 			let scoreText = document.getElementById("score_text");
 			if (scoreText){
@@ -68,7 +75,7 @@ function pong_main()
 				}
 			}
 		},
-
+	
 		reset: function ()
 		{
 			this.aiScore = 0;
@@ -77,12 +84,12 @@ function pong_main()
 			this.winner = -1;
 			this.updateScore();
 		},
-
+	
 		playTouchSound: function (){
 			this.touchSound.volume = 0.2;
 			this.touchSound.play();
 		},
-
+	
 		playScoreSound: function (){
 			this.scoreSound.volume = 0.2;
 			this.scoreSound.play();
@@ -111,6 +118,8 @@ function pong_main()
 	function drawLoop()
 	{
 		const canvas = document.getElementById("drawCanvas");
+		if (!canvas)
+			return ;
 		if (canvas.getContext)
 		{
 			const ctx = canvas.getContext("2d");
@@ -126,6 +135,13 @@ function pong_main()
 
 	function gameLoop(dt)
 	{
+		if (PONG_AI_ENABLED != hasAI){
+			Game.reset();
+			leftBar.reset();
+			rightBar.reset();
+			ball.reset();
+		}
+		hasAI = PONG_AI_ENABLED;
 		if (upPressed && Game.isGameStarted)
 			leftBar.moveUp(dt);
 		else if(downPressed && Game.isGameStarted)
@@ -136,7 +152,7 @@ function pong_main()
 			rightBar.moveDown(dt);
 		if (hasAI)
 			rightBarAI(dt, Game);
-		ball.update(dt, Game);
+		ball.update(dt, Game, leftBar, rightBar);
 		if (ball.velX == 0 && Game.isGameStarted)
 		{
 			Game.isGameStarted = false;
@@ -198,7 +214,7 @@ function pong_main()
 			game_info_text.textContent = "First to " + winningScore + " points wins !";
 		addListener("keydown", (ke) => {
 			if (ke.key == "w" && !ke.repeat)
-				close_pong();
+				wPressed = true;
 			else if (ke.key == "s" && !ke.repeat)
 				sPressed = true;
 			if (ke.key == "ArrowUp" && !ke.repeat)
