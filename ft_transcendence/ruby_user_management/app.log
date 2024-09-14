@@ -1,51 +1,153 @@
-[2024-09-10 23:56:11] - AuthManager => Getting access token with authorization code: 49a45bdec83d2448802fd228856d3932ddc3f816937af6c674e7a7ac9d5d6f86
-[2024-09-10 23:56:12] - AuthManager => Access token retrieved successfully
-[2024-09-10 23:56:12] - AuthManager => Getting user info with access token: e10d651b34a07061ae12764134b1dcaf73b6a2fdf9615ebcd687d9654494626b
-[2024-09-10 23:56:12] - AuthManager => User info retrieved successfully
-[2024-09-10 23:56:12] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
-[2024-09-10 23:56:12] - AuthRepository => Registering user with email thoribal@student.42perpignan.fr
-[2024-09-10 23:56:12] - AuthRepository => User with email thoribal@student.42perpignan.fr registered
-[2024-09-10 23:56:40] - AuthManager => Getting access token with authorization code: 49a45bdec83d2448802fd228856d3932ddc3f816937af6c674e7a7ac9d5d6f86
-[2024-09-10 23:56:40] - AuthManager => Error while getting access token: Unauthorized
-[2024-09-10 23:56:55] - AuthManager => Getting access token with authorization code: 4aea6948257af8896a775961b855579e3436c32892f01d35f94789b75b3e2a12
-[2024-09-10 23:56:55] - AuthManager => Access token retrieved successfully
-[2024-09-10 23:56:55] - AuthManager => Getting user info with access token: e10d651b34a07061ae12764134b1dcaf73b6a2fdf9615ebcd687d9654494626b
-[2024-09-10 23:56:55] - AuthManager => User info retrieved successfully
-[2024-09-10 23:56:55] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
-[2024-09-10 23:56:55] - AuthRepository => Registering user with email thoribal@student.42perpignan.fr
-[2024-09-10 23:56:55] - AuthRepository => User with email thoribal@student.42perpignan.fr already exists
-[2024-09-11 20:58:47] - AuthManager => Registering new user}
-[2024-09-11 20:58:47] - AuthManager => Username: 
-[2024-09-11 21:00:19] - AuthManager => Registering new user}
-[2024-09-11 21:00:19] - AuthManager => Username: username
-[2024-09-11 21:00:19] - AuthManager => Email: email
-[2024-09-11 21:01:44] - AuthManager => Registering new user}
-[2024-09-11 21:01:44] - AuthManager => Username: username
-[2024-09-11 21:02:30] - AuthManager => Registering new user}
-[2024-09-11 21:02:30] - AuthManager => Username: username
-[2024-09-11 21:02:30] - AuthManager => Email: email
-[2024-09-11 21:05:42] - AuthManager => Registering new user
-[2024-09-11 21:05:42] - AuthManager => Username: thomas
-[2024-09-11 21:05:42] - AuthManager => Email: thomas@gmail.com
-[2024-09-11 21:06:16] - AuthManager => Registering new user
-[2024-09-11 21:06:16] - AuthManager => Username: thomas
-[2024-09-11 21:06:16] - AuthManager => Email: thomas@gmail.com
-[2024-09-11 21:06:16] - AuthManager => Email already in use
-[2024-09-11 21:06:35] - AuthManager => Registering new user
-[2024-09-11 21:06:35] - AuthManager => Username: thomas
-[2024-09-11 21:06:35] - AuthManager => Email: thomas@gmail.com
-[2024-09-11 21:06:36] - AuthRepository => Registering user with email thomas@gmail.com
-[2024-09-11 21:06:36] - AuthRepository => User with email thomas@gmail.com registered
-[2024-09-11 21:14:10] - AuthManager => Logging in user
-[2024-09-11 21:14:10] - AuthManager => Email: thomas@gmail.com
-[2024-09-11 21:16:10] - AuthManager => Logging in user
-[2024-09-11 21:16:10] - AuthManager => Email: thomas@gmail.com
-[2024-09-11 21:16:10] - AuthManager => User: [{"id"=>"1", "username"=>"thomas", "email"=>"thomas@gmail.com", "password"=>"$2a$12$9pGf1C1L7dPBwp9rQwJSju.WnBvQhKdbK7C0NgjYzLDRQkZCc2lFS", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-11 19:06:36", "deleted_at"=>nil, "created_at"=>"2024-09-11 19:06:36.041528"}]
-[2024-09-11 21:16:33] - AuthManager => Logging in user
-[2024-09-11 21:16:33] - AuthManager => Email: thomas@gmail.com
-[2024-09-11 21:16:33] - AuthManager => User: [{"id"=>"1", "username"=>"thomas", "email"=>"thomas@gmail.com", "password"=>"$2a$12$9pGf1C1L7dPBwp9rQwJSju.WnBvQhKdbK7C0NgjYzLDRQkZCc2lFS", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-11 19:06:36", "deleted_at"=>nil, "created_at"=>"2024-09-11 19:06:36.041528"}]
-[2024-09-11 21:16:33] - AuthManager => User logged in with email: thomas@gmail.com
-[2024-09-11 21:17:08] - AuthManager => Logging in user
-[2024-09-11 21:17:08] - AuthManager => Email: thomas@gmail.com
-[2024-09-11 21:17:08] - AuthManager => User: [{"id"=>"1", "username"=>"thomas", "email"=>"thomas@gmail.com", "password"=>"$2a$12$9pGf1C1L7dPBwp9rQwJSju.WnBvQhKdbK7C0NgjYzLDRQkZCc2lFS", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-11 19:06:36", "deleted_at"=>nil, "created_at"=>"2024-09-11 19:06:36.041528"}]
-[2024-09-11 21:17:08] - AuthManager => User logged in with email: thomas@gmail.com
+[2024-09-14 01:51:16] - AuthManager => Registering new user
+[2024-09-14 01:51:16] - AuthManager => Username: thomas
+[2024-09-14 01:51:16] - AuthManager => Email: thomas@gmail.com
+[2024-09-14 01:51:17] - AuthRepository => Registering user with email thomas@gmail.com
+[2024-09-14 01:51:17] - AuthRepository => User with email thomas@gmail.com registered
+[2024-09-14 01:52:36] - AuthManager => Registering new user
+[2024-09-14 01:52:36] - AuthManager => Username: thomas
+[2024-09-14 01:52:36] - AuthManager => Email: thomas@gmail.com
+[2024-09-14 01:52:36] - AuthManager => Email already in use
+[2024-09-14 01:53:00] - AuthManager => Registering new user
+[2024-09-14 01:53:00] - AuthManager => Username: thomas
+[2024-09-14 01:53:00] - AuthManager => Email: thomas@gmail.com
+[2024-09-14 01:53:00] - AuthRepository => Registering user with email thomas@gmail.com
+[2024-09-14 01:53:00] - AuthRepository => User with email thomas@gmail.com registered
+[2024-09-14 01:53:00] - ValidationManager => Generating validation for user with email thomas@gmail.com
+[2024-09-14 01:53:00] - ValidationManager => Code generated: 481227
+[2024-09-14 01:53:00] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 01:53:00] - AuthRepository => Registering email activation for user with id 2
+[2024-09-14 01:53:00] - ValidationManager => Sending email to user with email thomas@gmail.com
+[2024-09-14 01:53:01] - ValidationManager => Email sent
+[2024-09-14 01:53:15] - AuthManager => Logging in user
+[2024-09-14 01:53:15] - AuthManager => Email: thomas@gmail.com
+[2024-09-14 01:53:15] - AuthManager => User: [{"id"=>"2", "username"=>"thomas", "email"=>"thomas@gmail.com", "password"=>"$2a$12$0de5mKH1HllZLlynCYpWEuXy.KhxVwjJVleU3rr0mtU4qUY2Oxncy", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-13 23:53:00", "deleted_at"=>nil, "created_at"=>"2024-09-13 23:53:00.82986"}]
+[2024-09-14 01:53:15] - ValidationManager => Generating validation for user with email thomas@gmail.com
+[2024-09-14 01:53:15] - ValidationManager => Code generated: 099363
+[2024-09-14 01:53:15] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 01:53:15] - ValidationManager => Validation already exists for user with email thomas@gmail.com
+[2024-09-14 01:53:15] - AuthRepository => Updating email activation for user with id 2
+[2024-09-14 01:53:15] - ValidationManager => Validation updated
+[2024-09-14 01:53:15] - ValidationManager => Sending email to user with email thomas@gmail.com
+[2024-09-14 01:53:15] - ValidationManager => Email sent
+[2024-09-14 01:53:16] - AuthManager => Logging in user
+[2024-09-14 01:53:16] - AuthManager => Email: thomas@gmail.com
+[2024-09-14 01:53:16] - AuthManager => User: [{"id"=>"2", "username"=>"thomas", "email"=>"thomas@gmail.com", "password"=>"$2a$12$0de5mKH1HllZLlynCYpWEuXy.KhxVwjJVleU3rr0mtU4qUY2Oxncy", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-13 23:53:00", "deleted_at"=>nil, "created_at"=>"2024-09-13 23:53:00.82986"}]
+[2024-09-14 01:53:16] - ValidationManager => Generating validation for user with email thomas@gmail.com
+[2024-09-14 01:53:16] - ValidationManager => Code generated: 180340
+[2024-09-14 01:53:16] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 01:53:16] - ValidationManager => Validation already exists for user with email thomas@gmail.com
+[2024-09-14 01:53:16] - AuthRepository => Updating email activation for user with id 2
+[2024-09-14 01:53:16] - ValidationManager => Validation updated
+[2024-09-14 01:53:16] - ValidationManager => Sending email to user with email thomas@gmail.com
+[2024-09-14 01:53:16] - ValidationManager => Email sent
+[2024-09-14 01:56:05] - AuthManager => Logging in user
+[2024-09-14 01:56:05] - AuthManager => Email: thomas@gmail.com
+[2024-09-14 01:56:05] - AuthManager => User: [{"id"=>"2", "username"=>"thomas", "email"=>"thomas@gmail.com", "password"=>"$2a$12$0de5mKH1HllZLlynCYpWEuXy.KhxVwjJVleU3rr0mtU4qUY2Oxncy", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-13 23:53:00", "deleted_at"=>nil, "created_at"=>"2024-09-13 23:53:00.82986"}]
+[2024-09-14 01:56:05] - ValidationManager => Generating validation for user with email thomas@gmail.com
+[2024-09-14 01:56:05] - ValidationManager => Code generated: 652265
+[2024-09-14 01:56:05] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 01:56:05] - ValidationManager => Validation already exists for user with email thomas@gmail.com
+[2024-09-14 01:56:05] - AuthRepository => Updating email activation for user with id 2
+[2024-09-14 01:56:05] - ValidationManager => Validation updated
+[2024-09-14 01:56:05] - ValidationManager => Sending email to user with email thomas@gmail.com
+[2024-09-14 01:56:05] - ValidationManager => Email sent
+[2024-09-14 01:56:20] - AuthManager => Logging in user
+[2024-09-14 01:56:20] - AuthManager => Email: thomas@gmail.com
+[2024-09-14 01:56:20] - AuthManager => User: [{"id"=>"2", "username"=>"thomas", "email"=>"thomas@gmail.com", "password"=>"$2a$12$0de5mKH1HllZLlynCYpWEuXy.KhxVwjJVleU3rr0mtU4qUY2Oxncy", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-13 23:53:00", "deleted_at"=>nil, "created_at"=>"2024-09-13 23:53:00.82986"}]
+[2024-09-14 01:56:20] - ValidationManager => Generating validation for user with email thomas@gmail.com
+[2024-09-14 01:56:20] - ValidationManager => Code generated: 875173
+[2024-09-14 01:56:20] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 01:56:20] - ValidationManager => Validation already exists for user with email thomas@gmail.com
+[2024-09-14 01:56:20] - AuthRepository => Updating email activation for user with id 2
+[2024-09-14 01:56:20] - ValidationManager => Validation updated
+[2024-09-14 01:56:20] - ValidationManager => Sending email to user with email thomas@gmail.com
+[2024-09-14 01:56:20] - ValidationManager => Email sent
+[2024-09-14 01:56:21] - AuthManager => Logging in user
+[2024-09-14 01:56:21] - AuthManager => Email: thomas@gmail.com
+[2024-09-14 01:56:21] - AuthManager => User: [{"id"=>"2", "username"=>"thomas", "email"=>"thomas@gmail.com", "password"=>"$2a$12$0de5mKH1HllZLlynCYpWEuXy.KhxVwjJVleU3rr0mtU4qUY2Oxncy", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-13 23:53:00", "deleted_at"=>nil, "created_at"=>"2024-09-13 23:53:00.82986"}]
+[2024-09-14 01:56:21] - ValidationManager => Generating validation for user with email thomas@gmail.com
+[2024-09-14 01:56:21] - ValidationManager => Code generated: 976524
+[2024-09-14 01:56:21] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 01:56:21] - ValidationManager => Validation already exists for user with email thomas@gmail.com
+[2024-09-14 01:56:21] - AuthRepository => Updating email activation for user with id 2
+[2024-09-14 01:56:21] - ValidationManager => Validation updated
+[2024-09-14 01:56:21] - ValidationManager => Sending email to user with email thomas@gmail.com
+[2024-09-14 01:56:21] - ValidationManager => Email sent
+[2024-09-14 01:56:21] - AuthManager => Logging in user
+[2024-09-14 01:56:21] - AuthManager => Email: thomas@gmail.com
+[2024-09-14 01:56:21] - AuthManager => User: [{"id"=>"2", "username"=>"thomas", "email"=>"thomas@gmail.com", "password"=>"$2a$12$0de5mKH1HllZLlynCYpWEuXy.KhxVwjJVleU3rr0mtU4qUY2Oxncy", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-13 23:53:00", "deleted_at"=>nil, "created_at"=>"2024-09-13 23:53:00.82986"}]
+[2024-09-14 01:56:22] - ValidationManager => Generating validation for user with email thomas@gmail.com
+[2024-09-14 01:56:22] - ValidationManager => Code generated: 234034
+[2024-09-14 01:56:22] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 01:56:22] - ValidationManager => Validation already exists for user with email thomas@gmail.com
+[2024-09-14 01:56:22] - AuthRepository => Updating email activation for user with id 2
+[2024-09-14 01:56:22] - ValidationManager => Validation updated
+[2024-09-14 01:56:22] - ValidationManager => Sending email to user with email thomas@gmail.com
+[2024-09-14 01:56:22] - ValidationManager => Email sent
+[2024-09-14 02:02:21] - AuthManager => Logging in user
+[2024-09-14 02:02:21] - AuthManager => Email: thomas@gmail.com
+[2024-09-14 02:02:21] - AuthManager => User: [{"id"=>"2", "username"=>"thomas", "email"=>"thomas@gmail.com", "password"=>"$2a$12$0de5mKH1HllZLlynCYpWEuXy.KhxVwjJVleU3rr0mtU4qUY2Oxncy", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-13 23:53:00", "deleted_at"=>nil, "created_at"=>"2024-09-13 23:53:00.82986"}]
+[2024-09-14 02:02:21] - ValidationManager => Generating validation for user with email thomas@gmail.com
+[2024-09-14 02:02:21] - ValidationManager => Code generated: 249015
+[2024-09-14 02:02:21] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 02:02:21] - ValidationManager => Validation already exists for user with email thomas@gmail.com
+[2024-09-14 02:02:21] - AuthRepository => Updating email activation for user with id 2
+[2024-09-14 02:02:21] - ValidationManager => Validation updated
+[2024-09-14 02:02:21] - ValidationManager => Sending email to user with email thomas@gmail.com
+[2024-09-14 02:02:21] - ValidationManager => Email sent
+[2024-09-14 02:02:51] - AuthManager => Validating email token id: 
+[2024-09-14 02:03:15] - AuthManager => Validating email token id: 
+[2024-09-14 02:04:07] - AuthManager => Validating email token id: 
+[2024-09-14 02:04:29] - AuthManager => Validating email token id: 
+[2024-09-14 02:04:35] - AuthManager => Logging in user
+[2024-09-14 02:04:35] - AuthManager => Email: thomas@gmail.com
+[2024-09-14 02:04:35] - AuthManager => User: [{"id"=>"2", "username"=>"thomas", "email"=>"thomas@gmail.com", "password"=>"$2a$12$0de5mKH1HllZLlynCYpWEuXy.KhxVwjJVleU3rr0mtU4qUY2Oxncy", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-13 23:53:00", "deleted_at"=>nil, "created_at"=>"2024-09-13 23:53:00.82986"}]
+[2024-09-14 02:04:35] - ValidationManager => Generating validation for user with email thomas@gmail.com
+[2024-09-14 02:04:35] - ValidationManager => Code generated: 119353
+[2024-09-14 02:04:35] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 02:04:35] - ValidationManager => Validation already exists for user with email thomas@gmail.com
+[2024-09-14 02:04:35] - AuthRepository => Updating email activation for user with id 2
+[2024-09-14 02:04:35] - ValidationManager => Validation updated
+[2024-09-14 02:04:35] - ValidationManager => Sending email to user with email thomas@gmail.com
+[2024-09-14 02:04:36] - ValidationManager => Email sent
+[2024-09-14 02:04:52] - AuthManager => Validating email token id: 
+[2024-09-14 02:05:43] - AuthManager => Validating email token id: 
+[2024-09-14 02:05:48] - AuthManager => Validating email token id: 
+[2024-09-14 02:06:44] - MainController => Decoded payload: {"user_id"=>"2", "exp"=>1726275876}
+[2024-09-14 02:06:44] - AuthManager => Validating email token id: 2
+[2024-09-14 02:09:27] - MainController => Decoded payload: {"user_id"=>"2", "exp"=>1726275876}
+[2024-09-14 02:09:27] - AuthManager => Validating email token id: 2
+[2024-09-14 02:09:47] - MainController => Decoded payload: {"user_id"=>"2", "exp"=>1726275876}
+[2024-09-14 02:09:47] - AuthManager => Validating email token id: 2
+[2024-09-14 02:09:47] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 02:10:07] - MainController => Decoded payload: {"user_id"=>"2", "exp"=>1726275876}
+[2024-09-14 02:10:07] - AuthManager => Validating email token id: 2
+[2024-09-14 02:10:07] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 02:10:07] - AuthManager => Token: 119353, Body token: 
+[2024-09-14 02:10:28] - MainController => Decoded payload: {"user_id"=>"2", "exp"=>1726275876}
+[2024-09-14 02:10:28] - AuthManager => Validating email token id: 2
+[2024-09-14 02:10:28] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 02:10:28] - AuthManager => Token: 119353, Body token: 
+[2024-09-14 02:11:24] - MainController => Decoded payload: {"user_id"=>"2", "exp"=>1726275876}
+[2024-09-14 02:11:24] - AuthManager => Validating email token id: 2
+[2024-09-14 02:11:24] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 02:11:24] - AuthManager => Token: 119353, Body token: 119353
+[2024-09-14 02:12:12] - MainController => Decoded payload: {"user_id"=>"2", "exp"=>1726275876}
+[2024-09-14 02:12:12] - AuthManager => Validating email token id: 2
+[2024-09-14 02:12:12] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 02:12:12] - AuthManager => Token: 119353, Body token: 119353
+[2024-09-14 02:12:19] - AuthManager => Logging in user
+[2024-09-14 02:12:19] - AuthManager => Email: thomas@gmail.com
+[2024-09-14 02:12:19] - AuthManager => User: [{"id"=>"2", "username"=>"thomas", "email"=>"thomas@gmail.com", "password"=>"$2a$12$0de5mKH1HllZLlynCYpWEuXy.KhxVwjJVleU3rr0mtU4qUY2Oxncy", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-13 23:53:00", "deleted_at"=>nil, "created_at"=>"2024-09-13 23:53:00.82986"}]
+[2024-09-14 02:12:19] - ValidationManager => Generating validation for user with email thomas@gmail.com
+[2024-09-14 02:12:19] - ValidationManager => Code generated: 991703
+[2024-09-14 02:12:19] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 02:12:19] - ValidationManager => Validation already exists for user with email thomas@gmail.com
+[2024-09-14 02:12:19] - AuthRepository => Updating email activation for user with id 2
+[2024-09-14 02:12:19] - ValidationManager => Validation updated
+[2024-09-14 02:12:19] - ValidationManager => Sending email to user with email thomas@gmail.com
+[2024-09-14 02:12:20] - ValidationManager => Email sent
+[2024-09-14 02:12:37] - MainController => Decoded payload: {"user_id"=>"2", "exp"=>1726275876}
+[2024-09-14 02:12:37] - AuthManager => Validating email token id: 2
+[2024-09-14 02:12:37] - AuthRepository => Getting email activation for user with id 2
+[2024-09-14 02:12:37] - AuthManager => Token: 991703, Body token: 991703
