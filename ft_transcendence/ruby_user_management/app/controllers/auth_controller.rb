@@ -6,7 +6,14 @@ require 'net/http'
 require 'json'
 
 class MainController
-  def self.parse_request(client)
+
+  def initialize(logger = Logger.new, auth_manager = AuthManager.new, token_manager = TokenManager.new)
+    @logger = logger
+    @auth_manager = auth_manager
+    @token_manager = token_manager
+  end
+
+  def parse_request(client)
     begin
       request = client.readpartial(2048)
     rescue EOFError
@@ -39,7 +46,7 @@ class MainController
     [method, path, headers, body]
   end
 
-  def self.route_request(client, method, path, body, headers)
+  def route_request(client, method, path, body, headers)
     if path.nil? || path.empty?
       not_found(client)
       return
@@ -83,15 +90,15 @@ class MainController
     end
   end
 
-  def self.valid_token(client, body, headers)
+  def valid_token(client, body, headers)
     authorization_header = headers['Authorization']
     if authorization_header.nil? || authorization_header.strip.empty?
       respond(client, 400, "Authorization header is missing.")
       return
     end
-    payload = TokenManager.decode(authorization_header)
-    Logger.log('MainController', "Decoded payload: #{payload}")
-    status = AuthManager.valid_token(payload, body)
+    payload = @token_manager.decode(authorization_header)
+    @logger.log('MainController', "Decoded payload: #{payload}")
+    status = @auth_manager.valid_token(payload, body)
     if status[:error]
       respond(client, 400, status[:error])
       return
@@ -100,14 +107,14 @@ class MainController
   end
   
 
-  def self.handle_callback(client, params)
+  def handle_callback(client, params)
     authorization_code = params['code']
     if authorization_code
-      access_token = AuthManager.get_access_token(client, authorization_code)
+      access_token = @auth_manager.get_access_token(client, authorization_code)
       if access_token
-        user = AuthManager.get_user_info(client, access_token)
+        user = @auth_manager.get_user_info(client, access_token)
         if user
-          AuthManager.register_user_42(user);
+          @auth_manager.register_user_42(user);
           respond(client, 200, "User info: #{user}")
         else
           respond(client, 500, 'Failed to fetch user info')
@@ -121,15 +128,15 @@ class MainController
   end
   
 
-  def self.logwith42(client)
+  def logwith42(client)
     redirect_url = ENV['REDIR_URL']
     client.write "HTTP/1.1 302 Found\r\n"
     client.write "Location: #{redirect_url}\r\n"
     client.write "\r\n"
   end
 
-  def self.register(client, body)
-    status = AuthManager.register(body)
+  def register(client, body)
+    status = @auth_manager.register(body)
     if status[:error]
       respond(client, 400, status[:error])
       return
@@ -137,9 +144,9 @@ class MainController
     respond(client, 200, status[:success])
   end
 
-  def self.login(client, body)
-    status = AuthManager.login(body)
-    tokens = TokenManager.generate_tokens(status[:user])
+  def login(client, body)
+    status = @auth_manager.login(body)
+    tokens = @token_manager.generate_tokens(status[:user])
     if status[:error]
       respond(client, 400, status[:error])
       return
@@ -148,12 +155,12 @@ class MainController
     respond(client, 200, tokens)
   end
 
-  def self.refresh(client, body)
-    new_access_token = TokenManager.refresh_access_token(body)
+  def refresh(client, body)
+    new_access_token = @token_manager.refresh_access_token(body)
     respond(client, 200, { access_token: new_access_token })
   end
 
-  def self.verify(client, headers)
+  def verify(client, headers)
     authorization_header = headers['Authorization']
 
     if authorization_header.nil? || authorization_header.strip.empty?
@@ -161,7 +168,7 @@ class MainController
       return
     end
 
-    if TokenManager.verify_access_token(authorization_header)
+    if @token_manager.verify_access_token(authorization_header)
       respond(client, 200, "Access token is valid.")
     else
       respond(client, 401, "Invalid access token.")
@@ -169,25 +176,25 @@ class MainController
   end
 
 
-  def self.get_user(client)
+  def get_user(client)
     respond(client, 200, "User information")
   end
 
-  def self.update_user(client)
+  def update_user(client)
     respond(client, 200, "User updated")
   end
 
-  def self.delete_user(client)
+  def delete_user(client)
     respond(client, 200, "User deleted")
   end
 
-  def self.not_found(client)
+  def not_found(client)
     respond(client, 404, "Not found.")
   end
 
   private
 
-  def self.respond(client, status, message)
+  def respond(client, status, message)
     client.puts "HTTP/1.1 #{status}"
     client.puts "Content-Type: application/json"
     client.puts

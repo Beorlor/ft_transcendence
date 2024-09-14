@@ -1,10 +1,10 @@
 require 'jwt'
 require 'json'
 
-module TokenManager
+class TokenManager
   SECRET_KEY = ENV['SECRET_KEY']
 
-  def self.generate_tokens(user_data)
+  def generate_tokens(user_data)
     id_token = encode({ user_id: user_data['id'] }, exp: 3600)
     access_token = encode({ user_id: user_data['id'] }, exp: 600)
     refresh_token = encode({ user_id: user_data['id'] }, exp: 604800)
@@ -12,11 +12,11 @@ module TokenManager
     { id_token: id_token, access_token: access_token, refresh_token: refresh_token }
   end
 
-  def self.verify_access_token(token)
+  def verify_access_token(token)
     decode(token)
   end
 
-  def self.refresh_access_token(refresh_token)
+  def refresh_access_token(refresh_token)
     decoded_token = decode(refresh_token)
     if decoded_token
       encode({ user_id: decoded_token['user_id'], email: decoded_token['email'] }, exp: 600)
@@ -27,12 +27,12 @@ module TokenManager
 
   private
 
-  def self.encode(payload, exp: 3600)
+  def encode(payload, exp: 3600)
     payload[:exp] = Time.now.to_i + exp
     JWT.encode(payload, SECRET_KEY, 'HS256')
   end
 
-  def self.decode(token)
+  def decode(token)
     begin
       decoded = JWT.decode(token.split(' ').last, SECRET_KEY, true, { algorithm: 'HS256' })
       decoded[0]

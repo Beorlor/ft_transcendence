@@ -7,14 +7,21 @@ require 'uri'
 require 'net/http'
 require 'json'
 
-module AuthManager
+class AuthManager
 
-  def self.register_user_42(user)
-    Logger.log('AuthManager', "Registering user with email #{user['email']}")
+  def initialize(auth_repository = AuthRepository.new, logger = Logger.new, validation_manager = ValidationManager.new, security = Security.new)
+    @auth_repository = auth_repository
+    @logger = logger
+    @validation_manager = validation_manager
+    @security = security
+  end
+
+  def register_user_42(user)
+    @logger.log('AuthManager', "Registering user with email #{user['email']}")
     user = Database.get_one_element_from_table('_user', 'email', user['email'])
     if user.length > 0
-      Logger.log('AuthRepository', "User with email #{user['email']} already exists in database go to login")
-      ValidationManager.generate_validation(user[0])
+      @logger.log('AuthRepository', "User with email #{user['email']} already exists in database go to login")
+      @validation_manager.generate_validation(user[0])
       return
     end
     user_info = {
@@ -24,22 +31,22 @@ module AuthManager
       login_type: 1,
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
     }
-    AuthRepository.register_user_42(user_info)
+    @auth_repository.register_user_42(user_info)
     user = Database.get_one_element_from_table('_user', 'email', user['email'])
-    ValidationManager.generate_validation(user[0])
+    @validation_manager.generate_validation(user[0])
   end
 
-  def self.register(body)
-    Logger.log('AuthManager', "Registering new user")
+  def register(body)
+    @logger.log('AuthManager', "Registering new user")
     if body.nil? || body.empty?
       return {error: 'Invalid body'}
     end
-    Logger.log('AuthManager', "Username: #{body['username']}")
+    @logger.log('AuthManager', "Username: #{body['username']}")
     if body['username'].nil? || body['username'].size < 3 || body['username'].size > 12
       return {error: 'Invalid username'}
     end
     email_regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    Logger.log('AuthManager', "Email: #{body['email']}")
+    @logger.log('AuthManager', "Email: #{body['email']}")
     if body['email'].nil? || body['email'].size < 5 || body['email'].size > 320 || !body['email'].match(email_regex)
       return {error: 'Invalid email'}
     end
@@ -49,50 +56,50 @@ module AuthManager
     if body['password'] != body['password_confirmation']
       return {error: 'Passwords do not match'}
     end
-    if AuthRepository.get_user_by_email(body['email']).length > 0
-      Logger.log('AuthManager', "Email already in use")
+    if @auth_repository.get_user_by_email(body['email']).length > 0
+      @logger.log('AuthManager', "Email already in use")
       return {error: 'Email already in use'}
     end
     user_info = {
       username: body['username'],
       email: body['email'],
-      password: Security.secure_password(body['password']),
+      password: @security.secure_password(body['password']),
       role: 0,
       login_type: 0,
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
     }
-    AuthRepository.register(user_info)
-    user = AuthRepository.get_user_by_email(body['email'])
-    ValidationManager.generate_validation(user[0])
+    @auth_repository.register(user_info)
+    user = @auth_repository.get_user_by_email(body['email'])
+    @validation_manager.generate_validation(user[0])
     return {success: 'User registered'}
   end
 
-  def self.login(body)
-    Logger.log('AuthManager', "Logging in user")
+  def login(body)
+    @logger.log('AuthManager', "Logging in user")
     if body.nil? || body.empty?
       return {error: 'Invalid body'}
     end
-    Logger.log('AuthManager', "Email: #{body['email']}")
+    @logger.log('AuthManager', "Email: #{body['email']}")
     if body['email'].nil? || body['email'].empty?
       return {error: 'Email is required'}
     end
     if body['password'].nil? || body['password'].empty?
       return {error: 'Password is required'}
     end
-    user = AuthRepository.get_user_by_email(body['email'])
-    Logger.log('AuthManager', "User: #{user}")
+    user = @auth_repository.get_user_by_email(body['email'])
+    @logger.log('AuthManager', "User: #{user}")
     if user.length == 0
       return {error: 'User not found'}
     end
-    if !Security.verify_password(body['password'], user[0]['password'])
+    if !@security.verify_password(body['password'], user[0]['password'])
       return {error: 'Invalid password'}
     end
-    ValidationManager.generate_validation(user[0])
+    @validation_manager.generate_validation(user[0])
     return {success: 'User logged in', user: user[0]}
   end
 
-  def self.valid_token(payload, body)
-    Logger.log('AuthManager', "Validating email token id: #{payload['user_id']}")
+  def valid_token(payload, body)
+    @logger.log('AuthManager', "Validating email token id: #{payload['user_id']}")
     if payload['user_id'].nil? || payload['user_id'].empty?
       return {error: 'Invalid JwtToken'}
     end
@@ -103,8 +110,8 @@ module AuthManager
     return {success: status[:success]}
   end
 
-  def self.get_user_info(client, access_token)
-    Logger.log('AuthManager', "Getting user info with access token: #{access_token}")
+  def get_user_info(client, access_token)
+    @logger.log('AuthManager', "Getting user info with access token: #{access_token}")
     uri = URI.parse("https://api.intra.42.fr/v2/me")
     request = Net::HTTP::Get.new(uri)
     request["Authorization"] = "Bearer #{access_token}"
@@ -115,17 +122,17 @@ module AuthManager
     end
   
     if response.code == '200'
-      Logger.log('AuthManager', "User info retrieved successfully")
+      @logger.log('AuthManager', "User info retrieved successfully")
       user_info = JSON.parse(response.body)
       return user_info
     else
-      Logger.log('AuthManager', "Error while getting user info: #{response.message}")
+      @logger.log('AuthManager', "Error while getting user info: #{response.message}")
       return nil
     end
   end
 
-  def self.get_access_token(client, authorization_code)
-    Logger.log('AuthManager', "Getting access token with authorization code: #{authorization_code}")
+  def get_access_token(client, authorization_code)
+    @logger.log('AuthManager', "Getting access token with authorization code: #{authorization_code}")
     uri = URI.parse("https://api.intra.42.fr/oauth/token")
 
     params = {
@@ -139,12 +146,12 @@ module AuthManager
     response = Net::HTTP.post_form(uri, params)
   
     if response.is_a?(Net::HTTPSuccess)
-      Logger.log('AuthManager', "Access token retrieved successfully")
+      @logger.log('AuthManager', "Access token retrieved successfully")
       response_body = JSON.parse(response.body)
       access_token = response_body['access_token']
       access_token
     else
-      Logger.log('AuthManager', "Error while getting access token: #{response.message}")
+      @logger.log('AuthManager', "Error while getting access token: #{response.message}")
       nil
     end
   end
