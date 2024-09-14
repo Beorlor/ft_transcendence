@@ -1,27 +1,20 @@
 require 'tzinfo'
 
 class Logger
-  @log_file = "app.log"
-  @timezone = TZInfo::Timezone.get('Europe/Paris')
+  def initialize(log_file = "app.log", timezone = 'Europe/Paris')
+    @log_file = log_file
+    @timezone = TZInfo::Timezone.get(timezone)
+  end
 
-  class << self
-    def log_file=(file)
-      @log_file = file
+  def log(where, message)
+    File.open(@log_file, "a") do |file|
+      file.puts("[#{current_time}] - #{where} => #{message}")
     end
+  end
 
-    def log_file
-      @log_file
-    end
+  private
 
-    def log(where, message)
-      File.open(@log_file, "a") do |file|
-        file.puts("[#{current_time}] - #{where} => #{message}")
-      end
-    end
-    
-    def current_time
-      @timezone.now.strftime("%Y-%m-%d %H:%M:%S")
-    end
-
+  def current_time
+    @timezone.now.strftime("%Y-%m-%d %H:%M:%S")
   end
 end
