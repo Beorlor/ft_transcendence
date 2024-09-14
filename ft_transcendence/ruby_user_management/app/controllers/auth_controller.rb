@@ -76,21 +76,38 @@ class MainController
       logwith42(client)
     when ['GET', '/auth/callback']
       handle_callback(client, params)
+    when ['POST', '/auth/valid-token']
+      valid_token(client, body, headers)
     else
       not_found(client)
     end
+  end
+
+  def self.valid_token(client, body, headers)
+    authorization_header = headers['Authorization']
+    if authorization_header.nil? || authorization_header.strip.empty?
+      respond(client, 400, "Authorization header is missing.")
+      return
+    end
+    payload = TokenManager.decode(authorization_header)
+    Logger.log('MainController', "Decoded payload: #{payload}")
+    status = AuthManager.valid_token(payload, body)
+    if status[:error]
+      respond(client, 400, status[:error])
+      return
+    end
+    respond(client, 200, status[:success])
   end
   
 
   def self.handle_callback(client, params)
     authorization_code = params['code']
-  
     if authorization_code
       access_token = AuthManager.get_access_token(client, authorization_code)
       if access_token
         user = AuthManager.get_user_info(client, access_token)
         if user
-          AuthManager.registerUser42(user);
+          AuthManager.register_user_42(user);
           respond(client, 200, "User info: #{user}")
         else
           respond(client, 500, 'Failed to fetch user info')
@@ -137,7 +154,6 @@ class MainController
   end
 
   def self.verify(client, headers)
-
     authorization_header = headers['Authorization']
 
     if authorization_header.nil? || authorization_header.strip.empty?
