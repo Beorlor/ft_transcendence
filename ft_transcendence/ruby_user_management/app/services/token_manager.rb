@@ -33,13 +33,13 @@ module TokenManager
   end
 
   def self.decode(token)
-	begin
-	  decoded = JWT.decode(token.split(' ').last, SECRET_KEY, true, { algorithm: 'HS256' })
-	  decoded[0]
-	rescue JWT::ExpiredSignature
-	  nil  # Or raise an appropriate exception or return a specific error message
-	rescue JWT::DecodeError
-	  nil
-	end
+    begin
+      decoded = JWT.decode(token.split(' ').last, SECRET_KEY, true, { algorithm: 'HS256' })
+      decoded[0]
+    rescue JWT::ExpiredSignature
+      nil  # Or raise an appropriate exception or return a specific error message
+    rescue JWT::DecodeError
+      nil
+    end
   end
 end
