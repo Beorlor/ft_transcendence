@@ -35,7 +35,7 @@ class Database
     begin
       execute(query)
     rescue PG::Error => e
-      puts "Une erreur est survenue lors de l'insertion dans la table #{table_name}: #{e.message}"
+      Logger.log('Database', "Error inserting into table #{table_name}: #{e.message}")
     end
   end
 
@@ -43,6 +43,16 @@ class Database
     query = "SELECT * FROM #{table_name} WHERE #{column} = '#{value}'"
     result = execute(query)
     result.map { |row| row }
+  end
+
+  def self.update_table(table_name, data)
+    set = data.map { |key, value| "#{key} = '#{value}'" }.join(", ")
+    query = "UPDATE #{table_name} SET #{set} WHERE user_id = #{data[:user_id]}"
+    begin
+      execute(query)
+    rescue PG::Error => e
+      Logger.log('Database', "Error updating table #{table_name}: #{e.message}")
+    end
   end
 
 end

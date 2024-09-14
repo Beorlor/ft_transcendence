@@ -1,17 +1,20 @@
 require_relative '../repository/auth_repository'
+require_relative '../log/custom_logger'
+require_relative '../services/validation_manager'
 require_relative '../config/security'
+require 'securerandom'
 require 'uri'
 require 'net/http'
 require 'json'
 
 module AuthManager
 
-  def self.registerUser42(user)
+  def self.register_user_42(user)
     Logger.log('AuthManager', "Registering user with email #{user['email']}")
     user = Database.get_one_element_from_table('_user', 'email', user['email'])
     if user.length > 0
       Logger.log('AuthRepository', "User with email #{user['email']} already exists in database go to login")
-      # add redirection to code mail...
+      ValidationManager.generate_validation(user[0])
       return
     end
     user_info = {
@@ -21,8 +24,9 @@ module AuthManager
       login_type: 1,
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
     }
-    AuthRepository.registerUser42(user_info)
-    # add redirection to code mail...
+    AuthRepository.register_user_42(user_info)
+    user = Database.get_one_element_from_table('_user', 'email', user['email'])
+    ValidationManager.generate_validation(user[0])
   end
 
   def self.register(body)
@@ -58,7 +62,8 @@ module AuthManager
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
     }
     AuthRepository.register(user_info)
-    # edit and add redirection to code mail...
+    user = AuthRepository.get_user_by_email(body['email'])
+    ValidationManager.generate_validation(user[0])
     return {success: 'User registered'}
   end
 
@@ -82,8 +87,20 @@ module AuthManager
     if !Security.verify_password(body['password'], user[0]['password'])
       return {error: 'Invalid password'}
     end
-    Logger.log('AuthManager', "User logged in with email: #{body['email']}")
-    return {success: 'User logged in'}
+    ValidationManager.generate_validation(user[0])
+    return {success: 'User logged in', user: user[0]}
+  end
+
+  def self.valid_token(payload, body)
+    Logger.log('AuthManager', "Validating email token id: #{payload['user_id']}")
+    if payload['user_id'].nil? || payload['user_id'].empty?
+      return {error: 'Invalid JwtToken'}
+    end
+    status = ValidationManager.validate(payload['user_id'], body['token'])
+    if status[:error]
+      return {error: status[:error]}
+    end
+    return {success: status[:success]}
   end
 
   def self.get_user_info(client, access_token)
