@@ -1,4 +1,4 @@
-require_relative '../repository/auth_repository'
+require_relative '../repository/user_repository'
 require_relative '../log/custom_logger'
 require_relative '../services/validation_manager'
 require_relative '../config/security'
@@ -9,8 +9,8 @@ require 'json'
 
 class AuthManager
 
-  def initialize(auth_repository = AuthRepository.new, logger = Logger.new, validation_manager = ValidationManager.new, security = Security.new)
-    @auth_repository = auth_repository
+  def initialize(user_repository = UserRepository.new, logger = Logger.new, validation_manager = ValidationManager.new, security = Security.new)
+    @user_repository = user_repository
     @logger = logger
     @validation_manager = validation_manager
     @security = security
@@ -18,7 +18,7 @@ class AuthManager
 
   def register_user_42(user)
     @logger.log('AuthManager', "Registering user with email #{user['email']}")
-    user = Database.get_one_element_from_table('_user', 'email', user['email'])
+    user = @user_repository.get_user_by_email(user['email'])
     if user.length > 0
       @logger.log('AuthRepository', "User with email #{user['email']} already exists in database go to login")
       @validation_manager.generate_validation(user[0])
@@ -31,8 +31,8 @@ class AuthManager
       login_type: 1,
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
     }
-    @auth_repository.register_user_42(user_info)
-    user = Database.get_one_element_from_table('_user', 'email', user['email'])
+    @user_repository.register_user_42(user_info)
+    user = @user_repository.get_user_by_email(user['email'])
     @validation_manager.generate_validation(user[0])
   end
 
@@ -56,7 +56,7 @@ class AuthManager
     if body['password'] != body['password_confirmation']
       return {error: 'Passwords do not match'}
     end
-    if @auth_repository.get_user_by_email(body['email']).length > 0
+    if @user_repository.get_user_by_email(body['email']).length > 0
       @logger.log('AuthManager', "Email already in use")
       return {error: 'Email already in use'}
     end
@@ -68,8 +68,8 @@ class AuthManager
       login_type: 0,
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
     }
-    @auth_repository.register(user_info)
-    user = @auth_repository.get_user_by_email(body['email'])
+    @user_repository.register(user_info)
+    user = @user_repository.get_user_by_email(body['email'])
     @validation_manager.generate_validation(user[0])
     return {success: 'User registered'}
   end
@@ -86,7 +86,7 @@ class AuthManager
     if body['password'].nil? || body['password'].empty?
       return {error: 'Password is required'}
     end
-    user = @auth_repository.get_user_by_email(body['email'])
+    user = @user_repository.get_user_by_email(body['email'])
     @logger.log('AuthManager', "User: #{user}")
     if user.length == 0
       return {error: 'User not found'}
