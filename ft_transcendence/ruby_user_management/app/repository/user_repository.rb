@@ -1,7 +1,7 @@
 require_relative '../config/database'
 require_relative '../log/custom_logger'
 
-class AuthRepository
+class UserRepository
 
   def initialize(logger = Logger.new)
     @logger = logger
