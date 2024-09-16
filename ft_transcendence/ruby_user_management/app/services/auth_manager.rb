@@ -40,26 +40,26 @@ class AuthManager
   def register(body)
     @logger.log('AuthManager', "Registering new user")
     if body.nil? || body.empty?
-      return {error: 'Invalid body'}
+      return {code: 400, error: 'Invalid body'}
     end
     @logger.log('AuthManager', "Username: #{body['username']}")
     if body['username'].nil? || body['username'].size < 3 || body['username'].size > 12
-      return {error: 'Invalid username'}
+      return {code: 400, error: 'Invalid username'}
     end
     email_regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
     @logger.log('AuthManager', "Email: #{body['email']}")
     if body['email'].nil? || body['email'].size < 5 || body['email'].size > 320 || !body['email'].match(email_regex)
-      return {error: 'Invalid email'}
+      return {code: 400, error: 'Invalid email'}
     end
     if body['password'].nil? || body['password'].size < 6 || body['password'].size > 255
-      return {error: 'Invalid password'}
+      return {code: 400, error: 'Invalid password'}
     end
     if body['password'] != body['password_confirmation']
-      return {error: 'Passwords do not match'}
+      return {code: 400, error: 'Passwords do not match'}
     end
     if @user_repository.get_user_by_email(body['email']).length > 0
       @logger.log('AuthManager', "Email already in use")
-      return {error: 'Email already in use'}
+      return {code: 400, error: 'Email already in use'}
     end
     user_info = {
       username: body['username'],
@@ -72,43 +72,40 @@ class AuthManager
     @user_repository.register(user_info)
     user = @user_repository.get_user_by_email(body['email'])
     @validation_manager.generate_validation(user[0])
-    return {success: 'User registered', user: user[0]}
+    return {code: 200, success: 'User registered', user: user[0]}
   end
 
   def login(body)
     @logger.log('AuthManager', "Logging in user")
     if body.nil? || body.empty?
-      return {error: 'Invalid body'}
+      return {code: 400, error: 'Invalid body'}
     end
     @logger.log('AuthManager', "Email: #{body['email']}")
     if body['email'].nil? || body['email'].empty?
-      return {error: 'Email is required'}
+      return {code: 400, error: 'Email is required'}
     end
     if body['password'].nil? || body['password'].empty?
-      return {error: 'Password is required'}
+      return {code: 400, error: 'Password is required'}
     end
     user = @user_repository.get_user_by_email(body['email'])
     @logger.log('AuthManager', "User: #{user}")
     if user.length == 0
-      return {error: 'User not found'}
+      return {code: 404, error: 'User not found'}
     end
     if !@security.verify_password(body['password'], user[0]['password'])
-      return {error: 'Invalid password'}
+      return {code: 401, error: 'Invalid password'}
     end
     @validation_manager.generate_validation(user[0])
-    return {success: 'User logged in', user: user[0]}
+    return {code: 200,success: 'User logged in', user: user[0]}
   end
 
   def valid_token(payload, body)
     @logger.log('AuthManager', "Validating email token id: #{payload['user_id']}")
     if payload['user_id'].nil? || payload['user_id'].empty?
-      return {error: 'Invalid JwtToken'}
+      return {code: 401, error: 'Invalid JwtToken'}
     end
     status = @validation_manager.validate(payload['user_id'], body['token'])
-    if status[:error]
-      return {error: status[:error]}
-    end
-    return {success: status[:success]}
+    status
   end
 
   def get_user_info(client, access_token)
