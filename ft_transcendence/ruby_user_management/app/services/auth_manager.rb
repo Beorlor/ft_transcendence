@@ -1,4 +1,4 @@
-require_relative '../repository/auth_repository'
+require_relative '../repository/user_repository'
 require_relative '../log/custom_logger'
 require_relative '../services/validation_manager'
 require_relative '../config/security'
@@ -9,8 +9,8 @@ require 'json'
 
 class AuthManager
 
-  def initialize(auth_repository = AuthRepository.new, logger = Logger.new, validation_manager = ValidationManager.new, security = Security.new)
-    @auth_repository = auth_repository
+  def initialize(user_repository = UserRepository.new, logger = Logger.new, validation_manager = ValidationManager.new, security = Security.new)
+    @user_repository = user_repository
     @logger = logger
     @validation_manager = validation_manager
     @security = security
@@ -18,10 +18,10 @@ class AuthManager
 
   def register_user_42(user)
     @logger.log('AuthManager', "Registering user with email #{user['email']}")
-    user = Database.get_one_element_from_table('_user', 'email', user['email'])
-    if user.length > 0
+    user42 = @user_repository.get_user_by_email(user['email'])
+    if user42.length > 0
       @logger.log('AuthRepository', "User with email #{user['email']} already exists in database go to login")
-      @validation_manager.generate_validation(user[0])
+      @validation_manager.generate_validation(user42[0])
       return
     end
     user_info = {
@@ -31,9 +31,10 @@ class AuthManager
       login_type: 1,
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
     }
-    @auth_repository.register_user_42(user_info)
-    user = Database.get_one_element_from_table('_user', 'email', user['email'])
-    @validation_manager.generate_validation(user[0])
+    @user_repository.register_user_42(user_info)
+    user42 = @user_repository.get_user_by_email(user['email'])
+    @validation_manager.generate_validation(user42[0])
+    return user42[0]
   end
 
   def register(body)
@@ -56,7 +57,7 @@ class AuthManager
     if body['password'] != body['password_confirmation']
       return {error: 'Passwords do not match'}
     end
-    if @auth_repository.get_user_by_email(body['email']).length > 0
+    if @user_repository.get_user_by_email(body['email']).length > 0
       @logger.log('AuthManager', "Email already in use")
       return {error: 'Email already in use'}
     end
@@ -68,10 +69,10 @@ class AuthManager
       login_type: 0,
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
     }
-    @auth_repository.register(user_info)
-    user = @auth_repository.get_user_by_email(body['email'])
+    @user_repository.register(user_info)
+    user = @user_repository.get_user_by_email(body['email'])
     @validation_manager.generate_validation(user[0])
-    return {success: 'User registered'}
+    return {success: 'User registered', user: user[0]}
   end
 
   def login(body)
@@ -86,7 +87,7 @@ class AuthManager
     if body['password'].nil? || body['password'].empty?
       return {error: 'Password is required'}
     end
-    user = @auth_repository.get_user_by_email(body['email'])
+    user = @user_repository.get_user_by_email(body['email'])
     @logger.log('AuthManager', "User: #{user}")
     if user.length == 0
       return {error: 'User not found'}
@@ -103,7 +104,7 @@ class AuthManager
     if payload['user_id'].nil? || payload['user_id'].empty?
       return {error: 'Invalid JwtToken'}
     end
-    status = ValidationManager.validate(payload['user_id'], body['token'])
+    status = @validation_manager.validate(payload['user_id'], body['token'])
     if status[:error]
       return {error: status[:error]}
     end

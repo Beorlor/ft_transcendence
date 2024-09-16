@@ -96,7 +96,7 @@ class MainController
       respond(client, 400, "Authorization header is missing.")
       return
     end
-    payload = @token_manager.decode(authorization_header)
+    payload = @token_manager.verify_access_token(authorization_header)
     @logger.log('MainController', "Decoded payload: #{payload}")
     status = @auth_manager.valid_token(payload, body)
     if status[:error]
@@ -114,8 +114,9 @@ class MainController
       if access_token
         user = @auth_manager.get_user_info(client, access_token)
         if user
-          @auth_manager.register_user_42(user);
-          respond(client, 200, "User info: #{user}")
+          user42 = @auth_manager.register_user_42(user);
+          token = @token_manager.generate_tokens(user42)
+          respond(client, 200, token)
         else
           respond(client, 500, 'Failed to fetch user info')
         end
@@ -141,7 +142,9 @@ class MainController
       respond(client, 400, status[:error])
       return
     end
-    respond(client, 200, status[:success])
+    token = @token_manager.generate_tokens(status[:user])
+    token[:success] = status[:success]
+    respond(client, 200, token)
   end
 
   def login(client, body)
