@@ -18,10 +18,10 @@ class AuthManager
 
   def register_user_42(user)
     @logger.log('AuthManager', "Registering user with email #{user['email']}")
-    user = @user_repository.get_user_by_email(user['email'])
-    if user.length > 0
+    user42 = @user_repository.get_user_by_email(user['email'])
+    if user42.length > 0
       @logger.log('AuthRepository', "User with email #{user['email']} already exists in database go to login")
-      @validation_manager.generate_validation(user[0])
+      @validation_manager.generate_validation(user42[0])
       return
     end
     user_info = {
@@ -32,8 +32,9 @@ class AuthManager
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
     }
     @user_repository.register_user_42(user_info)
-    user = @user_repository.get_user_by_email(user['email'])
-    @validation_manager.generate_validation(user[0])
+    user42 = @user_repository.get_user_by_email(user['email'])
+    @validation_manager.generate_validation(user42[0])
+    return user42[0]
   end
 
   def register(body)
@@ -71,7 +72,7 @@ class AuthManager
     @user_repository.register(user_info)
     user = @user_repository.get_user_by_email(body['email'])
     @validation_manager.generate_validation(user[0])
-    return {success: 'User registered'}
+    return {success: 'User registered', user: user[0]}
   end
 
   def login(body)
@@ -103,7 +104,7 @@ class AuthManager
     if payload['user_id'].nil? || payload['user_id'].empty?
       return {error: 'Invalid JwtToken'}
     end
-    status = ValidationManager.validate(payload['user_id'], body['token'])
+    status = @validation_manager.validate(payload['user_id'], body['token'])
     if status[:error]
       return {error: status[:error]}
     end
