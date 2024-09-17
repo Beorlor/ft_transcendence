@@ -93,17 +93,13 @@ class MainController
   def valid_token(client, body, headers)
     authorization_header = headers['Authorization']
     if authorization_header.nil? || authorization_header.strip.empty?
-      respond(client, 400, "Authorization header is missing.")
+      respond(client, 400, {error: "Authorization header is missing."})
       return
     end
     payload = @token_manager.verify_access_token(authorization_header)
     @logger.log('MainController', "Decoded payload: #{payload}")
-    status = @auth_manager.valid_token(payload, body)
-    if status[:error]
-      respond(client, 400, status[:error])
-      return
-    end
-    respond(client, 200, status[:success])
+    response = @auth_manager.valid_token(payload, body)
+    respond(client, response[:code], response)
   end
   
 
@@ -118,13 +114,13 @@ class MainController
           token = @token_manager.generate_tokens(user42)
           respond(client, 200, token)
         else
-          respond(client, 500, 'Failed to fetch user info')
+          respond(client, 500, {error:'Failed to fetch user info'})
         end
       else
-        respond(client, 500, 'Failed to obtain access token')
+        respond(client, 500, {error:'Failed to obtain access token'})
       end
     else
-      respond(client, 400, 'Authorization failed')
+      respond(client, 400, {error:'Authorization failed'})
     end
   end
   
@@ -139,23 +135,23 @@ class MainController
   def register(client, body)
     status = @auth_manager.register(body)
     if status[:error]
-      respond(client, 400, status[:error])
+      respond(client, status[:code], status)
       return
     end
-    token = @token_manager.generate_tokens(status[:user])
-    token[:success] = status[:success]
-    respond(client, 200, token)
+    tokens = @token_manager.generate_tokens(status[:user])
+    status[:tokens] = tokens
+    respond(client, 200, status)
   end
 
   def login(client, body)
     status = @auth_manager.login(body)
     tokens = @token_manager.generate_tokens(status[:user])
     if status[:error]
-      respond(client, 400, status[:error])
+      respond(client, status[:code], status)
       return
     end
-    tokens[:success] = status[:success]
-    respond(client, 200, tokens)
+    status[:tokens] = tokens
+    respond(client, 200, status)
   end
 
   def refresh(client, body)
