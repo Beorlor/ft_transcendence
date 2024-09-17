@@ -4,7 +4,10 @@ require 'ostruct'
 require 'json'
 require_relative 'app/log/custom_logger'
 
-server = WEBrick::HTTPServer.new(:Port => 4568)
+mime_types = WEBrick::HTTPUtils::DefaultMimeTypes
+mime_types['js'] = 'application/javascript'
+mime_types['mjs'] = 'application/javascript'
+server = WEBrick::HTTPServer.new(:Port => 4568, :MimeTypes => mime_types)
 
 server.mount_proc '/' do |req, res|
 	template = ERB.new(File.read("app/view/index.erb"))
