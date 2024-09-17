@@ -230,4 +230,17 @@
 [2024-09-16 12:28:46] - MainController => Decoded payload: {"user_id"=>"2", "exp"=>1726483079}
 [2024-09-16 12:28:46] - AuthManager => Validating email token id: 2
 [2024-09-16 12:28:46] - AuthRepository => Getting email activation for user with id 2
-[2024-09-16 12:28:46] - AuthManager => Token: 798828, Body token: 798828
+[2024-09-16 12:28:46] - AuthManager => Token: 798828, Body token: 798828[2024-09-16 15:53:05] - AuthManager => Registering new user
+[2024-09-16 15:53:05] - AuthManager => Username: thomas
+[2024-09-16 15:53:05] - AuthManager => Email: thom
+[2024-09-16 15:53:28] - AuthManager => Registering new user
+[2024-09-16 15:53:28] - AuthManager => Username: thomas
+[2024-09-16 15:53:28] - AuthManager => Email: thomas@gmail.com
+[2024-09-16 15:53:29] - AuthRepository => Registering user with email thomas@gmail.com
+[2024-09-16 15:53:29] - AuthRepository => User with email thomas@gmail.com registered
+[2024-09-16 15:53:29] - ValidationManager => Generating validation for user with email thomas@gmail.com
+[2024-09-16 15:53:29] - ValidationManager => Code generated: 854345
+[2024-09-16 15:53:29] - AuthRepository => Getting email activation for user with id 1
+[2024-09-16 15:53:29] - AuthRepository => Registering email activation for user with id 1
+[2024-09-16 15:53:29] - ValidationManager => Sending email to user with email thomas@gmail.com
+[2024-09-16 15:53:29] - ValidationManager => Email sent
