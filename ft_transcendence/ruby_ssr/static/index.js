@@ -1,6 +1,13 @@
 const 	WINDOW_EVENTS = {};
 const 	WINDOW_ANIMATIONS_FRAMES = [];
-var		PONG_AI_ENABLED = false;
+const GAME_STATES =
+{
+	"default": 0,
+	"pong": 1,
+	"aipong": 2,
+	"threejs": 3
+};
+var		GAMESTATE = 0;
 
 const addListener = (event, handler) => {
 	if (!(event in WINDOW_EVENTS))
@@ -24,13 +31,21 @@ const cancelAnimations = () => {
 };
 
 document.addEventListener("DOMContentLoaded", (ev) => {
+	document.getElementById("home_link").addEventListener("click",
+		function (){
+			GAMESTATE = GAME_STATES.default;
+			cancelAnimations();
+			const game = document.getElementById("game");
+			game.innerHTML = "";
+		}
+	)
 	document.getElementById("pong_link").addEventListener("click",
 		function (){
 			fetch("/pong")
 				.then(res => res.text())
 				.then(html =>{
 					const game = document.getElementById("game");
-					PONG_AI_ENABLED = false;
+					GAMESTATE = GAME_STATES.pong;
 					game.innerHTML = html;
 					document.getElementById("game_name").textContent = "Pongpong";
 
@@ -47,9 +62,9 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 		function (){
 			fetch("/pong")
 				.then(res => res.text())
-				.then(html =>{
+				.then(html => {
 					const game = document.getElementById("game");
-					PONG_AI_ENABLED = true;
+					GAMESTATE = GAME_STATES.aipong;
 					game.innerHTML = html;
 					document.getElementById("game_name").textContent = "AI Pongpong";
 
