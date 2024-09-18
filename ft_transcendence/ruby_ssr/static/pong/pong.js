@@ -1,6 +1,6 @@
 import { makeBar, makeBall } from "./game_objects.mjs";
 import { canvasWidth, canvasHeight, timeStep,
-			topHitbox, winningScore, 
+			topHitbox, winningScore,
 			barHitboxPadding, goalWidth, barWidth} from "./constants.mjs";
 
 /* TODO
@@ -33,7 +33,7 @@ function pong_main()
 	let		wPressed = false;
 	let		sPressed = false;
 
-	let		hasAI = PONG_AI_ENABLED;
+	let		hasAI = GAMESTATE == GAME_STATES.aipong;
 
 	const ball = makeBall();
 	const leftBar = makeBar();
@@ -55,7 +55,7 @@ function pong_main()
 		winner: -1, // -1 -> No winner, 0 -> Player won, 1 -> Ai won
 		touchSound: new Audio("/static/sounds/bonk.mp3"),
 		scoreSound: new Audio("/static/sounds/winSound.mp3"),
-	
+
 		updateScore: function (){
 			let scoreText = document.getElementById("score_text");
 			if (scoreText){
@@ -75,7 +75,7 @@ function pong_main()
 				}
 			}
 		},
-	
+
 		reset: function ()
 		{
 			this.aiScore = 0;
@@ -85,19 +85,19 @@ function pong_main()
 			this.updateScore();
 			document.getElementById("game_info_text").textContent = "First to " + winningScore + " points wins !";
 		},
-	
+
 		playTouchSound: function (){
 			this.touchSound.volume = 0.2;
 			this.touchSound.play();
 		},
-	
+
 		playScoreSound: function (){
 			this.scoreSound.volume = 0.2;
 			this.scoreSound.play();
 		}
 	};
 
-	const loop = time => 
+	const loop = time =>
 	{
 		const dt = time - previousTime;
 
@@ -113,7 +113,7 @@ function pong_main()
 	}
 
 	/**
-	 * 
+	 *
 	 * @param {number} deltaTime Rendering time difference between two frames
 	 */
 	function drawLoop()
@@ -136,8 +136,10 @@ function pong_main()
 
 	function gameLoop(dt)
 	{
-		if (PONG_AI_ENABLED != hasAI){
-			hasAI = PONG_AI_ENABLED;
+		if (GAMESTATE != GAME_STATES.pong && GAMESTATE != GAME_STATES.aipong)
+			return ;
+		if ((GAMESTATE == GAME_STATES.aipong) != hasAI){
+			hasAI = GAMESTATE == GAME_STATES.aipong;
 			Game.reset();
 			leftBar.reset();
 			rightBar.reset();
@@ -210,7 +212,7 @@ function pong_main()
 	WINDOW_ANIMATIONS_FRAMES.push(window.requestAnimationFrame(time => {
 		let game_info_text = document.getElementById("game_info_text");
 		previousTime = time;
-	
+
 		if (game_info_text)
 			game_info_text.textContent = "First to " + winningScore + " points wins !";
 		addListener("keydown", (ke) => {
@@ -229,7 +231,7 @@ function pong_main()
 				console.log("Debug mode " + (debugMode ? "activated" : "deactivated"));
 			}
 		});
-	
+
 		addListener("keyup", (ke) => {
 			if (ke.key == "ArrowUp" && !ke.repeat)
 				upPressed = false;
