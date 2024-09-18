@@ -99,23 +99,19 @@ function pong_main()
 
 	const loop = time =>
 	{
-		const dt = time - previousTime;
+		const dt = (document.timeline.currentTime - previousTime) * timeStep;
 
 		delta += dt;
 		previousTime = time;
 		while (delta > timeStep)
 		{
-			gameLoop(delta / 100000);
+			gameLoop(dt / 1000);
 			delta -= timeStep;
 		}
 		drawLoop();
 		WINDOW_ANIMATIONS_FRAMES.push(window.requestAnimationFrame(loop));
 	}
 
-	/**
-	 *
-	 * @param {number} deltaTime Rendering time difference between two frames
-	 */
 	function drawLoop()
 	{
 		const canvas = document.getElementById("drawCanvas");
@@ -211,7 +207,7 @@ function pong_main()
 
 	WINDOW_ANIMATIONS_FRAMES.push(window.requestAnimationFrame(time => {
 		let game_info_text = document.getElementById("game_info_text");
-		previousTime = time;
+		previousTime = document.timeline.currentTime;
 
 		if (game_info_text)
 			game_info_text.textContent = "First to " + winningScore + " points wins !";

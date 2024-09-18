@@ -1,5 +1,5 @@
 import { canvasHeight, barPadding,
-	barWidth, barMoveSpeed, barHeight, 
+	barWidth, barMoveSpeed, barHeight,
 	canvasWidth, goalWidth,
 	ballRadius,
 	barHitboxPadding,
@@ -28,7 +28,7 @@ const makeBar = () => {
 
 		moveDown: function (timeStep){
 			let newPos = this.y + (this.moveSpeed * timeStep);
-			
+
 			if (newPos < barPadding
 				|| newPos + this.height > canvasHeight - barPadding)
 				return ;
@@ -37,7 +37,7 @@ const makeBar = () => {
 
 		moveUp: function (timeStep){
 			let newPos = this.y - (this.moveSpeed * timeStep);
-			
+
 			if (newPos < barPadding
 				|| newPos + this.height > canvasHeight - barPadding)
 				return ;
@@ -77,11 +77,11 @@ const makeBall = () => {
 			ctx.fillStyle = this.color;
 			ctx.fill();
 		},
-		
+
 		update: function(deltaTime, game, leftBar, rightBar){
 			let newX = this.x + this.velX * this.moveSpeed * deltaTime;
 			let newY = this.y + this.velY * this.moveSpeed * deltaTime;
-			
+
 			if (newX <= 0 || newX < leftBar.x - this.radius * 4 || newX > rightBar.x + rightBar.width + this.radius * 4 || newX >= canvasWidth){
 				this.reset();
 				if (newX < canvasWidth / 2)
@@ -121,8 +121,8 @@ const makeBall = () => {
 			this.x = newX;
 			this.y = newY;
 			if (game.isGameStarted == true)
-				this.moveSpeed += this.moveSpeed < this.maxMoveSpeed ? ballAcceleration * deltaTime : 0;
-			
+				this.moveSpeed += (this.moveSpeed < this.maxMoveSpeed) ? ballAcceleration * deltaTime : 0;
+
 		},
 
 		reset: function (){
