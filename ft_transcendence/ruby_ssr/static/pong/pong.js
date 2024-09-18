@@ -12,9 +12,9 @@ import { canvasWidth, canvasHeight, timeStep,
 	DONE - Clean le code
 	DONE - Fix le probleme du message infini si la balle est derriere une des barres
 	DONE - Ajouter un cadre pour delimiter l'ecran de jeu
-	- Retravailler le code du pong pour enlever toutes les variables globales
+	DONE - Retravailler le code du pong pour enlever toutes les variables globales
 		et gerer le one page
-	- Calculer un meilleur angle de renvoi de la balle
+	DONE - Calculer un meilleur angle de renvoi de la balle
 	- BONUS
 		- Petite musique
 		- Images plutot que de simples couleurs
@@ -176,7 +176,7 @@ function pong_main()
 					if (start.y <= topHitbox || start.y >= canvasHeight - topHitbox)
 						vY *= -1;
 				}
-				rightBar.ai.targetY = start.y - ((rightBar.height / 2) * ( 1.0 - Math.random() * 2));
+				rightBar.ai.targetY = start.y - ((rightBar.height / 8) * ( 1.0 - Math.random() * 2));
 				rightBar.ai.think_timer = 1.0;
 			}
 		}

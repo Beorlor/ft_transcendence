@@ -82,6 +82,10 @@ const makeBall = () => {
 			let newX = this.x + this.velX * this.moveSpeed * deltaTime;
 			let newY = this.y + this.velY * this.moveSpeed * deltaTime;
 
+			let	relativeIntersectY = 0;
+			let	normalizedRelativeIntersectY = 0;
+			let	bounceAngle = 0;
+
 			if (newX <= 0 || newX < leftBar.x - this.radius * 4 || newX > rightBar.x + rightBar.width + this.radius * 4 || newX >= canvasWidth){
 				this.reset();
 				if (newX < canvasWidth / 2)
@@ -95,17 +99,21 @@ const makeBall = () => {
 			if ((newX <= leftBar.x + leftBar.width + barHitboxPadding && newY >= leftBar.y
 				&& newY <= leftBar.y + leftBar.height)){
 				newX = leftBar.x + leftBar.width + barHitboxPadding;
-				this.velX *= -1;
-				if (!leftBar.doesCollideHigh(newY))
-					this.velY *= -1;
+				relativeIntersectY = (leftBar.y + leftBar.height / 2) - this.y;
+				normalizedRelativeIntersectY = relativeIntersectY / leftBar.height / 2;
+				bounceAngle = normalizedRelativeIntersectY * (Math.PI);
+				this.velX = Math.cos(bounceAngle) * this.moveSpeed;
+				this.velY = -Math.sin(bounceAngle) * this.moveSpeed;
 				game.playTouchSound();
 			}
 			else if (newX >= rightBar.x - barHitboxPadding && newY >= rightBar.y
 						&& newY <= rightBar.y + rightBar.height){
 				newX = rightBar.x - barHitboxPadding;
-				this.velX *= -1;
-				if (!rightBar.doesCollideHigh(newY))
-					this.velY *= -1;
+				relativeIntersectY = (rightBar.y + rightBar.height / 2) - this.y;
+				normalizedRelativeIntersectY = relativeIntersectY / rightBar.height / 2;
+				bounceAngle = normalizedRelativeIntersectY * (-Math.PI);
+				this.velX = -Math.cos(bounceAngle) * this.moveSpeed;
+				this.velY = -Math.sin(bounceAngle) * this.moveSpeed;
 				game.playTouchSound();
 			}
 			if (newY <= topHitbox)
