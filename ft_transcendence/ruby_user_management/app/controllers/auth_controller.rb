@@ -84,19 +84,15 @@ class AuthController
       RequestHelper.respond(client, status[:code], status)
       return
     end
-    tokens = @token_manager.generate_tokens(status[:user])
-    status[:tokens] = tokens
     RequestHelper.respond(client, 200, status)
   end
 
   def login(client, body)
     status = @auth_manager.login(body)
-    tokens = @token_manager.generate_tokens(status[:user])
     if status[:error]
       RequestHelper.respond(client, status[:code], status)
       return
     end
-    status[:tokens] = tokens
     RequestHelper.respond(client, 200, status)
   end
 

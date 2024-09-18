@@ -14,7 +14,7 @@ class ValidationRepository
 
   def update_validation(activation_info)
     @logger.log('AuthRepository', "Updating email activation for user with id #{activation_info[:user_id]}")
-    Database.update_table('_emailActivation', activation_info)
+    Database.update_table('_emailActivation', activation_info, "user_id = #{activation_info[:user_id]}")
   end
 
   def get_validation_by_user_id(user_id)
