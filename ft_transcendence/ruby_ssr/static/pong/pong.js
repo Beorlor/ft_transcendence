@@ -133,7 +133,13 @@ function pong_main()
 	function gameLoop(dt)
 	{
 		if (GAMESTATE != GAME_STATES.pong && GAMESTATE != GAME_STATES.aipong)
+		{
+			Game.reset();
+			leftBar.reset();
+			rightBar.reset();
+			ball.reset();
 			return ;
+		}
 		if ((GAMESTATE == GAME_STATES.aipong) != hasAI){
 			hasAI = GAMESTATE == GAME_STATES.aipong;
 			Game.reset();
