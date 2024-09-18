@@ -6,7 +6,7 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
 # hot reload
-RUN gem install guard
+#RUN gem install guard
 
 COPY . .
 

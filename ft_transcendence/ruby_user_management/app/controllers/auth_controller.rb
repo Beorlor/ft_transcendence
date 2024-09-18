@@ -19,19 +19,19 @@ class AuthController
       RequestHelper.not_found(client)
       return
     end
-  
+
     begin
       uri = URI.parse(path)
     rescue URI::InvalidURIError => e
-      puts "Erreur lors de l'analyse de l'URI : #{e.message}"
-      RequestHelper.not_found(client)
-      return
+		@logger.log('AuthController', "Error parsing URI: #{e.message}")
+		RequestHelper.not_found(client)
+    return
     end
-  
+
     query_string = uri.query
     params = query_string ? URI.decode_www_form(query_string).to_h : {}
     clean_path = uri.path
-  
+
     case [method, clean_path]
     when ['POST', '/auth/register']
       register(client, body)
@@ -41,26 +41,13 @@ class AuthController
       logwith42(client)
     when ['GET', '/auth/callback']
       handle_callback(client, params)
-    when ['POST', '/auth/valid-token']
-      valid_token(client, body, headers)
+	when ['POST', '/auth/validate-code']
+		validate_code(client, body)
     else
       return 1
     end
     return 0
   end
-
-  def valid_token(client, body, headers)
-    authorization_header = headers['Authorization']
-    if authorization_header.nil? || authorization_header.strip.empty?
-      RequestHelper.respond(client, 400, {error: "Authorization header is missing."})
-      return
-    end
-    payload = @token_manager.verify_access_token(authorization_header)
-    @logger.log('MainController', "Decoded payload: #{payload}")
-    response = @auth_manager.valid_token(payload, body)
-    RequestHelper.respond(client, response[:code], response)
-  end
-  
 
   def handle_callback(client, params)
     authorization_code = params['code']
@@ -82,7 +69,7 @@ class AuthController
       RequestHelper.respond(client, 400, {error:'Authorization failed'})
     end
   end
-  
+
 
   def logwith42(client)
     redirect_url = ENV['REDIR_URL']
@@ -111,6 +98,13 @@ class AuthController
     end
     status[:tokens] = tokens
     RequestHelper.respond(client, 200, status)
+  end
+
+  def validate_code(client, body)
+    user_id = body['user_id']
+    code = body['code']
+    status = @auth_manager.validate_code(user_id, code)
+    RequestHelper.respond(client, status[:code], status)
   end
 
 end
