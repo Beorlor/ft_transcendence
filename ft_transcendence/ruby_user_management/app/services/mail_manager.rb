@@ -12,7 +12,8 @@ class MailManager
         openssl_verify_mode: 'none'
       }
     end
-  end  
+	@logger = Logger.new
+  end
 
   def send_email(from:, to:, subject:, body:)
     mail = Mail.new do
@@ -24,6 +25,6 @@ class MailManager
 
     mail.deliver!
   rescue StandardError => e
-    puts "Erreur lors de l'envoi de l'email: #{e.message}"
+    @logger.log('MailManager', "Error sending email: #{e.message}")
   end
 end
