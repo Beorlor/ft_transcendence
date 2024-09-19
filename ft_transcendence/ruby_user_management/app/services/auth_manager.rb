@@ -128,7 +128,7 @@ class AuthManager
     new_access_token = @token_manager.generate_access_token(user_id, true, user['role'])  # Changed
     refresh_token = @token_manager.generate_refresh_token(user_id)
 
-    { code: 200, access_token: new_access_token, refresh_token: refresh_token }  # Return new tokens
+    { code: 200, success: "Token valid", access_token: new_access_token, refresh_token: refresh_token }  # Return new tokens
   end
 
   # Get user info from 42 API
