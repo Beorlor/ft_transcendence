@@ -21,6 +21,18 @@ server.mount_proc '/pong' do |req, res|
 	res.content_type = "text/html"
 end
 
+server.mount_proc '/ssr/register' do |req, res|
+	template = ERB.new(File.read("app/view/register.erb"))
+	res.body = template.result(binding)
+	res.content_type = "text/html"
+end
+
+server.mount_proc '/ssr/login' do |req, res|
+	template = ERB.new(File.read("app/view/login.erb"))
+	res.body = template.result(binding)
+	res.content_type = "text/html"
+end
+
 server.mount '/static', WEBrick::HTTPServlet::FileHandler, './static'
 
 trap 'INT' do server.shutdown end
