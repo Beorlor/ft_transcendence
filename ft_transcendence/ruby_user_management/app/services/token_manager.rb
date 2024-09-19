@@ -71,6 +71,12 @@ class TokenManager
     { access_token: new_access_token, refresh_token: new_refresh_token }
   end
 
+  def get_user_id(token)
+	payload = decode(token)
+	user_id = payload['user_id']
+	return user_id
+  end
+
   private
 
   def decode(token)

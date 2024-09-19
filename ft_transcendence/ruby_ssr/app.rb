@@ -33,6 +33,12 @@ server.mount_proc '/ssr/login' do |req, res|
 	res.content_type = "text/html"
 end
 
+server.mount_proc '/validate-code' do |req, res|
+	template = ERB.new(File.read("app/view/validate-code.erb"))
+	res.body = template.result(binding)
+	res.content_type = "text/html"
+end
+
 server.mount '/static', WEBrick::HTTPServlet::FileHandler, './static'
 
 trap 'INT' do server.shutdown end
