@@ -40,6 +40,7 @@ server.mount_proc '/validate-code' do |req, res|
 end
 
 server.mount '/static', WEBrick::HTTPServlet::FileHandler, './static'
+server.mount '/assets', WEBrick::HTTPServlet::FileHandler, './assets'
 
 trap 'INT' do server.shutdown end
 server.start

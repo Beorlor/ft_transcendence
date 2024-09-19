@@ -1,43 +1,49 @@
-document.getElementById('form_register').addEventListener('submit', function (event) {
+document
+  .getElementById("form_register")
+  .addEventListener("submit", function (event) {
     event.preventDefault();
 
-    // Create a FormData object
-    const formData = new FormData(this);
+    console.log("register");
 
-    // Convert FormData to a plain object
+    const popUp = document.getElementById("pop-up");
+    popUp.innerHTML = "";
+
+    const formData = new FormData(this);
     const formObject = {};
     formData.forEach((value, key) => {
-        formObject[key] = value;
+      formObject[key] = value;
     });
 
-    // Send the request as JSON
-    fetch('http://localhost:4567/auth/register', {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'  // Expecting JSON
-        },
-        body: JSON.stringify(formObject)  // Convert the object to a JSON string
+    fetch("http://localhost:4567/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formObject),
     })
-    .then(response => response.json())  // Assuming server sends a JSON response
-    .then(data => {
-        console.log(data);  // Log response data
+      .then((response) => response.json())
+      .then((data) => {
         if (data.success) {
-			localStorage.setItem("access_token", data.access_token);
-			fetch("/validate-code")
-				.then(response => response.text())
-				.then(html => {
-					GAMESTATE = GAME_STATES.default;
-					cancelAnimations();
-					const game = document.getElementById("game");
-					game.innerHTML = html;
+          localStorage.setItem("access_token", data.access_token);
+          fetch("/validate-code")
+            .then((response) => response.text())
+            .then((html) => {
+              GAMESTATE = GAME_STATES.default;
+              cancelAnimations();
+              const game = document.getElementById("game");
+              game.innerHTML = html;
 
-					const script = game.querySelector('script');
-					const newScript = document.createElement('script');
-					newScript.type = 'module';
-					newScript.src = script.src;
-					game.appendChild(newScript);
-				});	
+              const script = game.querySelector("script");
+              const newScript = document.createElement("script");
+              newScript.type = "module";
+              newScript.src = script.src;
+              game.appendChild(newScript);
+            });
+        } else {
+          popUp.innerHTML = `<div class="alert alert-danger" role="alert">
+            ${data.error}
+            </div>`;
         }
-    })
-    .catch(error => console.error('Error:', error));  // Log any errors
-});
+      })
+      .catch((error) => console.error("Error:", error));
+  });
