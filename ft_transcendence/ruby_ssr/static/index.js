@@ -38,7 +38,8 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 			const game = document.getElementById("game");
 			game.innerHTML = "";
 		}
-	)
+	);
+
 	document.getElementById("pong_link").addEventListener("click",
 		function (){
 			fetch("/pong")
@@ -58,6 +59,7 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 				.catch(error => console.error("Oh l'erreur !", error));
 		}
 	);
+	
 	document.getElementById("aipong_link").addEventListener("click",
 		function (){
 			fetch("/pong")
@@ -75,6 +77,38 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 					game.appendChild(newScript);
 				})
 				.catch(error => console.error("Oh l'erreur !", error));
+		}
+	);
+
+	document.getElementById("button_login").addEventListener("click",
+		function (){
+			fetch("/ssr/login")
+				.then(res => res.text())
+				.then(html => {
+					GAMESTATE = GAME_STATES.default;
+					cancelAnimations();
+					const game = document.getElementById("game");
+					game.innerHTML = html;
+				});
+		}
+	);
+
+	document.getElementById("button_register").addEventListener("click",
+		function (){
+			fetch("/ssr/register")
+				.then(res => res.text())
+				.then(html => {
+					GAMESTATE = GAME_STATES.default;
+					cancelAnimations();
+					const game = document.getElementById("game");
+					game.innerHTML = html;
+
+					const script = game.querySelector('script');
+					const newScript = document.createElement('script');
+					newScript.type = 'module';
+					newScript.src = script.src;
+					game.appendChild(newScript);
+				});
 		}
 	);
 });
