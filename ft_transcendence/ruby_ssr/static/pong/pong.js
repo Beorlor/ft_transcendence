@@ -83,7 +83,8 @@ function pong_main()
 			this.timer = 0;
 			this.winner = -1;
 			this.updateScore();
-			document.getElementById("game_info_text").textContent = "First to " + winningScore + " points wins !";
+			if (document.getElementById("game_info_text"))
+				document.getElementById("game_info_text").textContent = "First to " + winningScore + " points wins !";
 		},
 
 		playTouchSound: function (){
