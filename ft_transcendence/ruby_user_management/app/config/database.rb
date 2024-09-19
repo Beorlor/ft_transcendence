@@ -45,13 +45,15 @@ class Database
     result.map { |row| row }
   end
 
-  def self.update_table(table_name, data)
-    set = data.map { |key, value| "#{key} = '#{value}'" }.join(", ")
-    query = "UPDATE #{table_name} SET #{set} WHERE user_id = #{data[:user_id]}"
+  def self.update_table(table_name, data, where_clause)
+    set_clause = data.map { |key, value| "#{key} = '#{value}'" }.join(", ")
+    query = "UPDATE #{table_name} SET #{set_clause} WHERE #{where_clause}"
     begin
       execute(query)
+      true
     rescue PG::Error => e
-      Logger.log('Database', "Error updating table #{table_name}: #{e.message}")
+      Logger.new.log('Database', "Error updating table #{table_name}: #{e.message}")
+      false
     end
   end
 

@@ -46,15 +46,15 @@ class ValidationManager
   def validate(user_id, code)
     validation = @validation_repository.get_validation_by_user_id(user_id)
     if validation.length == 0
-      return {error: 'User not found'}
+      return {code: 404, error: 'User not found'}
     end
     @logger.log('AuthManager', "Token: #{validation[0]['token']}, Body token: #{code}")
     if validation[0]['token'] != code
-      return {error: 'Invalid token'}
+      return {code: 401, error: 'Invalid token'}
     end
     if Time.now > Time.parse(validation[0]['expire_at'])
-      return {error: 'Token expired'}
+      return {code: 401, error: 'Token expired'}
     end
-    return {success: 'Token is valid'}
+    return {code: 200, success: 'Token is valid'}
   end
 end
