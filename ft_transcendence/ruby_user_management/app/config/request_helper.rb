@@ -39,6 +39,6 @@ module RequestHelper
   end
 
   def self.not_found(client)
-    respond(client, 404, { error: 'Not Found' })
+    respond(client, 404, { error: 'UserManagement : Not Found' })
   end
 end

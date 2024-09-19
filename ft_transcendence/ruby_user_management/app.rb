@@ -14,15 +14,20 @@ userController = UserController.new
 
 
 loop do
-  client = server.accept
-  method, path, headers, body = RequestHelper.parse_request(client)
+  begin
+    client = server.accept
+    method, path, headers, body = RequestHelper.parse_request(client)
 
-  foundAuth = authController.route_request(client, method, path, body, headers)
-  foundToken = tokenController.route_request(client, method, path, body, headers)
-  foundUser = userController.route_request(client, method, path, body, headers)
-  if foundUser == 1 && foundToken == 1 && foundAuth == 1
-    RequestHelper.not_found(client)
+    foundAuth = authController.route_request(client, method, path, body, headers)
+    foundToken = tokenController.route_request(client, method, path, body, headers)
+    foundUser = userController.route_request(client, method, path, body, headers)
+
+    if foundUser == 1 && foundToken == 1 && foundAuth == 1
+      RequestHelper.not_found(client)
+    end
+  rescue Errno::EPIPE => e
+    puts "Erreur : Broken pipe - #{e.message}"
+  ensure
+    client.close if client
   end
-
-  client.close
 end
