@@ -547,3 +547,4 @@
 [2024-09-18 17:46:40] - UserController => Received request: POST /auth/register with params: {}
 [2024-09-18 17:48:03] - AuthManager => Registering new user
 [2024-09-18 17:48:03] - UserController => Received request: POST /auth/register with params: {}
+[2024-09-19 11:38:56] - UserController => Received request: GET /auth/register with params: {}
