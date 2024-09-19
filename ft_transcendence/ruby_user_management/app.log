@@ -548,3 +548,16 @@
 [2024-09-18 17:48:03] - AuthManager => Registering new user
 [2024-09-18 17:48:03] - UserController => Received request: POST /auth/register with params: {}
 [2024-09-19 11:38:56] - UserController => Received request: GET /auth/register with params: {}
+[2024-09-19 12:01:05] - UserController => Received request: GET /auth/register with params: {}
+[2024-09-19 12:04:38] - AuthManager => Registering new user
+[2024-09-19 12:04:38] - AuthManager => Username: thomas
+[2024-09-19 12:04:38] - AuthManager => Email: thomasj@gmail.com
+[2024-09-19 12:04:38] - AuthRepository => Registering user with email thomasj@gmail.com
+[2024-09-19 12:04:38] - AuthRepository => User with email thomasj@gmail.com registered
+[2024-09-19 12:04:38] - ValidationManager => Generating validation for user with email thomasj@gmail.com
+[2024-09-19 12:04:38] - ValidationManager => Code generated: 780936
+[2024-09-19 12:04:38] - AuthRepository => Getting email activation for user with id 1
+[2024-09-19 12:04:38] - AuthRepository => Registering email activation for user with id 1
+[2024-09-19 12:04:38] - ValidationManager => Sending email to user with email thomasj@gmail.com
+[2024-09-19 12:04:38] - ValidationManager => Email sent
+[2024-09-19 12:04:38] - UserController => Received request: POST /auth/register with params: {}
