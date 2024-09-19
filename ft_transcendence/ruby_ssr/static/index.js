@@ -89,6 +89,12 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 					cancelAnimations();
 					const game = document.getElementById("game");
 					game.innerHTML = html;
+
+					const script = game.querySelector('script');
+					const newScript = document.createElement('script');
+					newScript.type = 'module';
+					newScript.src = script.src;
+					game.appendChild(newScript);
 				});
 		}
 	);

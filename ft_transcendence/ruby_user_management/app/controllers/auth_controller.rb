@@ -42,7 +42,7 @@ class AuthController
     when ['GET', '/auth/callback']
       handle_callback(client, params)
 	when ['POST', '/auth/validate-code']
-		validate_code(client, body)
+		validate_code(client, body, headers)
     else
       return 1
     end
@@ -96,10 +96,10 @@ class AuthController
     RequestHelper.respond(client, 200, status)
   end
 
-  def validate_code(client, body)
-    user_id = body['user_id']
-    code = body['code']
-    status = @auth_manager.validate_code(user_id, code)
+  def validate_code(client, body, headers)
+    user_id = @token_manager.get_user_id(headers['access_token'])
+    token = body['token']
+    status = @auth_manager.validate_code(user_id, token)
     RequestHelper.respond(client, status[:code], status)
   end
 
