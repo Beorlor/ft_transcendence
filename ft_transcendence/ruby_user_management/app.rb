@@ -1,17 +1,33 @@
 require 'socket'
 require_relative 'config/environment'
 require_relative 'app/controllers/auth_controller'
+require_relative 'app/controllers/token_controller'
+require_relative 'app/controllers/user_controller'
+require_relative 'app/config/request_helper'
 
 server = TCPServer.new('0.0.0.0', 4567)
 puts "Ruby User Management server running on port 4567"
 
-mainController = MainController.new
+authController = AuthController.new
+tokenController = TokenController.new
+userController = UserController.new
+
 
 loop do
-  client = server.accept
-  method, path, headers, body = mainController.parse_request(client)
+  begin
+    client = server.accept
+    method, path, headers, body = RequestHelper.parse_request(client)
 
-  mainController.route_request(client, method, path, body, headers)
+    foundAuth = authController.route_request(client, method, path, body, headers)
+    foundToken = tokenController.route_request(client, method, path, body, headers)
+    foundUser = userController.route_request(client, method, path, body, headers)
 
-  client.close
+    if foundUser == 1 && foundToken == 1 && foundAuth == 1
+      RequestHelper.not_found(client)
+    end
+  rescue Errno::EPIPE => e
+    puts "Erreur : Broken pipe - #{e.message}"
+  ensure
+    client.close if client
+  end
 end
