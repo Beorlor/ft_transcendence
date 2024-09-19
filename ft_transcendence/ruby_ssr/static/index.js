@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 
 	document.getElementById("pong_link").addEventListener("click",
 		function (){
-			fetch("/pong")
+			fetch("ssr/pong")
 				.then(res => res.text())
 				.then(html =>{
 					const game = document.getElementById("game");
@@ -59,10 +59,10 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 				.catch(error => console.error("Oh l'erreur !", error));
 		}
 	);
-	
+
 	document.getElementById("aipong_link").addEventListener("click",
 		function (){
-			fetch("/pong")
+			fetch("ssr/pong")
 				.then(res => res.text())
 				.then(html => {
 					const game = document.getElementById("game");
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 
 	document.getElementById("button_register").addEventListener("click",
 		function (){
-			fetch("/ssr/register")
+			fetch("https://localhost/ssr/register")
 				.then(res => res.text())
 				.then(html => {
 					GAMESTATE = GAME_STATES.default;

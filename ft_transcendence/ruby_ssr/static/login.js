@@ -11,7 +11,7 @@ document.getElementById('form_login').addEventListener('submit', function (event
     });
 
     // Send the request as JSON
-    fetch('http://localhost:4567/auth/login', {
+    fetch('https://localhost/auth/login', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'  // Expecting JSON
