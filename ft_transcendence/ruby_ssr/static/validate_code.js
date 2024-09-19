@@ -11,7 +11,7 @@ document.getElementById('form_validate_code').addEventListener('submit', functio
     });
 
     // Send the request as JSON
-    fetch('http://localhost:4567/auth/validate-code', {
+    fetch('https://localhost/auth/validate-code', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',

@@ -11,7 +11,7 @@ document.getElementById('form_register').addEventListener('submit', function (ev
     });
 
     // Send the request as JSON
-    fetch('http://localhost:4567/auth/register', {
+    fetch('https://localhost/auth/register', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'  // Expecting JSON
@@ -36,7 +36,7 @@ document.getElementById('form_register').addEventListener('submit', function (ev
 					newScript.type = 'module';
 					newScript.src = script.src;
 					game.appendChild(newScript);
-				});	
+				});
         }
     })
     .catch(error => console.error('Error:', error));  // Log any errors
