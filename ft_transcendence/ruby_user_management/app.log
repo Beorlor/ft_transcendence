@@ -996,3 +996,6 @@
 [2024-09-20 00:16:05] - AuthManager => Registering new user
 [2024-09-20 00:16:05] - AuthManager => Username: 
 [2024-09-20 00:16:05] - UserController => Received request: POST /auth/register with params: {}
+[2024-09-20 16:53:28] - AuthManager => Registering new user
+[2024-09-20 16:53:28] - AuthManager => Username: 
+[2024-09-20 16:53:28] - UserController => Received request: POST /auth/register with params: {}

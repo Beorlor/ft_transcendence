@@ -1,4 +1,4 @@
-function loadFormAction() {
+function loadLoginFormAction() {
 	if (document.getElementById("form_login")) {
 		document
 			.getElementById("form_login")
@@ -59,18 +59,19 @@ document.addEventListener("DOMContentLoaded", (_) => {
 			.then(response => response.text())
 			.then(html => {
 				document.body.innerHTML = html;
+				window.GAMESTATE = 0;
 
 				const script = document.body.querySelector("script");
 				const newScript = document.createElement("script");
 
-				newScript.type = "module";
+				newScript.type = "text/javascript";
 				newScript.src = script.src;
 				document.body.appendChild(newScript);
 
 				document.getElementById("game").innerHTML = copy;
-				loadFormAction();
+				loadLoginFormAction();
 			});
 	}
 });
 
-loadFormAction();
+loadLoginFormAction();
