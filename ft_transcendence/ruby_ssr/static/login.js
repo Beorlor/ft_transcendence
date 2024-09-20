@@ -1,9 +1,13 @@
+window.onload((ev) => {
+	if (!document.getElementById("game")){
+		fetch("https://localhost");
+	}
+});
+
 document
   .getElementById("form_login")
   .addEventListener("submit", function (event) {
     event.preventDefault();
-
-    console.log("login");
 
     const popUp = document.getElementById("pop-up");
     popUp.innerHTML = "";
@@ -14,7 +18,7 @@ document
       formObject[key] = value;
     });
 
-    fetch("http://localhost:4567/auth/login", {
+    fetch("https://localhost/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
