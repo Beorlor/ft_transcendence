@@ -14,7 +14,7 @@ document
       formObject[key] = value;
     });
 
-    fetch("http://localhost:4567/auth/register", {
+    fetch("https://localhost/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
