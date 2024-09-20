@@ -7,4 +7,4 @@ RUN bundle install
 
 COPY . .
 
-CMD ["ruby", "app.rb"]
+CMD ["sh", "-c", "rerun --background --dir /app ruby app.rb"]
