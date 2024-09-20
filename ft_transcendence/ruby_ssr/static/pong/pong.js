@@ -33,7 +33,7 @@ function pong_main()
 	let		wPressed = false;
 	let		sPressed = false;
 
-	let		hasAI = GAMESTATE == GAME_STATES.aipong;
+	let		hasAI = window.GAMESTATE == window.GAME_STATES.aipong;
 
 	const ball = makeBall();
 	const leftBar = makeBar();
@@ -110,7 +110,7 @@ function pong_main()
 			delta -= timeStep;
 		}
 		drawLoop();
-		WINDOW_ANIMATIONS_FRAMES.push(window.requestAnimationFrame(loop));
+		window.WINDOW_ANIMATIONS_FRAMES.push(window.requestAnimationFrame(loop));
 	}
 
 	function drawLoop()
@@ -133,7 +133,7 @@ function pong_main()
 
 	function gameLoop(dt)
 	{
-		if (GAMESTATE != GAME_STATES.pong && GAMESTATE != GAME_STATES.aipong)
+		if (window.GAMESTATE != window.GAME_STATES.pong && window.GAMESTATE != window.GAME_STATES.aipong)
 		{
 			Game.reset();
 			leftBar.reset();
@@ -141,8 +141,8 @@ function pong_main()
 			ball.reset();
 			return ;
 		}
-		if ((GAMESTATE == GAME_STATES.aipong) != hasAI){
-			hasAI = GAMESTATE == GAME_STATES.aipong;
+		if ((window.GAMESTATE == window.GAME_STATES.aipong) != hasAI){
+			hasAI = window.GAMESTATE == window.GAME_STATES.aipong;
 			Game.reset();
 			leftBar.reset();
 			rightBar.reset();
@@ -212,13 +212,13 @@ function pong_main()
 		}
 	}
 
-	WINDOW_ANIMATIONS_FRAMES.push(window.requestAnimationFrame(time => {
+	window.WINDOW_ANIMATIONS_FRAMES.push(window.requestAnimationFrame(time => {
 		let game_info_text = document.getElementById("game_info_text");
 		previousTime = document.timeline.currentTime;
 
 		if (game_info_text)
 			game_info_text.textContent = "First to " + winningScore + " points wins !";
-		addListener("keydown", (ke) => {
+		window.addListener("keydown", (ke) => {
 			if (ke.key == "w" && !ke.repeat)
 				wPressed = true;
 			else if (ke.key == "s" && !ke.repeat)
@@ -235,7 +235,7 @@ function pong_main()
 			}
 		});
 
-		addListener("keyup", (ke) => {
+		window.addListener("keyup", (ke) => {
 			if (ke.key == "ArrowUp" && !ke.repeat)
 				upPressed = false;
 			if (ke.key == "ArrowDown" && !ke.repeat)
@@ -245,7 +245,7 @@ function pong_main()
 			if (ke.key == "s" && !ke.repeat)
 				sPressed = false;
 		});
-		WINDOW_ANIMATIONS_FRAMES.push(window.requestAnimationFrame(loop));
+		window.WINDOW_ANIMATIONS_FRAMES.push(window.requestAnimationFrame(loop));
 	}));
 }
 pong_main();

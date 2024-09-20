@@ -1,37 +1,40 @@
 const WINDOW_EVENTS = {};
-const WINDOW_ANIMATIONS_FRAMES = [];
-const GAME_STATES = {
+
+window.WINDOW_ANIMATIONS_FRAMES = [];
+window.GAME_STATES = {
 	default: 0,
 	pong: 1,
 	aipong: 2,
 	threejs: 3,
 };
-var GAMESTATE = 0;
+window.GAMESTATE = -1;
 
-const addListener = (event, handler) => {
+window.addListener = (event, handler) => {
 	if (!(event in WINDOW_EVENTS)) WINDOW_EVENTS[event] = [];
 	WINDOW_EVENTS[event] = handler;
 	window.addEventListener(event, handler);
 };
 
-const removeAllListeners = (event) => {
+window.removeAllListeners = (event) => {
 	if (!(event in WINDOW_EVENTS)) return;
-	for (handler in WINDOW_EVENTS[event])
+	for (let handler of WINDOW_EVENTS[event])
 		window.removeEventListener(event, handler);
 	delete WINDOW_EVENTS[event];
 };
 
-const cancelAnimations = () => {
-	for (v in WINDOW_ANIMATIONS_FRAMES) window.cancelAnimationFrame(v);
+window.cancelAnimations = () => {
+	for (let v in WINDOW_ANIMATIONS_FRAMES) window.cancelAnimationFrame(v);
 	WINDOW_ANIMATIONS_FRAMES.length = 0;
 };
 
-document.addEventListener("DOMContentLoaded", (ev) => {
+function loadScript() {
+	if (window.GAMESTATE > -1)
+		return;
 	document.getElementById("home_link").addEventListener("click", function () {
 		const popUp = document.getElementById("pop-up");
 		popUp.innerHTML = "";
-		GAMESTATE = GAME_STATES.default;
-		cancelAnimations();
+		window.GAMESTATE = window.GAME_STATES.default;
+		window.cancelAnimations();
 		const game = document.getElementById("game");
 		game.innerHTML = "";
 	});
@@ -43,7 +46,7 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 			.then((res) => res.text())
 			.then((html) => {
 				const game = document.getElementById("game");
-				GAMESTATE = GAME_STATES.pong;
+				window.GAMESTATE = window.GAME_STATES.pong;
 				game.innerHTML = html;
 				document.getElementById("game_name").textContent = "Pongpong";
 
@@ -63,7 +66,7 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 			.then((res) => res.text())
 			.then((html) => {
 				const game = document.getElementById("game");
-				GAMESTATE = GAME_STATES.aipong;
+				window.GAMESTATE = window.GAME_STATES.aipong;
 				game.innerHTML = html;
 				document.getElementById("game_name").textContent = "AI Pongpong";
 
@@ -84,8 +87,8 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 			fetch("https://localhost/ssr/login")
 				.then((res) => res.text())
 				.then((html) => {
-					GAMESTATE = GAME_STATES.default;
-					cancelAnimations();
+					window.GAMESTATE = window.GAME_STATES.default;
+					window.cancelAnimations();
 					const game = document.getElementById("game");
 					game.innerHTML = html;
 
@@ -105,8 +108,8 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 			fetch("https://localhost/ssr/register")
 				.then((res) => res.text())
 				.then((html) => {
-					GAMESTATE = GAME_STATES.default;
-					cancelAnimations();
+					window.GAMESTATE = window.GAME_STATES.default;
+					window.cancelAnimations();
 					const game = document.getElementById("game");
 					game.innerHTML = html;
 
@@ -117,4 +120,11 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 					game.appendChild(newScript);
 				});
 		});
+	window.GAMESTATE = 0;
+}
+
+document.addEventListener("DOMContentLoaded", (ev) => {
+	loadScript();
 });
+
+loadScript();
