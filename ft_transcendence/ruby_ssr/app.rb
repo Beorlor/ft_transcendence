@@ -16,27 +16,55 @@ server.mount_proc '/' do |req, res|
 end
 
 server.mount_proc '/pong' do |req, res|
-	template = ERB.new(File.read("app/view/localpong.erb"))
-	res.body = template.result(binding)
+	page = ERB.new(File.read("app/view/localpong.erb"))
+	@pRes = page.result(binding)
+	if req['X-Requested-With'] == 'XMLHttpRequest'
+		res.body = @pRes
+	else
+		template = ERB.new(File.read("app/view/index.erb"))
+		res.body = template.result(binding)
+	end
 	res.content_type = "text/html"
+	@pRes = ''
 end
 
 server.mount_proc '/ssr/register' do |req, res|
-	template = ERB.new(File.read("app/view/register.erb"))
-	res.body = template.result(binding)
+	page = ERB.new(File.read("app/view/register.erb"))
+	@pRes = page.result(binding)
+	if req['X-Requested-With'] == 'XMLHttpRequest'
+		res.body = @pRes
+	else
+		template = ERB.new(File.read("app/view/index.erb"))
+		res.body = template.result(binding)
+	end
 	res.content_type = "text/html"
+	@pRes = ''
 end
 
 server.mount_proc '/ssr/login' do |req, res|
-	template = ERB.new(File.read("app/view/login.erb"))
-	res.body = template.result(binding)
+	page = ERB.new(File.read("app/view/login.erb"))
+	@pRes = page.result(binding)
+	if req['X-Requested-With'] == 'XMLHttpRequest'
+		res.body = @pRes
+	else
+		template = ERB.new(File.read("app/view/index.erb"))
+		res.body = template.result(binding)
+	end
 	res.content_type = "text/html"
+	@pRes = ''
 end
 
 server.mount_proc '/validate-code' do |req, res|
-	template = ERB.new(File.read("app/view/validate-code.erb"))
-	res.body = template.result(binding)
+	page = ERB.new(File.read("app/view/validate-code.erb"))
+	@pRes = page.result(binding)
+	if req['X-Requested-With'] == 'XMLHttpRequest'
+		res.body = @pRes
+	else
+		template = ERB.new(File.read("app/view/index.erb"))
+		res.body = template.result(binding)
+	end
 	res.content_type = "text/html"
+	@pRes = ''
 end
 
 server.mount '/static', WEBrick::HTTPServlet::FileHandler, './static'
