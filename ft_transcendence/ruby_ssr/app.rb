@@ -10,9 +10,14 @@ mime_types['mjs'] = 'application/javascript'
 server = WEBrick::HTTPServer.new(:Port => 4568, :MimeTypes => mime_types)
 
 server.mount_proc '/' do |req, res|
-	template = ERB.new(File.read("app/view/index.erb"))
-	res.body = template.result(binding)
+	if req['X-Requested-With'] == 'XMLHttpRequest'
+		res.body = ''
+	else
+		template = ERB.new(File.read("app/view/index.erb"))
+		res.body = template.result(binding)
+	end
 	res.content_type = "text/html"
+	@pRes = ''
 end
 
 server.mount_proc '/pong' do |req, res|
