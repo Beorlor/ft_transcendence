@@ -26,20 +26,7 @@ function loadLoginFormAction() {
 						console.log(data);
 						if (data.success) {
 							localStorage.setItem("access_token", data.access_token);
-							fetch("/validate-code")
-								.then((response) => response.text())
-								.then((html) => {
-									GAMESTATE = GAME_STATES.default;
-									cancelAnimations();
-									const game = document.getElementById("game");
-									game.innerHTML = html;
-
-									const script = game.querySelector("script");
-									const newScript = document.createElement("script");
-									newScript.type = "module";
-									newScript.src = script.src;
-									game.appendChild(newScript);
-								});
+							window.loadValidationCodePage();
 						} else {
 							popUp.innerHTML = `<div class="alert alert-danger" role="alert">
               ${data.error}
@@ -53,24 +40,7 @@ function loadLoginFormAction() {
 
 document.addEventListener("DOMContentLoaded", (_) => {
 	if (!document.getElementById("game")) {
-		let copy = document.body.innerHTML;
-		document.body.innerHTML = "";
-		fetch("https://localhost")
-			.then(response => response.text())
-			.then(html => {
-				document.body.innerHTML = html;
-				window.GAMESTATE = 0;
-
-				const script = document.body.querySelector("script");
-				const newScript = document.createElement("script");
-
-				newScript.type = "text/javascript";
-				newScript.src = script.src;
-				document.body.appendChild(newScript);
-
-				document.getElementById("game").innerHTML = copy;
-				loadLoginFormAction();
-			});
+		loadLoginFormAction();
 	}
 });
 
