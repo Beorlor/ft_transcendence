@@ -40,9 +40,9 @@
 			</a>
 
 			<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 mx-auto">
-				<li><a id="home_link" href="#" class="nav-link px-2 text-white">Home</a></li>
-				<li><a id="pong_link" href="#" class="nav-link px-2 text-white">Local Pong</a></li>
-				<li><a id="aipong_link" href="#" class="nav-link px-2 text-white">AI Local Pong</a></li>
+				<li><a id="home_link" href="/" class="nav-link px-2 text-white">Home</a></li>
+				<li><a id="pong_link" href="/pong" class="nav-link px-2 text-white">Local Pong</a></li>
+				<li><a id="aipong_link" href="/pong" class="nav-link px-2 text-white">AI Local Pong</a></li>
 			</ul>
 
 			<div class="text-end">
@@ -52,7 +52,9 @@
 		</div>
 	</nav>
 	<div class="container" id="pop-up"></div>
-	<div id="game"></div>
+	<div id="game">
+		<%= @pRes %>
+	</div>
 </body>
 </html>
 
