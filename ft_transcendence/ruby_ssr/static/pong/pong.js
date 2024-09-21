@@ -3,23 +3,7 @@ import { canvasWidth, canvasHeight, timeStep,
 			topHitbox, winningScore,
 			barHitboxPadding, goalWidth, barWidth} from "./constants.mjs";
 
-/* TODO
-	DONE - Peaufiner les collisions
-	DONE - Mouvements de la balle
-	DONE - Ajout du score de la partie
-	DONE - Ajout d'un ecran de debut de partie
-	DONE - Ecran de fin de partie
-	DONE - Clean le code
-	DONE - Fix le probleme du message infini si la balle est derriere une des barres
-	DONE - Ajouter un cadre pour delimiter l'ecran de jeu
-	DONE - Retravailler le code du pong pour enlever toutes les variables globales
-		et gerer le one page
-	DONE - Calculer un meilleur angle de renvoi de la balle
-	- BONUS
-		- Petite musique
-		- Images plutot que de simples couleurs
-		- Petit easter egg
-*/
+let pong_start = false;
 
 function pong_main()
 {
@@ -83,6 +67,8 @@ function pong_main()
 			this.timer = 0;
 			this.winner = -1;
 			this.updateScore();
+			if (document.getElementById("game_name"))
+				document.getElementById("game_name").textContent = (window.GAMESTATE == 2 ? "AI " : "") + "Pongpong";
 			if (document.getElementById("game_info_text"))
 				document.getElementById("game_info_text").textContent = "First to " + winningScore + " points wins !";
 		},
@@ -246,6 +232,15 @@ function pong_main()
 				sPressed = false;
 		});
 		window.WINDOW_ANIMATIONS_FRAMES.push(window.requestAnimationFrame(loop));
+		pong_start = true;
 	}));
 }
+
+document.addEventListener("DOMContentLoaded", (_) => {
+	if (!pong_start){
+		pong_main();
+		
+	}
+});
+
 pong_main();
