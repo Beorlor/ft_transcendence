@@ -67,7 +67,7 @@ function loadScript() {
 			const url = "https://localhost";
 			window.GAMESTATE = window.GAME_STATES.default;
 			history.pushState(null, null, url);
-			game.innerHTML = '';
+			loadPage(game, url);
 		});
 
 		document.getElementById("pong_link").addEventListener("click", (ev) => {
