@@ -4,7 +4,7 @@ up:
 down:
 	docker-compose down
 
-restart:
+re:
 	docker-compose down && docker-compose up --build
 
 up_user_management:
