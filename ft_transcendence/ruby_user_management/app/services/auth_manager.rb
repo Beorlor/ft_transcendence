@@ -162,7 +162,7 @@ class AuthManager
       client_id: ENV['API_CLIENT'],
       client_secret: ENV['API_SECRET'],
       code: authorization_code,
-      redirect_uri: 'http://localhost:8082/auth/callback'
+      redirect_uri: 'https://localhost/callback-tmp'
     }
 
     response = Net::HTTP.post_form(uri, params)

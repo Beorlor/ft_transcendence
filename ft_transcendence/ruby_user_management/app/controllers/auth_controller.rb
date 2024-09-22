@@ -39,8 +39,8 @@ class AuthController
       login(client, body)
     when ['GET', '/auth/logwith42']
       logwith42(client)
-    when ['GET', '/auth/callback']
-      handle_callback(client, params)
+    when ['POST', '/auth/callback']
+      handle_callback(client, body)
 	when ['POST', '/auth/validate-code']
 		validate_code(client, body, headers)
     else
@@ -49,15 +49,16 @@ class AuthController
     return 0
   end
 
-  def handle_callback(client, params)
-    authorization_code = params['code']
+  def handle_callback(client, body)
+    authorization_code = body['code']
     if authorization_code
       access_token = @auth_manager.get_access_token(client, authorization_code)
       if access_token
         user = @auth_manager.get_user_info(client, access_token)
         if user
           user42 = @auth_manager.register_user_42(user);
-          token = @token_manager.generate_tokens(user42)
+          token = @token_manager.generate_tokens(user42[:id], false, user42[:role])
+		  token['success'] = 'successfully connected'
           RequestHelper.respond(client, 200, token)
         else
           RequestHelper.respond(client, 500, {error:'Failed to fetch user info'})

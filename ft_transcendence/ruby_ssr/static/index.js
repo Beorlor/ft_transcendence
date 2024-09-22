@@ -40,14 +40,18 @@ window.resetHomePage = function () {
 
 window.loadPageScript = function (game){
 	const script = game.querySelector("script");
+	if (!script)
+		return ;
 	const newScript = document.createElement("script");
 	newScript.type = "module";
 	newScript.src = script.src;
 	game.appendChild(newScript);
 };
 
-function loadPage(game, url){
-	fetch(url, {headers: {'X-Requested-With': 'XMLHttpRequest'}})
+function loadPage(game, url, gamestate){
+	window.GAMESTATE = gamestate;
+	history.pushState(null, null, url);
+	fetch(url, {headers: {'X-Requested-With': 'XMLHttpRequest', 'access_token': localStorage.getItem('access_token')}})
 		.then(res => res.text())
 		.then(html => {
 			game.innerHTML = html;
@@ -65,45 +69,35 @@ function loadScript() {
 		document.getElementById("home_link").addEventListener("click", (ev) => {
 			ev.preventDefault();
 			const url = "https://localhost";
-			window.GAMESTATE = window.GAME_STATES.default;
-			history.pushState(null, null, url);
-			loadPage(game, url);
+			loadPage(game, url, window.GAME_STATES.default);
 		});
 
 		document.getElementById("pong_link").addEventListener("click", (ev) => {
 			ev.preventDefault();
 
 			const url = "https://localhost/pong";
-			window.GAMESTATE = window.GAME_STATES.pong;
-			history.pushState(null, null, url);
-			loadPage(game, url);
+			loadPage(game, url, window.GAME_STATES.pong);
 		});
 
 		document.getElementById("aipong_link").addEventListener("click", (ev) => {
 			ev.preventDefault();
 
 			const url = "https://localhost/pong";
-			window.GAMESTATE = window.GAME_STATES.aipong;
-			history.pushState(null, null, url);
-			loadPage(game, url);
+			loadPage(game, url, window.GAME_STATES.aipong);
 		});
 
 		document.getElementById("button_login").addEventListener("click", (ev) => {
 			ev.preventDefault();
 
 			const url = "https://localhost/ssr/login";
-			window.GAMESTATE = window.GAME_STATES.default;
-			history.pushState(null, null, url);
-			loadPage(game, url);
+			loadPage(game, url, window.GAME_STATES.default);
 		});
 
 		document.getElementById("button_register").addEventListener("click", (ev) => {
 			ev.preventDefault();
 
 			const url = "https://localhost/ssr/register";
-			window.GAMESTATE = window.GAME_STATES.default;
-			history.pushState(null, null, url);
-			loadPage(game, url);
+			loadPage(game, url, window.GAME_STATES.default);
 		});
 
 		window.GAMESTATE = 0;

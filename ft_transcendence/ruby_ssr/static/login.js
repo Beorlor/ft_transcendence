@@ -17,7 +17,7 @@ function loadLoginFormAction() {
 				fetch("https://localhost/auth/login", {
 					method: "POST",
 					headers: {
-						"Content-Type": "application/json",
+						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(formObject),
 				})
@@ -26,7 +26,9 @@ function loadLoginFormAction() {
 						console.log(data);
 						if (data.success) {
 							localStorage.setItem("access_token", data.access_token);
-							window.loadValidationCodePage();
+							window.loadPage(document.getElementById("game"),
+								"https://localhost/validate-code",
+								window.GAME_STATES.default);
 						} else {
 							popUp.innerHTML = `<div class="alert alert-danger" role="alert">
               ${data.error}

@@ -72,6 +72,19 @@ server.mount_proc '/validate-code' do |req, res|
 	@pRes = ''
 end
 
+server.mount_proc '/callback-tmp' do |req, res|
+	page = ERB.new(File.read("app/view/callback-tmp.erb"))
+	@pRes = page.result(binding)
+	if req['X-Requested-With'] == 'XMLHttpRequest'
+		res.body = @pRes
+	else
+		template = ERB.new(File.read("app/view/index.erb"))
+		res.body = template.result(binding)
+	end
+	res.content_type = "text/html"
+	@pRes = ''
+end
+
 server.mount '/static', WEBrick::HTTPServlet::FileHandler, './static'
 server.mount '/assets', WEBrick::HTTPServlet::FileHandler, './assets'
 
