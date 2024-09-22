@@ -41,11 +41,56 @@ services:
     ports:
       - "4568:4568"
 
+  ruby_pong:
+    build: ./ruby_pong
+    environment:
+      SECRET_KEY: ${SECRET_KEY}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    depends_on:
+      - postgres
+    volumes:
+      - ./ruby_pong:/app
+    ports:
+      - "4569:4569"
+
+  ruby_rgpd:
+    build: ./ruby_rgpd
+    environment:
+      SECRET_KEY: ${SECRET_KEY}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    depends_on:
+      - postgres
+    volumes:
+      - ./ruby_rgpd:/app
+    ports:
+      - "4570:4570"
+
+  ruby_tournament:
+    build: ./ruby_tournament
+    environment:
+      SECRET_KEY: ${SECRET_KEY}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    depends_on:
+      - postgres
+    volumes:
+      - ./ruby_tournament:/app
+    ports:
+      - "4571:4571"
+
   nginx:
     build: ./nginx
     depends_on:
       - ruby_user_management
       - ruby_ssr
+      - ruby_pong
+      - ruby_rgpd
+      - ruby_tournament
     ports:
       - "8082:80"
       - "443:443"
