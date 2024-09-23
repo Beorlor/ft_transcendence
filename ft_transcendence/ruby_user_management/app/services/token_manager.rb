@@ -49,7 +49,7 @@ class TokenManager
   # Verify Token for User Code (state can be false)
   def verify_token_user_code(token)
     payload = decode(token)
-    return nil unless payload && payload['type'] == 'access'
+    return nil unless payload && payload['type'] == 'access' && payload['state'] == false
     payload
   end
 
