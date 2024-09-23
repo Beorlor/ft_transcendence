@@ -18,7 +18,7 @@ function loadValidateForm() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            access_token: localStorage.getItem("Authorization"),
+            Authorization: localStorage.getItem("Authorization"),
           },
           body: JSON.stringify(formObject),
         })
