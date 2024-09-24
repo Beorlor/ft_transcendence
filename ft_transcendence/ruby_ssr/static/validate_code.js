@@ -26,6 +26,11 @@ function loadValidateForm() {
           .then((data) => {
             console.log(data);
             if (data.success) {
+              window.loadPage(
+                document.getElementById("game"),
+                "https://localhost/profil",
+                window.GAME_STATES.default
+              );
               console.log("Lezzz goo!");
             } else {
               popUp.innerHTML = `<div class="alert alert-danger" role="alert">

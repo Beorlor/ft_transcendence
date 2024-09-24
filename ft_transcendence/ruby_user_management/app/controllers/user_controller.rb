@@ -7,8 +7,9 @@ require 'json'
 
 class UserController
 
-  def initialize(logger = Logger.new, user_manager = UserManager.new)
+  def initialize(logger = Logger.new, user_manager = UserManager.new, token_manager = TokenManager.new)
     @logger = logger
+    @token_manager = token_manager
     @user_manager = user_manager
   end
 
@@ -27,11 +28,9 @@ class UserController
     query_string = uri.query
     params = query_string ? URI.decode_www_form(query_string).to_h : {}
     clean_path = uri.path
-    @logger.log('UserController', "Received request: #{method} #{clean_path} with params: #{params}")
     user_id_match = clean_path.match(%r{^/user/(\d+)$})
     if user_id_match
       user_id = user_id_match[1]
-      @logger.log('UserController', "Path matches the regex, user_id: #{user_id}")
       case [method]
       when ['GET']
         get_user(client, user_id)
@@ -44,7 +43,12 @@ class UserController
         RequestHelper.not_found(client)
       end
     else
-      return 1
+      case [method, clean_path]
+      when ['GET', '/user/me']
+        get_user(client, @token_manager.get_user_id(headers['Authorization']))
+      else
+        return 1
+      end
     end
     return 0
   end

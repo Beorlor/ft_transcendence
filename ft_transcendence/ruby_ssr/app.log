@@ -3,3 +3,17 @@
 [2024-09-24 13:53:18] - App => Validating code
 [2024-09-24 14:01:07] - App => Validating code
 [2024-09-24 14:04:35] - App => Validating code
+[2024-09-24 18:51:47] - App => Validating code
+[2024-09-24 18:54:22] - App => Validating code
+[2024-09-24 18:56:35] - App => Validating code
+[2024-09-24 19:01:42] - App => Validating code
+[2024-09-24 19:04:16] - App => Validating code
+[2024-09-24 19:09:06] - App => Validating code
+[2024-09-24 19:12:47] - App => Validating code
+[2024-09-24 19:12:56] - App => User info: {"code"=>200, "user"=>[{"id"=>"1", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-24 17:12:46", "deleted_at"=>nil, "created_at"=>"2024-09-24 17:12:46.627735"}]}
+[2024-09-24 19:17:49] - App => Validating code
+[2024-09-24 19:19:51] - App => Validating code
+[2024-09-24 19:27:17] - App => Validating code
+[2024-09-24 19:28:00] - App => User info: {"code"=>200, "user"=>[{"id"=>"1", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-24 17:27:17", "deleted_at"=>nil, "created_at"=>"2024-09-24 17:27:17.253314"}]}
+[2024-09-24 19:39:03] - App => Validating code
+[2024-09-24 19:39:16] - App => User info: {"code"=>200, "user"=>[{"id"=>"1", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-24 17:39:02", "deleted_at"=>nil, "created_at"=>"2024-09-24 17:39:02.832114"}]}
