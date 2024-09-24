@@ -2,6 +2,7 @@ require 'webrick'
 require 'erb'
 require 'ostruct'
 require 'json'
+require 'net/http'
 require_relative 'app/log/custom_logger'
 
 mime_types = WEBrick::HTTPUtils::DefaultMimeTypes
@@ -77,6 +78,50 @@ end
 server.mount_proc '/callback-tmp' do |req, res|
 	page = ERB.new(File.read("app/view/callback-tmp.erb"))
 	@pRes = page.result(binding)
+	if req['X-Requested-With'] == 'XMLHttpRequest'
+		res.body = @pRes
+	else
+		template = ERB.new(File.read("app/view/index.erb"))
+		res.body = template.result(binding)
+	end
+	res.content_type = "text/html"
+	@pRes = ''
+end
+
+def get_user_info(api_url, jwt)
+  uri = URI(api_url)
+	req = Net::HTTP::Get.new(uri)
+	req['Authorization'] = jwt
+	http = Net::HTTP.new(uri.host, uri.port)
+	http.use_ssl = (uri.scheme == 'https') # A suppriner en prod
+	http.verify_mode = OpenSSL::SSL::VERIFY_NONE if uri.scheme == 'https' # A suppriner en prod
+	res = http.start do |http|
+		http.request(req)
+	end
+  if res.is_a?(Net::HTTPSuccess)
+    JSON.parse(res.body)
+  else
+    nil
+  end
+end
+
+server.mount_proc '/profil' do |req, res|
+  jwt = req['Authorization']
+  if jwt
+    api_url = 'https://nginx/user/me'
+    user_info = get_user_info(api_url, jwt)
+    if user_info
+			logger.log('App', "User info: #{user_info}")
+      page = ERB.new(File.read("app/view/profil.erb"))
+      @pRes = page.result(binding)
+    else
+      res.status = 500
+      res.body = "Erreur lors de la récupération des informations utilisateur."
+    end
+  else
+    res.status = 401
+    res.body = "Utilisateur non authentifié."
+  end
 	if req['X-Requested-With'] == 'XMLHttpRequest'
 		res.body = @pRes
 	else

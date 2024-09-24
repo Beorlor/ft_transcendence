@@ -41,6 +41,10 @@ class TokenManager
 
   # Verify Access Token (state must be true)
   def verify_access_token(token)
+    if token.nil?
+      @logger.log('TokenManager', 'Token is nil')
+      return nil
+    end
     payload = decode(token)
     return nil unless payload && payload['type'] == 'access' && payload['state'] == true
     payload
@@ -48,6 +52,10 @@ class TokenManager
 
   # Verify Token for User Code (state can be false)
   def verify_token_user_code(token)
+    if token.nil?
+      @logger.log('TokenManager', 'Token is nil')
+      return nil
+    end
     payload = decode(token)
     @logger.log('TokenManager', "Payload: #{payload}")
     return nil unless payload && payload['type'] == 'access' && payload['state'] == false
@@ -56,6 +64,10 @@ class TokenManager
 
   # Verify Admin Token
   def verify_admin_token(token)
+    if token.nil?
+      @logger.log('TokenManager', 'Token is nil')
+      return nil
+    end
     payload = verify_access_token(token)
     return nil unless payload && payload['role'] == 1  # Role 1 is admin
     payload
@@ -63,6 +75,10 @@ class TokenManager
 
   # Refresh Tokens
   def refresh_tokens(refresh_token)
+    if refresh_token.nil?
+      @logger.log('TokenManager', 'Token is nil')
+      return nil
+    end
     payload = decode(refresh_token)
     return nil unless payload && payload['type'] == 'refresh'
     user_id = payload['user_id']
@@ -73,9 +89,13 @@ class TokenManager
   end
 
   def get_user_id(token)
-	payload = decode(token)
-	user_id = payload['user_id']
-	return user_id
+    if token.nil?
+      @logger.log('TokenManager', 'Token is nil')
+      return nil
+    end
+    payload = decode(token)
+    user_id = payload['user_id']
+    return user_id
   end
 
   private
