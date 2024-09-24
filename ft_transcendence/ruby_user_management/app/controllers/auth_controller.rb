@@ -57,9 +57,8 @@ class AuthController
         user = @auth_manager.get_user_info(client, access_token)
         if user
           user42 = @auth_manager.register_user_42(user);
-          token = @token_manager.generate_tokens(user42[:id], false, user42[:role])
-		  token['success'] = 'successfully connected'
-          RequestHelper.respond(client, 200, token)
+		      user42['success'] = 'successfully connected'
+          RequestHelper.respond(client, 200, user42)
         else
           RequestHelper.respond(client, 500, {error:'Failed to fetch user info'})
         end
@@ -98,7 +97,7 @@ class AuthController
   end
 
   def validate_code(client, body, headers)
-    user_id = @token_manager.get_user_id(headers['access_token'])
+    user_id = @token_manager.get_user_id(headers['Authorization'])
     token = body['token']
     status = @auth_manager.validate_code(user_id, token)
     RequestHelper.respond(client, status[:code], status)

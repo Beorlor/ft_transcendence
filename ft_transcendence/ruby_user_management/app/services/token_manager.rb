@@ -13,7 +13,7 @@ class TokenManager
   def generate_access_token(user_id, state, role)
     payload = {
       user_id: user_id,
-      state: state, # .to_s to make sur its a string if problem later on with the true comparison
+      state: state,
       role: role,
       type: 'access',
       iat: Time.now.to_i,
@@ -49,6 +49,7 @@ class TokenManager
   # Verify Token for User Code (state can be false)
   def verify_token_user_code(token)
     payload = decode(token)
+    @logger.log('TokenManager', "Payload: #{payload}")
     return nil unless payload && payload['type'] == 'access' && payload['state'] == false
     payload
   end

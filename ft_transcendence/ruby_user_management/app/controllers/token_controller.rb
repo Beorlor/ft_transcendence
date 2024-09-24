@@ -62,6 +62,7 @@ class TokenController
 
   def verify_token_user_code(client, headers)
     authorization_header = headers['Authorization']
+    @logger.log('TokenController', "Authorization header: #{authorization_header}")
     payload = @token_manager.verify_token_user_code(authorization_header)
     if payload
       RequestHelper.respond(client, 200, "Access token is valid (state can be false).")

@@ -8,6 +8,7 @@ mime_types = WEBrick::HTTPUtils::DefaultMimeTypes
 mime_types['js'] = 'application/javascript'
 mime_types['mjs'] = 'application/javascript'
 server = WEBrick::HTTPServer.new(:Port => 4568, :MimeTypes => mime_types)
+logger = Logger.new
 
 server.mount_proc '/' do |req, res|
 	if req['X-Requested-With'] == 'XMLHttpRequest'
@@ -60,6 +61,7 @@ server.mount_proc '/ssr/login' do |req, res|
 end
 
 server.mount_proc '/validate-code' do |req, res|
+	logger.log('App', 'Validating code')
 	page = ERB.new(File.read("app/view/validate-code.erb"))
 	@pRes = page.result(binding)
 	if req['X-Requested-With'] == 'XMLHttpRequest'
