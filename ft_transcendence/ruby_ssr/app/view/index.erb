@@ -30,26 +30,21 @@
 			.register-block .form-control {
 					margin-bottom: 15px;
 			}
+			.clickable {
+				cursor: pointer;
+				color: white;
+				transition: color 0.3s ease;
+			}
+
+			.clickable:hover {
+					color: #f8f9fa;
+					text-decoration: underline;
+			}
     </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark header">
-		<div class="container">
-			<a class="navbar-brand" href="#">
-				<img src="/assets/42logo.png" alt="Logo 42">
-			</a>
-
-			<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 mx-auto">
-				<li><a id="home_link" href="/" class="nav-link px-2 text-white">Home</a></li>
-				<li><a id="pong_link" href="/pong" class="nav-link px-2 text-white">Local Pong</a></li>
-				<li><a id="aipong_link" href="/pong" class="nav-link px-2 text-white">AI Local Pong</a></li>
-			</ul>
-
-			<div class="text-end">
-				<button id="button_login" type="button" class="btn btn-outline-light me-2">Login</button>
-				<button id="button_register" type="button" class="btn btn-primary">Sign-up</button>
-			</div>
-		</div>
+	<nav id="nav" class="navbar navbar-expand-lg navbar-dark header">
+		<%= @nav %>
 	</nav>
 	<div class="container" id="pop-up"></div>
 	<div id="game">
