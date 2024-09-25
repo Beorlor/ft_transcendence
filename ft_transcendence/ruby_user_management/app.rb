@@ -1,5 +1,4 @@
 require 'socket'
-require_relative 'config/environment'
 require_relative 'app/controllers/auth_controller'
 require_relative 'app/controllers/token_controller'
 require_relative 'app/controllers/user_controller'

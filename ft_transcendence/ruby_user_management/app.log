@@ -1753,3 +1753,45 @@
 [2024-09-24 19:39:16] - TokenManager => Payload: {"user_id"=>"1", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727199542, "exp"=>1727203142}
 [2024-09-24 19:39:16] - UserController => Fetching user with ID: 1
 [2024-09-24 19:39:16] - UserManager => User found: 1
+[2024-09-25 14:47:19] - AuthManager => Registering new user
+[2024-09-25 14:47:19] - AuthManager => Username: Thomas
+[2024-09-25 14:47:19] - AuthManager => Email: thomas@gmail.com
+[2024-09-25 14:47:20] - AuthRepository => Registering user with email thomas@gmail.com
+[2024-09-25 14:47:20] - AuthRepository => User with email thomas@gmail.com registered
+[2024-09-25 14:47:20] - ValidationManager => Generating validation for user with email thomas@gmail.com
+[2024-09-25 14:47:20] - ValidationManager => Code generated: 284220
+[2024-09-25 14:47:20] - AuthRepository => Getting email activation for user with id 1
+[2024-09-25 14:47:20] - AuthRepository => Registering email activation for user with id 1
+[2024-09-25 14:47:20] - ValidationManager => Sending email to user with email thomas@gmail.com
+[2024-09-25 14:47:20] - ValidationManager => Email sent
+[2024-09-25 14:47:20] - TokenController => Authorization header: 
+[2024-09-25 14:47:20] - TokenManager => Token is nil
+[2024-09-25 14:47:42] - AuthManager => Getting access token with authorization code: 0e4c831b760bde4a1a71831624b98892ab3d5e092c84baa53e925cb7c539bce1
+[2024-09-25 14:47:42] - AuthManager => Access token retrieved successfully
+[2024-09-25 14:47:42] - AuthManager => Getting user info with access token: 06f38fc0b7927159ad1f9bfcd05cce2803c64ab3267dcc008fa0985eb37b476e
+[2024-09-25 14:47:43] - AuthManager => User info retrieved successfully
+[2024-09-25 14:47:43] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-25 14:47:43] - AuthRepository => Registering user42 with email thoribal@student.42perpignan.fr
+[2024-09-25 14:47:43] - AuthRepository => User42 with email thoribal@student.42perpignan.fr registered
+[2024-09-25 14:47:43] - ValidationManager => Generating validation for user with email thoribal@student.42perpignan.fr
+[2024-09-25 14:47:43] - ValidationManager => Code generated: 594344
+[2024-09-25 14:47:43] - AuthRepository => Getting email activation for user with id 2
+[2024-09-25 14:47:43] - AuthRepository => Registering email activation for user with id 2
+[2024-09-25 14:47:43] - ValidationManager => Sending email to user with email thoribal@student.42perpignan.fr
+[2024-09-25 14:47:43] - ValidationManager => Email sent
+[2024-09-25 14:47:43] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3MjY4NDYzLCJleHAiOjE3MjcyNzIwNjN9.pGzzzOWOzpYDm4CnV6mE9tnhLjpNFvMGPKQj9QL3tto
+[2024-09-25 14:47:43] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727268463, "exp"=>1727272063}
+[2024-09-25 14:47:58] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3MjY4NDYzLCJleHAiOjE3MjcyNzIwNjN9.pGzzzOWOzpYDm4CnV6mE9tnhLjpNFvMGPKQj9QL3tto
+[2024-09-25 14:47:58] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727268463, "exp"=>1727272063}
+[2024-09-25 14:47:58] - AuthRepository => Getting email activation for user with id 2
+[2024-09-25 14:47:58] - AuthManager => Token: 594344, Body token: 594344
+[2024-09-25 14:47:58] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3MjY4NDYzLCJleHAiOjE3MjcyNzIwNjN9.pGzzzOWOzpYDm4CnV6mE9tnhLjpNFvMGPKQj9QL3tto
+[2024-09-25 14:47:58] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727268463, "exp"=>1727272063}
+[2024-09-25 14:47:58] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3MjY4NDYzLCJleHAiOjE3MjcyNzIwNjN9.pGzzzOWOzpYDm4CnV6mE9tnhLjpNFvMGPKQj9QL3tto
+[2024-09-25 14:47:58] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727268463, "exp"=>1727272063}
+[2024-09-25 14:47:58] - UserController => Fetching user with ID: 2
+[2024-09-25 14:47:58] - UserManager => User found: 2
+[2024-09-25 14:48:32] - TokenController => Authorization header: 
+[2024-09-25 14:48:32] - TokenManager => Token is nil
+[2024-09-25 14:48:32] - TokenController => Authorization header: 
+[2024-09-25 14:48:32] - TokenManager => Token is nil

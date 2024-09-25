@@ -17,3 +17,5 @@
 [2024-09-24 19:28:00] - App => User info: {"code"=>200, "user"=>[{"id"=>"1", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-24 17:27:17", "deleted_at"=>nil, "created_at"=>"2024-09-24 17:27:17.253314"}]}
 [2024-09-24 19:39:03] - App => Validating code
 [2024-09-24 19:39:16] - App => User info: {"code"=>200, "user"=>[{"id"=>"1", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-24 17:39:02", "deleted_at"=>nil, "created_at"=>"2024-09-24 17:39:02.832114"}]}
+[2024-09-25 14:47:43] - App => Validating code
+[2024-09-25 14:47:58] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
