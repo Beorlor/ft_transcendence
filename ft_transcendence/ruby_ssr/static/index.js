@@ -38,28 +38,61 @@ window.resetHomePage = function () {
   game.innerHTML = "";
 };
 
-window.loadPageScript = function (game) {
+function loadPageScript(game) {
   const script = game.querySelector("script");
   if (!script) return;
+  const existingScripts = game.querySelectorAll('script[type="module"]');
+  existingScripts.forEach((s) => s.remove());
+
   const newScript = document.createElement("script");
   newScript.type = "module";
   newScript.src = script.src;
   game.appendChild(newScript);
-};
+
+  newScript.onload = () => {
+    console.log(`Script ${script.src} loaded.`);
+  };
+}
+
+function rebindEvents() {
+  document
+    .getElementById("home_link")
+    .addEventListener("click", handleHomeClick);
+  document
+    .getElementById("pong_link")
+    .addEventListener("click", handlePongClick);
+  document
+    .getElementById("aipong_link")
+    .addEventListener("click", handleAIPongClick);
+  if (localStorage.getItem("isLogged") === false) {
+    document
+      .getElementById("button_login")
+      .addEventListener("click", handleLoginClick);
+    document
+      .getElementById("button_register")
+      .addEventListener("click", handleRegisterClick);
+  }
+}
 
 function loadPage(game, url, gamestate) {
-  window.GAMESTATE = gamestate;
   history.pushState(null, null, url);
+  window.GAMESTATE = gamestate;
   fetch(url, {
     headers: {
       "X-Requested-With": "XMLHttpRequest",
       Authorization: localStorage.getItem("Authorization"),
+      IsLogged: document.getElementById("button_logout") ? true : false,
     },
   })
-    .then((res) => res.text())
-    .then((html) => {
-      game.innerHTML = html;
-      window.loadPageScript(game);
+    .then((res) => res.json())
+    .then((json) => {
+      console.log(json);
+      game.innerHTML = json.body;
+      if (json.nav) {
+        document.getElementById("nav").innerHTML = json.nav;
+        rebindEvents();
+      }
+      loadPageScript(game);
     })
     .catch((err) => console.error("Error: ", err));
 }
@@ -68,58 +101,77 @@ function loadScript() {
   if (window.GAMESTATE > -1) return;
   let game = document.getElementById("game");
   if (game) {
-    document.getElementById("home_link").addEventListener("click", (ev) => {
-      ev.preventDefault();
-      const url = "https://localhost";
-      loadPage(game, url, window.GAME_STATES.default);
-    });
-
-    document.getElementById("pong_link").addEventListener("click", (ev) => {
-      ev.preventDefault();
-
-      const url = "https://localhost/pong";
-      loadPage(game, url, window.GAME_STATES.pong);
-    });
-
-    document.getElementById("aipong_link").addEventListener("click", (ev) => {
-      ev.preventDefault();
-
-      const url = "https://localhost/pong";
-      loadPage(game, url, window.GAME_STATES.aipong);
-    });
-
-    document.getElementById("button_login").addEventListener("click", (ev) => {
-      ev.preventDefault();
-
-      const url = "https://localhost/ssr/login";
-      loadPage(game, url, window.GAME_STATES.default);
-    });
-
     document
-      .getElementById("button_register")
-      .addEventListener("click", (ev) => {
-        ev.preventDefault();
-
-        const url = "https://localhost/ssr/register";
-        loadPage(game, url, window.GAME_STATES.default);
-      });
-
+      .getElementById("home_link")
+      .addEventListener("click", handleHomeClick);
+    document
+      .getElementById("pong_link")
+      .addEventListener("click", handlePongClick);
+    document
+      .getElementById("aipong_link")
+      .addEventListener("click", handleAIPongClick);
+    if (localStorage.getItem("isLogged") === false) {
+      document
+        .getElementById("button_login")
+        .addEventListener("click", handleLoginClick);
+      document
+        .getElementById("button_register")
+        .addEventListener("click", handleRegisterClick);
+    }
     window.GAMESTATE = 0;
   }
+}
+
+function handleHomeClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
+
+function handlePongClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/pong";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.pong);
+}
+
+function handleAIPongClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/pong";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.aipong);
+}
+
+function handleLoginClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/ssr/login";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
+
+function handleRegisterClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/ssr/register";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
 window.addEventListener("popstate", function (_) {
   const currentUrl = window.location.pathname;
 
-  fetch(currentUrl, { headers: { "X-Requested-With": "XMLHttpRequest" } })
-    .then((response) => response.text())
-    .then((html) => {
-      document.getElementById("game").innerHTML = html;
-    });
+  if (currentUrl !== window.location.pathname) {
+    fetch(currentUrl, { headers: { "X-Requested-With": "XMLHttpRequest" } })
+      .then((response) => response.text())
+      .then((html) => {
+        document.getElementById("game").innerHTML = html;
+      })
+      .catch((err) => console.error("Error during popstate fetch: ", err));
+  }
 });
 
 document.addEventListener("DOMContentLoaded", (ev) => {
   loadScript();
+  loadPage(
+    document.getElementById("game"),
+    window.location.href,
+    window.GAME_STATES.default
+  );
 });
 
 loadScript();

@@ -23,7 +23,6 @@ function loadLoginFormAction() {
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
             if (data.success) {
               localStorage.setItem("Authorization", data.access_token);
               window.loadPage(

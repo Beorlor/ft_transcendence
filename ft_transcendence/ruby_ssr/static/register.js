@@ -25,20 +25,11 @@ function loadRegisterFormAction() {
           .then((data) => {
             if (data.success) {
               localStorage.setItem("Authorization", data.access_token);
-              fetch("/validate-code")
-                .then((response) => response.text())
-                .then((html) => {
-                  window.GAMESTATE = 0;
-                  cancelAnimations();
-                  const game = document.getElementById("game");
-                  game.innerHTML = html;
-
-                  const script = game.querySelector("script");
-                  const newScript = document.createElement("script");
-                  newScript.type = "module";
-                  newScript.src = script.src;
-                  game.appendChild(newScript);
-                });
+              window.loadPage(
+                document.getElementById("game"),
+                "https://localhost/vadilate-code",
+                window.GAME_STATES.default
+              );
             } else {
               popUp.innerHTML = `<div class="alert alert-danger" role="alert">
 			  ${data.error}
