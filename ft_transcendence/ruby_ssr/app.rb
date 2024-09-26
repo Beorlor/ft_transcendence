@@ -21,16 +21,20 @@ def user_logged(jwt, logger)
 	res = http.start do |http|
 		http.request(req)
 	end
+	logger.log('App', "Response from /auth/verify-token-user: #{res.body}")
   if res.is_a?(Net::HTTPSuccess)
 		logger.log('App', "User logged #{JSON.parse(res.body)}.")
-		true
+		return true
   else
-    false
+		logger.log('App', "Failed to verify token: #{res.code} #{res.message}")
+    return false
   end
 end
 
 server.mount_proc '/' do |req, res|
+	logger.log('App', "Entry route / request: #{req['Authorization']}")
 	@user_logged = user_logged(req['Authorization'], logger)
+	logger.log('App', "/ User logged status: #{@user_logged}")
 	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
 	@nav = navigation.result(binding)
 	if req['X-Requested-With'] == 'XMLHttpRequest'
@@ -50,6 +54,7 @@ server.mount_proc '/' do |req, res|
 end
 
 server.mount_proc '/pong' do |req, res|
+	logger.log('App', "Entry route /pong request: #{req['Authorization']}")
 	@user_logged = user_logged(req['Authorization'], logger)
 	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
 	@nav = navigation.result(binding)
@@ -72,6 +77,7 @@ server.mount_proc '/pong' do |req, res|
 end
 
 server.mount_proc '/ssr/register' do |req, res|
+	logger.log('App', "Entry route /ssr/register request: #{req['Authorization']}")
 	@user_logged = user_logged(req['Authorization'], logger)
 	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
 	@nav = navigation.result(binding)
@@ -93,6 +99,7 @@ server.mount_proc '/ssr/register' do |req, res|
 end
 
 server.mount_proc '/ssr/login' do |req, res|
+	logger.log('App', "Entry route /ssr/login request: #{req['Authorization']}")
 	@user_logged = user_logged(req['Authorization'], logger)
 	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
 	@nav = navigation.result(binding)
@@ -115,6 +122,7 @@ server.mount_proc '/ssr/login' do |req, res|
 end
 
 server.mount_proc '/validate-code' do |req, res|
+	logger.log('App', "Entry route /validate-code request: #{req['Authorization']}")
 	@user_logged = user_logged(req['Authorization'], logger)
 	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
 	@nav = navigation.result(binding)
@@ -174,6 +182,7 @@ def get_user_info(api_url, jwt)
 end
 
 server.mount_proc '/profil' do |req, res|
+	logger.log('App', "Entry route /profil request: #{req['Authorization']}")
 	@user_logged = user_logged(req['Authorization'], logger)
 	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
 	@nav = navigation.result(binding)

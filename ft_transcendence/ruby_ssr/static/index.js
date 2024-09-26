@@ -55,7 +55,7 @@ function loadPageScript(game) {
 }
 
 function rebindEvents() {
-  console.log("Rebinding events...");
+  removeAllListeners("click");
   document
     .getElementById("home_link")
     .addEventListener("click", handleHomeClick);
@@ -94,13 +94,12 @@ function loadPage(game, url, gamestate) {
   })
     .then((res) => res.json())
     .then((json) => {
-		console.log(document.getElementById("button_logout") ? true : false);
-		game.innerHTML = json.body;
-		if (json.nav) {
-			document.getElementById("nav").innerHTML = json.nav;
-			rebindEvents();
-		}
-		loadPageScript(game);
+      game.innerHTML = json.body;
+      if (json.nav) {
+        document.getElementById("nav").innerHTML = json.nav;
+        rebindEvents();
+      }
+      loadPageScript(game);
     })
     .catch((err) => console.error("Error: ", err));
 }
@@ -152,7 +151,13 @@ window.addEventListener("popstate", function (_) {
   const currentUrl = window.location.pathname;
 
   if (currentUrl !== window.location.pathname) {
-    fetch(currentUrl, { headers: { "X-Requested-With": "XMLHttpRequest" } })
+    fetch(currentUrl, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        Authorization: localStorage.getItem("Authorization"),
+        IsLogged: document.getElementById("button_logout") ? true : false,
+      },
+    })
       .then((response) => response.text())
       .then((html) => {
         document.getElementById("game").innerHTML = html;
