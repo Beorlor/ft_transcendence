@@ -55,6 +55,7 @@ function loadPageScript(game) {
 }
 
 function rebindEvents() {
+  console.log("Rebinding events...");
   document
     .getElementById("home_link")
     .addEventListener("click", handleHomeClick);
@@ -64,13 +65,20 @@ function rebindEvents() {
   document
     .getElementById("aipong_link")
     .addEventListener("click", handleAIPongClick);
-  if (localStorage.getItem("isLogged") === false) {
+  if (document.getElementById("button_login")) {
     document
       .getElementById("button_login")
       .addEventListener("click", handleLoginClick);
     document
       .getElementById("button_register")
       .addEventListener("click", handleRegisterClick);
+  } else if (document.getElementById("button_logout")) {
+    document
+      .getElementById("button_logout")
+      .addEventListener("click", handleLogoutClick);
+    document
+      .getElementById("button_profile")
+      .addEventListener("click", handleProfileClick);
   }
 }
 
@@ -110,13 +118,20 @@ function loadScript() {
     document
       .getElementById("aipong_link")
       .addEventListener("click", handleAIPongClick);
-    if (localStorage.getItem("isLogged") === false) {
+    if (document.getElementById("button_login")) {
       document
         .getElementById("button_login")
         .addEventListener("click", handleLoginClick);
       document
         .getElementById("button_register")
         .addEventListener("click", handleRegisterClick);
+    } else if (document.getElementById("button_logout")) {
+      document
+        .getElementById("button_logout")
+        .addEventListener("click", handleLogoutClick);
+      document
+        .getElementById("button_profile")
+        .addEventListener("click", handleProfileClick);
     }
     window.GAMESTATE = 0;
   }
@@ -149,6 +164,19 @@ function handleLoginClick(ev) {
 function handleRegisterClick(ev) {
   ev.preventDefault();
   const url = "https://localhost/ssr/register";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
+
+function handleLogoutClick(ev) {
+  ev.preventDefault();
+  localStorage.removeItem("Authorization");
+  const url = "https://localhost/ssr/login";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
+
+function handleProfileClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/profil";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
