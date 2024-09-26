@@ -18,7 +18,7 @@ let		ballAcceleration = 3;
 
 const	goalWidth = 50;
 
-const	timeStep = 1.0 / 60.0;
+const	timeStep = 1000.0 / 60.0;
 
 export {canvasWidth, canvasHeight, barWidth, barPadding,
 		timeStep, barMoveSpeed, barHeight, goalWidth, ballRadius,
