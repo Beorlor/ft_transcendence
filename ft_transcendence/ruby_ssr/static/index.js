@@ -94,47 +94,15 @@ function loadPage(game, url, gamestate) {
   })
     .then((res) => res.json())
     .then((json) => {
-      console.log(json);
-      game.innerHTML = json.body;
-      if (json.nav) {
-        document.getElementById("nav").innerHTML = json.nav;
-        rebindEvents();
-      }
-      loadPageScript(game);
+		console.log(document.getElementById("button_logout") ? true : false);
+		game.innerHTML = json.body;
+		if (json.nav) {
+			document.getElementById("nav").innerHTML = json.nav;
+			rebindEvents();
+		}
+		loadPageScript(game);
     })
     .catch((err) => console.error("Error: ", err));
-}
-
-function loadScript() {
-  if (window.GAMESTATE > -1) return;
-  let game = document.getElementById("game");
-  if (game) {
-    document
-      .getElementById("home_link")
-      .addEventListener("click", handleHomeClick);
-    document
-      .getElementById("pong_link")
-      .addEventListener("click", handlePongClick);
-    document
-      .getElementById("aipong_link")
-      .addEventListener("click", handleAIPongClick);
-    if (document.getElementById("button_login")) {
-      document
-        .getElementById("button_login")
-        .addEventListener("click", handleLoginClick);
-      document
-        .getElementById("button_register")
-        .addEventListener("click", handleRegisterClick);
-    } else if (document.getElementById("button_logout")) {
-      document
-        .getElementById("button_logout")
-        .addEventListener("click", handleLogoutClick);
-      document
-        .getElementById("button_profile")
-        .addEventListener("click", handleProfileClick);
-    }
-    window.GAMESTATE = 0;
-  }
 }
 
 function handleHomeClick(ev) {
@@ -194,12 +162,9 @@ window.addEventListener("popstate", function (_) {
 });
 
 document.addEventListener("DOMContentLoaded", (ev) => {
-  loadScript();
   loadPage(
     document.getElementById("game"),
     window.location.href,
     window.GAME_STATES.default
   );
 });
-
-loadScript();

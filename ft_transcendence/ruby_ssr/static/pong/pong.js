@@ -127,7 +127,7 @@ function pong_main()
 			ball.reset();
 			return ;
 		}
-		if ((window.GAMESTATE == window.GAME_STATES.aipong) != hasAI){
+		if (window.GAMESTATE != window.GAME_STATES.aipong && hasAI){
 			hasAI = window.GAMESTATE == window.GAME_STATES.aipong;
 			Game.reset();
 			leftBar.reset();
@@ -239,7 +239,6 @@ function pong_main()
 document.addEventListener("DOMContentLoaded", (_) => {
 	if (!pong_start){
 		pong_main();
-		
 	}
 });
 
