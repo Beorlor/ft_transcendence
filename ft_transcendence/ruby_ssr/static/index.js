@@ -160,20 +160,26 @@ function handleProfileClick(ev) {
 window.addEventListener("popstate", function (_) {
 	const currentUrl = window.location.pathname;
 
-	if (currentUrl !== window.location.pathname) {
-		fetch(currentUrl, { headers: { "X-Requested-With": "XMLHttpRequest" } })
-			.then((response) => response.text())
-			.then((html) => {
-				let game = document.getElementById("game");
-				game.innerHTML = html;
-			})
-			.catch((err) => console.error("Error during popstate fetch: ", err));
-	}
+  if (currentUrl !== window.location.pathname) {
+    fetch(currentUrl, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        Authorization: localStorage.getItem("Authorization"),
+        IsLogged: document.getElementById("button_logout") ? true : false,
+      },
+    })
+      .then((response) => response.text())
+      .then((html) => {
+        document.getElementById("game").innerHTML = html;
+      })
+      .catch((err) => console.error("Error during popstate fetch: ", err));
+  }
 });
 
 document.addEventListener("DOMContentLoaded", (ev) => {
-	loadPage(
-		document.getElementById("game"),
-		window.location.href
-	);
+  loadPage(
+    document.getElementById("game"),
+    window.location.href,
+    window.GAME_STATES.default
+  );
 });
