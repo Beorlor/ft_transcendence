@@ -15,11 +15,11 @@ userController = UserController.new
 loop do
   begin
     client = server.accept
-    method, path, headers, body = RequestHelper.parse_request(client)
+    method, path, headers, cookies, body = RequestHelper.parse_request(client)
 
-    foundAuth = authController.route_request(client, method, path, body, headers)
-    foundToken = tokenController.route_request(client, method, path, body, headers)
-    foundUser = userController.route_request(client, method, path, body, headers)
+    foundAuth = authController.route_request(client, method, path, body, headers, cookies)
+    foundToken = tokenController.route_request(client, method, path, body, headers, cookies)
+    foundUser = userController.route_request(client, method, path, body, headers, cookies)
 
     if foundUser == 1 && foundToken == 1 && foundAuth == 1
       RequestHelper.not_found(client)

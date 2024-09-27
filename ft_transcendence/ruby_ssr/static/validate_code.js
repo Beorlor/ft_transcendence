@@ -26,7 +26,6 @@ function loadValidateForm() {
           .then((data) => {
             console.log(data);
             if (data.success) {
-              localStorage.setItem("Authorization", data.access_token);
               window.loadPage(
                 document.getElementById("game"),
                 "https://localhost/profil"
