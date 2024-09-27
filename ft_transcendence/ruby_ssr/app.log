@@ -1,370 +1,242 @@
-
-[2024-09-26 16:43:13] - App => Entry route / request: 
-[2024-09-26 16:43:13] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
-[2024-09-26 16:43:13] - App => Failed to verify token: 401 
-[2024-09-26 16:43:13] - App => / User logged status: false
-[2024-09-26 16:43:13] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:13] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:13] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:13] - App => / User logged status: true
-[2024-09-26 16:43:13] - App => / User logged: true, IsLogged: false
-[2024-09-26 16:43:23] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:23] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:23] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:23] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:23] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:25] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:25] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:25] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:25] - App => / User logged status: true
-[2024-09-26 16:43:25] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:26] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:26] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:26] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:26] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:26] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:26] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:26] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:26] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:26] - App => / User logged status: true
-[2024-09-26 16:43:26] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:27] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:27] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:27] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:27] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:27] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:27] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:27] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:27] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:27] - App => / User logged status: true
-[2024-09-26 16:43:27] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:28] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:28] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:28] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:28] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:28] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:28] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:28] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:28] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:28] - App => / User logged status: true
-[2024-09-26 16:43:28] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:29] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:29] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:29] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:29] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:29] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:29] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:29] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:29] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:29] - App => / User logged status: true
-[2024-09-26 16:43:29] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:29] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:29] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:29] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:29] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:29] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:30] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:30] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:30] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:30] - App => / User logged status: true
-[2024-09-26 16:43:30] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:30] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:30] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:30] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:30] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:30] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:30] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:31] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:31] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:31] - App => / User logged status: true
-[2024-09-26 16:43:31] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:31] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:31] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:31] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:31] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:31] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:31] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:31] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:31] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:31] - App => / User logged status: true
-[2024-09-26 16:43:31] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:32] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:32] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:32] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:32] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:32] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:32] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:32] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:32] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:32] - App => / User logged status: true
-[2024-09-26 16:43:32] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:32] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:32] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:32] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:32] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:32] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:33] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:33] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:33] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:33] - App => / User logged status: true
-[2024-09-26 16:43:33] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:33] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:33] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:33] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:33] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:33] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:34] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:34] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:34] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:34] - App => / User logged status: true
-[2024-09-26 16:43:34] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:34] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:34] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:34] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:34] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:34] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:34] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:34] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:34] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:34] - App => / User logged status: true
-[2024-09-26 16:43:34] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:35] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:35] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:35] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:35] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:35] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:35] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:35] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:35] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:35] - App => / User logged status: true
-[2024-09-26 16:43:35] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:36] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:36] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:36] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:36] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:36] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:36] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:36] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:36] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:36] - App => Pong User logged: true, IsLogged: true
-[2024-09-26 16:43:37] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:37] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:37] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:37] - App => Pong User logged: true, IsLogged: true
-[2024-09-26 16:43:38] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:38] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:38] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:38] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:38] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:38] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:38] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:38] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:38] - App => / User logged status: true
-[2024-09-26 16:43:38] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:38] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:38] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:38] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:38] - App => Pong User logged: true, IsLogged: true
-[2024-09-26 16:43:39] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:39] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:39] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:39] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:39] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:40] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:40] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:40] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:40] - App => Pong User logged: true, IsLogged: true
-[2024-09-26 16:43:40] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:40] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:40] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:40] - App => / User logged status: true
-[2024-09-26 16:43:40] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:41] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:41] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:41] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:41] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:41] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:41] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:41] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:41] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:41] - App => / User logged status: true
-[2024-09-26 16:43:41] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:42] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:42] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:42] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:42] - App => Pong User logged: true, IsLogged: true
-[2024-09-26 16:43:42] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:42] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:42] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:42] - App => / User logged status: true
-[2024-09-26 16:43:42] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:43] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:43] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:43] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:43] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:43] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:43] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:43] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:43] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:43] - App => / User logged status: true
-[2024-09-26 16:43:43] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:44] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:44] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:44] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:44] - App => Pong User logged: true, IsLogged: true
-[2024-09-26 16:43:44] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:44] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:44] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:44] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:44] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:44] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:44] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:44] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:44] - App => / User logged status: true
-[2024-09-26 16:43:44] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:45] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:45] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:45] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:45] - App => Pong User logged: true, IsLogged: true
-[2024-09-26 16:43:45] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:45] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:45] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:45] - App => / User logged status: true
-[2024-09-26 16:43:45] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:46] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:46] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:46] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:46] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:46] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:46] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:46] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:46] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:46] - App => / User logged status: true
-[2024-09-26 16:43:46] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:46] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:46] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:46] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:46] - App => Pong User logged: true, IsLogged: true
-[2024-09-26 16:43:47] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:47] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:47] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:47] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:47] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:48] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:48] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:48] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:48] - App => / User logged status: true
-[2024-09-26 16:43:48] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:48] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:48] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:48] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:48] - App => / User logged status: true
-[2024-09-26 16:43:48] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:48] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:48] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:48] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:48] - App => Pong User logged: true, IsLogged: true
-[2024-09-26 16:43:49] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:49] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:49] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:49] - App => / User logged status: true
-[2024-09-26 16:43:49] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:49] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:49] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:49] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:49] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:49] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:50] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:50] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:50] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:50] - App => / User logged status: true
-[2024-09-26 16:43:50] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:50] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:50] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:50] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:50] - App => Pong User logged: true, IsLogged: true
-[2024-09-26 16:43:50] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:50] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:50] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:50] - App => / User logged status: true
-[2024-09-26 16:43:50] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:51] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:51] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:51] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:51] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:51] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:51] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:51] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:51] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:51] - App => / User logged status: true
-[2024-09-26 16:43:51] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:51] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:51] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:51] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:51] - App => Pong User logged: true, IsLogged: true
-[2024-09-26 16:43:52] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:52] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:52] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:52] - App => / User logged status: true
-[2024-09-26 16:43:52] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:52] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:52] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:52] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:52] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:52] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:53] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:53] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:53] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:53] - App => / User logged status: true
-[2024-09-26 16:43:53] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:53] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:53] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:53] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:53] - App => Pong User logged: true, IsLogged: true
-[2024-09-26 16:43:53] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:53] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:53] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:53] - App => / User logged status: true
-[2024-09-26 16:43:53] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:54] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:54] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:54] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:54] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:54] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:54] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:54] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:54] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:54] - App => / User logged status: true
-[2024-09-26 16:43:54] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:55] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:55] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:55] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:55] - App => Pong User logged: true, IsLogged: true
-[2024-09-26 16:43:55] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:55] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:55] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:55] - App => / User logged status: true
-[2024-09-26 16:43:55] - App => / User logged: true, IsLogged: true
-[2024-09-26 16:43:55] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MjczNTkwMjAsImV4cCI6MTcyNzM2MjYyMH0.UHu9b0aHv0VYEeLOYJoFoNC2NeH7L1LPVkowrLsrSWQ
-[2024-09-26 16:43:55] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
-[2024-09-26 16:43:55] - App => User logged {"message"=>"Access token is valid."}.
-[2024-09-26 16:43:55] - App => User info: {"code"=>200, "user"=>[{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-25 12:47:43", "deleted_at"=>nil, "created_at"=>"2024-09-25 12:47:43.295684"}]}
-[2024-09-26 16:43:55] - App => Profil User logged: true, IsLogged: true
-[2024-09-26 16:43:56] - App => Entry route /ssr/login request: null
-[2024-09-26 16:43:56] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
-[2024-09-26 16:43:56] - App => Failed to verify token: 401 
-[2024-09-26 16:43:56] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
-[2024-09-26 16:43:56] - App => Failed to verify token: 401 
-[2024-09-26 16:45:08] - App => Entry route / request: null
-[2024-09-26 16:45:08] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
-[2024-09-26 16:45:08] - App => Failed to verify token: 401 
-[2024-09-26 16:45:08] - App => / User logged status: false
-[2024-09-26 16:45:08] - App => / User logged: false, IsLogged: false
-[2024-09-26 16:45:08] - App => Entry route /pong request: null
-[2024-09-26 16:45:08] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
-[2024-09-26 16:45:08] - App => Failed to verify token: 401 
-[2024-09-26 16:45:08] - App => Pong User logged: false, IsLogged: false
-[2024-09-26 16:45:09] - App => Entry route /pong request: null
-[2024-09-26 16:45:09] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
-[2024-09-26 16:45:09] - App => Failed to verify token: 401 
-[2024-09-26 16:45:09] - App => Pong User logged: false, IsLogged: false
+[2024-09-27 14:15:51] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:15:51] - App => Failed to verify token: 401 
+[2024-09-27 14:15:52] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:15:52] - App => Failed to verify token: 401 
+[2024-09-27 14:15:52] - App => Entry route /validate-code request: access_token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDM5MzUyLCJleHAiOjE3Mjc0NDI5NTJ9.7V-mclS47ckaEYoGDTUFQtI_PgkAp3e4Sfi0KrdtmU0
+[2024-09-27 14:15:52] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:15:52] - App => Failed to verify token: 401 
+[2024-09-27 14:17:01] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:17:01] - App => Failed to verify token: 401 
+[2024-09-27 14:17:02] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:17:02] - App => Failed to verify token: 401 
+[2024-09-27 14:17:02] - App => Entry route /validate-code request: access_token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDM5NDIxLCJleHAiOjE3Mjc0NDMwMjF9.1t1nx4Q0I6Hfz5-f4KmJsXBO8YsqasDusWspbMjLqoQ
+[2024-09-27 14:17:02] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:17:02] - App => Failed to verify token: 401 
+[2024-09-27 14:17:17] - App => Entry route /profil request: access_token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk0MzcsImV4cCI6MTcyNzQ0MzAzN30.06He8h3RBOgRpjP9f3HBT8qpz7pEntmU_yv-ZZ1RUVM
+[2024-09-27 14:17:17] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:17:17] - App => Failed to verify token: 401 
+[2024-09-27 14:17:17] - App => Profil User logged: false, IsLogged: false
+[2024-09-27 14:18:58] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:18:58] - App => Failed to verify token: 401 
+[2024-09-27 14:18:59] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:18:59] - App => Failed to verify token: 401 
+[2024-09-27 14:18:59] - App => Entry route /validate-code request: access_token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDM5NTM4LCJleHAiOjE3Mjc0NDMxMzh9.j0e5W7yJuoDn_MZv15NjyFjX11dOa1iMlVfHpP1bgdU
+[2024-09-27 14:18:59] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:18:59] - App => Failed to verify token: 401 
+[2024-09-27 14:19:09] - App => Entry route /profil request: access_token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk1NDksImV4cCI6MTcyNzQ0MzE0OX0.nWVvnhYpYFNrvoK_Ao0zybvmtaDQn9CQ-OKVvjZtixk
+[2024-09-27 14:19:09] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:19:09] - App => Failed to verify token: 401 
+[2024-09-27 14:19:09] - App => Profil User logged: false, IsLogged: false
+[2024-09-27 14:23:40] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:23:40] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:23:41] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:23:41] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:23:41] - App => Entry route /validate-code request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDM5ODIxLCJleHAiOjE3Mjc0NDM0MjF9.BuHoLo9zUANglH3SLM2FT7izpYQvp6MhVYL8fj1pMu0
+[2024-09-27 14:23:41] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:23:41] - App => Failed to verify token: 401 
+[2024-09-27 14:23:50] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:23:50] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:23:50] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:23:50] - App => Profil User logged: true, IsLogged: false
+[2024-09-27 14:25:05] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:25:05] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:25:05] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:25:05] - App => User info: {"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-27 10:59:50", "deleted_at"=>nil, "created_at"=>"2024-09-27 10:59:50.389442"}
+[2024-09-27 14:25:05] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:25:05] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:25:05] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:25:05] - App => User info: {"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-27 10:59:50", "deleted_at"=>nil, "created_at"=>"2024-09-27 10:59:50.389442"}
+[2024-09-27 14:25:05] - App => Profil User logged: true, IsLogged: true
+[2024-09-27 14:25:09] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:25:09] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:25:09] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:25:09] - App => User info: {"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-27 10:59:50", "deleted_at"=>nil, "created_at"=>"2024-09-27 10:59:50.389442"}
+[2024-09-27 14:25:09] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:25:09] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:25:09] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:25:09] - App => User info: {"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-27 10:59:50", "deleted_at"=>nil, "created_at"=>"2024-09-27 10:59:50.389442"}
+[2024-09-27 14:25:09] - App => Profil User logged: true, IsLogged: true
+[2024-09-27 14:25:12] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:25:12] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:25:12] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:25:12] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 14:25:12] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:25:12] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:25:12] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:25:12] - App => / User logged status: true
+[2024-09-27 14:25:12] - App => / User logged: true, IsLogged: true
+[2024-09-27 14:25:13] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:25:13] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:25:13] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:25:13] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 14:25:13] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:25:13] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:25:13] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:25:13] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 14:25:14] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:25:14] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:25:14] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:25:14] - App => / User logged status: true
+[2024-09-27 14:25:14] - App => / User logged: true, IsLogged: true
+[2024-09-27 14:25:14] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:25:14] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:25:14] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:25:14] - App => / User logged status: true
+[2024-09-27 14:25:14] - App => / User logged: true, IsLogged: true
+[2024-09-27 14:31:48] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:31:48] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:31:48] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:31:48] - App => / User logged status: true
+[2024-09-27 14:31:50] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:31:50] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:31:50] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:31:50] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 14:31:51] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:31:51] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:31:51] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:31:51] - App => / User logged status: true
+[2024-09-27 14:31:51] - App => / User logged: true, IsLogged: true
+[2024-09-27 14:31:51] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:31:51] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:31:51] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:31:51] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 14:31:51] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:31:51] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:31:51] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:31:51] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 14:31:52] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:31:52] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:31:52] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:31:52] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 14:31:53] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:31:53] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:31:53] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:31:53] - App => / User logged status: true
+[2024-09-27 14:31:53] - App => / User logged: true, IsLogged: true
+[2024-09-27 14:31:53] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:31:53] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:31:53] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:31:53] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 14:31:53] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:31:53] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:31:53] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:31:53] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 14:31:54] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:31:54] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:31:54] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:31:54] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 14:31:54] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:31:54] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:31:54] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:31:54] - App => / User logged status: true
+[2024-09-27 14:31:54] - App => / User logged: true, IsLogged: true
+[2024-09-27 14:31:55] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:31:55] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:31:55] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:31:55] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 14:31:55] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:31:55] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:31:55] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:31:55] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 14:40:17] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:40:17] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:40:17] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:40:17] - App => / User logged status: true
+[2024-09-27 14:40:20] - App => Entry route /ssr/login request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:40:20] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:40:20] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:40:40] - App => Entry route /ssr/login request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:40:40] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:40:40] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:40:40] - App => Entry route /ssr/login request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:40:40] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:40:40] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:40:41] - App => Entry route /ssr/login request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:40:41] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:40:41] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:43:23] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:43:23] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:43:23] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:43:23] - App => / User logged status: true
+[2024-09-27 14:43:28] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:43:28] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:43:28] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:43:28] - App => / User logged status: true
+[2024-09-27 14:43:29] - App => Entry route /ssr/login request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:43:29] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:43:29] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:44:56] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:44:56] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:44:56] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:44:56] - App => / User logged status: true
+[2024-09-27 14:44:59] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:44:59] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:44:59] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:44:59] - App => / User logged status: true
+[2024-09-27 14:46:19] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:46:19] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:46:19] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:46:19] - App => / User logged status: true
+[2024-09-27 14:49:37] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Mzk4MzAsImV4cCI6MTcyNzQ0MzQzMH0.O_kDsgReuMTeMfc0JyInL2GuaCo1o94HaJDRGg8hhqc
+[2024-09-27 14:49:37] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:49:37] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:49:37] - App => / User logged status: true
+[2024-09-27 14:55:14] - App => Entry route / request: 
+[2024-09-27 14:55:14] - App => Response from /auth/verify-token-user: <html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx/1.27.1</center>
+</body>
+</html>
+[2024-09-27 14:55:14] - App => Failed to verify token: 502 Bad Gateway
+[2024-09-27 14:55:14] - App => / User logged status: false
+[2024-09-27 14:55:20] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:55:20] - App => Failed to verify token: 401 
+[2024-09-27 14:55:21] - App => Entry route /validate-code request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDQxNzIxLCJleHAiOjE3Mjc0NDUzMjF9.3JDp4d03krQuiqa942-j0PQrYaCMnp0gRNi9bykkEPc
+[2024-09-27 14:55:21] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:55:21] - App => Failed to verify token: 401 
+[2024-09-27 14:55:34] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDE3MzQsImV4cCI6MTcyNzQ0NTMzNH0.63f2Pfi0Y4-xBgCg6nti0TNHOSafjTzin65vjCsGkxE
+[2024-09-27 14:55:34] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:55:34] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:55:34] - App => User info: {"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-27 10:59:50", "deleted_at"=>nil, "created_at"=>"2024-09-27 10:59:50.389442"}
+[2024-09-27 14:55:34] - App => Profil User logged: true, IsLogged: false
+[2024-09-27 14:56:30] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:56:30] - App => Failed to verify token: 401 
+[2024-09-27 14:56:31] - App => Entry route /validate-code request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDQxNzkxLCJleHAiOjE3Mjc0NDUzOTF9.u57r2U4FmRdDJNVXQj-uh6RuT2rXEgPglTUPabGC6hQ
+[2024-09-27 14:56:31] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:56:31] - App => Failed to verify token: 401 
+[2024-09-27 14:56:40] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDE4MDAsImV4cCI6MTcyNzQ0NTQwMH0.B4uIjQO9_SWiZ49JmwskB0mR9DpXWyfktyGRJp2Ylb4
+[2024-09-27 14:56:40] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:56:40] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:56:40] - App => User info: {"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-27 10:59:50", "deleted_at"=>nil, "created_at"=>"2024-09-27 10:59:50.389442"}
+[2024-09-27 14:56:40] - App => Profil User logged: true, IsLogged: false
+[2024-09-27 14:57:39] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:57:39] - App => Failed to verify token: 401 
+[2024-09-27 14:57:40] - App => Entry route /validate-code request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDQxODYwLCJleHAiOjE3Mjc0NDU0NjB9.tWweHdEyKEtIdJmue1AyDoHUu24Pdp-VkCZ5rdpZHvQ
+[2024-09-27 14:57:40] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:57:40] - App => Failed to verify token: 401 
+[2024-09-27 14:57:50] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDE4NzAsImV4cCI6MTcyNzQ0NTQ3MH0.dT5jsooPsbu2UWX3gCVmLhcaZXqtFSwrDF3YO7ZviBw
+[2024-09-27 14:57:50] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:57:50] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:57:50] - App => User info: {"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-27 10:59:50", "deleted_at"=>nil, "created_at"=>"2024-09-27 10:59:50.389442"}
+[2024-09-27 14:57:50] - App => Profil User logged: true, IsLogged: false
+[2024-09-27 14:58:34] - App => Entry route / request: 
+[2024-09-27 14:58:34] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:58:34] - App => Failed to verify token: 401 
+[2024-09-27 14:58:34] - App => / User logged status: false
+[2024-09-27 14:58:39] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:58:39] - App => Failed to verify token: 401 
+[2024-09-27 14:58:41] - App => Entry route /validate-code request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDQxOTIwLCJleHAiOjE3Mjc0NDU1MjB9.d17gJLLvk4H-d4gIMFSHE9uBdWaMN0QpOSflKMQlh8I
+[2024-09-27 14:58:41] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:58:41] - App => Failed to verify token: 401 
+[2024-09-27 14:58:53] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDE5MzMsImV4cCI6MTcyNzQ0NTUzM30.T4dd76MXHJ3turrdtdKOCNLZLCHjj4ZqwZZQLqtWtv4
+[2024-09-27 14:58:53] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 14:58:53] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 14:58:53] - App => User info: {"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-27 10:59:50", "deleted_at"=>nil, "created_at"=>"2024-09-27 10:59:50.389442"}
+[2024-09-27 14:58:53] - App => Profil User logged: true, IsLogged: false
+[2024-09-27 14:58:54] - App => Entry route / request: 
+[2024-09-27 14:58:54] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 14:58:54] - App => Failed to verify token: 401 
+[2024-09-27 14:58:54] - App => / User logged status: false
+[2024-09-27 14:58:54] - App => / User logged: false, IsLogged: true

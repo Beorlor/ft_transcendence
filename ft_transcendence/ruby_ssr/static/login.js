@@ -24,7 +24,6 @@ function loadLoginFormAction() {
           .then((response) => response.json())
           .then((data) => {
             if (data.success) {
-              localStorage.setItem("Authorization", data.access_token);
               window.loadPage(
                 document.getElementById("game"),
                 "https://localhost/validate-code",

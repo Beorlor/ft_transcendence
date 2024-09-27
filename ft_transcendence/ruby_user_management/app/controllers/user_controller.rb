@@ -13,7 +13,7 @@ class UserController
     @user_manager = user_manager
   end
 
-  def route_request(client, method, path, body, headers)
+  def route_request(client, method, path, body, headers, cookies)
     if path.nil? || path.empty?
       RequestHelper.not_found(client)
       return
@@ -45,7 +45,8 @@ class UserController
     else
       case [method, clean_path]
       when ['GET', '/user/me']
-        get_user(client, @token_manager.get_user_id(headers['Authorization']))
+        @logger.log('UserController', "Fetching user with access_token: #{cookies['access_token']}")
+        get_user(client, @token_manager.get_user_id(cookies['access_token']))
       else
         return 1
       end

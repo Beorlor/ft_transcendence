@@ -14,7 +14,7 @@ logger = Logger.new
 def user_logged(jwt, logger)
 	uri = URI('https://nginx/auth/verify-token-user')
 	req = Net::HTTP::Get.new(uri)
-	req['Authorization'] = jwt
+	req['Cookie'] = "access_token=#{jwt}"
 	http = Net::HTTP.new(uri.host, uri.port)
 	http.use_ssl = (uri.scheme == 'https') # A suppriner en prod
 	http.verify_mode = OpenSSL::SSL::VERIFY_NONE if uri.scheme == 'https' # A suppriner en prod
@@ -32,8 +32,14 @@ def user_logged(jwt, logger)
 end
 
 server.mount_proc '/' do |req, res|
-	logger.log('App', "Entry route / request: #{req['Authorization']}")
-	@user_logged = user_logged(req['Authorization'], logger)
+	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
+	if access_token
+		access_token = access_token.value
+	else
+		access_token = nil
+	end
+	logger.log('App', "Entry route / request: #{access_token}")
+	@user_logged = user_logged(access_token, logger)
 	logger.log('App', "/ User logged status: #{@user_logged}")
 	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
 	@nav = navigation.result(binding)
@@ -54,8 +60,14 @@ server.mount_proc '/' do |req, res|
 end
 
 server.mount_proc '/pong' do |req, res|
-	logger.log('App', "Entry route /pong request: #{req['Authorization']}")
-	@user_logged = user_logged(req['Authorization'], logger)
+	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
+	if access_token
+		access_token = access_token.value
+	else
+		access_token = nil
+	end
+	logger.log('App', "Entry route /pong request: #{access_token}")
+	@user_logged = user_logged(access_token, logger)
 	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
 	@nav = navigation.result(binding)
 	page = ERB.new(File.read("app/view/localpong.erb"))
@@ -77,8 +89,14 @@ server.mount_proc '/pong' do |req, res|
 end
 
 server.mount_proc '/ssr/register' do |req, res|
-	logger.log('App', "Entry route /ssr/register request: #{req['Authorization']}")
-	@user_logged = user_logged(req['Authorization'], logger)
+	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
+	if access_token
+		access_token = access_token.value
+	else
+		access_token = nil
+	end
+	logger.log('App', "Entry route /ssr/register request: #{access_token}")
+	@user_logged = user_logged(access_token, logger)
 	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
 	@nav = navigation.result(binding)
 	page = ERB.new(File.read("app/view/register.erb"))
@@ -99,11 +117,16 @@ server.mount_proc '/ssr/register' do |req, res|
 end
 
 server.mount_proc '/ssr/login' do |req, res|
-	logger.log('App', "Entry route /ssr/login request: #{req['Authorization']}")
-	@user_logged = user_logged(req['Authorization'], logger)
+	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
+	if access_token
+		access_token = access_token.value
+	else
+		access_token = nil
+	end
+	logger.log('App', "Entry route /ssr/login request: #{access_token}")
+	@user_logged = user_logged(access_token, logger)
 	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
 	@nav = navigation.result(binding)
-	user_logged(req['Authorization'], logger)
 	page = ERB.new(File.read("app/view/login.erb"))
 	@pRes = page.result(binding)
 	if req['X-Requested-With'] == 'XMLHttpRequest'
@@ -122,8 +145,14 @@ server.mount_proc '/ssr/login' do |req, res|
 end
 
 server.mount_proc '/validate-code' do |req, res|
-	logger.log('App', "Entry route /validate-code request: #{req['Authorization']}")
-	@user_logged = user_logged(req['Authorization'], logger)
+	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
+	if access_token
+		access_token = access_token.value
+	else
+		access_token = nil
+	end
+	logger.log('App', "Entry route /validate-code request: #{access_token}")
+	@user_logged = user_logged(access_token, logger)
 	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
 	@nav = navigation.result(binding)
 	page = ERB.new(File.read("app/view/validate-code.erb"))
@@ -144,7 +173,13 @@ server.mount_proc '/validate-code' do |req, res|
 end
 
 server.mount_proc '/callback-tmp' do |req, res|
-	@user_logged = user_logged(req['Authorization'], logger)
+	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
+	if access_token
+		access_token = access_token.value
+	else
+		access_token = nil
+	end
+	@user_logged = user_logged(access_token, logger)
 	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
 	@nav = navigation.result(binding)
 	page = ERB.new(File.read("app/view/callback-tmp.erb"))
@@ -167,7 +202,7 @@ end
 def get_user_info(api_url, jwt)
   uri = URI(api_url)
 	req = Net::HTTP::Get.new(uri)
-	req['Authorization'] = jwt
+	req['Cookie'] = "access_token=#{jwt}"
 	http = Net::HTTP.new(uri.host, uri.port)
 	http.use_ssl = (uri.scheme == 'https') # A suppriner en prod
 	http.verify_mode = OpenSSL::SSL::VERIFY_NONE if uri.scheme == 'https' # A suppriner en prod
@@ -175,24 +210,32 @@ def get_user_info(api_url, jwt)
 		http.request(req)
 	end
   if res.is_a?(Net::HTTPSuccess)
-    JSON.parse(res.body)
+    JSON.parse(res.body)["user"].first
   else
     nil
   end
 end
 
 server.mount_proc '/profil' do |req, res|
-	logger.log('App', "Entry route /profil request: #{req['Authorization']}")
-	@user_logged = user_logged(req['Authorization'], logger)
+	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
+	if access_token
+		access_token = access_token.value
+	else
+		access_token = nil
+	end
+	logger.log('App', "Entry route /profil request: #{access_token}")
+	@user_logged = user_logged(access_token, logger)
 	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
 	@nav = navigation.result(binding)
-  jwt = req['Authorization']
+  jwt = access_token
   if jwt
     api_url = 'https://nginx/user/me'
     user_info = get_user_info(api_url, jwt)
     if user_info
 			logger.log('App', "User info: #{user_info}")
       page = ERB.new(File.read("app/view/profil.erb"))
+			@username = user_info["username"]
+			@email = user_info["email"]
       @pRes = page.result(binding)
     else
       res.status = 500
