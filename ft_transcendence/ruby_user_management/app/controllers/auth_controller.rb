@@ -14,7 +14,7 @@ class AuthController
     @token_manager = token_manager
   end
 
-  def route_request(client, method, path, body, headers)
+  def route_request(client, method, path, body, headers, cookies)
     if path.nil? || path.empty?
       RequestHelper.not_found(client)
       return
@@ -42,7 +42,7 @@ class AuthController
     when ['POST', '/auth/callback']
       handle_callback(client, body)
 	when ['POST', '/auth/validate-code']
-		validate_code(client, body, headers)
+		validate_code(client, body, headers, cookies)
     else
       return 1
     end
@@ -58,7 +58,7 @@ class AuthController
         if user
           user42 = @auth_manager.register_user_42(user);
 		      user42['success'] = 'successfully connected'
-          RequestHelper.respond(client, 200, user42)
+          RequestHelper.respond(client, 200, user42, ["access_token=#{user42[:access_token]}; Path=/; Max-Age=3600; HttpOnly; Secure"])
         else
           RequestHelper.respond(client, 500, {error:'Failed to fetch user info'})
         end
@@ -84,7 +84,7 @@ class AuthController
       RequestHelper.respond(client, status[:code], status)
       return
     end
-    RequestHelper.respond(client, 200, status)
+    RequestHelper.respond(client, 200, status, ["access_token=#{status[:access_token]}; Path=/; Max-Age=3600; HttpOnly; Secure"])
   end
 
   def login(client, body)
@@ -93,14 +93,14 @@ class AuthController
       RequestHelper.respond(client, status[:code], status)
       return
     end
-    RequestHelper.respond(client, 200, status)
+    RequestHelper.respond(client, 200, status, ["access_token=#{status[:access_token]}; Path=/; Max-Age=3600; HttpOnly; Secure"])
   end
 
-  def validate_code(client, body, headers)
-    user_id = @token_manager.get_user_id(headers['Authorization'])
+  def validate_code(client, body, headers, cookies)
+    user_id = @token_manager.get_user_id(cookies['access_token'])
     token = body['token']
     status = @auth_manager.validate_code(user_id, token)
-    RequestHelper.respond(client, status[:code], status)
+    RequestHelper.respond(client, status[:code], status, ["access_token=#{status[:access_token]}; Path=/; Max-Age=3600; HttpOnly; Secure"])
   end
 
 end
