@@ -27,8 +27,7 @@ function loadRegisterFormAction() {
               localStorage.setItem("Authorization", data.access_token);
               window.loadPage(
                 document.getElementById("game"),
-                "https://localhost/vadilate-code",
-                window.GAME_STATES.default
+                "https://localhost/vadilate-code"
               );
             } else {
               popUp.innerHTML = `<div class="alert alert-danger" role="alert">

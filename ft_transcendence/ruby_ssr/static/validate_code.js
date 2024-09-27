@@ -29,8 +29,7 @@ function loadValidateForm() {
               localStorage.setItem("Authorization", data.access_token);
               window.loadPage(
                 document.getElementById("game"),
-                "https://localhost/profil",
-                window.GAME_STATES.default
+                "https://localhost/profil"
               );
             } else {
               popUp.innerHTML = `<div class="alert alert-danger" role="alert">

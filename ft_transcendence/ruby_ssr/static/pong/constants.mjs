@@ -1,7 +1,7 @@
 const	canvasWidth = 800;
 const	canvasHeight = 600;
 
-const	winningScore = 2;
+const	winningScore = 5;
 
 let		barWidth = 12;
 let		barHeight = 120;
