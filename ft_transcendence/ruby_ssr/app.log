@@ -240,3 +240,112 @@
 [2024-09-27 14:58:54] - App => Failed to verify token: 401 
 [2024-09-27 14:58:54] - App => / User logged status: false
 [2024-09-27 14:58:54] - App => / User logged: false, IsLogged: true
+[2024-09-27 16:48:58] - App => Entry route / request: 
+[2024-09-27 16:48:58] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 16:48:58] - App => Failed to verify token: 401 
+[2024-09-27 16:48:58] - App => / User logged status: false
+[2024-09-27 16:48:59] - App => Entry route /pong request: 
+[2024-09-27 16:48:59] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 16:48:59] - App => Failed to verify token: 401 
+[2024-09-27 16:48:59] - App => Pong User logged: false, IsLogged: false
+[2024-09-27 16:49:00] - App => Entry route / request: 
+[2024-09-27 16:49:00] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 16:49:00] - App => Failed to verify token: 401 
+[2024-09-27 16:49:00] - App => / User logged status: false
+[2024-09-27 16:49:00] - App => / User logged: false, IsLogged: false
+[2024-09-27 16:49:05] - App => Entry route / request: 
+[2024-09-27 16:49:05] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 16:49:05] - App => Failed to verify token: 401 
+[2024-09-27 16:49:05] - App => / User logged status: false
+[2024-09-27 16:49:05] - App => Entry route / request: 
+[2024-09-27 16:49:05] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 16:49:05] - App => Failed to verify token: 401 
+[2024-09-27 16:49:05] - App => / User logged status: false
+[2024-09-27 16:49:06] - App => Entry route /pong request: 
+[2024-09-27 16:49:06] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 16:49:06] - App => Failed to verify token: 401 
+[2024-09-27 16:49:06] - App => Pong User logged: false, IsLogged: false
+[2024-09-27 16:49:07] - App => Entry route / request: 
+[2024-09-27 16:49:07] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 16:49:07] - App => Failed to verify token: 401 
+[2024-09-27 16:49:07] - App => / User logged status: false
+[2024-09-27 16:49:07] - App => / User logged: false, IsLogged: false
+[2024-09-27 16:49:13] - App => Entry route /pong request: 
+[2024-09-27 16:49:13] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 16:49:13] - App => Failed to verify token: 401 
+[2024-09-27 16:49:13] - App => Pong User logged: false, IsLogged: false
+[2024-09-27 16:49:15] - App => Entry route / request: 
+[2024-09-27 16:49:15] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 16:49:15] - App => Failed to verify token: 401 
+[2024-09-27 16:49:15] - App => / User logged status: false
+[2024-09-27 16:49:15] - App => / User logged: false, IsLogged: false
+[2024-09-27 16:49:18] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 16:49:18] - App => Failed to verify token: 401 
+[2024-09-27 16:49:19] - App => Entry route /validate-code request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDQ4NTU5LCJleHAiOjE3Mjc0NTIxNTl9.P06Y6kTKB1i7Of7RsE3vNG6jb_CmOFxXDcv3lWxsy9g
+[2024-09-27 16:49:19] - App => Response from /auth/verify-token-user: {"message":"Invalid access token."}
+[2024-09-27 16:49:19] - App => Failed to verify token: 401 
+[2024-09-27 16:49:25] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:49:25] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:49:25] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 16:49:25] - App => User info: {"id"=>"2", "username"=>"truello", "email"=>"truello@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-22 10:11:03", "deleted_at"=>nil, "created_at"=>"2024-09-22 10:11:03.12375"}
+[2024-09-27 16:49:25] - App => Profil User logged: true, IsLogged: false
+[2024-09-27 16:49:26] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:49:26] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:49:26] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 16:49:26] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 16:49:28] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:49:28] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:49:28] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 16:49:28] - App => / User logged status: true
+[2024-09-27 16:49:28] - App => / User logged: true, IsLogged: true
+[2024-09-27 16:49:29] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:49:29] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:49:29] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 16:49:29] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 16:49:30] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:49:30] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:49:30] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 16:49:30] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 16:49:31] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:49:31] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:49:31] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 16:49:31] - App => / User logged status: true
+[2024-09-27 16:49:31] - App => / User logged: true, IsLogged: true
+[2024-09-27 16:49:31] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:49:31] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:49:31] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 16:49:31] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 16:49:33] - App => Entry route /profil request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:49:33] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:49:33] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 16:49:33] - App => User info: {"id"=>"2", "username"=>"truello", "email"=>"truello@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-22 10:11:03", "deleted_at"=>nil, "created_at"=>"2024-09-22 10:11:03.12375"}
+[2024-09-27 16:49:33] - App => Profil User logged: true, IsLogged: true
+[2024-09-27 16:49:34] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:49:34] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:49:34] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 16:49:34] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 16:49:35] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:49:35] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:49:35] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 16:49:35] - App => / User logged status: true
+[2024-09-27 16:49:35] - App => / User logged: true, IsLogged: true
+[2024-09-27 16:49:46] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:49:46] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:49:46] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 16:49:46] - App => / User logged status: true
+[2024-09-27 16:49:47] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:49:47] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:49:47] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 16:49:47] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 16:49:48] - App => Entry route / request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:49:48] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:49:48] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 16:49:48] - App => / User logged status: true
+[2024-09-27 16:49:48] - App => / User logged: true, IsLogged: true
+[2024-09-27 16:49:48] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:49:48] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:49:48] - App => User logged {"message"=>"Access token is valid."}.
+[2024-09-27 16:49:48] - App => Pong User logged: true, IsLogged: true
+[2024-09-27 16:50:10] - App => Entry route /pong request: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
+[2024-09-27 16:50:10] - App => Response from /auth/verify-token-user: {"message":"Access token is valid."}
+[2024-09-27 16:50:10] - App => User logged {"message"=>"Access token is valid."}.

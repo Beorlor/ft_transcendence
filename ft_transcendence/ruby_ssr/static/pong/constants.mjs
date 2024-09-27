@@ -1,7 +1,7 @@
 const	canvasWidth = 800;
 const	canvasHeight = 600;
 
-const	winningScore = 2;
+const	winningScore = 5;
 
 let		barWidth = 12;
 let		barHeight = 120;
@@ -18,7 +18,7 @@ let		ballAcceleration = 3;
 
 const	goalWidth = 50;
 
-const	timeStep = 1.0 / 60.0;
+const	timeStep = 1000.0 / 60.0;
 
 export {canvasWidth, canvasHeight, barWidth, barPadding,
 		timeStep, barMoveSpeed, barHeight, goalWidth, ballRadius,
