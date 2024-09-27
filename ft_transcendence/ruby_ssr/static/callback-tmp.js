@@ -17,8 +17,7 @@ document.addEventListener("DOMContentLoaded", (ev) => {
         localStorage.setItem("Authorization", json.access_token);
         window.loadPage(
           document.getElementById("game"),
-          "https://localhost/validate-code",
-          window.GAME_STATES.default
+          "https://localhost/validate-code"
         );
       } else console.log("c'est la merde");
     });

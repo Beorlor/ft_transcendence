@@ -7,7 +7,7 @@ import {
 
 function pong_main() {
 
-	let previousTime = performance.now();
+	let previousTime = 0;
 	let delta = 0.0;
 
 	let upPressed = false;
