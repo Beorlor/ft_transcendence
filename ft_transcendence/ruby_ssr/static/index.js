@@ -145,10 +145,19 @@ function handleRegisterClick(ev) {
 }
 
 function handleLogoutClick(ev) {
-	ev.preventDefault();
-	localStorage.removeItem("Authorization");
-	const url = "https://localhost/ssr/login";
-	loadPage(document.getElementById("game"), url);
+  ev.preventDefault();
+  fetch("https://localhost/auth/logout")
+    .then((res) => res.json())
+    .then((json) => {
+      if (json.success) {
+        const url = "https://localhost";
+        loadPage(
+          document.getElementById("game"),
+          url
+        );
+      }
+    })
+    .catch((err) => console.error("Error: ", err));
 }
 
 function handleProfileClick(ev) {
@@ -164,7 +173,6 @@ window.addEventListener("popstate", function (_) {
     fetch(currentUrl, {
       headers: {
         "X-Requested-With": "XMLHttpRequest",
-        Authorization: localStorage.getItem("Authorization"),
         IsLogged: document.getElementById("button_logout") ? true : false,
       },
     })
@@ -177,9 +185,5 @@ window.addEventListener("popstate", function (_) {
 });
 
 document.addEventListener("DOMContentLoaded", (ev) => {
-  loadPage(
-    document.getElementById("game"),
-    window.location.href,
-    window.GAME_STATES.default
-  );
+  rebindEvents();
 });
