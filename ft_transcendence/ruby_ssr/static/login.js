@@ -26,8 +26,7 @@ function loadLoginFormAction() {
             if (data.success) {
               window.loadPage(
                 document.getElementById("game"),
-                "https://localhost/validate-code",
-                window.GAME_STATES.default
+                "https://localhost/validate-code"
               );
             } else {
               popUp.innerHTML = `<div class="alert alert-danger" role="alert">

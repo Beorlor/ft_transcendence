@@ -28,8 +28,7 @@ function loadValidateForm() {
             if (data.success) {
               window.loadPage(
                 document.getElementById("game"),
-                "https://localhost/profil",
-                window.GAME_STATES.default
+                "https://localhost/profil"
               );
             } else {
               popUp.innerHTML = `<div class="alert alert-danger" role="alert">
