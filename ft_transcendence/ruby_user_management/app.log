@@ -241,3 +241,1011 @@
 [2024-09-27 16:49:33] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NDg1NjUsImV4cCI6MTcyNzQ1MjE2NX0.yStEJju79HUEL_DWhmIQrSqHo4n19WZKXwaX7cMdHdY
 [2024-09-27 16:49:33] - UserController => Fetching user with ID: 2
 [2024-09-27 16:49:33] - UserManager => User found: 2
+[2024-09-27 16:58:35] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 16:58:39] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:02:19] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:02:19] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:07:42] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:08:07] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:08:20] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:09:08] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:09:22] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:09:44] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:10:33] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:10:38] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:10:38] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:10:39] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:11:05] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:11:10] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:11:11] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:11:45] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:11:50] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:11:50] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:04] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:04] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:06] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:07] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:11] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:11] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:12] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:12] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:12] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:13] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:14] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:14] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:15] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:17] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:17] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:22] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:39] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:39] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:40] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:41] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:42] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:14:44] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:16:29] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:07] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:08] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:09] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:10] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:11] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:11] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:12] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:12] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:13] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:13] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:13] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:14] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:14] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:14] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:15] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:15] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:15] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:16] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:16] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:16] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:17] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:17] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:17] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:17] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:17] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:17] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:17] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:17] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:18] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:18] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:18] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:18] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:18] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:19] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:19] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:19] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:19] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:20] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:22] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:22] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:23] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:23] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:23] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:23] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:37] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:17:37] - AuthManager => Getting access token with authorization code: c06ebb3ff5dc35b0c1304a7e860bf9322a410812be3b1e78b6661e85e911a842
+[2024-09-27 17:17:37] - AuthManager => Access token retrieved successfully
+[2024-09-27 17:17:37] - AuthManager => Getting user info with access token: 00b53ae044298f38ed76138b351688b1b65a7d448cdd41c43856c6579f3dcba6
+[2024-09-27 17:17:39] - AuthManager => User info retrieved successfully
+[2024-09-27 17:17:39] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-27 17:17:39] - AuthManager => User with email thoribal@student.42perpignan.fr already exists in database, proceeding to login
+[2024-09-27 17:17:39] - ValidationManager => Generating validation for user with email thoribal@student.42perpignan.fr
+[2024-09-27 17:17:39] - ValidationManager => Code generated: 015829
+[2024-09-27 17:17:39] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 17:17:39] - ValidationManager => Validation already exists for user with email thoribal@student.42perpignan.fr
+[2024-09-27 17:17:39] - AuthRepository => Updating email activation for user with id 2
+[2024-09-27 17:17:39] - ValidationManager => Validation updated
+[2024-09-27 17:17:39] - ValidationManager => Sending email to user with email thoribal@student.42perpignan.fr
+[2024-09-27 17:17:39] - ValidationManager => Email sent
+[2024-09-27 17:17:39] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDUwMjU5LCJleHAiOjE3Mjc0NTM4NTl9.nd4boBnaBJ-mSsDiz6N_ym9tP39Y6DAosCNV1Px1Sdw
+[2024-09-27 17:17:39] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727450259, "exp"=>1727453859}
+[2024-09-27 17:17:54] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDUwMjU5LCJleHAiOjE3Mjc0NTM4NTl9.nd4boBnaBJ-mSsDiz6N_ym9tP39Y6DAosCNV1Px1Sdw
+[2024-09-27 17:17:54] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727450259, "exp"=>1727453859}
+[2024-09-27 17:17:54] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 17:17:54] - AuthManager => Token: 015829, Body token: 015829
+[2024-09-27 17:17:54] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NTAyNzQsImV4cCI6MTcyNzQ1Mzg3NH0.yr5kCrXm2REmoymKVjcDLJPMlnHUQqGZE9fJV-Gni64
+[2024-09-27 17:17:54] - UserController => Fetching user with ID: 2
+[2024-09-27 17:17:54] - UserManager => User found: 2
+[2024-09-27 17:20:27] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:20:27] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:20:31] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:20:33] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:20:33] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:20:33] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:20:34] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:24:32] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 17:24:32] - AuthManager => Getting access token with authorization code: f24b99aeb6f574df1a3fee2c26fcfc215d62444c6daf065a384b26d1b3f35316
+[2024-09-27 17:24:32] - AuthManager => Access token retrieved successfully
+[2024-09-27 17:24:32] - AuthManager => Getting user info with access token: 00b53ae044298f38ed76138b351688b1b65a7d448cdd41c43856c6579f3dcba6
+[2024-09-27 17:24:33] - AuthManager => User info retrieved successfully
+[2024-09-27 17:24:33] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-27 17:24:33] - AuthManager => User with email thoribal@student.42perpignan.fr already exists in database, proceeding to login
+[2024-09-27 17:24:33] - ValidationManager => Generating validation for user with email thoribal@student.42perpignan.fr
+[2024-09-27 17:24:33] - ValidationManager => Code generated: 571714
+[2024-09-27 17:24:33] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 17:24:33] - ValidationManager => Validation already exists for user with email thoribal@student.42perpignan.fr
+[2024-09-27 17:24:33] - AuthRepository => Updating email activation for user with id 2
+[2024-09-27 17:24:33] - ValidationManager => Validation updated
+[2024-09-27 17:24:33] - ValidationManager => Sending email to user with email thoribal@student.42perpignan.fr
+[2024-09-27 17:24:33] - ValidationManager => Email sent
+[2024-09-27 17:24:33] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDUwNjczLCJleHAiOjE3Mjc0NTQyNzN9.OUQLHJVtk1EYoTJIesWZg-SH_XEHIc4xslERFVCLceI
+[2024-09-27 17:24:33] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727450673, "exp"=>1727454273}
+[2024-09-27 17:26:12] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDUwNjczLCJleHAiOjE3Mjc0NTQyNzN9.OUQLHJVtk1EYoTJIesWZg-SH_XEHIc4xslERFVCLceI
+[2024-09-27 17:26:12] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727450673, "exp"=>1727454273}
+[2024-09-27 17:26:14] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDUwNjczLCJleHAiOjE3Mjc0NTQyNzN9.OUQLHJVtk1EYoTJIesWZg-SH_XEHIc4xslERFVCLceI
+[2024-09-27 17:26:14] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727450673, "exp"=>1727454273}
+[2024-09-27 17:27:21] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDUwNjczLCJleHAiOjE3Mjc0NTQyNzN9.OUQLHJVtk1EYoTJIesWZg-SH_XEHIc4xslERFVCLceI
+[2024-09-27 17:27:21] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727450673, "exp"=>1727454273}
+[2024-09-27 17:28:13] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDUwNjczLCJleHAiOjE3Mjc0NTQyNzN9.OUQLHJVtk1EYoTJIesWZg-SH_XEHIc4xslERFVCLceI
+[2024-09-27 17:28:13] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727450673, "exp"=>1727454273}
+[2024-09-27 17:28:25] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDUwNjczLCJleHAiOjE3Mjc0NTQyNzN9.OUQLHJVtk1EYoTJIesWZg-SH_XEHIc4xslERFVCLceI
+[2024-09-27 17:28:25] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727450673, "exp"=>1727454273}
+[2024-09-27 17:28:34] - AuthManager => Getting access token with authorization code: dbd53bf417a0a581b9187818dbae0c315f94a7772d17f3d6017abaca0dfdd1b0
+[2024-09-27 17:28:35] - AuthManager => Access token retrieved successfully
+[2024-09-27 17:28:35] - AuthManager => Getting user info with access token: 00b53ae044298f38ed76138b351688b1b65a7d448cdd41c43856c6579f3dcba6
+[2024-09-27 17:28:36] - AuthManager => User info retrieved successfully
+[2024-09-27 17:28:36] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-27 17:28:36] - AuthManager => User with email thoribal@student.42perpignan.fr already exists in database, proceeding to login
+[2024-09-27 17:28:36] - ValidationManager => Generating validation for user with email thoribal@student.42perpignan.fr
+[2024-09-27 17:28:36] - ValidationManager => Code generated: 699445
+[2024-09-27 17:28:36] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 17:28:36] - ValidationManager => Validation already exists for user with email thoribal@student.42perpignan.fr
+[2024-09-27 17:28:36] - AuthRepository => Updating email activation for user with id 2
+[2024-09-27 17:28:36] - ValidationManager => Validation updated
+[2024-09-27 17:28:36] - ValidationManager => Sending email to user with email thoribal@student.42perpignan.fr
+[2024-09-27 17:28:36] - ValidationManager => Email sent
+[2024-09-27 17:28:36] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDUwOTE2LCJleHAiOjE3Mjc0NTQ1MTZ9.lYTdRdZwrH2eEAHJIzwMdQm_CWd7U4DLoVYxT2iG6uc
+[2024-09-27 17:28:36] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727450916, "exp"=>1727454516}
+[2024-09-27 17:28:43] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDUwOTE2LCJleHAiOjE3Mjc0NTQ1MTZ9.lYTdRdZwrH2eEAHJIzwMdQm_CWd7U4DLoVYxT2iG6uc
+[2024-09-27 17:28:43] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727450916, "exp"=>1727454516}
+[2024-09-27 17:28:43] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 17:28:43] - AuthManager => Token: 699445, Body token: 699445
+[2024-09-27 17:28:43] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NTA5MjMsImV4cCI6MTcyNzQ1NDUyM30.Yea-HOfeNKCRunZHbQ3va41kY4uY9KaP0bKUNCeEaCI
+[2024-09-27 17:28:43] - UserController => Fetching user with ID: 2
+[2024-09-27 17:28:43] - UserManager => User found: 2
+[2024-09-27 18:48:37] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:48:56] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:48:58] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:48:59] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:49:00] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:49:04] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:49:10] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:49:57] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:49:58] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:50:00] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:50:02] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:50:09] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:50:12] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:51:04] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:51:04] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:51:13] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:51:29] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:51:30] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:51:33] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:51:38] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:51:39] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:52:07] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:52:09] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 18:52:09] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:00:39] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:00:42] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:00:44] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:00:50] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:00:50] - AuthManager => Getting access token with authorization code: 45deaa7a31c8b5b6c51a629c1933eab6a5ab4af278f16a44ab419f9e988878ea
+[2024-09-27 22:00:50] - AuthManager => Access token retrieved successfully
+[2024-09-27 22:00:50] - AuthManager => Getting user info with access token: c79f6fd73eebcf77bcbda3010435986fc1960143dabc4783070824c71003b9a3
+[2024-09-27 22:00:50] - AuthManager => User info retrieved successfully
+[2024-09-27 22:00:50] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:00:50] - AuthManager => User with email thoribal@student.42perpignan.fr already exists in database, proceeding to login
+[2024-09-27 22:00:50] - ValidationManager => Generating validation for user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:00:50] - ValidationManager => Code generated: 867953
+[2024-09-27 22:00:50] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 22:00:50] - ValidationManager => Validation already exists for user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:00:50] - AuthRepository => Updating email activation for user with id 2
+[2024-09-27 22:00:50] - ValidationManager => Validation updated
+[2024-09-27 22:00:50] - ValidationManager => Sending email to user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:00:51] - ValidationManager => Email sent
+[2024-09-27 22:03:54] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:03:56] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:04:03] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:04:03] - AuthManager => Getting access token with authorization code: cbdc2e69b4d1b381bbca5e96a94b504dc54988bac270fa7e9d3d6a06bcbf3bf9
+[2024-09-27 22:04:03] - AuthManager => Access token retrieved successfully
+[2024-09-27 22:04:03] - AuthManager => Getting user info with access token: c79f6fd73eebcf77bcbda3010435986fc1960143dabc4783070824c71003b9a3
+[2024-09-27 22:04:03] - AuthManager => User info retrieved successfully
+[2024-09-27 22:04:03] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:04:03] - AuthManager => User with email thoribal@student.42perpignan.fr already exists in database, proceeding to login
+[2024-09-27 22:04:03] - ValidationManager => Generating validation for user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:04:03] - ValidationManager => Code generated: 253250
+[2024-09-27 22:04:03] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 22:04:03] - ValidationManager => Validation already exists for user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:04:03] - AuthRepository => Updating email activation for user with id 2
+[2024-09-27 22:04:03] - ValidationManager => Validation updated
+[2024-09-27 22:04:03] - ValidationManager => Sending email to user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:04:03] - ValidationManager => Email sent
+[2024-09-27 22:04:57] - AuthManager => Getting access token with authorization code: 43e26adfb55ad8fbb7b1b7632d4ec52a2431363bc0ad092556c197e96629754c
+[2024-09-27 22:04:57] - AuthManager => Access token retrieved successfully
+[2024-09-27 22:04:57] - AuthManager => Getting user info with access token: c79f6fd73eebcf77bcbda3010435986fc1960143dabc4783070824c71003b9a3
+[2024-09-27 22:04:58] - AuthManager => User info retrieved successfully
+[2024-09-27 22:04:58] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:04:58] - AuthManager => User with email thoribal@student.42perpignan.fr already exists in database, proceeding to login
+[2024-09-27 22:04:58] - ValidationManager => Generating validation for user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:04:58] - ValidationManager => Code generated: 294211
+[2024-09-27 22:04:58] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 22:04:58] - ValidationManager => Validation already exists for user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:04:58] - AuthRepository => Updating email activation for user with id 2
+[2024-09-27 22:04:58] - ValidationManager => Validation updated
+[2024-09-27 22:04:58] - ValidationManager => Sending email to user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:04:58] - ValidationManager => Email sent
+[2024-09-27 22:04:58] - AuthController => User: {:code=>200, :user=>{"id"=>"2", "username"=>"thoribal", "email"=>"thoribal@student.42perpignan.fr", "password"=>nil, "role"=>"0", "login_type"=>"1", "actived_at"=>nil, "updated_at"=>"2024-09-27 10:59:50", "deleted_at"=>nil, "created_at"=>"2024-09-27 10:59:50.389442"}}
+[2024-09-27 22:05:21] - AuthManager => Getting access token with authorization code: 6d53e898981903f0dac28a9b0a0ad8c0d9e8f36ed6d9db940e7fbe48803e913c
+[2024-09-27 22:05:21] - AuthManager => Access token retrieved successfully
+[2024-09-27 22:05:21] - AuthManager => Getting user info with access token: c79f6fd73eebcf77bcbda3010435986fc1960143dabc4783070824c71003b9a3
+[2024-09-27 22:05:21] - AuthManager => User info retrieved successfully
+[2024-09-27 22:05:21] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:05:21] - AuthManager => User with email thoribal@student.42perpignan.fr already exists in database, proceeding to login
+[2024-09-27 22:05:21] - ValidationManager => Generating validation for user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:05:21] - ValidationManager => Code generated: 536652
+[2024-09-27 22:05:21] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 22:05:21] - ValidationManager => Validation already exists for user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:05:21] - AuthRepository => Updating email activation for user with id 2
+[2024-09-27 22:05:21] - ValidationManager => Validation updated
+[2024-09-27 22:05:21] - ValidationManager => Sending email to user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:05:21] - ValidationManager => Email sent
+[2024-09-27 22:05:21] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY3NTIxLCJleHAiOjE3Mjc0NzExMjF9.Mgng6OX9uyl9z8IT2aSYr3R_wo3WjHp7zDurlI2OrOs
+[2024-09-27 22:05:21] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727467521, "exp"=>1727471121}
+[2024-09-27 22:06:42] - AuthManager => Registering new user
+[2024-09-27 22:06:42] - AuthManager => Username: greuyhgyu
+[2024-09-27 22:06:42] - AuthManager => Email: jeguigerhu@gmail.com
+[2024-09-27 22:06:42] - AuthRepository => Registering user with email jeguigerhu@gmail.com
+[2024-09-27 22:06:42] - AuthRepository => User with email jeguigerhu@gmail.com registered
+[2024-09-27 22:06:42] - ValidationManager => Generating validation for user with email jeguigerhu@gmail.com
+[2024-09-27 22:06:42] - ValidationManager => Code generated: 120683
+[2024-09-27 22:06:42] - AuthRepository => Getting email activation for user with id 3
+[2024-09-27 22:06:42] - AuthRepository => Registering email activation for user with id 3
+[2024-09-27 22:06:42] - ValidationManager => Sending email to user with email jeguigerhu@gmail.com
+[2024-09-27 22:06:42] - ValidationManager => Email sent
+[2024-09-27 22:08:27] - AuthManager => Registering new user
+[2024-09-27 22:08:27] - AuthManager => Username: bhnuimi
+[2024-09-27 22:08:27] - AuthManager => Email: bnuimom@gmail.com
+[2024-09-27 22:08:27] - AuthRepository => Registering user with email bnuimom@gmail.com
+[2024-09-27 22:08:27] - AuthRepository => User with email bnuimom@gmail.com registered
+[2024-09-27 22:08:27] - ValidationManager => Generating validation for user with email bnuimom@gmail.com
+[2024-09-27 22:08:27] - ValidationManager => Code generated: 205899
+[2024-09-27 22:08:27] - AuthRepository => Getting email activation for user with id 4
+[2024-09-27 22:08:27] - AuthRepository => Registering email activation for user with id 4
+[2024-09-27 22:08:27] - ValidationManager => Sending email to user with email bnuimom@gmail.com
+[2024-09-27 22:08:27] - ValidationManager => Email sent
+[2024-09-27 22:11:35] - AuthManager => Registering new user
+[2024-09-27 22:11:35] - AuthManager => Username: jijomkmi
+[2024-09-27 22:11:35] - AuthManager => Email: gnrueig@gmail.com
+[2024-09-27 22:11:35] - AuthRepository => Registering user with email gnrueig@gmail.com
+[2024-09-27 22:11:35] - AuthRepository => User with email gnrueig@gmail.com registered
+[2024-09-27 22:11:35] - ValidationManager => Generating validation for user with email gnrueig@gmail.com
+[2024-09-27 22:11:35] - ValidationManager => Code generated: 008085
+[2024-09-27 22:11:35] - AuthRepository => Getting email activation for user with id 5
+[2024-09-27 22:11:35] - AuthRepository => Registering email activation for user with id 5
+[2024-09-27 22:11:35] - ValidationManager => Sending email to user with email gnrueig@gmail.com
+[2024-09-27 22:11:35] - ValidationManager => Email sent
+[2024-09-27 22:11:35] - AuthController => User registered: {:code=>200, :success=>"User registered", :user=>{"id"=>"5", "username"=>"jijomkmi", "email"=>"gnrueig@gmail.com", "password"=>"$2a$12$qahdkHEaWFt2lSl8o0pgguf6g.28W1rKpNWzHb7SDpNY7MO1ubhFi", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:11:35", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:11:35.319665"}}
+[2024-09-27 22:14:09] - AuthManager => Registering new user
+[2024-09-27 22:14:09] - AuthManager => Username: fwjewidsz
+[2024-09-27 22:14:09] - AuthManager => Email: fwuijl@gmail.com
+[2024-09-27 22:14:09] - AuthRepository => Registering user with email fwuijl@gmail.com
+[2024-09-27 22:14:09] - AuthRepository => User with email fwuijl@gmail.com registered
+[2024-09-27 22:14:09] - ValidationManager => Generating validation for user with email fwuijl@gmail.com
+[2024-09-27 22:14:09] - ValidationManager => Code generated: 075147
+[2024-09-27 22:14:09] - AuthRepository => Getting email activation for user with id 6
+[2024-09-27 22:14:09] - AuthRepository => Registering email activation for user with id 6
+[2024-09-27 22:14:09] - ValidationManager => Sending email to user with email fwuijl@gmail.com
+[2024-09-27 22:14:09] - ValidationManager => Email sent
+[2024-09-27 22:14:09] - AuthController => User registered: {:code=>200, :success=>"User registered", :user=>{"id"=>"6", "username"=>"fwjewidsz", "email"=>"fwuijl@gmail.com", "password"=>"$2a$12$voR5CUFQSv3iaExOqVJQ0e6FNcC9X3Z8e/sDKqmrY2731aPTjdUF6", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:14:09", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:14:09.537713"}}
+[2024-09-27 22:15:08] - AuthManager => Registering new user
+[2024-09-27 22:15:08] - AuthManager => Username: wefhuhjk
+[2024-09-27 22:15:08] - AuthManager => Email: zsquwd@gmail.com
+[2024-09-27 22:15:08] - AuthRepository => Registering user with email zsquwd@gmail.com
+[2024-09-27 22:15:08] - AuthRepository => User with email zsquwd@gmail.com registered
+[2024-09-27 22:15:08] - ValidationManager => Generating validation for user with email zsquwd@gmail.com
+[2024-09-27 22:15:08] - ValidationManager => Code generated: 688348
+[2024-09-27 22:15:08] - AuthRepository => Getting email activation for user with id 7
+[2024-09-27 22:15:08] - AuthRepository => Registering email activation for user with id 7
+[2024-09-27 22:15:08] - ValidationManager => Sending email to user with email zsquwd@gmail.com
+[2024-09-27 22:15:08] - ValidationManager => Email sent
+[2024-09-27 22:15:08] - AuthController => User registered: {:code=>200, :success=>"User registered", :user=>{"id"=>"7", "username"=>"wefhuhjk", "email"=>"zsquwd@gmail.com", "password"=>"$2a$12$J4OwYWBOgzkJaeD5dxzPIurYCzrVYyC0dcXZdqJVyyZ8yq6FTwrPS", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:15:08", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:15:08.817283"}}
+[2024-09-27 22:15:59] - AuthManager => Registering new user
+[2024-09-27 22:15:59] - AuthManager => Username: nreuifneiu
+[2024-09-27 22:15:59] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-27 22:16:00] - AuthRepository => Registering user with email mojjheuwjf@gmail.com
+[2024-09-27 22:16:00] - AuthRepository => User with email mojjheuwjf@gmail.com registered
+[2024-09-27 22:16:00] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-27 22:16:00] - ValidationManager => Code generated: 672548
+[2024-09-27 22:16:00] - AuthRepository => Getting email activation for user with id 8
+[2024-09-27 22:16:00] - AuthRepository => Registering email activation for user with id 8
+[2024-09-27 22:16:00] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-27 22:16:00] - ValidationManager => Email sent
+[2024-09-27 22:16:00] - AuthController => User registered: {:code=>200, :success=>"User registered", :user=>{"id"=>"8", "username"=>"nreuifneiu", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$Tv2FUM4Ss8p./IJkP.ypN.VU.RO9Ujn.U9T9SPfogWZ1dCJkpWx/G", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:16:00", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:16:00.054543"}}
+[2024-09-27 22:16:00] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY4MTYwLCJleHAiOjE3Mjc0NzE3NjB9.U9tw4G940XwBbFDUSB9ObrytkedhkICl-G-vo0AlDDc
+[2024-09-27 22:16:00] - TokenManager => Payload: {"user_id"=>"8", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727468160, "exp"=>1727471760}
+[2024-09-27 22:16:12] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY4MTYwLCJleHAiOjE3Mjc0NzE3NjB9.U9tw4G940XwBbFDUSB9ObrytkedhkICl-G-vo0AlDDc
+[2024-09-27 22:16:12] - TokenManager => Payload: {"user_id"=>"8", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727468160, "exp"=>1727471760}
+[2024-09-27 22:16:12] - AuthRepository => Getting email activation for user with id 8
+[2024-09-27 22:16:12] - AuthManager => Token: 672548, Body token: 672548
+[2024-09-27 22:17:03] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY4MTYwLCJleHAiOjE3Mjc0NzE3NjB9.U9tw4G940XwBbFDUSB9ObrytkedhkICl-G-vo0AlDDc
+[2024-09-27 22:17:03] - TokenManager => Payload: {"user_id"=>"8", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727468160, "exp"=>1727471760}
+[2024-09-27 22:17:03] - AuthRepository => Getting email activation for user with id 8
+[2024-09-27 22:17:03] - AuthManager => Token: 672548, Body token: 672548
+[2024-09-27 22:18:42] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY4MTYwLCJleHAiOjE3Mjc0NzE3NjB9.U9tw4G940XwBbFDUSB9ObrytkedhkICl-G-vo0AlDDc
+[2024-09-27 22:18:42] - TokenManager => Payload: {"user_id"=>"8", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727468160, "exp"=>1727471760}
+[2024-09-27 22:18:42] - AuthRepository => Getting email activation for user with id 8
+[2024-09-27 22:18:42] - AuthManager => Token: 672548, Body token: 672548
+[2024-09-27 22:18:42] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjp0cnVlLCJyb2xlIjoiOCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NjgzMjIsImV4cCI6MTcyNzQ3MTkyMn0.HKhC24n97_jGLvl9U0vpkdUzIh6ux01a4xOgLCywkJs
+[2024-09-27 22:18:42] - UserController => Fetching user with ID: 8
+[2024-09-27 22:18:42] - UserManager => User found: 8
+[2024-09-27 22:18:44] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:18:47] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:19:02] - AuthManager => Logging in user
+[2024-09-27 22:19:02] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-27 22:19:02] - AuthManager => User: [{"id"=>"8", "username"=>"nreuifneiu", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$Tv2FUM4Ss8p./IJkP.ypN.VU.RO9Ujn.U9T9SPfogWZ1dCJkpWx/G", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:16:00", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:16:00.054543"}]
+[2024-09-27 22:19:02] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-27 22:19:02] - ValidationManager => Code generated: 198075
+[2024-09-27 22:19:02] - AuthRepository => Getting email activation for user with id 8
+[2024-09-27 22:19:02] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-27 22:19:02] - AuthRepository => Updating email activation for user with id 8
+[2024-09-27 22:19:02] - ValidationManager => Validation updated
+[2024-09-27 22:19:02] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-27 22:19:02] - ValidationManager => Email sent
+[2024-09-27 22:19:02] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjgiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY4MzQyLCJleHAiOjE3Mjc0NzE5NDJ9.BOnBPjQRkY0h9HyYKQncoVgiacxCDzkPzkzxiddGnrI
+[2024-09-27 22:19:02] - TokenManager => Payload: {"user_id"=>"8", "state"=>false, "role"=>"8", "type"=>"access", "iat"=>1727468342, "exp"=>1727471942}
+[2024-09-27 22:19:12] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjgiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY4MzQyLCJleHAiOjE3Mjc0NzE5NDJ9.BOnBPjQRkY0h9HyYKQncoVgiacxCDzkPzkzxiddGnrI
+[2024-09-27 22:19:12] - TokenManager => Payload: {"user_id"=>"8", "state"=>false, "role"=>"8", "type"=>"access", "iat"=>1727468342, "exp"=>1727471942}
+[2024-09-27 22:19:22] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjgiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY4MzQyLCJleHAiOjE3Mjc0NzE5NDJ9.BOnBPjQRkY0h9HyYKQncoVgiacxCDzkPzkzxiddGnrI
+[2024-09-27 22:19:22] - TokenManager => Payload: {"user_id"=>"8", "state"=>false, "role"=>"8", "type"=>"access", "iat"=>1727468342, "exp"=>1727471942}
+[2024-09-27 22:20:23] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjgiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY4MzQyLCJleHAiOjE3Mjc0NzE5NDJ9.BOnBPjQRkY0h9HyYKQncoVgiacxCDzkPzkzxiddGnrI
+[2024-09-27 22:20:23] - TokenManager => Payload: {"user_id"=>"8", "state"=>false, "role"=>"8", "type"=>"access", "iat"=>1727468342, "exp"=>1727471942}
+
+
+
+[2024-09-27 22:20:31] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjgiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY4MzQyLCJleHAiOjE3Mjc0NzE5NDJ9.BOnBPjQRkY0h9HyYKQncoVgiacxCDzkPzkzxiddGnrI
+[2024-09-27 22:20:31] - TokenManager => Payload: {"user_id"=>"8", "state"=>false, "role"=>"8", "type"=>"access", "iat"=>1727468342, "exp"=>1727471942}
+[2024-09-27 22:23:28] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjgiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY4MzQyLCJleHAiOjE3Mjc0NzE5NDJ9.BOnBPjQRkY0h9HyYKQncoVgiacxCDzkPzkzxiddGnrI
+[2024-09-27 22:23:28] - TokenManager => Payload: {"user_id"=>"8", "state"=>false, "role"=>"8", "type"=>"access", "iat"=>1727468342, "exp"=>1727471942}
+[2024-09-27 22:24:18] - AuthManager => Getting access token with authorization code: 1098a08f2869823662732d725b1219c29cf6c5f987379474de8a286b16fae3f3
+[2024-09-27 22:24:19] - AuthManager => Access token retrieved successfully
+[2024-09-27 22:24:19] - AuthManager => Getting user info with access token: c79f6fd73eebcf77bcbda3010435986fc1960143dabc4783070824c71003b9a3
+[2024-09-27 22:24:19] - AuthManager => User info retrieved successfully
+[2024-09-27 22:24:19] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:24:19] - AuthManager => User with email thoribal@student.42perpignan.fr already exists in database, proceeding to login
+[2024-09-27 22:24:19] - ValidationManager => Generating validation for user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:24:19] - ValidationManager => Code generated: 552326
+[2024-09-27 22:24:19] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 22:24:19] - ValidationManager => Validation already exists for user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:24:19] - AuthRepository => Updating email activation for user with id 2
+[2024-09-27 22:24:19] - ValidationManager => Validation updated
+[2024-09-27 22:24:19] - ValidationManager => Sending email to user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:24:19] - ValidationManager => Email sent
+[2024-09-27 22:24:19] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY4NjU5LCJleHAiOjE3Mjc0NzIyNTl9.LPKxCinVChkI2X8wgpYPIKgufdny-JcA4oZJ1jE6Ln0
+[2024-09-27 22:24:19] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727468659, "exp"=>1727472259}
+[2024-09-27 22:24:54] - AuthManager => Logging in user
+[2024-09-27 22:24:54] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-27 22:24:54] - AuthManager => User: [{"id"=>"8", "username"=>"nreuifneiu", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$Tv2FUM4Ss8p./IJkP.ypN.VU.RO9Ujn.U9T9SPfogWZ1dCJkpWx/G", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:16:00", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:16:00.054543"}]
+[2024-09-27 22:24:54] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-27 22:24:54] - ValidationManager => Code generated: 536741
+[2024-09-27 22:24:54] - AuthRepository => Getting email activation for user with id 8
+[2024-09-27 22:24:54] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-27 22:24:54] - AuthRepository => Updating email activation for user with id 8
+[2024-09-27 22:24:54] - ValidationManager => Validation updated
+[2024-09-27 22:24:54] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-27 22:24:54] - ValidationManager => Email sent
+[2024-09-27 22:24:54] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjgiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY4Njk0LCJleHAiOjE3Mjc0NzIyOTR9.govRnQ0DDW37SGTsdYdHTW3O-X2QCM3kFmJm8vUkgvc
+[2024-09-27 22:24:54] - TokenManager => Payload: {"user_id"=>"8", "state"=>false, "role"=>"8", "type"=>"access", "iat"=>1727468694, "exp"=>1727472294}
+[2024-09-27 22:29:31] - AuthManager => Logging in user
+[2024-09-27 22:29:31] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-27 22:29:31] - AuthManager => User: [{"id"=>"8", "username"=>"nreuifneiu", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$Tv2FUM4Ss8p./IJkP.ypN.VU.RO9Ujn.U9T9SPfogWZ1dCJkpWx/G", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:16:00", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:16:00.054543"}]
+[2024-09-27 22:29:32] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-27 22:29:32] - ValidationManager => Code generated: 641461
+[2024-09-27 22:29:32] - AuthRepository => Getting email activation for user with id 8
+[2024-09-27 22:29:32] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-27 22:29:32] - AuthRepository => Updating email activation for user with id 8
+[2024-09-27 22:29:32] - ValidationManager => Validation updated
+[2024-09-27 22:29:32] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-27 22:29:32] - ValidationManager => Email sent
+[2024-09-27 22:29:32] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjgiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY4OTcyLCJleHAiOjE3Mjc0NzI1NzJ9.LbS2YhaUVdanxVmNHuom5Zvf-ykNOaCmcdCLlgngoXc
+[2024-09-27 22:29:32] - TokenManager => Payload: {"user_id"=>"8", "state"=>false, "role"=>"8", "type"=>"access", "iat"=>1727468972, "exp"=>1727472572}
+[2024-09-27 22:29:45] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjgiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY4OTcyLCJleHAiOjE3Mjc0NzI1NzJ9.LbS2YhaUVdanxVmNHuom5Zvf-ykNOaCmcdCLlgngoXc
+[2024-09-27 22:29:45] - TokenManager => Payload: {"user_id"=>"8", "state"=>false, "role"=>"8", "type"=>"access", "iat"=>1727468972, "exp"=>1727472572}
+[2024-09-27 22:29:45] - AuthController => User ID: 8
+[2024-09-27 22:29:45] - AuthRepository => Getting email activation for user with id 8
+[2024-09-27 22:29:45] - AuthManager => Token: 641461, Body token: 641461
+[2024-09-27 22:29:45] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOCIsInN0YXRlIjp0cnVlLCJyb2xlIjoiOCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Njg5ODUsImV4cCI6MTcyNzQ3MjU4NX0.T1t8hcCFw-IyZWanZ8A5s3xT98knv0elIqY8auR-7Tg
+[2024-09-27 22:29:45] - UserController => Fetching user with ID: 8
+[2024-09-27 22:29:45] - UserManager => User found: 8
+[2024-09-27 22:29:54] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:30:02] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:30:02] - AuthManager => Getting access token with authorization code: 0e8e4c926137c57e758f345edd96bbaba33d53ee25469fd5fe7eb7a50ac6ad8b
+[2024-09-27 22:30:02] - AuthManager => Access token retrieved successfully
+[2024-09-27 22:30:02] - AuthManager => Getting user info with access token: c79f6fd73eebcf77bcbda3010435986fc1960143dabc4783070824c71003b9a3
+[2024-09-27 22:30:02] - AuthManager => User info retrieved successfully
+[2024-09-27 22:30:02] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:30:02] - AuthManager => User with email thoribal@student.42perpignan.fr already exists in database, proceeding to login
+[2024-09-27 22:30:02] - ValidationManager => Generating validation for user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:30:02] - ValidationManager => Code generated: 498972
+[2024-09-27 22:30:02] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 22:30:02] - ValidationManager => Validation already exists for user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:30:02] - AuthRepository => Updating email activation for user with id 2
+[2024-09-27 22:30:02] - ValidationManager => Validation updated
+[2024-09-27 22:30:02] - ValidationManager => Sending email to user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:30:03] - ValidationManager => Email sent
+[2024-09-27 22:30:03] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY5MDAzLCJleHAiOjE3Mjc0NzI2MDN9.eckCvVF07eJ27ivVOQtZn2lmmHFVDkpkhILeldznCUU
+[2024-09-27 22:30:03] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727469003, "exp"=>1727472603}
+[2024-09-27 22:30:13] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY5MDAzLCJleHAiOjE3Mjc0NzI2MDN9.eckCvVF07eJ27ivVOQtZn2lmmHFVDkpkhILeldznCUU
+[2024-09-27 22:30:13] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727469003, "exp"=>1727472603}
+[2024-09-27 22:30:13] - AuthController => User ID: 2
+[2024-09-27 22:30:13] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 22:30:13] - AuthManager => Token: 498972, Body token: 498972
+[2024-09-27 22:30:13] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NjkwMTMsImV4cCI6MTcyNzQ3MjYxM30.p4nwmizNM0_Sx07fqvjP_AZK-1D_cwwJFLolfw98lw4
+[2024-09-27 22:30:13] - UserController => Fetching user with ID: 2
+[2024-09-27 22:30:13] - UserManager => User found: 2
+[2024-09-27 22:30:15] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:30:17] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:30:33] - AuthManager => Registering new user
+[2024-09-27 22:30:33] - AuthManager => Username: fhwefgt
+[2024-09-27 22:30:33] - AuthManager => Email: fjreijfeg@gmail.com
+[2024-09-27 22:30:33] - AuthRepository => Registering user with email fjreijfeg@gmail.com
+[2024-09-27 22:30:33] - AuthRepository => User with email fjreijfeg@gmail.com registered
+[2024-09-27 22:30:33] - ValidationManager => Generating validation for user with email fjreijfeg@gmail.com
+[2024-09-27 22:30:33] - ValidationManager => Code generated: 099697
+[2024-09-27 22:30:33] - AuthRepository => Getting email activation for user with id 9
+[2024-09-27 22:30:33] - AuthRepository => Registering email activation for user with id 9
+[2024-09-27 22:30:33] - ValidationManager => Sending email to user with email fjreijfeg@gmail.com
+[2024-09-27 22:30:33] - ValidationManager => Email sent
+[2024-09-27 22:30:33] - AuthController => User registered: {:code=>200, :success=>"User registered", :user=>{"id"=>"9", "username"=>"fhwefgt", "email"=>"fjreijfeg@gmail.com", "password"=>"$2a$12$Lceoe/dDMr0AU.X9LPkUVO705DJfqxT/MGtbT8q11LtV0uQn8BVZ.", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:30:33", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:30:33.805854"}}
+[2024-09-27 22:30:33] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOSIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY5MDMzLCJleHAiOjE3Mjc0NzI2MzN9.okzdE1NUfDW49VsD5UMK1sif-j_Db-Kje-Ks0JS5rdw
+[2024-09-27 22:30:33] - TokenManager => Payload: {"user_id"=>"9", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727469033, "exp"=>1727472633}
+[2024-09-27 22:30:42] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOSIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY5MDMzLCJleHAiOjE3Mjc0NzI2MzN9.okzdE1NUfDW49VsD5UMK1sif-j_Db-Kje-Ks0JS5rdw
+[2024-09-27 22:30:42] - TokenManager => Payload: {"user_id"=>"9", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727469033, "exp"=>1727472633}
+[2024-09-27 22:45:04] - AuthManager => Getting access token with authorization code: ba0737736fa336348f5b1482d5d0eeb4a6c893175ee9df407d8b390cc8a5fced
+[2024-09-27 22:45:04] - AuthManager => Access token retrieved successfully
+[2024-09-27 22:45:04] - AuthManager => Getting user info with access token: c79f6fd73eebcf77bcbda3010435986fc1960143dabc4783070824c71003b9a3
+[2024-09-27 22:45:04] - AuthManager => User info retrieved successfully
+[2024-09-27 22:45:04] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:45:04] - AuthRepository => Registering user42 with email thoribal@student.42perpignan.fr
+[2024-09-27 22:45:04] - AuthRepository => User42 with email thoribal@student.42perpignan.fr registered
+[2024-09-27 22:45:04] - ValidationManager => Generating validation for user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:45:04] - ValidationManager => Code generated: 491962
+[2024-09-27 22:45:04] - AuthRepository => Getting email activation for user with id 1
+[2024-09-27 22:45:04] - AuthRepository => Registering email activation for user with id 1
+[2024-09-27 22:45:04] - ValidationManager => Sending email to user with email thoribal@student.42perpignan.fr
+[2024-09-27 22:45:05] - ValidationManager => Email sent
+[2024-09-27 22:45:05] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY5OTA1LCJleHAiOjE3Mjc0NzM1MDV9.rzXvkru9fDAwnCG-Il7UVjydW62zg7VswGvLlWDBHPg
+[2024-09-27 22:45:05] - TokenManager => Payload: {"user_id"=>"1", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727469905, "exp"=>1727473505}
+[2024-09-27 22:45:17] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY5OTA1LCJleHAiOjE3Mjc0NzM1MDV9.rzXvkru9fDAwnCG-Il7UVjydW62zg7VswGvLlWDBHPg
+[2024-09-27 22:45:17] - TokenManager => Payload: {"user_id"=>"1", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727469905, "exp"=>1727473505}
+[2024-09-27 22:45:17] - AuthController => User ID: 1
+[2024-09-27 22:45:17] - AuthRepository => Getting email activation for user with id 1
+[2024-09-27 22:45:17] - AuthManager => Token: 491962, Body token: 491962
+[2024-09-27 22:45:17] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMSIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Njk5MTcsImV4cCI6MTcyNzQ3MzUxN30.zcKfosq3jboxU8nw4fNOK5VI_9qlnFBlPBdhgd-RWm4
+[2024-09-27 22:45:17] - UserController => Fetching user with ID: 1
+[2024-09-27 22:45:17] - UserManager => User found: 1
+[2024-09-27 22:45:40] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:45:43] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:45:58] - AuthManager => Registering new user
+[2024-09-27 22:45:58] - AuthManager => Username: fhwuek
+[2024-09-27 22:45:58] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-27 22:45:58] - AuthRepository => Registering user with email mojjheuwjf@gmail.com
+[2024-09-27 22:45:58] - AuthRepository => User with email mojjheuwjf@gmail.com registered
+[2024-09-27 22:45:58] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-27 22:45:58] - ValidationManager => Code generated: 409526
+[2024-09-27 22:45:58] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 22:45:58] - AuthRepository => Registering email activation for user with id 2
+[2024-09-27 22:45:58] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-27 22:45:58] - ValidationManager => Email sent
+[2024-09-27 22:45:58] - AuthController => User registered: {:code=>200, :success=>"User registered", :user=>{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}}
+[2024-09-27 22:45:58] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY5OTU4LCJleHAiOjE3Mjc0NzM1NTh9.7ho-LGBuHknoJnqIteWxuBcNPG2072796oIE3Rx0S9w
+[2024-09-27 22:45:58] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727469958, "exp"=>1727473558}
+[2024-09-27 22:46:08] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDY5OTU4LCJleHAiOjE3Mjc0NzM1NTh9.7ho-LGBuHknoJnqIteWxuBcNPG2072796oIE3Rx0S9w
+[2024-09-27 22:46:08] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727469958, "exp"=>1727473558}
+
+
+[2024-09-27 22:51:41] - AuthManager => Logging in user
+[2024-09-27 22:51:41] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-27 22:51:41] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-27 22:51:41] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-27 22:51:41] - ValidationManager => Code generated: 950460
+[2024-09-27 22:51:41] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 22:51:41] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-27 22:51:41] - AuthRepository => Updating email activation for user with id 2
+[2024-09-27 22:51:41] - ValidationManager => Validation updated
+[2024-09-27 22:51:41] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-27 22:51:41] - ValidationManager => Email sent
+[2024-09-27 22:51:41] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDcwMzAxLCJleHAiOjE3Mjc0NzM5MDF9.FOXvGnWc-WJTfnwLclmJf-DtSXHywDsFs5VTcxjnvIg
+[2024-09-27 22:51:41] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727470301, "exp"=>1727473901}
+
+[2024-09-27 22:51:55] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDcwMzAxLCJleHAiOjE3Mjc0NzM5MDF9.FOXvGnWc-WJTfnwLclmJf-DtSXHywDsFs5VTcxjnvIg
+[2024-09-27 22:51:55] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727470301, "exp"=>1727473901}
+[2024-09-27 22:51:55] - AuthController => User ID: 2
+[2024-09-27 22:51:55] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 22:51:55] - AuthManager => Token: 950460, Body token: 
+[2024-09-27 22:52:05] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDcwMzAxLCJleHAiOjE3Mjc0NzM5MDF9.FOXvGnWc-WJTfnwLclmJf-DtSXHywDsFs5VTcxjnvIg
+[2024-09-27 22:52:05] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727470301, "exp"=>1727473901}
+[2024-09-27 22:52:05] - AuthController => User ID: 2
+[2024-09-27 22:52:05] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 22:52:05] - AuthManager => Token: 950460, Body token: 950460
+[2024-09-27 22:52:05] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NzAzMjUsImV4cCI6MTcyNzQ3MzkyNX0.dcCJiicO0cgaRxorqA2iPxSBfVg6WW6rM4HCl2Kr1iA
+[2024-09-27 22:52:05] - UserController => Fetching user with ID: 2
+[2024-09-27 22:52:05] - UserManager => User found: 2
+[2024-09-27 22:52:06] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:52:07] - TokenManager => Token decode error: Nil JSON web token
+
+
+[2024-09-27 22:52:25] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:53:14] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:56:31] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:56:32] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:57:16] - AuthManager => Logging in user
+[2024-09-27 22:57:16] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-27 22:57:16] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-27 22:57:16] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-27 22:57:16] - ValidationManager => Code generated: 569830
+[2024-09-27 22:57:16] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 22:57:16] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-27 22:57:16] - AuthRepository => Updating email activation for user with id 2
+[2024-09-27 22:57:16] - ValidationManager => Validation updated
+[2024-09-27 22:57:16] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-27 22:57:16] - ValidationManager => Email sent
+[2024-09-27 22:57:16] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDcwNjM2LCJleHAiOjE3Mjc0NzQyMzZ9.DLXOAVw2QfWV5MvBxJ1PkVmoLHeXtQ54X4Akm7-BVYQ
+[2024-09-27 22:57:16] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727470636, "exp"=>1727474236}
+[2024-09-27 22:57:28] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDcwNjM2LCJleHAiOjE3Mjc0NzQyMzZ9.DLXOAVw2QfWV5MvBxJ1PkVmoLHeXtQ54X4Akm7-BVYQ
+[2024-09-27 22:57:28] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727470636, "exp"=>1727474236}
+[2024-09-27 22:57:28] - AuthController => User ID: 2
+[2024-09-27 22:57:28] - AuthRepository => Getting email activation for user with id 2
+[2024-09-27 22:57:28] - AuthManager => Token: 569830, Body token: 569830
+[2024-09-27 22:57:28] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NzA2NDgsImV4cCI6MTcyNzQ3NDI0OH0.QsTXOOVH1AT0B2dda5YWpmt2KcEpHlwTWbaSsR7_ayc
+[2024-09-27 22:57:28] - UserController => Fetching user with ID: 2
+[2024-09-27 22:57:28] - UserManager => User found: 2
+[2024-09-27 22:57:30] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:57:31] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-27 22:57:44] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:46:14] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:47:01] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:47:04] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:47:05] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:47:26] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:47:27] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:48:12] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:48:57] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:51:27] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:51:28] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:53:23] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:53:25] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:53:45] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:53:50] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:54:19] - AuthManager => Logging in user
+[2024-09-28 00:54:19] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 00:54:19] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 00:54:19] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 00:54:19] - ValidationManager => Code generated: 825543
+[2024-09-28 00:54:19] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 00:54:19] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 00:54:19] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 00:54:19] - ValidationManager => Validation updated
+[2024-09-28 00:54:19] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 00:54:19] - ValidationManager => Email sent
+[2024-09-28 00:54:19] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc3NjU5LCJleHAiOjE3Mjc0ODEyNTl9.y487wKV4vTFbj4MijyCx9L-YWv0bUdIobFtlZOfx_Qk
+[2024-09-28 00:54:19] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727477659, "exp"=>1727481259}
+[2024-09-28 00:54:47] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc3NjU5LCJleHAiOjE3Mjc0ODEyNTl9.y487wKV4vTFbj4MijyCx9L-YWv0bUdIobFtlZOfx_Qk
+[2024-09-28 00:54:47] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727477659, "exp"=>1727481259}
+[2024-09-28 00:54:47] - AuthController => User ID: 2
+[2024-09-28 00:54:47] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 00:54:47] - AuthManager => Token: 825543, Body token: 825543
+[2024-09-28 00:54:47] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Nzc2ODcsImV4cCI6MTcyNzQ4MTI4N30.tggcWubjnoBMgdH7SGcTKvixRa-7XuYwRmOdpWtDjGc
+[2024-09-28 00:54:47] - UserController => Fetching user with ID: 2
+[2024-09-28 00:54:47] - UserManager => User found: 2
+[2024-09-28 00:54:48] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:54:49] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:55:04] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:55:18] - AuthManager => Logging in user
+[2024-09-28 00:55:18] - AuthManager => Email: 
+[2024-09-28 00:55:29] - AuthManager => Logging in user
+[2024-09-28 00:55:29] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 00:55:29] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 00:55:29] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 00:55:29] - ValidationManager => Code generated: 912417
+[2024-09-28 00:55:29] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 00:55:29] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 00:55:29] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 00:55:29] - ValidationManager => Validation updated
+[2024-09-28 00:55:29] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 00:55:29] - ValidationManager => Email sent
+[2024-09-28 00:55:29] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc3NzI5LCJleHAiOjE3Mjc0ODEzMjl9.h4z2wUTLo1yHrip74bZcKMC2rLe_sOMeDV4yjY_ryHc
+[2024-09-28 00:55:29] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727477729, "exp"=>1727481329}
+[2024-09-28 00:55:37] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc3NzI5LCJleHAiOjE3Mjc0ODEzMjl9.h4z2wUTLo1yHrip74bZcKMC2rLe_sOMeDV4yjY_ryHc
+[2024-09-28 00:55:37] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727477729, "exp"=>1727481329}
+[2024-09-28 00:55:37] - AuthController => User ID: 2
+[2024-09-28 00:55:37] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 00:55:37] - AuthManager => Token: 912417, Body token: 912417
+[2024-09-28 00:55:37] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Nzc3MzcsImV4cCI6MTcyNzQ4MTMzN30.A7HDn2Qi9SpVnttzMbNp3rKUpnay5UcT1U9_pUW0Urc
+[2024-09-28 00:55:37] - UserController => Fetching user with ID: 2
+[2024-09-28 00:55:37] - UserManager => User found: 2
+[2024-09-28 00:55:42] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:55:44] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:56:27] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:56:34] - AuthManager => Logging in user
+[2024-09-28 00:56:34] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 00:56:34] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 00:56:34] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 00:56:34] - ValidationManager => Code generated: 336102
+[2024-09-28 00:56:34] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 00:56:34] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 00:56:34] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 00:56:34] - ValidationManager => Validation updated
+[2024-09-28 00:56:34] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 00:56:35] - ValidationManager => Email sent
+[2024-09-28 00:56:35] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc3Nzk1LCJleHAiOjE3Mjc0ODEzOTV9.Iqzi1dBg2KGWG6CDsGy-nnVjXLeYOXZgGyvCF8w089Q
+[2024-09-28 00:56:35] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727477795, "exp"=>1727481395}
+[2024-09-28 00:56:44] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc3Nzk1LCJleHAiOjE3Mjc0ODEzOTV9.Iqzi1dBg2KGWG6CDsGy-nnVjXLeYOXZgGyvCF8w089Q
+[2024-09-28 00:56:44] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727477795, "exp"=>1727481395}
+[2024-09-28 00:56:44] - AuthController => User ID: 2
+[2024-09-28 00:56:44] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 00:56:44] - AuthManager => Token: 336102, Body token: 336102
+[2024-09-28 00:56:44] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Nzc4MDQsImV4cCI6MTcyNzQ4MTQwNH0.J_PrODhKSTLoc33BHtdVRXJ1DUZPWWmZFHxiqUA9fGg
+[2024-09-28 00:56:44] - UserController => Fetching user with ID: 2
+[2024-09-28 00:56:44] - UserManager => User found: 2
+[2024-09-28 00:56:46] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:56:48] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 00:57:10] - AuthManager => Logging in user
+[2024-09-28 00:57:10] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 00:57:10] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 00:57:10] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 00:57:10] - ValidationManager => Code generated: 898023
+[2024-09-28 00:57:10] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 00:57:10] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 00:57:10] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 00:57:10] - ValidationManager => Validation updated
+[2024-09-28 00:57:10] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 00:57:10] - ValidationManager => Email sent
+[2024-09-28 00:57:10] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc3ODMwLCJleHAiOjE3Mjc0ODE0MzB9.42XLT6wlO38NPNOUeDE5r9EblU5asnAkdMToTQ3ELKw
+[2024-09-28 00:57:10] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727477830, "exp"=>1727481430}
+[2024-09-28 01:00:00] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc3ODMwLCJleHAiOjE3Mjc0ODE0MzB9.42XLT6wlO38NPNOUeDE5r9EblU5asnAkdMToTQ3ELKw
+[2024-09-28 01:00:00] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727477830, "exp"=>1727481430}
+[2024-09-28 01:00:26] - AuthManager => Logging in user
+[2024-09-28 01:00:26] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 01:00:26] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 01:00:26] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:00:26] - ValidationManager => Code generated: 429467
+[2024-09-28 01:00:26] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:00:26] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:00:26] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 01:00:26] - ValidationManager => Validation updated
+[2024-09-28 01:00:26] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 01:00:26] - ValidationManager => Email sent
+[2024-09-28 01:00:26] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc4MDI2LCJleHAiOjE3Mjc0ODE2MjZ9.VrbgOVrmqHd_1p8ttdVtNtzh2INkdvY4l80uHiNFDCE
+[2024-09-28 01:00:26] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727478026, "exp"=>1727481626}
+[2024-09-28 01:00:41] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc4MDI2LCJleHAiOjE3Mjc0ODE2MjZ9.VrbgOVrmqHd_1p8ttdVtNtzh2INkdvY4l80uHiNFDCE
+[2024-09-28 01:00:41] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727478026, "exp"=>1727481626}
+[2024-09-28 01:00:41] - AuthController => User ID: 2
+[2024-09-28 01:00:41] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:00:41] - AuthManager => Token: 429467, Body token: 429467
+[2024-09-28 01:00:41] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NzgwNDEsImV4cCI6MTcyNzQ4MTY0MX0.vCC2Krd7V1z84uPZLx-ZNEVs1nOfDixRa8Sd55hnGJ4
+[2024-09-28 01:00:41] - UserController => Fetching user with ID: 2
+[2024-09-28 01:00:41] - UserManager => User found: 2
+[2024-09-28 01:00:42] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:00:44] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:00:50] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:03:46] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:04:01] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:04:02] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:04:12] - AuthManager => Logging in user
+[2024-09-28 01:04:12] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 01:04:12] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 01:04:12] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:04:12] - ValidationManager => Code generated: 699895
+[2024-09-28 01:04:12] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:04:12] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:04:12] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 01:04:12] - ValidationManager => Validation updated
+[2024-09-28 01:04:12] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 01:04:12] - ValidationManager => Email sent
+[2024-09-28 01:04:12] - AuthManager => Logging in user
+[2024-09-28 01:04:12] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 01:04:12] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 01:04:13] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:04:13] - ValidationManager => Code generated: 320138
+[2024-09-28 01:04:13] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:04:13] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:04:13] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 01:04:13] - ValidationManager => Validation updated
+[2024-09-28 01:04:13] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 01:04:13] - ValidationManager => Email sent
+[2024-09-28 01:04:13] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc4MjUyLCJleHAiOjE3Mjc0ODE4NTJ9.FYazqNJLOz6xpy4X2Qs9cfddRYrux1Vr8JiKwZASino
+[2024-09-28 01:04:13] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727478252, "exp"=>1727481852}
+[2024-09-28 01:04:13] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc4MjUzLCJleHAiOjE3Mjc0ODE4NTN9.R5DxEXzc3aN2S2i74IQ7chwkwemY8d_vXKfu-EMt74U
+[2024-09-28 01:04:13] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727478253, "exp"=>1727481853}
+[2024-09-28 01:04:29] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc4MjUzLCJleHAiOjE3Mjc0ODE4NTN9.R5DxEXzc3aN2S2i74IQ7chwkwemY8d_vXKfu-EMt74U
+[2024-09-28 01:04:29] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727478253, "exp"=>1727481853}
+[2024-09-28 01:04:29] - AuthController => User ID: 2
+[2024-09-28 01:04:29] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:04:29] - AuthManager => Token: 320138, Body token: 320138
+[2024-09-28 01:04:29] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NzgyNjksImV4cCI6MTcyNzQ4MTg2OX0.ee8cYAxXHjsoZNipe7GJ-EgUJcfHNz0pSSvoivguPvQ
+[2024-09-28 01:04:29] - UserController => Fetching user with ID: 2
+[2024-09-28 01:04:29] - UserManager => User found: 2
+[2024-09-28 01:04:32] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:04:36] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:04:42] - AuthManager => Logging in user
+[2024-09-28 01:04:42] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 01:04:42] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 01:04:43] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:04:43] - ValidationManager => Code generated: 830952
+[2024-09-28 01:04:43] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:04:43] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:04:43] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 01:04:43] - ValidationManager => Validation updated
+[2024-09-28 01:04:43] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 01:04:43] - ValidationManager => Email sent
+[2024-09-28 01:04:43] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc4MjgzLCJleHAiOjE3Mjc0ODE4ODN9.QfWeEFTUIG8Ybnc9fUlOIUYopXRQyQ9EoK3WUcEJJxY
+[2024-09-28 01:04:43] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727478283, "exp"=>1727481883}
+[2024-09-28 01:04:55] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc4MjgzLCJleHAiOjE3Mjc0ODE4ODN9.QfWeEFTUIG8Ybnc9fUlOIUYopXRQyQ9EoK3WUcEJJxY
+[2024-09-28 01:04:55] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727478283, "exp"=>1727481883}
+[2024-09-28 01:14:47] - AuthManager => Logging in user
+[2024-09-28 01:14:47] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 01:14:47] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 01:14:47] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:14:47] - ValidationManager => Code generated: 422834
+[2024-09-28 01:14:47] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:14:47] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:14:47] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 01:14:47] - ValidationManager => Validation updated
+[2024-09-28 01:14:47] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 01:14:47] - ValidationManager => Email sent
+[2024-09-28 01:14:47] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc4ODg3LCJleHAiOjE3Mjc0ODI0ODd9.xUqXVNDyv3t2i9Gc8eQFzflJ9NWBGcqDuE_BdApoZ2k
+[2024-09-28 01:14:47] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727478887, "exp"=>1727482487}
+[2024-09-28 01:15:31] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc4ODg3LCJleHAiOjE3Mjc0ODI0ODd9.xUqXVNDyv3t2i9Gc8eQFzflJ9NWBGcqDuE_BdApoZ2k
+[2024-09-28 01:15:31] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727478887, "exp"=>1727482487}
+[2024-09-28 01:16:07] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc4ODg3LCJleHAiOjE3Mjc0ODI0ODd9.xUqXVNDyv3t2i9Gc8eQFzflJ9NWBGcqDuE_BdApoZ2k
+[2024-09-28 01:16:07] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727478887, "exp"=>1727482487}
+[2024-09-28 01:16:19] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc4ODg3LCJleHAiOjE3Mjc0ODI0ODd9.xUqXVNDyv3t2i9Gc8eQFzflJ9NWBGcqDuE_BdApoZ2k
+[2024-09-28 01:16:19] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727478887, "exp"=>1727482487}
+[2024-09-28 01:16:19] - AuthController => User ID: 2
+[2024-09-28 01:16:19] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:16:19] - AuthManager => Token: 422834, Body token: 422834
+[2024-09-28 01:16:19] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0Nzg5NzksImV4cCI6MTcyNzQ4MjU3OX0.YDSmv0ciAHpALlXWNtqLh61S4dPTpUgBJQGD9uA2I6A
+[2024-09-28 01:16:19] - UserController => Fetching user with ID: 2
+[2024-09-28 01:16:19] - UserManager => User found: 2
+[2024-09-28 01:16:21] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:16:22] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:18:14] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:18:21] - AuthManager => Logging in user
+[2024-09-28 01:18:21] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 01:18:21] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 01:18:21] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:18:21] - ValidationManager => Code generated: 867976
+[2024-09-28 01:18:21] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:18:21] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:18:21] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 01:18:21] - ValidationManager => Validation updated
+[2024-09-28 01:18:21] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 01:18:21] - ValidationManager => Email sent
+[2024-09-28 01:18:21] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc5MTAxLCJleHAiOjE3Mjc0ODI3MDF9.25sGLJxwyIO41CKXS2-9ZtbbivLiXzcwzbvrbmZZNZw
+[2024-09-28 01:18:21] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727479101, "exp"=>1727482701}
+[2024-09-28 01:18:23] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc5MTAxLCJleHAiOjE3Mjc0ODI3MDF9.25sGLJxwyIO41CKXS2-9ZtbbivLiXzcwzbvrbmZZNZw
+[2024-09-28 01:18:23] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727479101, "exp"=>1727482701}
+[2024-09-28 01:18:31] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc5MTAxLCJleHAiOjE3Mjc0ODI3MDF9.25sGLJxwyIO41CKXS2-9ZtbbivLiXzcwzbvrbmZZNZw
+[2024-09-28 01:18:31] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727479101, "exp"=>1727482701}
+[2024-09-28 01:18:31] - AuthController => User ID: 2
+[2024-09-28 01:18:31] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:18:31] - AuthManager => Token: 867976, Body token: 867976
+[2024-09-28 01:18:32] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0NzkxMTEsImV4cCI6MTcyNzQ4MjcxMX0.gxmqEJFxfZ4Nm2O1xHE95tNdc7kwVw1NQo4kPH2QABg
+[2024-09-28 01:18:32] - UserController => Fetching user with ID: 2
+[2024-09-28 01:18:32] - UserManager => User found: 2
+[2024-09-28 01:18:33] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:18:38] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:20:54] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:21:00] - AuthManager => Logging in user
+[2024-09-28 01:21:00] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 01:21:00] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 01:21:00] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:21:00] - ValidationManager => Code generated: 693364
+[2024-09-28 01:21:00] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:21:00] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:21:00] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 01:21:00] - ValidationManager => Validation updated
+[2024-09-28 01:21:00] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 01:21:00] - ValidationManager => Email sent
+[2024-09-28 01:21:00] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc5MjYwLCJleHAiOjE3Mjc0ODI4NjB9.IrFcnk0LoQJfyXpiFENhzjkYHaD7hAIZJ51mSrwrAdc
+[2024-09-28 01:21:00] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727479260, "exp"=>1727482860}
+[2024-09-28 01:21:15] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc5MjYwLCJleHAiOjE3Mjc0ODI4NjB9.IrFcnk0LoQJfyXpiFENhzjkYHaD7hAIZJ51mSrwrAdc
+[2024-09-28 01:21:15] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727479260, "exp"=>1727482860}
+[2024-09-28 01:25:05] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc5MjYwLCJleHAiOjE3Mjc0ODI4NjB9.IrFcnk0LoQJfyXpiFENhzjkYHaD7hAIZJ51mSrwrAdc
+[2024-09-28 01:25:05] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727479260, "exp"=>1727482860}
+[2024-09-28 01:25:07] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc5MjYwLCJleHAiOjE3Mjc0ODI4NjB9.IrFcnk0LoQJfyXpiFENhzjkYHaD7hAIZJ51mSrwrAdc
+[2024-09-28 01:25:07] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727479260, "exp"=>1727482860}
+[2024-09-28 01:33:05] - AuthManager => Logging in user
+[2024-09-28 01:33:05] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 01:33:05] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 01:33:05] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:33:05] - ValidationManager => Code generated: 829628
+[2024-09-28 01:33:05] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:33:05] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:33:05] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 01:33:05] - ValidationManager => Validation updated
+[2024-09-28 01:33:05] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 01:33:05] - ValidationManager => Email sent
+[2024-09-28 01:33:05] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc5OTg1LCJleHAiOjE3Mjc0ODM1ODV9.P5tWHLLgPWcegikYWkn3RE05a5_YWzeU_P9ybh40YL0
+[2024-09-28 01:33:05] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727479985, "exp"=>1727483585}
+[2024-09-28 01:33:19] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDc5OTg1LCJleHAiOjE3Mjc0ODM1ODV9.P5tWHLLgPWcegikYWkn3RE05a5_YWzeU_P9ybh40YL0
+[2024-09-28 01:33:19] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727479985, "exp"=>1727483585}
+[2024-09-28 01:35:06] - AuthManager => Logging in user
+[2024-09-28 01:35:06] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 01:35:06] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 01:35:06] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:35:06] - ValidationManager => Code generated: 664688
+[2024-09-28 01:35:06] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:35:06] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:35:06] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 01:35:06] - ValidationManager => Validation updated
+[2024-09-28 01:35:06] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 01:35:06] - ValidationManager => Email sent
+[2024-09-28 01:35:06] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDgwMTA2LCJleHAiOjE3Mjc0ODM3MDZ9.vBcrQWvN-2CVo8E4amYu3JDOx9GpBBkHEJ1whdFYXLA
+[2024-09-28 01:35:06] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727480106, "exp"=>1727483706}
+[2024-09-28 01:48:26] - AuthManager => Logging in user
+[2024-09-28 01:48:26] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 01:48:26] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 01:48:26] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:48:26] - ValidationManager => Code generated: 739353
+[2024-09-28 01:48:26] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:48:26] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:48:26] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 01:48:26] - ValidationManager => Validation updated
+[2024-09-28 01:48:26] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 01:48:26] - ValidationManager => Email sent
+[2024-09-28 01:48:26] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDgwOTA2LCJleHAiOjE3Mjc0ODQ1MDZ9.v-izPCWCx9nb0UOKcVEjwZwvekcgq_vuMBPqAct9Fn4
+[2024-09-28 01:48:26] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727480906, "exp"=>1727484506}
+[2024-09-28 01:55:37] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDgwOTA2LCJleHAiOjE3Mjc0ODQ1MDZ9.v-izPCWCx9nb0UOKcVEjwZwvekcgq_vuMBPqAct9Fn4
+[2024-09-28 01:55:37] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727480906, "exp"=>1727484506}
+[2024-09-28 01:59:30] - AuthManager => Logging in user
+[2024-09-28 01:59:30] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 01:59:30] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 01:59:30] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:59:30] - ValidationManager => Code generated: 108991
+[2024-09-28 01:59:30] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:59:30] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 01:59:30] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 01:59:30] - ValidationManager => Validation updated
+[2024-09-28 01:59:30] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 01:59:30] - ValidationManager => Email sent
+[2024-09-28 01:59:30] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDgxNTcwLCJleHAiOjE3Mjc0ODUxNzB9.QOg0NHarE5NoAjbLrfwY2kPi9tfo9oRiC1UYW6q2yZ0
+[2024-09-28 01:59:30] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727481570, "exp"=>1727485170}
+[2024-09-28 01:59:41] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDgxNTcwLCJleHAiOjE3Mjc0ODUxNzB9.QOg0NHarE5NoAjbLrfwY2kPi9tfo9oRiC1UYW6q2yZ0
+[2024-09-28 01:59:41] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727481570, "exp"=>1727485170}
+[2024-09-28 01:59:41] - AuthController => User ID: 2
+[2024-09-28 01:59:41] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 01:59:41] - AuthManager => Token: 108991, Body token: 108991
+[2024-09-28 01:59:41] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0ODE1ODEsImV4cCI6MTcyNzQ4NTE4MX0.eKXCjuN5FzeQXPJA9OQretYXNKqPOjMZgauS2FDBa7A
+[2024-09-28 01:59:41] - UserController => Fetching user with ID: 2
+[2024-09-28 01:59:41] - UserManager => User found: 2
+[2024-09-28 01:59:43] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 01:59:44] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:00:17] - AuthManager => Logging in user
+[2024-09-28 02:00:17] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 02:00:17] - AuthManager => User: [{"id"=>"2", "username"=>"fhwuek", "email"=>"mojjheuwjf@gmail.com", "password"=>"$2a$12$f.wCDedjjHgSd8lj0y6Ov.vARN/bFdeRbaXpInEjoyrwuFLRN9enm", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-27 20:45:58", "deleted_at"=>nil, "created_at"=>"2024-09-27 20:45:58.594754"}]
+[2024-09-28 02:00:18] - ValidationManager => Generating validation for user with email mojjheuwjf@gmail.com
+[2024-09-28 02:00:18] - ValidationManager => Code generated: 984737
+[2024-09-28 02:00:18] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 02:00:18] - ValidationManager => Validation already exists for user with email mojjheuwjf@gmail.com
+[2024-09-28 02:00:18] - AuthRepository => Updating email activation for user with id 2
+[2024-09-28 02:00:18] - ValidationManager => Validation updated
+[2024-09-28 02:00:18] - ValidationManager => Sending email to user with email mojjheuwjf@gmail.com
+[2024-09-28 02:00:18] - ValidationManager => Email sent
+[2024-09-28 02:00:18] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDgxNjE4LCJleHAiOjE3Mjc0ODUyMTh9.cTSvBYo4iKb9zk0DW_8D0tpIx0yd0_KwUO0nfEdg4wI
+[2024-09-28 02:00:18] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727481618, "exp"=>1727485218}
+[2024-09-28 02:00:27] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjIiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDgxNjE4LCJleHAiOjE3Mjc0ODUyMTh9.cTSvBYo4iKb9zk0DW_8D0tpIx0yd0_KwUO0nfEdg4wI
+[2024-09-28 02:00:27] - TokenManager => Payload: {"user_id"=>"2", "state"=>false, "role"=>"2", "type"=>"access", "iat"=>1727481618, "exp"=>1727485218}
+[2024-09-28 02:00:27] - AuthController => User ID: 2
+[2024-09-28 02:00:27] - AuthRepository => Getting email activation for user with id 2
+[2024-09-28 02:00:27] - AuthManager => Token: 984737, Body token: 984737
+[2024-09-28 02:00:27] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0ODE2MjcsImV4cCI6MTcyNzQ4NTIyN30.Z0nCKFctIJT0g4vED1KfjZz34MRuKUk_XyN3SUKCNTM
+[2024-09-28 02:00:27] - UserController => Fetching user with ID: 2
+[2024-09-28 02:00:27] - UserManager => User found: 2
+[2024-09-28 02:00:28] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:00:29] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:00:31] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:02:07] - AuthManager => Registering new user
+[2024-09-28 02:02:07] - AuthManager => Username: fejujferjuveju
+[2024-09-28 02:02:11] - AuthManager => Registering new user
+[2024-09-28 02:02:11] - AuthManager => Username: fejujfereju
+[2024-09-28 02:02:11] - AuthManager => Email: gnrueig@gmail.com
+[2024-09-28 02:02:12] - AuthRepository => Registering user with email gnrueig@gmail.com
+[2024-09-28 02:02:12] - AuthRepository => User with email gnrueig@gmail.com registered
+[2024-09-28 02:02:12] - ValidationManager => Generating validation for user with email gnrueig@gmail.com
+[2024-09-28 02:02:12] - ValidationManager => Code generated: 493360
+[2024-09-28 02:02:12] - AuthRepository => Getting email activation for user with id 3
+[2024-09-28 02:02:12] - AuthRepository => Registering email activation for user with id 3
+[2024-09-28 02:02:12] - ValidationManager => Sending email to user with email gnrueig@gmail.com
+[2024-09-28 02:02:12] - ValidationManager => Email sent
+[2024-09-28 02:02:12] - AuthController => User registered: {:code=>200, :success=>"User registered", :user=>{"id"=>"3", "username"=>"fejujfereju", "email"=>"gnrueig@gmail.com", "password"=>"$2a$12$W2NyEjC0wUL2amFZnJrjYu/.jHO7NCwB/hnzJTyiaqFUe75MAaF8i", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-28 00:02:12", "deleted_at"=>nil, "created_at"=>"2024-09-28 00:02:12.099556"}}
+[2024-09-28 02:02:12] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMyIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDgxNzMyLCJleHAiOjE3Mjc0ODUzMzJ9.XRMedIZ4jljG7CdMpBdKwh2IR5Jt1RVZ5Y1Wx8G9oeg
+[2024-09-28 02:02:12] - TokenManager => Payload: {"user_id"=>"3", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727481732, "exp"=>1727485332}
+[2024-09-28 02:02:22] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMyIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDgxNzMyLCJleHAiOjE3Mjc0ODUzMzJ9.XRMedIZ4jljG7CdMpBdKwh2IR5Jt1RVZ5Y1Wx8G9oeg
+[2024-09-28 02:02:22] - TokenManager => Payload: {"user_id"=>"3", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727481732, "exp"=>1727485332}
+[2024-09-28 02:02:22] - AuthController => User ID: 3
+[2024-09-28 02:02:22] - AuthRepository => Getting email activation for user with id 3
+[2024-09-28 02:02:22] - AuthManager => Token: 493360, Body token: 493360
+[2024-09-28 02:02:22] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMyIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMyIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0ODE3NDIsImV4cCI6MTcyNzQ4NTM0Mn0.w_uGNk7kCHLtnB_je7lueVre3Mg4OM28BwTW9w8CWKs
+[2024-09-28 02:02:22] - UserController => Fetching user with ID: 3
+[2024-09-28 02:02:22] - UserManager => User found: 3
+[2024-09-28 02:02:25] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:02:28] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:02:29] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:02:30] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:02:31] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:02:32] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:04:14] - TokenManager => Token is nil
+[2024-09-28 02:04:14] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:04:19] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:04:19] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:04:21] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:26:22] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:26:43] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:26:43] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:28:20] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:28:20] - AuthManager => Getting access token with authorization code: f4adc15319a98ba921b7f65da01fc59f7a32d7b0ed91925b290c5829667f769b
+[2024-09-28 02:28:20] - AuthManager => Access token retrieved successfully
+[2024-09-28 02:28:20] - AuthManager => Getting user info with access token: 27d1d44088cc42a52185035bbe2a7b24a97af60112bcba9f849ed330809ea368
+[2024-09-28 02:28:21] - AuthManager => User info retrieved successfully
+[2024-09-28 02:28:21] - AuthManager => Registering user with email thoribal@student.42perpignan.fr
+[2024-09-28 02:28:21] - AuthManager => User with email thoribal@student.42perpignan.fr already exists in database, proceeding to login
+[2024-09-28 02:28:21] - ValidationManager => Generating validation for user with email thoribal@student.42perpignan.fr
+[2024-09-28 02:28:21] - ValidationManager => Code generated: 136420
+[2024-09-28 02:28:21] - AuthRepository => Getting email activation for user with id 1
+[2024-09-28 02:28:21] - ValidationManager => Validation already exists for user with email thoribal@student.42perpignan.fr
+[2024-09-28 02:28:21] - AuthRepository => Updating email activation for user with id 1
+[2024-09-28 02:28:21] - ValidationManager => Validation updated
+[2024-09-28 02:28:21] - ValidationManager => Sending email to user with email thoribal@student.42perpignan.fr
+[2024-09-28 02:28:21] - ValidationManager => Email sent
+[2024-09-28 02:28:21] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDgzMzAxLCJleHAiOjE3Mjc0ODY5MDF9.B0hRAIsSg37gftsZHZgFFFXl5rnabV_ZAHoj2uKgqVk
+[2024-09-28 02:28:21] - TokenManager => Payload: {"user_id"=>"1", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727483301, "exp"=>1727486901}
+[2024-09-28 02:28:21] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDgzMzAxLCJleHAiOjE3Mjc0ODY5MDF9.B0hRAIsSg37gftsZHZgFFFXl5rnabV_ZAHoj2uKgqVk
+[2024-09-28 02:28:21] - TokenManager => Payload: {"user_id"=>"1", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727483301, "exp"=>1727486901}
+[2024-09-28 02:28:38] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDgzMzAxLCJleHAiOjE3Mjc0ODY5MDF9.B0hRAIsSg37gftsZHZgFFFXl5rnabV_ZAHoj2uKgqVk
+[2024-09-28 02:28:38] - TokenManager => Payload: {"user_id"=>"1", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727483301, "exp"=>1727486901}
+[2024-09-28 02:28:38] - AuthController => User ID: 1
+[2024-09-28 02:28:38] - AuthRepository => Getting email activation for user with id 1
+[2024-09-28 02:28:38] - AuthManager => Token: 136420, Body token: 136420
+[2024-09-28 02:28:38] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMSIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0ODMzMTgsImV4cCI6MTcyNzQ4NjkxOH0.FsGha_WDQLQFw-YkqoCBK_bkB1RQZzKHM22PLbty3XA
+[2024-09-28 02:28:38] - UserController => Fetching user with ID: 1
+[2024-09-28 02:28:38] - UserManager => User found: 1
+[2024-09-28 02:28:40] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMSIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0ODMzMTgsImV4cCI6MTcyNzQ4NjkxOH0.FsGha_WDQLQFw-YkqoCBK_bkB1RQZzKHM22PLbty3XA
+[2024-09-28 02:28:40] - UserController => Fetching user with ID: 1
+[2024-09-28 02:28:40] - UserManager => User found: 1
+[2024-09-28 02:28:41] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:28:42] - TokenManager => Token decode error: Nil JSON web token
+[2024-09-28 02:28:53] - AuthManager => Registering new user
+[2024-09-28 02:28:53] - AuthManager => Username: bhnuimi
+[2024-09-28 02:28:53] - AuthManager => Email: mojjheuwjf@gmail.com
+[2024-09-28 02:28:53] - AuthManager => Email already in use
+[2024-09-28 02:28:57] - AuthManager => Registering new user
+[2024-09-28 02:28:57] - AuthManager => Username: bhnuimi
+[2024-09-28 02:28:57] - AuthManager => Email: lmojjheuwjf@gmail.com
+[2024-09-28 02:28:58] - AuthRepository => Registering user with email lmojjheuwjf@gmail.com
+[2024-09-28 02:28:58] - AuthRepository => User with email lmojjheuwjf@gmail.com registered
+[2024-09-28 02:28:58] - ValidationManager => Generating validation for user with email lmojjheuwjf@gmail.com
+[2024-09-28 02:28:58] - ValidationManager => Code generated: 119000
+[2024-09-28 02:28:58] - AuthRepository => Getting email activation for user with id 4
+[2024-09-28 02:28:58] - AuthRepository => Registering email activation for user with id 4
+[2024-09-28 02:28:58] - ValidationManager => Sending email to user with email lmojjheuwjf@gmail.com
+[2024-09-28 02:28:58] - ValidationManager => Email sent
+[2024-09-28 02:28:58] - AuthController => User registered: {:code=>200, :success=>"User registered", :user=>{"id"=>"4", "username"=>"bhnuimi", "email"=>"lmojjheuwjf@gmail.com", "password"=>"$2a$12$4QuEU28oPIWQv5nxBoFjN.JjEHgD9ws4jffkOsXglgngNgOEM5PdC", "role"=>"0", "login_type"=>"0", "actived_at"=>nil, "updated_at"=>"2024-09-28 00:28:58", "deleted_at"=>nil, "created_at"=>"2024-09-28 00:28:58.18154"}}
+[2024-09-28 02:28:58] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDgzMzM4LCJleHAiOjE3Mjc0ODY5Mzh9.NFDdv6k7RQe6gxQLZEQ_1nIR9mqpEQmH8WH933Au9eI
+[2024-09-28 02:28:58] - TokenManager => Payload: {"user_id"=>"4", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727483338, "exp"=>1727486938}
+[2024-09-28 02:29:06] - TokenController => Authorization header: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNCIsInN0YXRlIjpmYWxzZSwicm9sZSI6IjAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzI3NDgzMzM4LCJleHAiOjE3Mjc0ODY5Mzh9.NFDdv6k7RQe6gxQLZEQ_1nIR9mqpEQmH8WH933Au9eI
+[2024-09-28 02:29:06] - TokenManager => Payload: {"user_id"=>"4", "state"=>false, "role"=>"0", "type"=>"access", "iat"=>1727483338, "exp"=>1727486938}
+[2024-09-28 02:29:06] - AuthController => User ID: 4
+[2024-09-28 02:29:06] - AuthRepository => Getting email activation for user with id 4
+[2024-09-28 02:29:06] - AuthManager => Token: 119000, Body token: 119000
+[2024-09-28 02:29:06] - UserController => Fetching user with access_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNCIsInN0YXRlIjp0cnVlLCJyb2xlIjoiNCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc0ODMzNDYsImV4cCI6MTcyNzQ4Njk0Nn0.UDbsj_E851zcpRuZpiN8K-z6Jy4fkmk3vFn_JTu5wF8
+[2024-09-28 02:29:06] - UserController => Fetching user with ID: 4
+[2024-09-28 02:29:06] - UserManager => User found: 4

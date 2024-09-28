@@ -4,7 +4,7 @@ function getQueryParams() {
 }
 
 document.addEventListener("DOMContentLoaded", (ev) => {
-  fetch("https://localhost/auth/callback", {
+  fetch("https://localhost/api/auth/callback", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

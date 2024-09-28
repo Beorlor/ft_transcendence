@@ -12,7 +12,7 @@ server = WEBrick::HTTPServer.new(:Port => 4568, :MimeTypes => mime_types)
 logger = Logger.new
 
 def user_logged(jwt, logger)
-	uri = URI('https://nginx/auth/verify-token-user')
+	uri = URI('https://nginx/api/auth/verify-token-user')
 	req = Net::HTTP::Get.new(uri)
 	req['Cookie'] = "access_token=#{jwt}"
 	http = Net::HTTP.new(uri.host, uri.port)
@@ -21,7 +21,7 @@ def user_logged(jwt, logger)
 	res = http.start do |http|
 		http.request(req)
 	end
-	logger.log('App', "Response from /auth/verify-token-user: #{res.body}")
+	logger.log('App', "Response from /api/auth/verify-token-user: #{res.body}")
   if res.is_a?(Net::HTTPSuccess)
 		logger.log('App', "User logged #{JSON.parse(res.body)}.")
 		return true
@@ -88,7 +88,7 @@ server.mount_proc '/pong' do |req, res|
 	@pRes = ''
 end
 
-server.mount_proc '/ssr/register' do |req, res|
+server.mount_proc '/register' do |req, res|
 	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
 	if access_token
 		access_token = access_token.value
@@ -116,7 +116,7 @@ server.mount_proc '/ssr/register' do |req, res|
 	@pRes = ''
 end
 
-server.mount_proc '/ssr/login' do |req, res|
+server.mount_proc '/login' do |req, res|
 	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
 	if access_token
 		access_token = access_token.value
@@ -229,7 +229,7 @@ server.mount_proc '/profil' do |req, res|
 	@nav = navigation.result(binding)
   jwt = access_token
   if jwt
-    api_url = 'https://nginx/user/me'
+    api_url = 'https://nginx/api/user/me'
     user_info = get_user_info(api_url, jwt)
     if user_info
 			logger.log('App', "User info: #{user_info}")

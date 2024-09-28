@@ -1,48 +1,48 @@
 function loadLoginFormAction() {
-  if (document.getElementById("form_login")) {
-    document
-      .getElementById("form_login")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
+  const form = document.getElementById("form_login");
 
-        const popUp = document.getElementById("pop-up");
-        popUp.innerHTML = "";
+  if (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-        const formData = new FormData(this);
-        const formObject = {};
-        formData.forEach((value, key) => {
-          formObject[key] = value;
-        });
+      const popUp = document.getElementById("pop-up");
+      popUp.innerHTML = "";
 
-        fetch("https://localhost/auth/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formObject),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              window.loadPage(
-                document.getElementById("game"),
-                "https://localhost/validate-code"
-              );
-            } else {
-              popUp.innerHTML = `<div class="alert alert-danger" role="alert">
+      const formData = new FormData(this);
+      const formObject = {};
+      formData.forEach((value, key) => {
+        formObject[key] = value;
+      });
+
+      fetch("https://localhost/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formObject),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            window.loadPage(
+              document.getElementById("game"),
+              "https://localhost/validate-code"
+            );
+          } else {
+            popUp.innerHTML = `<div class="alert alert-danger" role="alert">
               ${data.error}
               </div>`;
-            }
-          })
-          .catch((error) => console.error("Error:", error));
-      });
+          }
+        })
+        .catch((error) => console.error("Error:", error));
+    });
+  } else {
+    console.error("Form with id 'form_login' not found.");
   }
 }
 
 document.addEventListener("DOMContentLoaded", (_) => {
-  if (!document.getElementById("game")) {
-    loadLoginFormAction();
-  }
+  loadLoginFormAction();
 });
 
-loadLoginFormAction();
+window.loadLoginFormAction = loadLoginFormAction;

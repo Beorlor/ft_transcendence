@@ -1,65 +1,48 @@
 function loadRegisterFormAction() {
-  if (document.getElementById("form_register")) {
-    document
-      .getElementById("form_register")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
+  const form = document.getElementById("form_register");
 
-        const popUp = document.getElementById("pop-up");
-        popUp.innerHTML = "";
+  if (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-        const formData = new FormData(this);
-        const formObject = {};
-        formData.forEach((value, key) => {
-          formObject[key] = value;
-        });
+      const popUp = document.getElementById("pop-up");
+      popUp.innerHTML = "";
 
-        fetch("https://localhost/auth/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formObject),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              window.loadPage(
-                document.getElementById("game"),
-                "https://localhost/vadilate-code"
-              );
-            } else {
-              popUp.innerHTML = `<div class="alert alert-danger" role="alert">
-			  ${data.error}
-			  </div>`;
-            }
-          })
-          .catch((error) => console.error("Error:", error));
+      const formData = new FormData(this);
+      const formObject = {};
+      formData.forEach((value, key) => {
+        formObject[key] = value;
       });
+
+      fetch("https://localhost/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formObject),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            window.loadPage(
+              document.getElementById("game"),
+              "https://localhost/validate-code"
+            );
+          } else {
+            popUp.innerHTML = `<div class="alert alert-danger" role="alert">
+              ${data.error}
+              </div>`;
+          }
+        })
+        .catch((error) => console.error("Error:", error));
+    });
+  } else {
+    console.error("Form with id 'form_register' not found.");
   }
 }
 
 document.addEventListener("DOMContentLoaded", (_) => {
-  if (!document.getElementById("game")) {
-    let copy = document.body.innerHTML;
-    document.body.innerHTML = "";
-    fetch("https://localhost")
-      .then((response) => response.text())
-      .then((html) => {
-        document.body.innerHTML = html;
-
-        const script = document.body.querySelector("script");
-        const newScript = document.createElement("script");
-
-        newScript.type = "text/javascript";
-        newScript.src = script.src;
-        window.GAMESTATE = 0;
-        document.body.appendChild(newScript);
-
-        document.getElementById("game").innerHTML = copy;
-        loadRegisterFormAction();
-      });
-  }
+  loadRegisterFormAction();
 });
 
-loadRegisterFormAction();
+window.loadRegisterFormAction = loadRegisterFormAction;
