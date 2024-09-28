@@ -9,7 +9,6 @@ class TokenManager
     @logger = logger
   end
 
-  # Generate Access Token with 'state' and 'role' claims
   def generate_access_token(user_id, state, role)
     payload = {
       user_id: user_id,
@@ -17,7 +16,7 @@ class TokenManager
       role: role,
       type: 'access',
       iat: Time.now.to_i,
-      exp: Time.now.to_i + 3600  # 1 hour expiry
+      exp: Time.now.to_i + 3600
     }
     JWT.encode(payload, SECRET_KEY, 'HS256')
   end
@@ -28,29 +27,28 @@ class TokenManager
     { access_token: access_token, refresh_token: refresh_token }
   end
 
-  # Generate Refresh Token
   def generate_refresh_token(user_id)
     payload = {
       user_id: user_id,
       type: 'refresh',
       iat: Time.now.to_i,
-      exp: Time.now.to_i + 604800  # 7 days expiry
+      exp: Time.now.to_i + 3600 * 24 * 7
     }
     JWT.encode(payload, SECRET_KEY, 'HS256')
   end
 
-  # Verify Access Token (state must be true)
   def verify_access_token(token)
     if token.nil?
       @logger.log('TokenManager', 'Token is nil')
       return nil
     end
     payload = decode(token)
-    return nil unless payload && payload['type'] == 'access' && payload['state'] == true
+    if !payload || payload['type'] != 'access' || payload['state'] != true
+      return nil
+    end
     payload
   end
 
-  # Verify Token for User Code (state can be false)
   def verify_token_user_code(token)
     if token.nil?
       @logger.log('TokenManager', 'Token is nil')
@@ -58,31 +56,34 @@ class TokenManager
     end
     payload = decode(token)
     @logger.log('TokenManager', "Payload: #{payload}")
-    return nil unless payload && payload['type'] == 'access' && payload['state'] == false
+    if !payload || payload['type'] != 'access' || payload['state'] != false
+      return nil
+    end
     payload
   end
 
-  # Verify Admin Token
   def verify_admin_token(token)
     if token.nil?
       @logger.log('TokenManager', 'Token is nil')
       return nil
     end
     payload = verify_access_token(token)
-    return nil unless payload && payload['role'] == 1  # Role 1 is admin
+    if !payload || payload['role'] != 1
+      return nil
+    end
     payload
   end
 
-  # Refresh Tokens
   def refresh_tokens(refresh_token)
     if refresh_token.nil?
       @logger.log('TokenManager', 'Token is nil')
       return nil
     end
     payload = decode(refresh_token)
-    return nil unless payload && payload['type'] == 'refresh'
+    if !payload || payload['type'] != 'refresh'
+      return nil
+    end
     user_id = payload['user_id']
-    # Assume the user is already verified and has state true
     new_access_token = generate_access_token(user_id, true, get_user_role(user_id))
     new_refresh_token = generate_refresh_token(user_id)
     { access_token: new_access_token, refresh_token: new_refresh_token }
@@ -115,6 +116,6 @@ class TokenManager
 
   def get_user_role(user_id)
     user = UserRepository.new.get_user_by_id(user_id).first
-    user ? user['role'].to_i : 0  # Default to role 0 if user not found
+    user ? user['role'].to_i : 0
   end
 end
