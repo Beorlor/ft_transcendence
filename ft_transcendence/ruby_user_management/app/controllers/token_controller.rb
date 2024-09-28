@@ -26,15 +26,15 @@ class TokenController
     clean_path = uri.path
 
     case [method, clean_path]
-    when ['POST', '/auth/refresh']
+    when ['POST', '/api/auth/refresh']
       refresh_tokens(client, body)
-    when ['GET', '/auth/logout']
+    when ['GET', '/api/auth/logout']
       logout(client)
-    when ['GET', '/auth/verify-token-user']
+    when ['GET', '/api/auth/verify-token-user']
       verify_token_user(client, headers, cookies)
-    when ['GET', '/auth/verify-token-user-code']
+    when ['GET', '/api/auth/verify-token-user-code']
       verify_token_user_code(client, headers, cookies)
-    when ['GET', '/auth/verify-token-admin']
+    when ['GET', '/api/auth/verify-token-admin']
       verify_token_admin(client, headers, cookies)
     else
       return 1
@@ -60,9 +60,9 @@ class TokenController
     authorization_header = cookies['access_token']
     payload = @token_manager.verify_access_token(authorization_header)
     if payload
-      RequestHelper.respond(client, 200, "Access token is valid.")
+      RequestHelper.respond(client, 200, { success: "Access token is valid." })
     else
-      RequestHelper.respond(client, 401, "Invalid access token.")
+      RequestHelper.respond(client, 401, { error: "Invalid access token." })
     end
   end
 
@@ -71,9 +71,9 @@ class TokenController
     @logger.log('TokenController', "Authorization header: #{authorization_header}")
     payload = @token_manager.verify_token_user_code(authorization_header)
     if payload
-      RequestHelper.respond(client, 200, "Access token is valid (state can be false).")
+      RequestHelper.respond(client, 200, { success: "Access token is valid (state can be false)." })
     else
-      RequestHelper.respond(client, 401, "Invalid access token.")
+      RequestHelper.respond(client, 401, { error: "Invalid access token." })
     end
   end
 
@@ -81,9 +81,9 @@ class TokenController
     authorization_header = cookies['access_token']
     payload = @token_manager.verify_admin_token(authorization_header)
     if payload
-      RequestHelper.respond(client, 200, "Admin access token is valid.")
+      RequestHelper.respond(client, 200, { success: "Admin access token is valid." })
     else
-      RequestHelper.respond(client, 401, "Invalid access token.")
+      RequestHelper.respond(client, 401, { error: "Invalid access token." })
     end
   end
 end

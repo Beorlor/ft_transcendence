@@ -28,7 +28,7 @@ class UserController
     query_string = uri.query
     params = query_string ? URI.decode_www_form(query_string).to_h : {}
     clean_path = uri.path
-    user_id_match = clean_path.match(%r{^/user/(\d+)$})
+    user_id_match = clean_path.match(%r{^/api/user/(\d+)$})
     if user_id_match
       user_id = user_id_match[1]
       case [method]
@@ -44,7 +44,7 @@ class UserController
       end
     else
       case [method, clean_path]
-      when ['GET', '/user/me']
+      when ['GET', '/api/user/me']
         @logger.log('UserController', "Fetching user with access_token: #{cookies['access_token']}")
         get_user(client, @token_manager.get_user_id(cookies['access_token']))
       else
@@ -61,10 +61,10 @@ class UserController
   end
 
   def update_user(client)
-    RequestHelper.respond(client, 200, "User updated")
+    RequestHelper.respond(client, 200, { success: "User updated" })
   end
 
   def delete_user(client)
-    RequestHelper.respond(client, 200, "User deleted")
+    RequestHelper.respond(client, 200, { success: "User deleted" })
   end
 end
