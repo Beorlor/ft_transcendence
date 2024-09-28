@@ -31,174 +31,6 @@ def user_logged(jwt, logger)
   end
 end
 
-server.mount_proc '/' do |req, res|
-	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
-	if access_token
-		access_token = access_token.value
-	else
-		access_token = nil
-	end
-	logger.log('App', "Entry route / request: #{access_token}")
-	@user_logged = user_logged(access_token, logger)
-	logger.log('App', "/ User logged status: #{@user_logged}")
-	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
-	@nav = navigation.result(binding)
-	if req['X-Requested-With'] == 'XMLHttpRequest'
-		json = { body: ''}
-		logger.log('App', "/ User logged: #{@user_logged}, IsLogged: #{req['IsLogged']}")
-		if (@user_logged && req['IsLogged'] == 'false') || (!@user_logged && req['IsLogged'] == 'true')
-			json[:nav] = @nav
-		end
-		res.content_type = "application/json"
-		res.body = json.to_json
-	else
-		template = ERB.new(File.read("app/view/index.erb"))
-		res.body = template.result(binding)
-		res.content_type = "text/html"
-	end
-	@pRes = ''
-end
-
-server.mount_proc '/pong' do |req, res|
-	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
-	if access_token
-		access_token = access_token.value
-	else
-		access_token = nil
-	end
-	logger.log('App', "Entry route /pong request: #{access_token}")
-	@user_logged = user_logged(access_token, logger)
-	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
-	@nav = navigation.result(binding)
-	page = ERB.new(File.read("app/view/localpong.erb"))
-	@pRes = page.result(binding)
-	if req['X-Requested-With'] == 'XMLHttpRequest'
-		json = { body: @pRes}
-		logger.log('App', "Pong User logged: #{@user_logged}, IsLogged: #{req['IsLogged']}")
-		if (@user_logged && req['IsLogged'] == 'false') || (!@user_logged && req['IsLogged'] == 'true')
-			json[:nav] = @nav
-		end
-		res.content_type = "application/json"
-		res.body = json.to_json
-	else
-		template = ERB.new(File.read("app/view/index.erb"))
-		res.body = template.result(binding)
-		res.content_type = "text/html"
-	end
-	@pRes = ''
-end
-
-server.mount_proc '/register' do |req, res|
-	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
-	if access_token
-		access_token = access_token.value
-	else
-		access_token = nil
-	end
-	logger.log('App', "Entry route /ssr/register request: #{access_token}")
-	@user_logged = user_logged(access_token, logger)
-	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
-	@nav = navigation.result(binding)
-	page = ERB.new(File.read("app/view/register.erb"))
-	@pRes = page.result(binding)
-	if req['X-Requested-With'] == 'XMLHttpRequest'
-		json = { body: @pRes}
-		if (@user_logged && req['IsLogged'] == 'false') || (!@user_logged && req['IsLogged'] == 'true')
-			json[:nav] = @nav
-		end
-		res.content_type = "application/json"
-		res.body = json.to_json
-	else
-		template = ERB.new(File.read("app/view/index.erb"))
-		res.body = template.result(binding)
-		res.content_type = "text/html"
-	end
-	@pRes = ''
-end
-
-server.mount_proc '/login' do |req, res|
-	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
-	if access_token
-		access_token = access_token.value
-	else
-		access_token = nil
-	end
-	logger.log('App', "Entry route /ssr/login request: #{access_token}")
-	@user_logged = user_logged(access_token, logger)
-	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
-	@nav = navigation.result(binding)
-	page = ERB.new(File.read("app/view/login.erb"))
-	@pRes = page.result(binding)
-	if req['X-Requested-With'] == 'XMLHttpRequest'
-		json = { body: @pRes}
-		if (@user_logged && req['IsLogged'] == 'false') || (!@user_logged && req['IsLogged'] == 'true')
-			json[:nav] = @nav
-		end
-		res.content_type = "application/json"
-		res.body = json.to_json
-	else
-		template = ERB.new(File.read("app/view/index.erb"))
-		res.body = template.result(binding)
-		res.content_type = "text/html"
-	end
-	@pRes = ''
-end
-
-server.mount_proc '/validate-code' do |req, res|
-	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
-	if access_token
-		access_token = access_token.value
-	else
-		access_token = nil
-	end
-	logger.log('App', "Entry route /validate-code request: #{access_token}")
-	@user_logged = user_logged(access_token, logger)
-	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
-	@nav = navigation.result(binding)
-	page = ERB.new(File.read("app/view/validate-code.erb"))
-	@pRes = page.result(binding)
-	if req['X-Requested-With'] == 'XMLHttpRequest'
-		json = { body: @pRes}
-		if (@user_logged && req['IsLogged'] == 'false') || (!@user_logged && req['IsLogged'] == 'true')
-			json[:nav] = @nav
-		end
-		res.content_type = "application/json"
-		res.body = json.to_json
-	else
-		template = ERB.new(File.read("app/view/index.erb"))
-		res.body = template.result(binding)
-		res.content_type = "text/html"
-	end
-	@pRes = ''
-end
-
-server.mount_proc '/callback-tmp' do |req, res|
-	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
-	if access_token
-		access_token = access_token.value
-	else
-		access_token = nil
-	end
-	@user_logged = user_logged(access_token, logger)
-	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
-	@nav = navigation.result(binding)
-	page = ERB.new(File.read("app/view/callback-tmp.erb"))
-	@pRes = page.result(binding)
-	if req['X-Requested-With'] == 'XMLHttpRequest'
-		json = { body: @pRes}
-		if (@user_logged && req['IsLogged'] == 'false') || (!@user_logged && req['IsLogged'] == 'true')
-			json[:nav] = @nav
-		end
-		res.content_type = "application/json"
-		res.body = json.to_json
-	else
-		template = ERB.new(File.read("app/view/index.erb"))
-		res.body = template.result(binding)
-		res.content_type = "text/html"
-	end
-	@pRes = ''
-end
-
 def get_user_info(api_url, jwt)
   uri = URI(api_url)
 	req = Net::HTTP::Get.new(uri)
@@ -216,26 +48,87 @@ def get_user_info(api_url, jwt)
   end
 end
 
-server.mount_proc '/profil' do |req, res|
+def get_access_token(req)
 	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
 	if access_token
 		access_token = access_token.value
 	else
 		access_token = nil
 	end
-	logger.log('App', "Entry route /profil request: #{access_token}")
-	@user_logged = user_logged(access_token, logger)
-	navigation = ERB.new(File.read("app/view/layouts/nav.erb"))
-	@nav = navigation.result(binding)
-  jwt = access_token
-  if jwt
-    api_url = 'https://nginx/api/user/me'
-    user_info = get_user_info(api_url, jwt)
+	access_token
+end
+
+def generate_navigation
+  ERB.new(File.read("app/view/layouts/nav.erb")).result(binding)
+end
+
+def generate_response(req, res, logger)
+  if req['X-Requested-With'] == 'XMLHttpRequest'
+    json = { body: @pRes }
+    logger.log('App', "Request IsLogged: #{req['IsLogged']}")
+    if (@user_logged && req['IsLogged'] == 'false') || (!@user_logged && req['IsLogged'] == 'true')
+      json[:nav] = @nav
+    end
+    res.content_type = "application/json"
+    res.body = json.to_json
+  else
+    template = ERB.new(File.read("app/view/index.erb"))
+    res.body = template.result(binding)
+    res.content_type = "text/html"
+  end
+	@user_logged = nil
+	@nav = nil
+	@pRes = nil
+end
+
+def handle_route(req, res, logger, template_path)
+  access_token = get_access_token(req)
+  logger.log('App', "Request received with access token: #{access_token}")
+  
+  @user_logged = user_logged(access_token, logger)
+  @nav = generate_navigation
+  
+  page = ERB.new(File.read(template_path))
+  @pRes = page.result(binding)
+
+  generate_response(req, res, logger)
+end
+
+server.mount_proc '/' do |req, res|
+	handle_route(req, res, logger, "app/view/default.erb")
+end
+
+server.mount_proc '/pong' do |req, res|
+	handle_route(req, res, logger, "app/view/localpong.erb")
+end
+
+server.mount_proc '/register' do |req, res|
+	handle_route(req, res, logger, "app/view/register.erb")
+end
+
+server.mount_proc '/login' do |req, res|
+	handle_route(req, res, logger, "app/view/login.erb")
+end
+
+server.mount_proc '/validate-code' do |req, res|
+	handle_route(req, res, logger, "app/view/validate-code.erb")
+end
+
+server.mount_proc '/callback-tmp' do |req, res|
+	handle_route(req, res, logger, "app/view/callback-tmp.erb")
+end
+
+server.mount_proc '/profil' do |req, res|
+  access_token = get_access_token(req)
+  @user_logged = user_logged(access_token, logger)
+  @nav = generate_navigation
+
+  if access_token
+    user_info = get_user_info('https://nginx/api/user/me', access_token)
     if user_info
-			logger.log('App', "User info: #{user_info}")
+      @username = user_info["username"]
+      @email = user_info["email"]
       page = ERB.new(File.read("app/view/profil.erb"))
-			@username = user_info["username"]
-			@email = user_info["email"]
       @pRes = page.result(binding)
     else
       res.status = 500
@@ -245,20 +138,8 @@ server.mount_proc '/profil' do |req, res|
     res.status = 401
     @pRes = "Utilisateur non authentifié."
   end
-	if req['X-Requested-With'] == 'XMLHttpRequest'
-		json = { body: @pRes}
-		logger.log('App', "Profil User logged: #{@user_logged}, IsLogged: #{req['IsLogged']}")
-		if (@user_logged && req['IsLogged'] == 'false') || (!@user_logged && req['IsLogged'] == 'true')
-			json[:nav] = @nav
-		end
-		res.content_type = "application/json"
-		res.body = json.to_json
-	else
-		template = ERB.new(File.read("app/view/index.erb"))
-		res.body = template.result(binding)
-		res.content_type = "text/html"
-	end
-	@pRes = ''
+
+  generate_response(req, res, logger)
 end
 
 server.mount '/static', WEBrick::HTTPServlet::FileHandler, './static'
