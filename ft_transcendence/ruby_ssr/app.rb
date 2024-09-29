@@ -44,6 +44,20 @@ def get_user_info(api_url, jwt)
   end
 end
 
+def get_users_paginated(page)
+  uri = URI("http://ruby_user_management:4567/api/users/#{page}")
+  req = Net::HTTP::Get.new(uri)
+  http = Net::HTTP.new(uri.host, uri.port)
+  res = http.start do |http|
+    http.request(req)
+  end
+  if res.is_a?(Net::HTTPSuccess)
+    JSON.parse(res.body)["users"]
+  else
+    nil
+  end
+end
+
 def get_access_token(req)
 	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
 	if access_token
@@ -116,7 +130,6 @@ end
 
 server.mount_proc '/profil' do |req, res|
   access_token = get_access_token(req)
-  @user_logged = user_logged(access_token, logger)
   @nav = generate_navigation
 
   if access_token
@@ -133,6 +146,22 @@ server.mount_proc '/profil' do |req, res|
   else
     res.status = 401
     @pRes = "Utilisateur non authentifié."
+  end
+
+  generate_response(req, res, logger)
+end
+
+server.mount_proc '/ranking' do |req, res|
+  page = req.path.match(/\/ranking\/(\d+)/)[1] rescue 1
+  users = get_users_paginated(page)
+  @nav = generate_navigation
+  if users
+    @users = users
+    page = ERB.new(File.read("app/view/ranking.erb"))
+    @pRes = page.result(binding)
+  else
+    res.status = 500
+    @pRes = "Erreur lors de la récupération des utilisateurs."
   end
 
   generate_response(req, res, logger)

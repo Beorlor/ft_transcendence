@@ -10,7 +10,6 @@ CREATE TABLE IF NOT EXISTS _user (
     password VARCHAR(255),
     role INTEGER,
     login_type INTEGER,
-    actived_at TIMESTAMP,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -33,7 +32,7 @@ CREATE TABLE IF NOT EXISTS _ranking (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS _game (
+CREATE TABLE IF NOT EXISTS _pong (
     id SERIAL PRIMARY KEY,
     player_1_id INTEGER REFERENCES _user(id),
     player_2_id INTEGER REFERENCES _user(id),
@@ -44,16 +43,36 @@ CREATE TABLE IF NOT EXISTS _game (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS _gameHistory (
+CREATE TABLE IF NOT EXISTS _pongHistory (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES _user(id),
-    game_id INTEGER REFERENCES _game(id),
+    game_id INTEGER REFERENCES _pong(id),
     state INTEGER,
     rank_points INTEGER,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS _zombieHistory (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES _user(id),
+    game_id INTEGER REFERENCES _zombie(id),
+    state INTEGER,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS _zombie (
+    id SERIAL PRIMARY KEY,
+    stage_number INTEGER NOT NULL,
+    player_ids INTEGER[] NOT NULL,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 EOSQL
 
 echo "Tables '_user', '_emailActivation', '_ranking', '_game', et '_gameHistory' vérifiées ou créées avec succès."
