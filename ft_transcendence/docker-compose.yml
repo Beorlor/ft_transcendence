@@ -7,10 +7,10 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-    ports:
-      - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    networks:
+      - postgres_network
 
   ruby_user_management:
     build: ./ruby_user_management
@@ -27,19 +27,21 @@ services:
       - postgres
     volumes:
       - ./ruby_user_management:/app
-    ports:
-      - "4567:4567"
+    networks:
+      - nginx_network
+      - postgres_network
+      - smtp_network
 
   ruby_ssr:
     build: ./ruby_ssr
     environment:
       SECRET_KEY: ${SECRET_KEY}
     depends_on:
-      - postgres
+      - ruby_user_management
     volumes:
       - ./ruby_ssr:/app
-    ports:
-      - "4568:4568"
+    networks:
+      - nginx_network
 
   nginx:
     build: ./nginx
@@ -47,8 +49,10 @@ services:
       - ruby_user_management
       - ruby_ssr
     ports:
-      - "8082:80"
+      - "80:80"
       - "443:443"
+    networks:
+      - nginx_network
 
   adminer:
     image: adminer
@@ -57,6 +61,8 @@ services:
       - "8081:8080"
     depends_on:
       - postgres
+    networks:
+      - postgres_network
 
   smtp4dev:
     image: rnwood/smtp4dev:v3
@@ -64,6 +70,16 @@ services:
     ports:
       - "9081:80"
       - "9025:25"
+    networks:
+      - smtp_network
 
 volumes:
   postgres-data:
+
+networks:
+  postgres_network:
+    driver: bridge
+  nginx_network:
+    driver: bridge
+  smtp_network:
+    driver: bridge
