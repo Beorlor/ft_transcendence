@@ -25,4 +25,18 @@ class UserManager
     @logger.log('UserManager', "User found: #{user_id}")
     return {code: 200, user: user}
   end
+
+  def get_users_paginated(page)
+    if (page.to_i < 1)
+      @logger.log('UserManager', "Invalid page: #{page}")
+      return {code: 401, error: 'Invalid page' }
+    end
+    users = @user_repository.get_paginated_users(page)
+    if users.length == 0
+      @logger.log('UserManager', "No users found on page: #{page}")
+      return {code: 404, error: 'No users found' }
+    end
+    @logger.log('UserManager', "Users found on page: #{page}")
+    return {code: 200, users: users}
+  end
 end

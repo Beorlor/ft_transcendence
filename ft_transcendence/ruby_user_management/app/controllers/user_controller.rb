@@ -29,6 +29,7 @@ class UserController
     params = query_string ? URI.decode_www_form(query_string).to_h : {}
     clean_path = uri.path
     user_id_match = clean_path.match(%r{^/api/user/(\d+)$})
+    user_page_match = clean_path.match(%r{^/api/users/(\d+)$})
     if user_id_match
       user_id = user_id_match[1]
       case [method]
@@ -38,6 +39,23 @@ class UserController
         update_user(client)
       when ['DELETE']
         delete_user(client)
+      else
+        @logger.log('UserController', "No route found for: #{method} #{clean_path}")
+        RequestHelper.not_found(client)
+      end
+    elsif clean_path == '/api/users'
+      case [method]
+      when ['GET']
+        get_users_paginated(client)
+      else
+        @logger.log('UserController', "No route found for: #{method} #{clean_path}")
+        RequestHelper.not_found(client)
+      end
+    elsif user_page_match
+      user_page = user_page_match[1]
+      case [method]
+      when ['GET']
+        get_users_paginated(client, user_page)
       else
         @logger.log('UserController', "No route found for: #{method} #{clean_path}")
         RequestHelper.not_found(client)
@@ -52,6 +70,17 @@ class UserController
       end
     end
     return 0
+  end
+
+  def get_users_paginated(client, user_page=1)
+    @logger.log('UserController', "Fetching users for page: #{user_page}")
+    status = @user_manager.get_users_paginated(user_page)
+    if status[:code] != 200
+      RequestHelper.respond(client, status[:code], { error: status[:error] })
+      return
+    end
+    @logger.log('UserController', "Users found for page: #{user_page}, users: #{status[:users]}")
+    RequestHelper.respond(client, status[:code], { users: status[:users] })
   end
   
   def get_user(client, user_id)
