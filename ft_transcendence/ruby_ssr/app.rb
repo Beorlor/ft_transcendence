@@ -12,12 +12,10 @@ server = WEBrick::HTTPServer.new(:Port => 4568, :MimeTypes => mime_types)
 logger = Logger.new
 
 def user_logged(jwt, logger)
-	uri = URI('https://nginx/api/auth/verify-token-user')
+	uri = URI('http://ruby_user_management:4567/api/auth/verify-token-user')
 	req = Net::HTTP::Get.new(uri)
 	req['Cookie'] = "access_token=#{jwt}"
 	http = Net::HTTP.new(uri.host, uri.port)
-	http.use_ssl = (uri.scheme == 'https') # A suppriner en prod
-	http.verify_mode = OpenSSL::SSL::VERIFY_NONE if uri.scheme == 'https' # A suppriner en prod
 	res = http.start do |http|
 		http.request(req)
 	end
@@ -36,8 +34,6 @@ def get_user_info(api_url, jwt)
 	req = Net::HTTP::Get.new(uri)
 	req['Cookie'] = "access_token=#{jwt}"
 	http = Net::HTTP.new(uri.host, uri.port)
-	http.use_ssl = (uri.scheme == 'https') # A suppriner en prod
-	http.verify_mode = OpenSSL::SSL::VERIFY_NONE if uri.scheme == 'https' # A suppriner en prod
 	res = http.start do |http|
 		http.request(req)
 	end
@@ -124,7 +120,7 @@ server.mount_proc '/profil' do |req, res|
   @nav = generate_navigation
 
   if access_token
-    user_info = get_user_info('https://nginx/api/user/me', access_token)
+    user_info = get_user_info('http://ruby_user_management:4567/api/user/me', access_token)
     if user_info
       @username = user_info["username"]
       @email = user_info["email"]

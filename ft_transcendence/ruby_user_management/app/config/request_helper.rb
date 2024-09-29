@@ -45,18 +45,12 @@ module RequestHelper
   def self.respond(client, status, message, cookies = nil)
     client.puts "HTTP/1.1 #{status}"
     client.puts "Content-Type: application/json"
-    
-    # Envoyer les cookies avant d'envoyer le corps de la réponse
     if cookies
       cookies.each do |cookie|
         client.puts "Set-Cookie: #{cookie}"
       end
     end
-    
-    # Ligne vide pour indiquer la fin des en-têtes
     client.puts
-  
-    # Envoyer le corps de la réponse JSON
     client.puts message.is_a?(String) ? { message: message }.to_json : message.to_json
   end  
 
