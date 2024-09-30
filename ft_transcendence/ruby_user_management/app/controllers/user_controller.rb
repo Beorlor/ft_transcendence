@@ -80,7 +80,7 @@ class UserController
       return
     end
     @logger.log('UserController', "Users found for page: #{user_page}, users: #{status[:users]}")
-    RequestHelper.respond(client, status[:code], { users: status[:users] })
+    RequestHelper.respond(client, status[:code], { users: status[:users], nPages: status[:nPages] })
   end
   
   def get_user(client, user_id)

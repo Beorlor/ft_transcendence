@@ -52,7 +52,7 @@ def get_users_paginated(page)
     http.request(req)
   end
   if res.is_a?(Net::HTTPSuccess)
-    JSON.parse(res.body)["users"]
+    JSON.parse(res.body)
   else
     nil
   end
@@ -129,6 +129,7 @@ server.mount_proc '/callback-tmp' do |req, res|
 end
 
 server.mount_proc '/profil' do |req, res|
+  @user_logged = user_logged(get_access_token(req), logger)
   access_token = get_access_token(req)
   @nav = generate_navigation
 
@@ -152,11 +153,13 @@ server.mount_proc '/profil' do |req, res|
 end
 
 server.mount_proc '/ranking' do |req, res|
-  page = req.path.match(/\/ranking\/(\d+)/)[1] rescue 1
-  users = get_users_paginated(page)
+  @user_logged = user_logged(get_access_token(req), logger)
+  @current_page = req.path.match(/\/ranking\/(\d+)/)[1].to_i rescue 1
+  users = get_users_paginated(@current_page)
   @nav = generate_navigation
   if users
-    @users = users
+    @users = users["users"]
+    @nPages = users["nPages"].to_i + 1
     page = ERB.new(File.read("app/view/ranking.erb"))
     @pRes = page.result(binding)
   else

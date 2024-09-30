@@ -31,4 +31,8 @@ class UserRepository
     Database.get_paginated_element_from_table('_user', page, 10)
   end
 
+  def get_all_users()
+    Database.get_all_from_table('_user')
+  end
+
 end

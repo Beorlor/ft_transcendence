@@ -37,6 +37,7 @@ class UserManager
       return {code: 404, error: 'No users found' }
     end
     @logger.log('UserManager', "Users found on page: #{page}")
-    return {code: 200, users: users}
+    nPages = @user_repository.get_all_users.length / 10
+    return {code: 200, users: users, nPages: nPages}
   end
 end
