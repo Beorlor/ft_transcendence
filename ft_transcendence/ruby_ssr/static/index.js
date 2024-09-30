@@ -84,6 +84,9 @@ function rebindEvents() {
       .addEventListener("click", handleRegisterClick);
   } else if (document.getElementById("button_logout")) {
     document
+      .getElementById("ranking_link")
+      .addEventListener("click", handleRankingClick);
+    document
       .getElementById("button_logout")
       .addEventListener("click", handleLogoutClick);
     document
@@ -136,6 +139,12 @@ function handleLoginClick(ev) {
 function handleRegisterClick(ev) {
   ev.preventDefault();
   const url = "https://localhost/register";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
+
+function handleRankingClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/ranking";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
