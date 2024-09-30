@@ -1,9 +1,10 @@
 # ft_transcendence
 
 add healt endpoint on each micro service
-ameliorer git ignore
-rajouter env postgre sur user management pour db acces
-choisir entre rerun et guard pour hot reloading
+
+ssr connector vers user management
+
+connection db et injection logger
 
 ```
 ft_transcendence/
