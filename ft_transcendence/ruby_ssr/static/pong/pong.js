@@ -135,10 +135,10 @@ function pong_main() {
       rightBar.reset();
       ball.reset();
     }
-    if (upPressed && Game.isGameStarted) leftBar.moveUp(dt);
-    else if (downPressed && Game.isGameStarted) leftBar.moveDown(dt);
-    if (wPressed && Game.isGameStarted && !hasAI) rightBar.moveUp(dt);
-    else if (sPressed && Game.isGameStarted && !hasAI) rightBar.moveDown(dt);
+    if (upPressed && Game.isGameStarted && !hasAI) rightBar.moveUp(dt);
+    else if (downPressed && Game.isGameStarted && !hasAI) rightBar.moveDown(dt);
+    if (wPressed && Game.isGameStarted) leftBar.moveUp(dt);
+    else if (sPressed && Game.isGameStarted) leftBar.moveDown(dt);
     if (hasAI) rightBarAI(dt, Game);
     ball.update(dt, Game, leftBar, rightBar);
     if (ball.velX == 0 && Game.isGameStarted) {
