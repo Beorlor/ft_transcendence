@@ -87,16 +87,16 @@ function pong_main() {
   };
 
   const loop = (time) => {
-    const dt = performance.now() - previousTime;
+    let dt = performance.now() - previousTime;
 
     delta += dt;
-    previousTime = time;
     while (delta > timeStep) {
-      gameLoop(dt / 1000);
+      gameLoop(dt / 1000000.0);
       delta -= timeStep;
     }
     drawLoop();
     window.WINDOW_ANIMATIONS_FRAMES.push(window.requestAnimationFrame(loop));
+    previousTime = performance.now();
   };
 
   function drawLoop() {
@@ -186,8 +186,8 @@ function pong_main() {
     } else {
       start_text.setAttribute("style", "color: white;");
       Game.isGameStarted = true;
-      ball.velX = (1 - 2 * Math.round(Math.random())) * ball.moveSpeed;
-      ball.velY = (1 - 2 * Math.round(Math.random())) * ball.moveSpeed;
+      ball.velX = (1 - 2 * Math.round(Math.random())) * 10;
+      ball.velY = (1 - 2 * Math.round(Math.random())) * 10;
     }
   }
 
