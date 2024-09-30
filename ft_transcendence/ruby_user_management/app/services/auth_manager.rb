@@ -15,25 +15,22 @@ class AuthManager
     logger = Logger.new,
     validation_manager = ValidationManager.new,
     security = Security.new,
-    token_manager = TokenManager.new(logger)  # Injected TokenManager
+    token_manager = TokenManager.new(logger)
   )
     @user_repository = user_repository
     @logger = logger
     @validation_manager = validation_manager
     @security = security
-    @token_manager = token_manager  # Assigned TokenManager
+    @token_manager = token_manager
   end
 
-  # User registration via 42 OAuth
   def register_user_42(user)
     @logger.log('AuthManager', "Registering user with email #{user['email']}")
     user42 = @user_repository.get_user_by_email(user['email'])
     if user42.length > 0
       @logger.log('AuthManager', "User with email #{user['email']} already exists in database, proceeding to login")
-      # Generate access token with state false
-      access_token = @token_manager.generate_access_token(user42[0]['id'], false, user42[0]['role'])  # Changed
       @validation_manager.generate_validation(user42[0])
-      return { code: 200, access_token: access_token }  # Return access token with state false
+      return { code: 200, user: user42[0]}
     end
     user_info = {
       username: user['login'],
@@ -44,13 +41,10 @@ class AuthManager
     }
     @user_repository.register_user_42(user_info)
     user42 = @user_repository.get_user_by_email(user['email'])
-    # Generate access token with state false
-    access_token = @token_manager.generate_access_token(user42[0]['id'], false, user42[0]['role'])  # Changed
     @validation_manager.generate_validation(user42[0])
-    return { code: 200, access_token: access_token }  # Return access token with state false
+    return { code: 200, user: user42[0] }
   end
 
-  # User registration via classic method
   def register(body)
     @logger.log('AuthManager', "Registering new user")
     if body.nil? || body.empty?
@@ -85,13 +79,10 @@ class AuthManager
     }
     @user_repository.register(user_info)
     user = @user_repository.get_user_by_email(body['email'])
-    # Generate access token with state false
-    access_token = @token_manager.generate_access_token(user[0]['id'], false, user[0]['role'])  # Changed
     @validation_manager.generate_validation(user[0])
-    return { code: 200, success: 'User registered', access_token: access_token }  # Return access token with state false
+    return { code: 200, success: 'User registered', user: user[0] }
   end
 
-  # User login
   def login(body)
     @logger.log('AuthManager', "Logging in user")
     if body.nil? || body.empty?
@@ -109,29 +100,23 @@ class AuthManager
     if user.length == 0
       return { code: 404, error: 'User not found' }
     end
-    unless @security.verify_password(body['password'], user[0]['password'])
+    if (@security.verify_password(body['password'], user[0]['password'])) == false
       return { code: 401, error: 'Invalid password' }
     end
-    # Generate access token with state false
-    access_token = @token_manager.generate_access_token(user[0]['id'], false, user[0]['role'])  # Changed
     @validation_manager.generate_validation(user[0])
-    return { code: 200, success: 'User logged in', access_token: access_token }  # Return access token with state false
+    return { code: 200, success: 'User logged in', user: user[0] }
   end
 
-  # Validate the code entered by the user
   def validate_code(user_id, code)
     validation_result = @validation_manager.validate(user_id, code)
-    return validation_result unless validation_result[:code] == 200
-
-    # Generate new access token with state true and refresh token
+    if validation_result[:code] != 200
+      return validation_result
+    end
     user = @user_repository.get_user_by_id(user_id).first
-    new_access_token = @token_manager.generate_access_token(user_id, true, user['role'])  # Changed
-    refresh_token = @token_manager.generate_refresh_token(user_id)
 
-    { code: 200, success: "Token valid", access_token: new_access_token, refresh_token: refresh_token }  # Return new tokens
+    return { code: 200, success: "Token valid", user: user }
   end
 
-  # Get user info from 42 API
   def get_user_info(client, access_token)
     @logger.log('AuthManager', "Getting user info with access token: #{access_token}")
     uri = URI.parse("https://api.intra.42.fr/v2/me")

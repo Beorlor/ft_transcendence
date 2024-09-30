@@ -1,0 +1,8 @@
+<% @users.each do |user| %>
+  <p>ID: <%= user["id"] %></p>
+  <p>Nom d'utilisateur: <%= user["username"] %></p>
+  <p>Email: <%= user["email"] %></p>
+  <p>Rôle: <%= user["role"] %></p>
+  <p>Type de connexion: <%= user["login_type"] %></p>
+  <hr>
+<% end %>

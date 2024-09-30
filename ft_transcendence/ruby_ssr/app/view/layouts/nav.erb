@@ -1,0 +1,22 @@
+<div class="container">
+  <a class="navbar-brand" href="#">
+    <img src="/assets/42logo.png" alt="Logo 42">
+  </a>
+
+  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 mx-auto">
+    <li class="clickable"><a id="home_link" class="btn btn-link text-white">Home</a></li>
+    <li class="clickable"><a id="pong_link" class="btn btn-link text-white">Local Pong</a></li>
+  </ul>
+
+  <% if @user_logged %>
+    <div class="text-end">
+      <button id="button_logout" type="button" class="btn btn-outline-light me-2">Logout</button>
+      <button id="button_profile" type="button" class="btn btn-primary">Profile</button>
+    </div>
+  <% else %>
+    <div class="text-end">
+      <button id="button_login" type="button" class="btn btn-outline-light me-2">Login</button>
+      <button id="button_register" type="button" class="btn btn-primary">Sign-up</button>
+    </div>
+  <% end %>
+</div>

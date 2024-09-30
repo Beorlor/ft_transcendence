@@ -10,5 +10,5 @@ RUN bundle install
 
 COPY . .
 
-CMD ["sh", "-c", "ruby config/dbmanage.rb && rerun --background --dir /app ruby app.rb"]
+CMD ["sh", "-c", "rerun --background --dir /app ruby app.rb"]
 
