@@ -11,8 +11,6 @@ import {
 } from "./constants.mjs";
 
 function pong_main() {
-  window.PONG_STARTED = true;
-  console.log("fjewpoghjweoighewgh");
   let previousTime = 0;
   let delta = 0.0;
 

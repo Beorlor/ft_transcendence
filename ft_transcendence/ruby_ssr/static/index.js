@@ -9,7 +9,6 @@ window.GAME_STATES = {
 };
 
 window.GAMESTATE = -1;
-window.PONG_STARTED = false;
 
 window.addListener = (event, handler) => {
   if (!(event in WINDOW_EVENTS)) WINDOW_EVENTS[event] = [];
@@ -18,13 +17,11 @@ window.addListener = (event, handler) => {
 };
 
 window.removeAllListeners = (event) => {
-  if (!(event in WINDOW_EVENTS)){
-    WINDOW_EVENTS[event] = [];
-    return;
-  }
+  if (!(event in WINDOW_EVENTS)) return;
   for (let handler of WINDOW_EVENTS[event])
     window.removeEventListener(event, handler);
-  WINDOW_EVENTS[event].length = 0;
+  history.pushState();
+  delete WINDOW_EVENTS[event];
 };
 
 window.cancelAnimations = () => {
@@ -98,37 +95,26 @@ function rebindEvents() {
   }
 }
 
-function loadPage(game, url) {
-	let isPong = url.includes("pong");
-	history.pushState(null, null, url);
-	window.GAMESTATE = isPong ? window.GAME_STATES.pong : window.GAME_STATES.default;
-	console.log(window.GAMESTATE);
-	fetch(url, {
-		headers: {
-			"X-Requested-With": "XMLHttpRequest",
-			Authorization: localStorage.getItem("Authorization"),
-			IsLogged: document.getElementById("button_logout") ? true : false,
-		},
-	})
-		.then((res) => res.json())
-		.then((json) => {
-			console.log(document.getElementById("button_logout") ? true : false);
-			game.innerHTML = json.body;
-			if (json.nav) {
-				document.getElementById("nav").innerHTML = json.nav;
-				rebindEvents();
-			}
-			if (!isPong) {
-				window.cancelAnimations();
-				window.removeAllListeners("keyup");
-				window.removeAllListeners("keydown");
-			}else {
-				if (window.refreshPongInputs)
-					window.refreshPongInputs();
-			}
-			loadPageScript(game);
-		})
-		.catch((err) => console.error("Error: ", err));
+function loadPage(game, url, gamestate) {
+  history.pushState(null, null, url);
+  window.GAMESTATE = gamestate;
+  fetch(url, {
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      IsLogged: document.getElementById("button_logout") ? true : false,
+    },
+  })
+    .then((res) => res.json())
+    .then((json) => {
+      console.log("body :", json.body);
+      game.innerHTML = json.body;
+      if (json.nav) {
+        document.getElementById("nav").innerHTML = json.nav;
+        rebindEvents();
+      }
+      loadPageScript(game);
+    })
+    .catch((err) => console.error("Error: ", err));
 }
 
 function handleHomeClick(ev) {
