@@ -1,53 +1,38 @@
-require 'pg'
+#!/bin/bash
 
-sleep(5)
+sleep 5
 
-conn = PG.connect(
-  dbname: ENV['POSTGRES_DB'],
-  user: ENV['POSTGRES_USER'],
-  password: ENV['POSTGRES_PASSWORD'],
-  host: 'postgres',
-  port: 5432
-)
-
-create_user_table_query = <<-SQL
-  CREATE TABLE IF NOT EXISTS _user (
+psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" <<-EOSQL
+CREATE TABLE IF NOT EXISTS _user (
     id SERIAL PRIMARY KEY,
     username VARCHAR(12) NOT NULL,
     email VARCHAR(320) NOT NULL UNIQUE,
     password VARCHAR(255),
     role INTEGER,
     login_type INTEGER,
-    actived_at TIMESTAMP,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-  );
-SQL
+);
 
-create_email_activation_table_query = <<-SQL
-  CREATE TABLE IF NOT EXISTS _emailActivation (
+CREATE TABLE IF NOT EXISTS _emailActivation (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES _user(id),
     token VARCHAR(6) NOT NULL,
     expire_at TIMESTAMP,
     updated_at TIMESTAMP
-  );
-SQL
+);
 
-create_ranking_table_query = <<-SQL
-  CREATE TABLE IF NOT EXISTS _ranking (
+CREATE TABLE IF NOT EXISTS _ranking (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES _user(id),
     points INTEGER,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-  );
-SQL
+);
 
-create_game_table_query = <<-SQL
-  CREATE TABLE IF NOT EXISTS _game (
+CREATE TABLE IF NOT EXISTS _pong (
     id SERIAL PRIMARY KEY,
     player_1_id INTEGER REFERENCES _user(id),
     player_2_id INTEGER REFERENCES _user(id),
@@ -56,28 +41,38 @@ create_game_table_query = <<-SQL
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-  );
-SQL
+);
 
-create_game_history_table_query = <<-SQL
-  CREATE TABLE IF NOT EXISTS _gameHistory (
+CREATE TABLE IF NOT EXISTS _pongHistory (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES _user(id),
-    game_id INTEGER REFERENCES _game(id),
+    game_id INTEGER REFERENCES _pong(id),
     state INTEGER,
     rank_points INTEGER,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-  );
-SQL
+);
 
-conn.exec(create_user_table_query)
-conn.exec(create_email_activation_table_query)
-conn.exec(create_ranking_table_query)
-conn.exec(create_game_table_query)
-conn.exec(create_game_history_table_query)
+CREATE TABLE IF NOT EXISTS _zombieHistory (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES _user(id),
+    game_id INTEGER REFERENCES _zombie(id),
+    state INTEGER,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 
-puts "Tables '_user', '_emailActivation', '_ranking', '_game', et '_gameHistory' vérifiées ou créées avec succès."
+CREATE TABLE IF NOT EXISTS _zombie (
+    id SERIAL PRIMARY KEY,
+    stage_number INTEGER NOT NULL,
+    player_ids INTEGER[] NOT NULL,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 
-conn.close
+EOSQL
+
+echo "Tables '_user', '_emailActivation', '_ranking', '_game', et '_gameHistory' vérifiées ou créées avec succès."

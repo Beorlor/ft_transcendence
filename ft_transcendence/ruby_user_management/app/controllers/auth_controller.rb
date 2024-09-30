@@ -14,7 +14,7 @@ class AuthController
     @token_manager = token_manager
   end
 
-  def route_request(client, method, path, body, headers)
+  def route_request(client, method, path, body, headers, cookies)
     if path.nil? || path.empty?
       RequestHelper.not_found(client)
       return
@@ -33,16 +33,16 @@ class AuthController
     clean_path = uri.path
 
     case [method, clean_path]
-    when ['POST', '/auth/register']
+    when ['POST', '/api/auth/register']
       register(client, body)
-    when ['POST', '/auth/login']
+    when ['POST', '/api/auth/login']
       login(client, body)
-    when ['GET', '/auth/logwith42']
+    when ['GET', '/api/auth/logwith42']
       logwith42(client)
-    when ['POST', '/auth/callback']
+    when ['POST', '/api/auth/callback']
       handle_callback(client, body)
-	when ['POST', '/auth/validate-code']
-		validate_code(client, body, headers)
+	when ['POST', '/api/auth/validate-code']
+		validate_code(client, body, headers, cookies)
     else
       return 1
     end
@@ -56,10 +56,9 @@ class AuthController
       if access_token
         user = @auth_manager.get_user_info(client, access_token)
         if user
-          user42 = @auth_manager.register_user_42(user);
-          token = @token_manager.generate_tokens(user42[:id], false, user42[:role])
-		  token['success'] = 'successfully connected'
-          RequestHelper.respond(client, 200, token)
+          status = @auth_manager.register_user_42(user);
+          access_token = @token_manager.generate_access_token(status[:user]['id'], false, status[:user]['role'])
+          RequestHelper.respond(client, 200, {success: 'Successfully connected !' }, ["access_token=#{access_token}; Path=/; Max-Age=3600; HttpOnly; Secure"])
         else
           RequestHelper.respond(client, 500, {error:'Failed to fetch user info'})
         end
@@ -82,26 +81,36 @@ class AuthController
   def register(client, body)
     status = @auth_manager.register(body)
     if status[:error]
-      RequestHelper.respond(client, status[:code], status)
+      RequestHelper.respond(client, status[:code], {error: status[:error]})
       return
     end
-    RequestHelper.respond(client, 200, status)
+    @logger.log('AuthController', "User registered: #{status}")
+    access_token = @token_manager.generate_access_token(status[:user]["id"], false, status[:user]["role"])
+    RequestHelper.respond(client, status[:code], {success: status[:success]}, ["access_token=#{access_token}; Path=/; Max-Age=3600; HttpOnly; Secure"])
   end
 
   def login(client, body)
     status = @auth_manager.login(body)
     if status[:error]
-      RequestHelper.respond(client, status[:code], status)
+      RequestHelper.respond(client, status[:code], {error: status[:error]})
       return
     end
-    RequestHelper.respond(client, 200, status)
+    access_token = @token_manager.generate_access_token(status[:user]["id"], false, status[:user]["id"])
+    RequestHelper.respond(client, status[:code], {success: status[:success]}, ["access_token=#{access_token}; Path=/; Max-Age=3600; HttpOnly; Secure"])
   end
 
-  def validate_code(client, body, headers)
-    user_id = @token_manager.get_user_id(headers['access_token'])
+  def validate_code(client, body, headers, cookies)
+    user_id = @token_manager.get_user_id(cookies['access_token'])
+    @logger.log('AuthController', "User ID: #{user_id}")
     token = body['token']
     status = @auth_manager.validate_code(user_id, token)
-    RequestHelper.respond(client, status[:code], status)
+    if status[:error]
+      RequestHelper.respond(client, status[:code], {error: status[:error]})
+      return
+    end
+    access_token = @token_manager.generate_access_token(status[:user]["id"], true, status[:user]["id"])
+    refresh_token = @token_manager.generate_refresh_token(status[:user]["id"])
+    RequestHelper.respond(client, status[:code], {success: status[:success]}, ["access_token=#{access_token}; Path=/; Max-Age=3600; HttpOnly; Secure"])
   end
 
 end

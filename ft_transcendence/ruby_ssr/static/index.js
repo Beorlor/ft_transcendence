@@ -38,88 +38,148 @@ window.resetHomePage = function () {
   game.innerHTML = "";
 };
 
-window.loadPageScript = function (game) {
+function loadPageScript(game) {
   const script = game.querySelector("script");
   if (!script) return;
+  const existingScripts = game.querySelectorAll('script[type="module"]');
+  existingScripts.forEach((s) => s.remove());
+
   const newScript = document.createElement("script");
   newScript.type = "module";
   newScript.src = script.src;
   game.appendChild(newScript);
-};
+
+  newScript.onload = () => {
+    console.log(`Script ${script.src} loaded.`);
+
+    if (document.getElementById("form_login")) {
+      console.log(document.getElementById("form_login"));
+      window.loadLoginFormAction();
+    }
+    if (document.getElementById("form_register")) {
+      console.log(document.getElementById("form_register"));
+      window.loadRegisterFormAction();
+    }
+    if (document.getElementById("form_validate_code")) {
+      console.log(document.getElementById("form_validate_code"));
+      window.loadValidateForm();
+    }
+  };
+}
+
+function rebindEvents() {
+  removeAllListeners("click");
+  document
+    .getElementById("home_link")
+    .addEventListener("click", handleHomeClick);
+  document
+    .getElementById("pong_link")
+    .addEventListener("click", handlePongClick);
+  if (document.getElementById("button_login")) {
+    document
+      .getElementById("button_login")
+      .addEventListener("click", handleLoginClick);
+    document
+      .getElementById("button_register")
+      .addEventListener("click", handleRegisterClick);
+  } else if (document.getElementById("button_logout")) {
+    document
+      .getElementById("button_logout")
+      .addEventListener("click", handleLogoutClick);
+    document
+      .getElementById("button_profile")
+      .addEventListener("click", handleProfileClick);
+  }
+}
 
 function loadPage(game, url, gamestate) {
-  window.GAMESTATE = gamestate;
+  console.log("loadPage: ", url);
   history.pushState(null, null, url);
+  window.GAMESTATE = gamestate;
   fetch(url, {
     headers: {
       "X-Requested-With": "XMLHttpRequest",
-      Authorization: localStorage.getItem("Authorization"),
+      IsLogged: document.getElementById("button_logout") ? true : false,
     },
   })
-    .then((res) => res.text())
-    .then((html) => {
-      game.innerHTML = html;
-      window.loadPageScript(game);
+    .then((res) => res.json())
+    .then((json) => {
+      console.log("body :", json.body);
+      game.innerHTML = json.body;
+      if (json.nav) {
+        document.getElementById("nav").innerHTML = json.nav;
+        rebindEvents();
+      }
+      loadPageScript(game);
     })
     .catch((err) => console.error("Error: ", err));
 }
 
-function loadScript() {
-  if (window.GAMESTATE > -1) return;
-  let game = document.getElementById("game");
-  if (game) {
-    document.getElementById("home_link").addEventListener("click", (ev) => {
-      ev.preventDefault();
-      const url = "https://localhost";
-      loadPage(game, url, window.GAME_STATES.default);
-    });
+function handleHomeClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
 
-    document.getElementById("pong_link").addEventListener("click", (ev) => {
-      ev.preventDefault();
+function handlePongClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/pong";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.pong);
+}
 
-      const url = "https://localhost/pong";
-      loadPage(game, url, window.GAME_STATES.pong);
-    });
+function handleLoginClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/login";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
 
-    document.getElementById("aipong_link").addEventListener("click", (ev) => {
-      ev.preventDefault();
+function handleRegisterClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/register";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
 
-      const url = "https://localhost/pong";
-      loadPage(game, url, window.GAME_STATES.aipong);
-    });
+function handleLogoutClick(ev) {
+  ev.preventDefault();
+  fetch("https://localhost/api/auth/logout")
+    .then((res) => res.json())
+    .then((json) => {
+      if (json.success) {
+        const url = "https://localhost";
+        loadPage(
+          document.getElementById("game"),
+          url,
+          window.GAME_STATES.default
+        );
+      }
+    })
+    .catch((err) => console.error("Error: ", err));
+}
 
-    document.getElementById("button_login").addEventListener("click", (ev) => {
-      ev.preventDefault();
-
-      const url = "https://localhost/ssr/login";
-      loadPage(game, url, window.GAME_STATES.default);
-    });
-
-    document
-      .getElementById("button_register")
-      .addEventListener("click", (ev) => {
-        ev.preventDefault();
-
-        const url = "https://localhost/ssr/register";
-        loadPage(game, url, window.GAME_STATES.default);
-      });
-
-    window.GAMESTATE = 0;
-  }
+function handleProfileClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/profil";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
 window.addEventListener("popstate", function (_) {
   const currentUrl = window.location.pathname;
 
-  fetch(currentUrl, { headers: { "X-Requested-With": "XMLHttpRequest" } })
-    .then((response) => response.text())
-    .then((html) => {
-      document.getElementById("game").innerHTML = html;
-    });
+  if (currentUrl !== window.location.pathname) {
+    fetch(currentUrl, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        IsLogged: document.getElementById("button_logout") ? true : false,
+      },
+    })
+      .then((response) => response.text())
+      .then((html) => {
+        document.getElementById("game").innerHTML = html;
+      })
+      .catch((err) => console.error("Error during popstate fetch: ", err));
+  }
 });
 
 document.addEventListener("DOMContentLoaded", (ev) => {
-  loadScript();
+  rebindEvents();
 });
-
-loadScript();

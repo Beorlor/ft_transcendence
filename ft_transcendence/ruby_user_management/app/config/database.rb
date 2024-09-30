@@ -57,4 +57,16 @@ class Database
     end
   end
 
+  def self.get_paginated_element_from_table(table_name, page, per_page, order=nil)
+    page = page.to_i
+    offset = (page - 1) * per_page
+    query = "SELECT * FROM #{table_name} "
+    if order
+      query += "ORDER BY #{order} "
+    end
+    query += "LIMIT #{per_page} OFFSET #{offset}"
+    result = execute(query)
+    result.map { |row| row }
+  end
+
 end
