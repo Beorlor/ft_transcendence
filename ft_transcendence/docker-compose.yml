@@ -54,8 +54,8 @@ services:
       - postgres
     volumes:
       - ./ruby_pong:/app
-    ports:
-      - "4569:4569"
+    networks:
+      - nginx_network
 
   ruby_rgpd:
     build: ./ruby_rgpd

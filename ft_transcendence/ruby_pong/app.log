@@ -1,0 +1,76 @@
+
+[2024-10-02 17:22:25] - APP => Connection opened
+[2024-10-02 17:22:25] - PONG => Received request for #<EventMachine::WebSocket::Connection:0x0000ffffac1eec98>
+[2024-10-02 17:22:25] - PONG => Received request for #<EventMachine::WebSocket::Handshake:0x0000ffffac1eea90>
+[2024-10-02 17:26:13] - APP => Starting server on localhost:4569
+[2024-10-02 17:26:22] - APP => Connection opened
+[2024-10-02 17:26:22] - PONG => Received request for #<EventMachine::WebSocket::Connection:0x0000ffff9ccbda58>
+[2024-10-02 17:26:22] - PONG => Received request for /pongsocket
+[2024-10-02 17:36:25] - APP => Starting server on localhost:4569
+[2024-10-02 17:36:47] - APP => Starting server on localhost:4569
+[2024-10-02 17:37:10] - APP => Starting server on localhost:4569
+[2024-10-02 17:39:32] - APP => Starting server on localhost:4569
+[2024-10-02 17:39:59] - APP => Starting server on localhost:4569
+[2024-10-02 17:40:06] - APP => Starting server on localhost:4569
+[2024-10-02 17:41:05] - APP => Starting server on localhost:4569
+[2024-10-02 17:41:09] - APP => Connection opened with #<HTTP::Parser:0x0000ffffb96dbaf0>
+[2024-10-02 17:41:09] - PONG => Received request for #<EventMachine::WebSocket::Connection:0x0000ffffb96d4408>
+[2024-10-02 17:41:09] - PONG => Received request for /pongsocket
+[2024-10-02 17:42:13] - APP => Starting server on localhost:4569
+[2024-10-02 17:42:15] - APP => Connection opened with {"Upgrade"=>"websocket", "Connection"=>"upgrade", "Host"=>"ruby_pong:4569", "Pragma"=>"no-cache", "Cache-Control"=>"no-cache", "User-Agent"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36", "Origin"=>"https://localhost", "Sec-WebSocket-Version"=>"13", "Accept-Encoding"=>"gzip, deflate, br, zstd", "Accept-Language"=>"en-GB,en-US;q=0.9,en;q=0.8", "Sec-WebSocket-Key"=>"STE/wyz3k0lVNRJi546tCg==", "Sec-WebSocket-Extensions"=>"permessage-deflate; client_max_window_bits"}
+[2024-10-02 17:42:15] - PONG => Received request for #<EventMachine::WebSocket::Connection:0x0000ffff957cf660>
+[2024-10-02 17:42:15] - PONG => Received request for /pongsocket
+[2024-10-02 17:48:19] - APP => Starting server on localhost:4569
+[2024-10-02 17:48:59] - APP => Starting server on localhost:4569
+[2024-10-02 17:49:02] - APP => Connection opened with {"Upgrade"=>"websocket", "Connection"=>"upgrade", "Host"=>"ruby_pong:4569", "Pragma"=>"no-cache", "Cache-Control"=>"no-cache", "User-Agent"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36", "Origin"=>"https://localhost", "Sec-WebSocket-Version"=>"13", "Accept-Encoding"=>"gzip, deflate, br, zstd", "Accept-Language"=>"en-GB,en-US;q=0.9,en;q=0.8", "Sec-WebSocket-Key"=>"4YN90YqjYv+5RpOTjMwl8g==", "Sec-WebSocket-Extensions"=>"permessage-deflate; client_max_window_bits"} from 172.19.0.5
+[2024-10-02 17:49:02] - PONG => Received request for #<EventMachine::WebSocket::Connection:0x0000ffff9231ffc8>
+[2024-10-02 17:49:02] - PONG => Received request for /pongsocket
+[2024-10-02 17:52:25] - APP => Starting server on localhost:4569
+[2024-10-02 17:53:52] - APP => Starting server on localhost:4569
+[2024-10-02 17:54:55] - APP => Connection opened from 172.18.0.5 with {"Upgrade"=>"websocket", "Connection"=>"upgrade", "X-Real-IP"=>"192.168.65.1", "Host"=>"ruby_pong:4569", "Pragma"=>"no-cache", "Cache-Control"=>"no-cache", "User-Agent"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36", "Origin"=>"https://localhost", "Sec-WebSocket-Version"=>"13", "Accept-Encoding"=>"gzip, deflate, br, zstd", "Accept-Language"=>"en-GB,en-US;q=0.9,en;q=0.8", "Sec-WebSocket-Key"=>"eFyVK8QWqVEGmYiFxaF/+g==", "Sec-WebSocket-Extensions"=>"permessage-deflate; client_max_window_bits"} 
+[2024-10-02 17:54:55] - PONG => Received request for #<EventMachine::WebSocket::Connection:0x0000ffff935cb780>
+[2024-10-02 17:54:55] - PONG => Received request for /pongsocket
+[2024-10-02 17:59:47] - APP => Starting server on localhost:4569
+[2024-10-02 18:00:19] - APP => Starting server on localhost:4569
+[2024-10-02 18:00:45] - APP => Connection opened with {"Upgrade"=>"websocket", "Connection"=>"upgrade", "X_Real_IP"=>"192.168.65.1", "Host"=>"ruby_pong:4569", "Pragma"=>"no-cache", "Cache-Control"=>"no-cache", "User-Agent"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36", "Origin"=>"https://localhost", "Sec-WebSocket-Version"=>"13", "Accept-Encoding"=>"gzip, deflate, br, zstd", "Accept-Language"=>"en-GB,en-US;q=0.9,en;q=0.8", "Sec-WebSocket-Key"=>"ppw2BbIAy+POwNQ6GUlYVA==", "Sec-WebSocket-Extensions"=>"permessage-deflate; client_max_window_bits"} 
+[2024-10-02 18:00:45] - PONG => Received request for #<EventMachine::WebSocket::Connection:0x0000ffff7bdd3f58>
+[2024-10-02 18:00:45] - PONG => Received request for /pongsocket
+[2024-10-02 18:02:13] - APP => Starting server on localhost:4569
+[2024-10-02 18:02:24] - APP => Starting server on localhost:4569
+[2024-10-02 18:03:29] - APP => Starting server on localhost:4569
+[2024-10-02 18:03:34] - APP => Starting server on localhost:4569
+[2024-10-02 18:03:37] - APP => Connection opened with {"Upgrade"=>"websocket", "Connection"=>"upgrade", "X_Real_IP"=>"192.168.65.1", "Host"=>"ruby_pong:4569", "Pragma"=>"no-cache", "Cache-Control"=>"no-cache", "User-Agent"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36", "Origin"=>"https://localhost", "Sec-WebSocket-Version"=>"13", "Accept-Encoding"=>"gzip, deflate, br, zstd", "Accept-Language"=>"en-GB,en-US;q=0.9,en;q=0.8", "Sec-WebSocket-Key"=>"R1y3kA5vFkLwl7Ce/Moqcw==", "Sec-WebSocket-Extensions"=>"permessage-deflate; client_max_window_bits"} 
+[2024-10-02 18:05:18] - APP => Starting server on localhost:4569
+[2024-10-02 18:06:18] - APP => Connection opened with {"Upgrade"=>"websocket", "Connection"=>"upgrade", "X_Real_IP"=>"192.168.65.1", "Host"=>"ruby_pong:4569", "Pragma"=>"no-cache", "Cache-Control"=>"no-cache", "User-Agent"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36", "Origin"=>"https://localhost", "Sec-WebSocket-Version"=>"13", "Accept-Encoding"=>"gzip, deflate, br, zstd", "Accept-Language"=>"en-GB,en-US;q=0.9,en;q=0.8", "Sec-WebSocket-Key"=>"GzJw5FQKvRpy9PHxychglg==", "Sec-WebSocket-Extensions"=>"permessage-deflate; client_max_window_bits"} 
+[2024-10-02 18:06:18] - PONG => Received ping from https://localhost
+[2024-10-02 18:07:58] - APP => Starting server on localhost:4569
+[2024-10-02 18:10:07] - APP => Starting server on localhost:4569
+[2024-10-02 18:11:04] - APP => Starting server on localhost:4569
+[2024-10-02 18:13:16] - APP => Connection opened with {"Upgrade"=>"websocket", "Connection"=>"upgrade", "X_Real_IP"=>"192.168.65.1", "Host"=>"ruby_pong:4569", "Pragma"=>"no-cache", "Cache-Control"=>"no-cache", "User-Agent"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36", "Origin"=>"https://localhost", "Sec-WebSocket-Version"=>"13", "Accept-Encoding"=>"gzip, deflate, br, zstd", "Accept-Language"=>"en-GB,en-US;q=0.9,en;q=0.8", "Cookie"=>"access_token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMSIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc4ODU1ODIsImV4cCI6MTcyNzg4OTE4Mn0.ccZA8BgF_tRz7je_Q2UOJHP9X-C-sX094Na1HDcP7PE", "Sec-WebSocket-Key"=>"/0zxao7KN4aAAMBgGYQ2ZQ==", "Sec-WebSocket-Extensions"=>"permessage-deflate; client_max_window_bits"} 
+[2024-10-02 18:13:16] - PONG => Received ping from https://localhost
+[2024-10-02 18:13:48] - APP => Starting server on localhost:4569
+[2024-10-02 18:13:54] - APP => Connection opened with {"Upgrade"=>"websocket", "Connection"=>"upgrade", "X_Real_IP"=>"192.168.65.1", "Host"=>"ruby_pong:4569", "Pragma"=>"no-cache", "Cache-Control"=>"no-cache", "User-Agent"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36", "Origin"=>"https://localhost", "Sec-WebSocket-Version"=>"13", "Accept-Encoding"=>"gzip, deflate, br, zstd", "Accept-Language"=>"en-GB,en-US;q=0.9,en;q=0.8", "Cookie"=>"access_token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMSIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc4ODU1ODIsImV4cCI6MTcyNzg4OTE4Mn0.ccZA8BgF_tRz7je_Q2UOJHP9X-C-sX094Na1HDcP7PE", "Sec-WebSocket-Key"=>"iAifcHlkMp7bp6ysZbj87Q==", "Sec-WebSocket-Extensions"=>"permessage-deflate; client_max_window_bits"} 
+[2024-10-02 18:13:54] - PONG => Received ping from https://localhost
+[2024-10-02 18:14:14] - APP => Starting server on localhost:4569
+[2024-10-02 18:14:17] - APP => Connection opened with {"Upgrade"=>"websocket", "Connection"=>"upgrade", "X_Real_IP"=>"192.168.65.1", "Host"=>"ruby_pong:4569", "Pragma"=>"no-cache", "Cache-Control"=>"no-cache", "User-Agent"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36", "Origin"=>"https://localhost", "Sec-WebSocket-Version"=>"13", "Accept-Encoding"=>"gzip, deflate, br, zstd", "Accept-Language"=>"en-GB,en-US;q=0.9,en;q=0.8", "Cookie"=>"access_token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMSIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc4ODU1ODIsImV4cCI6MTcyNzg4OTE4Mn0.ccZA8BgF_tRz7je_Q2UOJHP9X-C-sX094Na1HDcP7PE", "Sec-WebSocket-Key"=>"Rmm/BQCIWkrN6OB21NBH6w==", "Sec-WebSocket-Extensions"=>"permessage-deflate; client_max_window_bits"} 
+[2024-10-02 18:14:17] - PONG => Received ping from https://localhost
+[2024-10-02 18:14:43] - APP => Starting server on localhost:4569
+[2024-10-02 18:14:47] - APP => Connection opened with {"Upgrade"=>"websocket", "Connection"=>"upgrade", "X_Real_IP"=>"192.168.65.1", "Host"=>"ruby_pong:4569", "Pragma"=>"no-cache", "Cache-Control"=>"no-cache", "User-Agent"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36", "Origin"=>"https://localhost", "Sec-WebSocket-Version"=>"13", "Accept-Encoding"=>"gzip, deflate, br, zstd", "Accept-Language"=>"en-GB,en-US;q=0.9,en;q=0.8", "Cookie"=>"access_token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMSIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc4ODU1ODIsImV4cCI6MTcyNzg4OTE4Mn0.ccZA8BgF_tRz7je_Q2UOJHP9X-C-sX094Na1HDcP7PE", "Sec-WebSocket-Key"=>"Jr4UJp2NlV5xKhL8KynXwQ==", "Sec-WebSocket-Extensions"=>"permessage-deflate; client_max_window_bits"} 
+[2024-10-02 18:14:47] - PONG => Received ping from https://localhost
+[2024-10-02 18:14:47] - PONG => Received ping with access token access_token
+[2024-10-02 18:15:09] - APP => Starting server on localhost:4569
+[2024-10-02 18:15:12] - APP => Connection opened with {"Upgrade"=>"websocket", "Connection"=>"upgrade", "X_Real_IP"=>"192.168.65.1", "Host"=>"ruby_pong:4569", "Pragma"=>"no-cache", "Cache-Control"=>"no-cache", "User-Agent"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36", "Origin"=>"https://localhost", "Sec-WebSocket-Version"=>"13", "Accept-Encoding"=>"gzip, deflate, br, zstd", "Accept-Language"=>"en-GB,en-US;q=0.9,en;q=0.8", "Cookie"=>"access_token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMSIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc4ODU1ODIsImV4cCI6MTcyNzg4OTE4Mn0.ccZA8BgF_tRz7je_Q2UOJHP9X-C-sX094Na1HDcP7PE", "Sec-WebSocket-Key"=>"tmFMVywlTMU9V2I8YlpVYw==", "Sec-WebSocket-Extensions"=>"permessage-deflate; client_max_window_bits"} 
+[2024-10-02 18:15:12] - PONG => Received ping from https://localhost
+[2024-10-02 18:15:26] - APP => Starting server on localhost:4569
+[2024-10-02 18:15:30] - APP => Connection opened with {"Upgrade"=>"websocket", "Connection"=>"upgrade", "X_Real_IP"=>"192.168.65.1", "Host"=>"ruby_pong:4569", "Pragma"=>"no-cache", "Cache-Control"=>"no-cache", "User-Agent"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36", "Origin"=>"https://localhost", "Sec-WebSocket-Version"=>"13", "Accept-Encoding"=>"gzip, deflate, br, zstd", "Accept-Language"=>"en-GB,en-US;q=0.9,en;q=0.8", "Cookie"=>"access_token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMSIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc4ODU1ODIsImV4cCI6MTcyNzg4OTE4Mn0.ccZA8BgF_tRz7je_Q2UOJHP9X-C-sX094Na1HDcP7PE", "Sec-WebSocket-Key"=>"P/Au40QxnHbWEhPhlHalXA==", "Sec-WebSocket-Extensions"=>"permessage-deflate; client_max_window_bits"} 
+[2024-10-02 18:15:30] - PONG => Received ping from https://localhost
+[2024-10-02 18:15:30] - PONG => Received ping with access token access_token
+[2024-10-02 18:17:22] - APP => Starting server on localhost:4569
+[2024-10-02 18:17:27] - APP => Connection opened with {"Upgrade"=>"websocket", "Connection"=>"upgrade", "X_Real_IP"=>"192.168.65.1", "Host"=>"ruby_pong:4569", "Pragma"=>"no-cache", "Cache-Control"=>"no-cache", "User-Agent"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36", "Origin"=>"https://localhost", "Sec-WebSocket-Version"=>"13", "Accept-Encoding"=>"gzip, deflate, br, zstd", "Accept-Language"=>"en-GB,en-US;q=0.9,en;q=0.8", "Cookie"=>"access_token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMSIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc4ODU1ODIsImV4cCI6MTcyNzg4OTE4Mn0.ccZA8BgF_tRz7je_Q2UOJHP9X-C-sX094Na1HDcP7PE", "Sec-WebSocket-Key"=>"X2JmQZkpl2jjctGuIXBwpw==", "Sec-WebSocket-Extensions"=>"permessage-deflate; client_max_window_bits"} 
+[2024-10-02 18:17:27] - PONG => Received ping from https://localhost
+[2024-10-02 18:17:27] - PONG => Received ping with access token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInN0YXRlIjp0cnVlLCJyb2xlIjoiMSIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3Mjc4ODU1ODIsImV4cCI6MTcyNzg4OTE4Mn0.ccZA8BgF_tRz7je_Q2UOJHP9X-C-sX094Na1HDcP7PE
+[2024-10-02 20:38:03] - APP => Starting server on localhost:4569
+[2024-10-02 20:39:48] - APP => Starting server on localhost:4569
+[2024-10-02 20:41:12] - APP => Starting server on localhost:4569
+[2024-10-02 20:41:37] - APP => Starting server on localhost:4569
+[2024-10-02 20:43:08] - APP => Starting server on localhost:4569
