@@ -5,6 +5,7 @@ ft_transcendence/.env
 ft_transcendence/logs
 ft_transcendence/ruby_user_management/app.log
 ft_transcendence/ruby_ssr/app.log
+ft_transcendence/ruby_pong/app.log
 
 # Ignore les fichiers temporaires et les fichiers générés
 ft_transcendence/tmp/*

@@ -128,6 +128,10 @@ server.mount_proc '/callback-tmp' do |req, res|
 	handle_route(req, res, logger, "app/view/callback-tmp.erb")
 end
 
+server.mount_proc '/pongserv' do |req, res|
+  handle_route(req, res, logger, "app/view/pongserv.erb")
+end
+
 server.mount_proc '/profil' do |req, res|
   @user_logged = user_logged(get_access_token(req), logger)
   access_token = get_access_token(req)

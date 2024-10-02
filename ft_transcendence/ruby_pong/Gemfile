@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'pg'
+gem 'eventmachine'
+gem 'em-websocket'
 gem 'rerun'
 gem 'tzinfo'
-gem 'jwt'
-gem 'connection_pool'
-gem 'bcrypt'
