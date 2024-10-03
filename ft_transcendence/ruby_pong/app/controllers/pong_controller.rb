@@ -1,5 +1,5 @@
 require_relative '../log/custom_logger'
-require_relative '../game/pong'
+require_relative '../services/pong'
 
 class PongController
   def initialize(logger = Logger.new, pong = Pong.new)
@@ -29,7 +29,7 @@ class PongController
   def pong(client, headers)
     cookie = headers['Cookie'].split(';').map { |c| c.split('=') }.to_h
     @logger.log('PONG', "Received ping with access token #{cookie['access_token']}")
-    @pong.matchmaking_normal(client, headers)
+    @pong.matchmaking_normal(client, cookie)
   end
 
 end
