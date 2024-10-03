@@ -71,8 +71,8 @@ services:
     ports:
       - "4570:4570"
 
-  ruby_tournament:
-    build: ./ruby_tournament
+  ruby_pong_api:
+    build: ./ruby_pong_api
     environment:
       SECRET_KEY: ${SECRET_KEY}
       POSTGRES_USER: ${POSTGRES_USER}
@@ -81,9 +81,9 @@ services:
     depends_on:
       - postgres
     volumes:
-      - ./ruby_tournament:/app
-    ports:
-      - "4571:4571"
+      - ./ruby_pong_api:/app
+    networks:
+      - nginx_network
 
   nginx:
     build: ./nginx
@@ -92,7 +92,7 @@ services:
       - ruby_ssr
       - ruby_pong
       - ruby_rgpd
-      - ruby_tournament
+      - ruby_pong_api
     ports:
       - "80:80"
       - "443:443"
