@@ -11,9 +11,15 @@ class Database
       port: 5432
     )
   end
+  
+  @logger = Logger.new
 
   def self.pool
     @pool
+  end
+
+  def self.logger
+    @logger
   end
 
   def self.execute(query)
@@ -31,19 +37,22 @@ class Database
   def self.insert_into_table(table_name, data)
     columns = data.keys.join(", ")
     values = data.values.map { |value| "'#{value}'" }.join(", ")
-    query = "INSERT INTO #{table_name} (#{columns}) VALUES (#{values})"
+    query = "INSERT INTO #{table_name} (#{columns}) VALUES (#{values}) RETURNING *"
     begin
-      execute(query)
+      result = execute(query)
+      result.first
     rescue PG::Error => e
-      Logger.log('Database', "Error inserting into table #{table_name}: #{e.message}")
+      @logger.log('Database', "Error inserting into table #{table_name}: #{e.message}")
     end
   end
 
-  def self.get_one_element_from_table(table_name, column, value)
-    query = "SELECT * FROM #{table_name} WHERE #{column} = '#{value}'"
+  def self.get_one_element_from_table(table_name, conditions)
+    where_clauses = conditions.map { |column, value| "#{column} = '#{value}'" }.join(' AND ')
+    query = "SELECT * FROM #{table_name} WHERE #{where_clauses}"
     result = execute(query)
     result.map { |row| row }
   end
+  
 
   def self.update_table(table_name, data, where_clause)
     set_clause = data.map { |key, value| "#{key} = '#{value}'" }.join(", ")
@@ -52,7 +61,7 @@ class Database
       execute(query)
       true
     rescue PG::Error => e
-      Logger.new.log('Database', "Error updating table #{table_name}: #{e.message}")
+      @logger.log('Database', "Error updating table #{table_name}: #{e.message}")
       false
     end
   end

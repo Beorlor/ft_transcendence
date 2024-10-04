@@ -28,16 +28,35 @@ class PongController
     clean_path = uri.path
     @logger.log('PongController', "Received #{method} request for path #{clean_path}")
     case [method, clean_path]
-    when ['POST', '/api/pong/create_game']
-      create_game(client, body)
+    when ['GET', '/api/pong/create_game']
+      create_game(client, cookies)
+    when ['GET', '/api/pong/get_game_history']
+      get_game_history(client, cookies)
     else
       return 1
     end
     return 0
   end
 
-  def create_game(client, body)
-    status = @pong_manager.create_game(body)
-    RequestHelper.respond(client, 200, { success: "Bien joué !"})
+  def create_game(client, cookies)
+    status = @pong_manager.create_game(cookies)
+    if status[:code] != 200
+      RequestHelper.respond(client, status[:code], { error: status[:message] })
+      return
+    end
+    RequestHelper.respond(client, 200, { game_info: status[:game_info], success: status[:message] })
+  end
+
+  def get_game_history(client, cookies)
+    @logger.log('PongController', "Getting game history for user #{cookies}")
+    in_game = @pong_manager.is_already_playing(cookies["user_id"])
+    @logger.log('PongController', "Game found for user #{in_game}")
+    if in_game[:game_info].length == 0
+      @logger.log('PongController', "No game found for user #{cookies}")
+      RequestHelper.respond(client, 200, { no_game: 'No game found' })
+      return
+    end
+    @logger.log('PongController', "Game found for user #{cookies}")
+    RequestHelper.respond(client, 200, { game_info: in_game[:game_info], success: 'Game found' })
   end
 end
