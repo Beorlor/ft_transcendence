@@ -14,7 +14,10 @@ module RequestHelper
     cookies = {}
     body = nil
 
+
+    Logger.new.log('RequestHelper', "Body: #{request.lines}")
     request.lines[1..-1].each_with_index do |line, index|
+      Logger.new.log('RequestHelper', "Parsing line: #{line}")
       if line.strip.empty?
         body = request.lines[(index + 2)..-1].join
         break

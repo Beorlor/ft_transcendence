@@ -27,7 +27,8 @@ class PongController
   end
 
   def pong(client, headers)
-    cookie = headers['Cookie'].split(';').map { |c| c.split('=') }.to_h
+    @logger.log('PONG', "Received ping from #{headers}")
+    cookie = headers['Cookie'].split('; ').map { |c| c.split('=', 2) }.to_h
     @logger.log('PONG', "Received ping with access token #{cookie['access_token']}")
     @pong.matchmaking_normal(client, cookie)
   end

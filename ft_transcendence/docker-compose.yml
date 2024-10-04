@@ -82,8 +82,11 @@ services:
       - postgres
     volumes:
       - ./ruby_pong_api:/app
+    ports:
+      - "4571:4571"
     networks:
       - nginx_network
+      - postgres_network
 
   nginx:
     build: ./nginx
