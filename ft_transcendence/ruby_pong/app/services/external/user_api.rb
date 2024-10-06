@@ -1,20 +1,21 @@
 require 'json'
-require 'net/http'
+require 'em-http-request'
 
 class UserApi
 
-  def get_user_info(api_url, jwt)
-    uri = URI(api_url)
-    req = Net::HTTP::Get.new(uri)
-    req['Cookie'] = "access_token=#{jwt}"
-    http = Net::HTTP.new(uri.host, uri.port)
-    res = http.start do |http|
-      http.request(req)
+  def get_user_info(api_url, jwt, &callback)
+    http = EM::HttpRequest.new(api_url).get(
+      head: { 'Cookie' => "access_token=#{jwt}" })
+    http.callback do
+      if http.response_header.status == 200
+        callback.call(JSON.parse(http.response)["user"][0]) if callback
+      else
+        callback.call(nil) if callback
+      end
     end
-    if res.is_a?(Net::HTTPSuccess)
-      JSON.parse(res.body)["user"].first
-    else
-      nil
+    
+    http.errback do
+      callback.call(nil) if callback
     end
   end
 
