@@ -28,10 +28,10 @@ class PongController
     clean_path = uri.path
     @logger.log('PongController', "Received #{method} request for path #{clean_path}")
     case [method, clean_path]
-    when ['GET', '/api/pong/create_game']
-      create_game(client, cookies)
-    when ['GET', '/api/pong/get_game_history']
-      get_game_history(client, cookies)
+    when ['POST', '/api/pong/create_game']
+      create_game(client, body)
+    when ['POST', '/api/pong/get_game_history']
+      get_game_history(client, body)
     else
       return 1
     end
