@@ -7,7 +7,7 @@ class PongRepository
     @logger = logger
   end
 
-  def save_game_history(game_info)
+  def create_game_history(game_info)
     Database.insert_into_table('_pongHistory', game_info)
   end
 
@@ -16,6 +16,28 @@ class PongRepository
   end
 
   def get_game_history(user_id)
-    Database.get_one_element_from_table('_pongHistory', { user_id: user_id, state: 2 })
+    history = Database.get_one_element_from_table('_pongHistory', { user_id: user_id, state: 2 })
+    if history.length > 0
+      history[0]
+    else
+      nil
+    end
+  end
+
+  def save_game(game_update, game_id)
+    Database.update_table('_pong', game_update, "id = #{game_id}")
+  end
+
+  def get_game(player_id)
+    game = Database.get_one_element_from_table('_pong', { player_1_id: player_id })
+    if game.length > 0
+      game[0]
+    else
+      nil
+    end
+  end
+
+  def save_game_history(game_info, game_id, user_id)
+    Database.update_table('_pongHistory', game_info, "user_id = #{user_id} AND game_id = #{game_id}")
   end
 end

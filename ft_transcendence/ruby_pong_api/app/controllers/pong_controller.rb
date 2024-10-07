@@ -32,6 +32,8 @@ class PongController
       create_game(client, body)
     when ['POST', '/api/pong/get_game_history']
       get_game_history(client, body)
+    when ['POST', '/api/pong/end_game']
+      end_game(client, body)
     else
       return 1
     end
@@ -50,13 +52,21 @@ class PongController
   def get_game_history(client, cookies)
     @logger.log('PongController', "Getting game history for user #{cookies}")
     in_game = @pong_manager.is_already_playing(cookies["user_id"])
-    @logger.log('PongController', "Game found for user #{in_game}")
-    if in_game[:game_info].length == 0
+    if in_game.nil?
       @logger.log('PongController', "No game found for user #{cookies}")
-      RequestHelper.respond(client, 200, { no_game: 'No game found' })
+      RequestHelper.respond(client, 404, { no_game: 'No game found' })
       return
     end
     @logger.log('PongController', "Game found for user #{cookies}")
     RequestHelper.respond(client, 200, { game_info: in_game[:game_info], success: 'Game found' })
+  end
+
+  def end_game(client, body)
+    status = @pong_manager.end_game(body)
+    if status[:code] != 200
+      RequestHelper.respond(client, status[:code], { error: status[:message] })
+      return
+    end
+    RequestHelper.respond(client, 200, { success: status[:message] })
   end
 end

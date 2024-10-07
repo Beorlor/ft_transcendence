@@ -36,9 +36,6 @@ CREATE TABLE IF NOT EXISTS _pong (
     id SERIAL PRIMARY KEY,
     player_1_id INTEGER REFERENCES _user(id),
     player_2_id INTEGER REFERENCES _user(id),
-    ball_position JSONB,
-    position_player_1 JSONB,
-    position_player_2 JSONB,
     player_1_score INTEGER,
     player_2_score INTEGER,
     updated_at TIMESTAMP,
@@ -57,20 +54,20 @@ CREATE TABLE IF NOT EXISTS _pongHistory (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS _zombieHistory (
+CREATE TABLE IF NOT EXISTS _zombie (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES _user(id),
-    game_id INTEGER REFERENCES _zombie(id),
-    state INTEGER,
+    stage_number INTEGER NOT NULL,
+    player_ids INTEGER[] NOT NULL,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS _zombie (
+CREATE TABLE IF NOT EXISTS _zombieHistory (
     id SERIAL PRIMARY KEY,
-    stage_number INTEGER NOT NULL,
-    player_ids INTEGER[] NOT NULL,
+    user_id INTEGER REFERENCES _user(id),
+    game_id INTEGER REFERENCES _zombie(id),
+    state INTEGER,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

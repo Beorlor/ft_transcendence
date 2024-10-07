@@ -51,6 +51,7 @@ class AuthController
 
   def handle_callback(client, body)
     authorization_code = body['code']
+    @logger.log('AuthController', "Authorization code: #{authorization_code}")
     if authorization_code
       access_token = @auth_manager.get_access_token(client, authorization_code)
       if access_token
