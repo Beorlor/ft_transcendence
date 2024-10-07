@@ -19,6 +19,6 @@ document.addEventListener("DOMContentLoaded", (ev) => {
           document.getElementById("game"),
           "https://localhost/validate-code"
         );
-      } else console.log("c'est la merde");
+      } else console.log(json);
     });
 });

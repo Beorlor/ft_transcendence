@@ -43,4 +43,23 @@ class PongApi
       callback.call(nil) if callback
     end
   end
+
+  def end_game(api_url, player1, player2, player1_pts, player2_pts, &callback)
+    http = EM::HttpRequest.new(api_url).post(
+      body: { player1: player1.to_i, player2: player2.to_i, player1_pts: player1_pts, player2_pts: player2_pts }.to_json,
+      head: { 'Content-Type' => 'application/json' }
+    )
+  
+    http.callback do
+      if http.response_header.status == 200
+        callback.call(true) if callback
+      else
+        callback.call(false) if callback
+      end
+    end
+  
+    http.errback do
+      callback.call(false) if callback
+    end
+  end
 end

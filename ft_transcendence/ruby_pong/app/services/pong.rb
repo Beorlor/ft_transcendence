@@ -38,6 +38,17 @@ class Pong
     end
   end
 
+  def reconnection_game(client, game_info)
+    @logger.log('Pong', "Reconnection game: #{game_info}")
+    game = @games[game_info["id"]]
+    @logger.log('Pong', "Reconnection game: #{game}")
+    game.reconnection(client)
+    client[:ws].onmessage do |message|
+      game.recieve_message(client, message)
+    end
+    client[:ws].send('reconnected to game')
+  end
+
   def matchmaking_normal(client, cookie)
     @user_api.get_user_info('http://ruby_user_management:4567/api/user/me', cookie['access_token']) do |player|
       if player.nil?
@@ -45,7 +56,9 @@ class Pong
         next
       end
       @pong_api.get_game_history('http://ruby_pong_api:4571/api/pong/get_game_history', player['id']) do |game_data|
+        @logger.log('Pong', "Game data: #{game_data}")
         if game_data
+          reconnection_game({ ws: client, player: player }, game_data["game_info"][0])
           @logger.log('Pong', "Game data: #{game_data}")
           next
         end
