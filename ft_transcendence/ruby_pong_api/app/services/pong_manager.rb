@@ -75,25 +75,14 @@ class PongManager
   end
 
   def end_game(body)
-    @logger.log('PongManager', "Ending game with body: #{body}")
-    game_info = @pong_repository.get_game(body['player1'])
-    @logger.log('PongManager', "Ending game with game_info: #{game_info}")
-    if game_info
-      @logger.log('PongManager', "Ending game with body: #{body}")
-      game_update = {
+    game_update = {
       player_1_score: body['player1_pts'],
       player_2_score: body['player2_pts'],
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
     }
-      @logger.log('PongManager', "Ending game with game_info: #{game_info}")
-      @pong_repository.save_game(game_update, game_info['id'])
-      @logger.log('PongManager', "Game ended with game_info: #{game_info}")
-      update_player_history(body, game_info['id'])
-      @logger.log('PongManager', "Game ended with body: #{body}")
-      { code: 200, message: 'Game ended' }
-    else
-      { code: 500, message: 'Error ending game' }
-    end
+    @pong_repository.save_game(game_update, body['game_id'])
+    update_player_history(body, body['game_id'])
+    { code: 200, message: 'Game ended' }
   end
 
 end
