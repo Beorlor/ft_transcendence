@@ -126,14 +126,11 @@ services:
     environment:
       MINIO_ROOT_USER: ${minio_root_user}
       MINIO_ROOT_PASSWORD: ${minio_root_password}
-      CONSOLE_PORT: "9001"
     ports:
       - "9000:9000"
-      - "9001"
     volumes:
       - minio-data:/data
       - ./minio/default.jpg:/default.jpg
-    command: server /data --console-address ":9001"
 
 volumes:
   postgres-data:
