@@ -44,9 +44,9 @@ class PongApi
     end
   end
 
-  def end_game(api_url, player1, player2, player1_pts, player2_pts, &callback)
+  def end_game(api_url, player1, player2, player1_pts, player2_pts, game_id, &callback)
     http = EM::HttpRequest.new(api_url).post(
-      body: { player1: player1.to_i, player2: player2.to_i, player1_pts: player1_pts, player2_pts: player2_pts }.to_json,
+      body: { player1: player1.to_i, player2: player2.to_i, player1_pts: player1_pts, player2_pts: player2_pts, game_id: game_id }.to_json,
       head: { 'Content-Type' => 'application/json' }
     )
   

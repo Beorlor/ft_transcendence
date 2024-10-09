@@ -3,16 +3,15 @@
 class Game
   attr_accessor :client1, :client2, :game_data, :start_time, :game, :game_timer, :victory_points, :width, :height
 
-  def initialize(client1, client2, victory_points = 5, width = 800, height = 600, pong_api = PongApi.new)
+  def initialize(client1, client2, game_id, victory_points = 5, width = 800, height = 600, pong_api = PongApi.new)
     @client1 = client1
     @client2 = client2
-
     @game_data = { client1_pts: 0, client2_pts: 0,
     victory_points: victory_points, ball_radius: 8,
     width: width, height: height,
     bar_width: 12, bar_height: 120,
     ball_moove_speed: 20, ball_max_speed: 90,
-    ball_accceleration: 2,
+    ball_accceleration: 2, game_id: game_id,
     ball_x: 0, ball_y: 0,
     ball_speed: 0, paddle1_y: 0,
     paddle2_y: 0 , paddle1_x: 0,
@@ -57,7 +56,7 @@ class Game
     send_to_client(@client2, message)
     @game = false
     stop_game_timer
-    @pong_api.end_game('http://ruby_pong_api:4571/api/pong/end_game', @client1[:player]["id"], @client2[:player]["id"], @game_data[:client1_pts], @game_data[:client2_pts]) do |status|
+    @pong_api.end_game('http://ruby_pong_api:4571/api/pong/end_game', @client1[:player]["id"], @client2[:player]["id"], @game_data[:client1_pts], @game_data[:client2_pts], @game_data[:game_id]) do |status|
       if status
         puts "Game ended with status: #{status}"
       else
