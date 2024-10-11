@@ -64,11 +64,16 @@ function loadPageScript(game) {
       console.log(document.getElementById("form_validate_code"));
       window.loadValidateForm();
     }
+    if (document.getElementById("form_edit_profile")) {
+      console.log(document.getElementById("form_edit_profile"));
+      window.loadEditProfileFormAction();
+    }
   };
 }
 
 function rebindEvents() {
   removeAllListeners("click");
+  console.log("Rebinding events...");
   document
     .getElementById("home_link")
     .addEventListener("click", handleHomeClick);
@@ -92,6 +97,11 @@ function rebindEvents() {
     document
       .getElementById("button_profile")
       .addEventListener("click", handleProfileClick);
+    if (document.getElementById("edit_profile_button")) {
+      document
+        .getElementById("edit_profile_button")
+        .addEventListener("click", handleEditProfileClick);
+    }
   }
 }
 
@@ -110,8 +120,8 @@ function loadPage(game, url, gamestate) {
       game.innerHTML = json.body;
       if (json.nav) {
         document.getElementById("nav").innerHTML = json.nav;
-        rebindEvents();
       }
+      rebindEvents();
       loadPageScript(game);
     })
     .catch((err) => console.error("Error: ", err));
@@ -166,7 +176,13 @@ function handleLogoutClick(ev) {
 
 function handleProfileClick(ev) {
   ev.preventDefault();
-  const url = "https://localhost/profil";
+  const url = "https://localhost/profile";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
+
+function handleEditProfileClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/edit-profile";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 

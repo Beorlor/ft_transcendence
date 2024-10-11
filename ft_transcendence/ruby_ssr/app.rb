@@ -132,7 +132,7 @@ server.mount_proc '/pongserv' do |req, res|
   handle_route(req, res, logger, "app/view/pongserv.erb")
 end
 
-server.mount_proc '/profil' do |req, res|
+server.mount_proc '/profile' do |req, res|
   @user_logged = user_logged(get_access_token(req), logger)
   access_token = get_access_token(req)
   @nav = generate_navigation
@@ -142,7 +142,31 @@ server.mount_proc '/profil' do |req, res|
     if user_info
       @username = user_info["username"]
       @email = user_info["email"]
-      page = ERB.new(File.read("app/view/profil.erb"))
+      @img_url = user_info["img_url"]
+      page = ERB.new(File.read("app/view/profile.erb"))
+      @pRes = page.result(binding)
+    else
+      res.status = 500
+      @pRes = "Erreur lors de la récupération des informations utilisateur."
+    end
+  else
+    res.status = 401
+    @pRes = "Utilisateur non authentifié."
+  end
+
+  generate_response(req, res, logger)
+end
+
+server.mount_proc '/edit-profile' do |req, res|
+  @user_logged = user_logged(get_access_token(req), logger)
+  access_token = get_access_token(req)
+  @nav = generate_navigation
+
+  if access_token
+    user_info = get_user_info('http://ruby_user_management:4567/api/user/me', access_token)
+    if user_info
+      @user_info = user_info
+      page = ERB.new(File.read("app/view/edit-profile.erb"))
       @pRes = page.result(binding)
     else
       res.status = 500

@@ -27,10 +27,6 @@ loop do
     end
   rescue Errno::EPIPE => e
     Logger.new.log("test", "Erreur : Broken pipe - #{e.message}")
-  rescue Errno::ECONNRESET => e
-    Logger.new.log("test", "Erreur : Connection reset - #{e.message}")
-  rescue StandardError => e
-    Logger.new.log("test", "Erreur : #{e.message}")
   ensure
     client.close if client
   end
