@@ -1,0 +1,29 @@
+
+[2024-10-11 22:06:19] - Server => Starting server
+[2024-10-11 22:06:19] - Mongo => Connected to database
+[2024-10-11 22:09:23] - Server => Starting server
+[2024-10-11 22:09:24] - Mongo => Connected to database
+
+
+[2024-10-11 22:16:38] - Server => Starting server
+
+[2024-10-11 22:17:59] - Server => Starting server
+[2024-10-11 22:20:53] - Server => Starting server
+[2024-10-11 22:21:39] - Server => Starting server
+[2024-10-11 22:21:43] - Server => Request for /
+[2024-10-11 22:21:55] - Server => Starting server
+[2024-10-11 22:21:56] - Server => Request for /
+[2024-10-11 22:22:04] - Server => Starting server
+[2024-10-11 22:22:09] - Server => Request for /
+[2024-10-11 22:22:36] - Server => Starting server
+[2024-10-11 22:22:36] - Mongo => Connected to database
+[2024-10-11 22:22:39] - Server => Request for /
+[2024-10-11 22:24:29] - Server => Starting server
+[2024-10-11 22:24:29] - Mongo => Connected to database
+[2024-10-11 22:25:40] - Server => Request for /img
+[2024-10-11 22:26:14] - Server => Starting server
+[2024-10-11 22:26:14] - Mongo => Connected to database
+[2024-10-11 22:26:17] - Server => Request for /img/test
+[2024-10-11 22:26:17] - Server => Request for /img/test
+[2024-10-11 22:28:29] - Server => Starting server
+[2024-10-11 22:28:30] - Mongo => Connected to database
