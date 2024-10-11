@@ -23,6 +23,8 @@ services:
       API_CLIENT: ${API_CLIENT42}
       API_SECRET: ${API_SECRET42}
       REDIR_URL: ${REDIR_URL42}
+      MINIO_ROOT_USER: ${minio_root_user}
+      MINIO_ROOT_PASSWORD: ${minio_root_password}
     depends_on:
       - postgres
     volumes:
@@ -121,20 +123,8 @@ services:
     networks:
       - smtp_network
 
-  minio:
-    build: ./minio
-    environment:
-      MINIO_ROOT_USER: ${minio_root_user}
-      MINIO_ROOT_PASSWORD: ${minio_root_password}
-    ports:
-      - "9000:9000"
-    volumes:
-      - minio-data:/data
-      - ./minio/default.jpg:/default.jpg
-
 volumes:
   postgres-data:
-  minio-data:
 
 networks:
   postgres_network:

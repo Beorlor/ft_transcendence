@@ -6,6 +6,7 @@ psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" <<-EOSQL
 CREATE TABLE IF NOT EXISTS _user (
     id SERIAL PRIMARY KEY,
     username VARCHAR(12) NOT NULL,
+    img_url VARCHAR(255) NOT NULL DEFAULT 'http://localhost:9000/profiles/default.jpg',
     email VARCHAR(320) NOT NULL UNIQUE,
     password VARCHAR(255),
     role INTEGER,
@@ -36,6 +37,8 @@ CREATE TABLE IF NOT EXISTS _pong (
     id SERIAL PRIMARY KEY,
     player_1_id INTEGER REFERENCES _user(id),
     player_2_id INTEGER REFERENCES _user(id),
+    state INTEGER,
+    rank_points INTEGER,
     player_1_score INTEGER,
     player_2_score INTEGER,
     updated_at TIMESTAMP,
@@ -46,28 +49,9 @@ CREATE TABLE IF NOT EXISTS _pong (
 CREATE TABLE IF NOT EXISTS _pongHistory (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES _user(id),
-    game_id INTEGER REFERENCES _pong(id),
-    state INTEGER,
-    rank_points INTEGER,
-    updated_at TIMESTAMP,
-    deleted_at TIMESTAMP,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS _zombie (
-    id SERIAL PRIMARY KEY,
-    stage_number INTEGER NOT NULL,
-    player_ids INTEGER[] NOT NULL,
-    updated_at TIMESTAMP,
-    deleted_at TIMESTAMP,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS _zombieHistory (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES _user(id),
-    game_id INTEGER REFERENCES _zombie(id),
-    state INTEGER,
+    nb_win INTEGER,
+    nb_lose INTEGER,
+    nb_game INTEGER,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

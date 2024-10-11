@@ -15,15 +15,35 @@
       padding: 20px;
       border-radius: 8px;
     }
-  </style>
+
+    .edit-profile-btn {
+      margin-top: 10px;
+    }
+
+    .rank-info {
+      background-color: #e9ecef;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+</style>
 
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-4 text-center">
-      <img src="https://via.placeholder.com/150" alt="Photo de profil" class="profile-pic mb-3">
+      <img src="<%= @img_url %>" alt="Photo de profil" class="profile-pic mb-3">
       <div class="profile-info">
         <h3><%= @username %></h3>
         <p>Email: <%= @email %></p>
+        <button id="edit_profile_button" class="btn btn-primary edit-profile-btn">Edit Profile</button>
+      </div>
+
+      <!-- Zone de points de rang -->
+      <div class="rank-info">
+        <h4>Points de Rang</h4>
+        <p>Victoires: <%= @victories %></p>
+        <p>Défaites: <%= @defeats %></p>
+        <p>Parties jouées: <%= @total_games %></p>
       </div>
     </div>
 

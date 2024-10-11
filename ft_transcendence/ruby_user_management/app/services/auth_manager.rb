@@ -24,8 +24,26 @@ class AuthManager
     @token_manager = token_manager
   end
 
+  def register_complement_info(user_id)
+    @logger.log('AuthManager', "Registering complement info for user with id #{user_id}")
+    ranking = {
+      user_id: user_id,
+      points: 0,
+      updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
+    }
+    history = {
+      user_id: user_id,
+      nb_win: 0,
+      nb_lose: 0,
+      nb_game: 0,
+      updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
+    }
+    @user_repository.register_complement_info(ranking, history)
+    @logger.log('AuthManager', "Complement info for user with id #{user_id} registered")
+  end
+
   def register_user_42(user)
-    @logger.log('AuthManager', "Registering user with email #{user['email']}")
+    @logger.log('AuthManager', "Registering user #{user}")
     user42 = @user_repository.get_user_by_email(user['email'])
     if user42.length > 0
       @logger.log('AuthManager', "User with email #{user['email']} already exists in database, proceeding to login")
@@ -35,12 +53,14 @@ class AuthManager
     user_info = {
       username: user['login'],
       email: user['email'],
+      img_url: user["image"]["link"],
       role: 0,
       login_type: 1,
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
     }
     @user_repository.register_user_42(user_info)
     user42 = @user_repository.get_user_by_email(user['email'])
+    register_complement_info(user42[0]['id'])
     @validation_manager.generate_validation(user42[0])
     return { code: 200, user: user42[0] }
   end
@@ -79,6 +99,7 @@ class AuthManager
     }
     @user_repository.register(user_info)
     user = @user_repository.get_user_by_email(body['email'])
+    register_complement_info(user[0]['id'])
     @validation_manager.generate_validation(user[0])
     return { code: 200, success: 'User registered', user: user[0] }
   end
@@ -161,6 +182,38 @@ class AuthManager
       @logger.log('AuthManager', "Error while getting access token: #{response.message}")
       nil
     end
+  end
+
+  def update_profile(user_id, body)
+    user = @user_repository.get_user_by_id(user_id).first
+    update= {}
+    @logger.log('AuthManager', "Updating profile with body: #{body}")
+    if body.nil? || body.empty?
+      return { code: 400, error: 'Invalid body' }
+    end
+
+    if !body['username'].nil? && body['username'].size > 3 && body['username'].size < 12
+      update[:username] = body['username']
+    end
+    if !body['img_url'].nil?
+      @logger.log('AuthManager', "Image URL: #{body['img_url']}")
+    end
+    if user['login_type'] == 0
+      email_regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+      @logger.log('AuthManager', "Email: #{body['email']}")
+      if !body['email'].nil? && body['email'].size > 5 && body['email'].size < 320 && body['email'].match(email_regex)
+        update[:email] = body['email']
+      end
+      if !body['password'].nil? && body['password'].size > 6 && body['password'].size < 255
+        update[:password] = @security.secure_password(body['password'])
+      end
+    end
+    if update.empty?
+      return { code: 400, error: 'No valid parameters to update' }
+    end
+
+    @user_repository.update_user(update, user_id)
+    return { code: 200, success: 'Profile updated' }
   end
 
 end

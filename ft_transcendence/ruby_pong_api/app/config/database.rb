@@ -46,8 +46,12 @@ class Database
     end
   end
 
-  def self.get_one_element_from_table(table_name, conditions)
-    where_clauses = conditions.map { |column, value| "#{column} = '#{value}'" }.join(' AND ')
+  def self.get_one_element_from_table(table_name, conditions, and_condition=1)
+    if and_condition == 1
+      where_clauses = conditions.map { |column, value| "#{column} = '#{value}'" }.join(' AND ')
+    else
+      where_clauses = conditions.map { |column, value| "#{column} = '#{value}'" }.join(' OR ')
+    end
     query = "SELECT * FROM #{table_name} WHERE #{where_clauses}"
     result = execute(query)
     result.map { |row| row }
