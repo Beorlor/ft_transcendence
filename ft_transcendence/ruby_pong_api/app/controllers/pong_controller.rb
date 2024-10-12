@@ -34,10 +34,27 @@ class PongController
       get_game_history(client, body)
     when ['POST', '/api/pong/end_game']
       end_game(client, body)
+    when ['POST', '/api/pong/player/stats']
+      get_user_stats(client, body)
     else
       return 1
     end
     return 0
+  end
+
+  def get_user_stats(client, body)
+    user_id = body['user_id']
+    @logger.log('PongController', "Getting stats for user #{user_id}")
+    if user_id.nil?
+      RequestHelper.respond(client, 400, { error: 'Missing user_id' })
+      return
+    end
+    stats = @pong_manager.get_user_stats(user_id)
+    if stats.nil?
+      RequestHelper.respond(client, 404, { error: 'User not found' })
+      return
+    end
+    RequestHelper.respond(client, 200, { stats: stats })
   end
 
   def create_game(client, cookies)
