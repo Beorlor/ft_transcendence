@@ -139,6 +139,8 @@ services:
     build: ./image_ruby
     volumes:
       - ./image_ruby:/app
+    ports:
+      - "4572:4572"
     networks:
       - nginx_network
 

@@ -4,3 +4,4 @@ gem "webrick"
 gem 'rerun'
 gem 'tzinfo'
 gem 'mongo'
+gem 'rack'
