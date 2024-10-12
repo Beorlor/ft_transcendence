@@ -82,4 +82,42 @@ class Database
     result.map { |row| row }
   end
 
+  def self.get_user_stats_and_games(user_id)
+    query = <<-SQL
+      SELECT 
+          r.points,
+          ph.nb_win,
+          ph.nb_lose,
+          ph.nb_game,
+          COALESCE(ARRAY_AGG(ROW(p.id, p.player_1_id, p.player_2_id, p.state, p.rank_points, p.player_1_score, p.player_2_score, p.created_at)), '{}') AS games
+      FROM 
+          _user u
+      JOIN 
+          _ranking r ON u.id = r.user_id
+      JOIN 
+          _pongHistory ph ON u.id = ph.user_id
+      LEFT JOIN 
+          _pong p ON u.id = p.player_1_id OR u.id = p.player_2_id
+      WHERE 
+          u.id = #{user_id}
+      GROUP BY 
+          r.points, ph.nb_win, ph.nb_lose, ph.nb_game;
+    SQL
+    
+    begin
+      result = execute(query)
+      stats = result.map { |row| row }.first
+
+      if stats["games"] == "{\"(,,,,,,,)\"}" || stats["games"].nil?
+        stats["games"] = []
+      else
+        stats["games"] = JSON.parse(stats["games"])
+      end
+      return stats
+    rescue PG::Error => e
+      @logger.log('Database', "Error retrieving stats and games for user #{user_id}: #{e.message}")
+      {}
+    end
+  end
+
 end

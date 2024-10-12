@@ -73,4 +73,10 @@ class PongManager
     { code: 200, message: 'Game ended' }
   end
 
+  def get_user_stats(user_id)
+    stats = @pong_repository.get_user_stats(user_id)
+    @logger.log('PongManager', "Getting user stats: #{stats}")
+    stats
+  end
+
 end

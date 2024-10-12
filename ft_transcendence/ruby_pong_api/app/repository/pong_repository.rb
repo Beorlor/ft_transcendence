@@ -50,4 +50,14 @@ class PongRepository
   def save_game_history(game_info, user_id)
     Database.update_table('_pongHistory', game_info, "user_id = #{user_id}")
   end
+
+  def get_user_stats(user_id)
+    stats = Database.get_user_stats_and_games(user_id)
+    @logger.log('PongRepository', "Stats for user #{user_id}: #{stats}")
+    if stats
+      stats
+    else
+      nil
+    end
+  end
 end

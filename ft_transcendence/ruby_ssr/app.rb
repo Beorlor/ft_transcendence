@@ -11,6 +11,19 @@ mime_types['mjs'] = 'application/javascript'
 server = WEBrick::HTTPServer.new(:Port => 4568, :MimeTypes => mime_types)
 logger = Logger.new
 
+def game_result(game, user_id)
+  is_player_1 = game["player_1_id"] == user_id
+  user_score = is_player_1 ? game["player_1_score"] : game["player_2_score"]
+  opponent_score = is_player_1 ? game["player_2_score"] : game["player_1_score"]
+  rank_points = game["rank_points"] || 0
+
+  result_text = user_score > opponent_score ? "Victory" : "Defeat"
+  score_text = "Score: #{user_score} - #{opponent_score}"
+  rank_text = rank_points != 0 ? "(Rank points: #{rank_points > 0 ? '+' : ''}#{rank_points})" : ""
+
+  "#{result_text} - #{score_text} #{rank_text} <span class='badge bg-#{result_text == 'Victory' ? 'success' : 'danger'} float-end'>#{result_text}</span>"
+end
+
 def user_logged(jwt, logger)
 	uri = URI('http://ruby_user_management:4567/api/auth/verify-token-user')
 	req = Net::HTTP::Get.new(uri)
@@ -53,6 +66,21 @@ def get_users_paginated(page)
   end
   if res.is_a?(Net::HTTPSuccess)
     JSON.parse(res.body)
+  else
+    nil
+  end
+end
+
+def get_user_stats(user_id)
+  uri = URI("http://ruby_pong_api:4571/api/pong/player/stats")
+  req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
+  req.body = { user_id: user_id }.to_json
+  http = Net::HTTP.new(uri.host, uri.port)
+  res = http.start do |http|
+    http.request(req)
+  end
+  if res.is_a?(Net::HTTPSuccess)
+    JSON.parse(res.body)["stats"]
   else
     nil
   end
@@ -140,9 +168,9 @@ server.mount_proc '/profile' do |req, res|
   if access_token
     user_info = get_user_info('http://ruby_user_management:4567/api/user/me', access_token)
     if user_info
-      @username = user_info["username"]
-      @email = user_info["email"]
-      @img_url = user_info["img_url"]
+      @stats = get_user_stats(user_info["id"])
+      logger.log('App', "Stats: #{@stats}")
+      @user = user_info
       page = ERB.new(File.read("app/view/profile.erb"))
       @pRes = page.result(binding)
     else
