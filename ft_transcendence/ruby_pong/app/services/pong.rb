@@ -25,11 +25,11 @@ class Pong
         game.start
 
         client1[:ws].onmessage do |message|
-          game.recieve_message(client1, message)
+          game.receive_message(client1, message)
         end
 
         client2[:ws].onmessage do |message|
-          game.recieve_message(client2, message)
+          game.receive_message(client2, message)
         end
         
       else
@@ -44,7 +44,7 @@ class Pong
     @logger.log('Pong', "Reconnection game: #{game}")
     game.reconnection(client)
     client[:ws].onmessage do |message|
-      game.recieve_message(client, message)
+      game.receive_message(client, message)
     end
     client[:ws].send('reconnected to game')
   end

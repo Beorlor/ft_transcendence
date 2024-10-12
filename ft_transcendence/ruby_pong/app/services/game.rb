@@ -1,9 +1,10 @@
-
+require_relative '../log/custom_logger'
+require 'json'
 
 class Game
   attr_accessor :client1, :client2, :game_data, :start_time, :game, :game_timer, :victory_points, :width, :height
 
-  def initialize(client1, client2, game_id, victory_points = 5, width = 800, height = 600, pong_api = PongApi.new)
+  def initialize(client1, client2, game_id, victory_points = 5, width = 800, height = 600, pong_api = PongApi.new, logger = Logger.new)
     @client1 = client1
     @client2 = client2
     @game_data = { client1_pts: 0, client2_pts: 0,
@@ -12,39 +13,55 @@ class Game
     bar_width: 12, bar_height: 120,
     ball_moove_speed: 20, ball_max_speed: 90,
     ball_accceleration: 2, game_id: game_id,
-    ball_x: 0, ball_y: 0,
-    ball_speed: 0, paddle1_y: 0,
-    paddle2_y: 0 , paddle1_x: 0,
-    
-    paddle2_x: 0 }
+    ball_x: width / 2, ball_y: height / 2,
+    ball_speed: 0, paddle1_y: height / 2 - 120 / 2,
+    paddle2_y: height / 2 - 120 / 2 , paddle1_x: 20 ,
+    player1_direction: 0, player2_direction: 0,
+    paddle2_x: width - 20 - 12, delta_time: 0.016 }
     @start_time = Time.now
     @game = true
     @pong_api = pong_api
+    @logger = logger
   end
 
   def reconnection(client)
-    if client[:player][:id] == @client1[:player][:id]
+    if client[:player]["id"] == @client1[:player]["id"]
       @client1 = client
-    elsif client[:player][:id] == @client2[:player][:id]
+    elsif client[:player]["id"] == @client2[:player]["id"]
       @client2 = client
     end
   end
 
   def receive_message(client, message)
-    puts "receive_message: #{message}"
+    begin
+      message = JSON.parse(message)
+      @logger.log("Game", "receive_message: #{message["direction"]} with id #{client[:player]["id"]}")
+      if client[:player]["id"] == @client1[:player]["id"]
+        @game_data[:player1_direction] = message["direction"] == "up" ? -1 : (message["direction"] == "down" ? 1 : 0)
+      elsif client[:player]["id"] == @client2[:player]["id"]
+        @game_data[:player2_direction] = message["direction"] == "up" ? -1 : (message["direction"] == "down" ? 1 : 0)
+      end
+    rescue => e
+      @logger.log("Game", "Error parsing message: #{e}")
+      send_to_client(client, "Error parsing message")
+      return
+    end
   end
 
-  def send_game_data
-    sended_data = { client1_pts: @game_data[:client1_pts], client2_pts: @game_data[:client2_pts], ball_x: @game_data[:ball_x], ball_y: @game_data[:ball_y], paddle1_y: @game_data[:paddle1_y], paddle2_y: @game_data[:paddle2_y], paddle1_x: @game_data[:paddle1_x], paddle2_x: @game_data[:paddle2_x] }
+  def game_loop
+    @game_data[:paddle1_y] += @game_data[:player1_direction] * 10 * @game_data[:delta_time]
+    @game_data[:paddle2_y] += @game_data[:player2_direction] * 10 * @game_data[:delta_time]
+    sended_data = { client1_pts: @game_data[:client1_pts], client2_pts: @game_data[:client2_pts], ball_x: @game_data[:ball_x], ball_y: @game_data[:ball_y],
+    paddle1_y: @game_data[:paddle1_y], paddle2_y: @game_data[:paddle2_y], paddle1_x: @game_data[:paddle1_x], paddle2_x: @game_data[:paddle2_x], width: @game_data[:width], height: @game_data[:height] }
     send_to_client(@client1, sended_data.to_json)
     send_to_client(@client2, sended_data.to_json)
   end
 
   def start
     start_timer(60)
-    @client1[:ws].send('game started')
-    @client2[:ws].send('game started')
-    @game_timer = EM.add_periodic_timer(0.1) { send_game_data }
+    send_to_client(@client1, "start")
+    send_to_client(@client2, "start")
+    @game_timer = EM.add_periodic_timer(@game_data[:delta_time]) { game_loop }
   end
 
   def send_to_client(client, message)
