@@ -234,7 +234,5 @@ function pong_main() {
   window.refreshPongInputs();
 }
 
-document.addEventListener("DOMContentLoaded", (ev) => {
-  window.GAMESTATE = window.GAME_STATES.pong;
-  pong_main();
-});
+pong_main();
+window.GAMESTATE = window.GAME_STATES.pong;
