@@ -49,7 +49,6 @@ class PongApi
       body: { player1: player1.to_i, player2: player2.to_i, player1_pts: player1_pts, player2_pts: player2_pts, game_id: game_id }.to_json,
       head: { 'Content-Type' => 'application/json' }
     )
-  
     http.callback do
       if http.response_header.status == 200
         callback.call(true) if callback

@@ -76,6 +76,8 @@ class Game
     @pong_api.end_game('http://ruby_pong_api:4571/api/pong/end_game', @client1[:player]["id"], @client2[:player]["id"], @game_data[:client1_pts], @game_data[:client2_pts], @game_data[:game_id]) do |status|
       if status
         puts "Game ended with status: #{status}"
+        @client1[:ws].close_connection
+        @client2[:ws].close_connection
       else
         puts "Error ending game"
       end
@@ -84,7 +86,7 @@ class Game
 
   def start_timer(duration)
     EM.add_timer(duration) do
-      end_game("Time's up! The game has ended.")
+      end_game({end: "Time's up! The game has ended."}.to_json)
     end
   end
 
