@@ -21,8 +21,11 @@ def game_result(game, user_id)
   score_text = "Score: #{user_score} - #{opponent_score}"
   rank_text = rank_points != 0 ? "(Rank points: #{rank_points > 0 ? '+' : ''}#{rank_points})" : ""
 
-  "#{result_text} - #{score_text} #{rank_text} <span class='badge bg-#{result_text == 'Victory' ? 'success' : 'danger'} float-end'>#{result_text}</span>"
+  "<span class='badge bg-#{result_text == 'Victory' ? 'success' : 'danger'} me-2'>#{result_text}</span> " \
+  "<span class='text-muted'>#{score_text}</span> " \
+  "<small class='text-secondary ms-2'>#{rank_text}</small>"
 end
+
 
 def user_logged(jwt, logger)
 	uri = URI('http://ruby_user_management:4567/api/auth/verify-token-user')
@@ -33,6 +36,7 @@ def user_logged(jwt, logger)
 		http.request(req)
 	end
 	logger.log('App', "Response from /api/auth/verify-token-user: #{res.body}")
+  res.finish if res.respond_to?(:finish)
   if res.is_a?(Net::HTTPSuccess)
 		logger.log('App', "User logged #{JSON.parse(res.body)}.")
 		return true
@@ -50,6 +54,7 @@ def get_user_info(api_url, jwt)
 	res = http.start do |http|
 		http.request(req)
 	end
+  res.finish if res.respond_to?(:finish)
   if res.is_a?(Net::HTTPSuccess)
     JSON.parse(res.body)["user"].first
   else
@@ -64,6 +69,7 @@ def get_users_paginated(page)
   res = http.start do |http|
     http.request(req)
   end
+  res.finish if res.respond_to?(:finish)
   if res.is_a?(Net::HTTPSuccess)
     JSON.parse(res.body)
   else
@@ -79,6 +85,7 @@ def get_user_stats(user_id)
   res = http.start do |http|
     http.request(req)
   end
+  res.finish if res.respond_to?(:finish)
   if res.is_a?(Net::HTTPSuccess)
     JSON.parse(res.body)["stats"]
   else

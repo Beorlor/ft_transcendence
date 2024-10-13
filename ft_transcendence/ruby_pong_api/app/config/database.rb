@@ -89,7 +89,21 @@ class Database
           ph.nb_win,
           ph.nb_lose,
           ph.nb_game,
-          COALESCE(ARRAY_AGG(ROW(p.id, p.player_1_id, p.player_2_id, p.state, p.rank_points, p.player_1_score, p.player_2_score, p.created_at)), '{}') AS games
+          COALESCE(
+              JSON_AGG(
+                  JSON_BUILD_OBJECT(
+                      'id', p.id,
+                      'player_1_id', p.player_1_id,
+                      'player_2_id', p.player_2_id,
+                      'state', p.state,
+                      'rank_points', p.rank_points,
+                      'player_1_score', p.player_1_score,
+                      'player_2_score', p.player_2_score,
+                      'created_at', p.created_at
+                  )
+              ) FILTER (WHERE p.id IS NOT NULL), 
+              '[]'
+          ) AS games
       FROM 
           _user u
       JOIN 
@@ -107,17 +121,14 @@ class Database
     begin
       result = execute(query)
       stats = result.map { |row| row }.first
-
-      if stats["games"] == "{\"(,,,,,,,)\"}" || stats["games"].nil?
-        stats["games"] = []
-      else
-        stats["games"] = JSON.parse(stats["games"])
-      end
+      
+      stats["games"] = JSON.parse(stats["games"]) if stats["games"].is_a?(String)
+      
       return stats
     rescue PG::Error => e
       @logger.log('Database', "Error retrieving stats and games for user #{user_id}: #{e.message}")
       {}
     end
   end
-
+  
 end
