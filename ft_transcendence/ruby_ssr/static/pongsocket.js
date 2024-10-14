@@ -74,6 +74,10 @@ window.addEventListener("DOMContentLoaded", () => {
         leftBar.y = json.paddle1_y;
         console.log("leftBar.y", leftBar.y);
       }
+	  if(json.ball_x && json.ball_y) {
+		ball.x = json.ball_x
+		ball.y = json.ball_y
+	  }
       leftBar.render(ctx);
       rightBar.render(ctx);
       ball.render(ctx);

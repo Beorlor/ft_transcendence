@@ -1,3 +1,4 @@
+include Math
 require_relative '../log/custom_logger'
 require 'json'
 
@@ -11,13 +12,14 @@ class Game
     victory_points: victory_points, ball_radius: 8,
     width: width, height: height,
     bar_width: 12, bar_height: 120,
-    ball_moove_speed: 20, ball_max_speed: 90,
-    ball_accceleration: 2, game_id: game_id,
+    ball_move_speed: 120, ball_max_speed: 90,
+    ball_acceleration: 2, game_id: game_id,
     ball_x: width / 2, ball_y: height / 2,
     ball_speed: 0, paddle1_y: height / 2 - 120 / 2,
     paddle2_y: height / 2 - 120 / 2 , paddle1_x: 20 ,
     player1_direction: 0, player2_direction: 0,
-    paddle2_x: width - 20 - 12, delta_time: 0.016 }
+    paddle2_x: width - 20 - 12, delta_time: 0.016,
+	ball_vx: 1, ball_vy: 1 }
     @start_time = Time.now
     @game = true
     @pong_api = pong_api
@@ -48,17 +50,65 @@ class Game
     end
   end
 
-  def game_loop
-    @game_data[:paddle1_y] += @game_data[:player1_direction] * 10 * @game_data[:delta_time]
-    @game_data[:paddle2_y] += @game_data[:player2_direction] * 10 * @game_data[:delta_time]
+  def game_loop()
+    @game_data[:paddle1_y] += @game_data[:player1_direction] * @game_data[:ball_move_speed] * @game_data[:delta_time]
+    @game_data[:paddle2_y] += @game_data[:player2_direction] * @game_data[:ball_move_speed] * @game_data[:delta_time]
+	handle_ball_movement()
     sended_data = { client1_pts: @game_data[:client1_pts], client2_pts: @game_data[:client2_pts], ball_x: @game_data[:ball_x], ball_y: @game_data[:ball_y],
     paddle1_y: @game_data[:paddle1_y], paddle2_y: @game_data[:paddle2_y], paddle1_x: @game_data[:paddle1_x], paddle2_x: @game_data[:paddle2_x], width: @game_data[:width], height: @game_data[:height] }
     send_to_client(@client1, sended_data.to_json)
     send_to_client(@client2, sended_data.to_json)
   end
 
+  def handle_ball_movement()
+	newX = @game_data[:ball_x] + @game_data[:ball_vx] * @game_data[:ball_move_speed] * @game_data[:delta_time]
+	newY = @game_data[:ball_y] + @game_data[:ball_vy] * @game_data[:ball_move_speed] * @game_data[:delta_time]
+	if newX + @game_data[:ball_radius] + 3 >= (@game_data[:paddle2_x] + @game_data[:bar_width]) && newY >= @game_data[:paddle2_y] && newY <= @game_data[:paddle2_y] + @game_data[:bar_height]
+		newX = @game_data[:paddle2_x] - @game_data[:ball_radius] - 3
+		relY = (@game_data[:paddle2_y] + @game_data[:bar_height] / 2) - @game_data[:ball_y]
+		normRelY = relY / @game_data[:bar_height] / 2
+		angle = normRelY * PI
+		@game_data[:ball_vx] = cos(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+		@game_data[:ball_vx] = -sin(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+	elsif newX - @game_data[:ball_radius] - 3 <= @game_data[:paddle1_x] && newY >= @game_data[:paddle1_y] && newY <= @game_data[:paddle1_y] + @game_data[:bar_height]
+		newX = @game_data[:paddle1_x] + @game_data[:ball_radius] + 3
+		relY = (@game_data[:paddle1_y] + @game_data[:bar_height] / 2) - @game_data[:ball_y]
+		normRelY = relY / @game_data[:bar_height] / 2
+		angle = normRelY * PI
+		@game_data[:ball_vx] = -cos(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+		@game_data[:ball_vx] = -sin(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+	end
+	if newY >= 590
+		newY = 590
+		@game_data[:ball_vy] *= -1
+	elsif newY < 10
+		newY = 10
+		@game_data[:ball_vy] *= -1
+	end
+	newX = @game_data[:ball_x] + @game_data[:ball_vx] * @game_data[:ball_move_speed] * @game_data[:delta_time]
+	newY = @game_data[:ball_y] + @game_data[:ball_vy] * @game_data[:ball_move_speed] * @game_data[:delta_time]
+	@game_data[:ball_x] = newX
+	@game_data[:ball_y] = newY
+	if (newX >= @game_data[:paddle2_x] + @game_data[:bar_width] || newX <= @game_data[:paddle1_x])
+		#TODO
+		send_to_client(@client1, "end")
+		send_to_client(@client2, "end")
+		reset_ball()
+		#TODO
+	end
+  end
+
+  def reset_ball()
+	@game_data[:ball_x] = @game_data[:width] / 2
+	@game_data[:ball_y] = @game_data[:height] / 2
+	@game_data[:ball_vx] = cos(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+	@game_data[:ball_vx] = -sin(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+  end
+
   def start
     start_timer(60)
+	@game_data[:ball_vx] = -cos(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+	@game_data[:ball_vx] = -sin(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
     send_to_client(@client1, "start")
     send_to_client(@client2, "start")
     @game_timer = EM.add_periodic_timer(@game_data[:delta_time]) { game_loop }
