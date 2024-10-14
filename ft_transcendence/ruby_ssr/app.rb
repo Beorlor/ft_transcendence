@@ -39,17 +39,16 @@ def user_logged(jwt, logger)
   res.finish if res.respond_to?(:finish)
   if res.is_a?(Net::HTTPSuccess)
 		logger.log('App', "User logged #{JSON.parse(res.body)}.")
-		return true
+		JSON.parse(res.body)
   else
 		logger.log('App', "Failed to verify token: #{res.code} #{res.message}")
     return false
   end
 end
 
-def get_user_info(api_url, jwt)
+def get_user_info(api_url)
   uri = URI(api_url)
 	req = Net::HTTP::Get.new(uri)
-	req['Cookie'] = "access_token=#{jwt}"
 	http = Net::HTTP.new(uri.host, uri.port)
 	res = http.start do |http|
 		http.request(req)
@@ -78,9 +77,8 @@ def get_users_paginated(page)
 end
 
 def get_user_stats(user_id)
-  uri = URI("http://ruby_pong_api:4571/api/pong/player/stats")
-  req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
-  req.body = { user_id: user_id }.to_json
+  uri = URI("http://ruby_pong_api:4571/api/pong/player/stats/#{user_id}")
+  req = Net::HTTP::Get.new(uri)
   http = Net::HTTP.new(uri.host, uri.port)
   res = http.start do |http|
     http.request(req)
@@ -169,11 +167,10 @@ end
 
 server.mount_proc '/profile' do |req, res|
   @user_logged = user_logged(get_access_token(req), logger)
-  access_token = get_access_token(req)
   @nav = generate_navigation
 
-  if access_token
-    user_info = get_user_info('http://ruby_user_management:4567/api/user/me', access_token)
+  if @user_logged
+    user_info = get_user_info("http://ruby_user_management:4567/api/user/#{@user_logged["user_id"]}")
     if user_info
       @stats = get_user_stats(user_info["id"])
       logger.log('App', "Stats: #{@stats}")
@@ -194,11 +191,10 @@ end
 
 server.mount_proc '/edit-profile' do |req, res|
   @user_logged = user_logged(get_access_token(req), logger)
-  access_token = get_access_token(req)
   @nav = generate_navigation
 
-  if access_token
-    user_info = get_user_info('http://ruby_user_management:4567/api/user/me', access_token)
+  if @user_logged
+    user_info = get_user_info("http://ruby_user_management:4567/api/user/#{@user_logged["user_id"]}")
     if user_info
       @user_info = user_info
       page = ERB.new(File.read("app/view/edit-profile.erb"))

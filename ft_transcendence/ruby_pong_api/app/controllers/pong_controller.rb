@@ -27,23 +27,32 @@ class PongController
     params = query_string ? URI.decode_www_form(query_string).to_h : {}
     clean_path = uri.path
     @logger.log('PongController', "Received #{method} request for path #{clean_path}")
-    case [method, clean_path]
-    when ['POST', '/api/pong/create_game']
-      create_game(client, body)
-    when ['POST', '/api/pong/get_game_history']
-      get_game_history(client, body)
-    when ['POST', '/api/pong/end_game']
-      end_game(client, body)
-    when ['POST', '/api/pong/player/stats']
-      get_user_stats(client, body)
+    user_id_stats_match = clean_path.match(%r{^/api/pong/player/stats/(\d+)$})
+    if user_id_stats_match
+      user_id = user_id_stats_match[1]
+      case [method]
+      when ['GET']
+        get_user_stats(client, user_id)
+      else
+        @logger.log('PongController', "No route found for: #{method} #{clean_path}")
+        return 1
+      end
     else
-      return 1
+      case [method, clean_path]
+      when ['POST', '/api/pong/create_game']
+        create_game(client, body)
+      when ['POST', '/api/pong/get_game_history']
+        get_game_history(client, body)
+      when ['POST', '/api/pong/end_game']
+        end_game(client, body)
+      else
+        return 1
+      end
     end
     return 0
   end
 
-  def get_user_stats(client, body)
-    user_id = body['user_id']
+  def get_user_stats(client, user_id)
     @logger.log('PongController', "Getting stats for user #{user_id}")
     if user_id.nil?
       RequestHelper.respond(client, 400, { error: 'Missing user_id' })

@@ -60,7 +60,7 @@ class TokenController
     authorization_header = cookies['access_token']
     payload = @token_manager.verify_access_token(authorization_header)
     if payload
-      RequestHelper.respond(client, 200, { success: "Access token is valid." })
+      RequestHelper.respond(client, 200, { success: "Access token is valid.", user_id: payload['user_id'] })
     else
       RequestHelper.respond(client, 401, { error: "Invalid access token." })
     end

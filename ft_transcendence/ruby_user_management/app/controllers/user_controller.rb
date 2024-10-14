@@ -61,13 +61,7 @@ class UserController
         RequestHelper.not_found(client)
       end
     else
-      case [method, clean_path]
-      when ['GET', '/api/user/me']
-        @logger.log('UserController', "Fetching user with access_token: #{cookies['access_token']}")
-        get_user(client, @token_manager.get_user_id(cookies['access_token']))
-      else
-        return 1
-      end
+      return 1
     end
     return 0
   end
@@ -86,6 +80,7 @@ class UserController
   def get_user(client, user_id)
     @logger.log('UserController', "Fetching user with ID: #{user_id}")
     status = @user_manager.get_user(user_id)
+    @logger.log('UserController', "User found: #{status}")
     RequestHelper.respond(client, status[:code], status)
   end
 
