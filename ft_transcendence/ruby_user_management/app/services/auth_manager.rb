@@ -184,36 +184,4 @@ class AuthManager
     end
   end
 
-  def update_profile(user_id, body)
-    user = @user_repository.get_user_by_id(user_id).first
-    update= {}
-    @logger.log('AuthManager', "Updating profile with body: #{body}")
-    if body.nil? || body.empty?
-      return { code: 400, error: 'Invalid body' }
-    end
-
-    if !body['username'].nil? && body['username'].size > 3 && body['username'].size < 12
-      update[:username] = body['username']
-    end
-    if !body['img_url'].nil?
-      @logger.log('AuthManager', "Image URL: #{body['img_url']}")
-    end
-    if user['login_type'] == 0
-      email_regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-      @logger.log('AuthManager', "Email: #{body['email']}")
-      if !body['email'].nil? && body['email'].size > 5 && body['email'].size < 320 && body['email'].match(email_regex)
-        update[:email] = body['email']
-      end
-      if !body['password'].nil? && body['password'].size > 6 && body['password'].size < 255
-        update[:password] = @security.secure_password(body['password'])
-      end
-    end
-    if update.empty?
-      return { code: 400, error: 'No valid parameters to update' }
-    end
-
-    @user_repository.update_user(update, user_id)
-    return { code: 200, success: 'Profile updated' }
-  end
-
 end

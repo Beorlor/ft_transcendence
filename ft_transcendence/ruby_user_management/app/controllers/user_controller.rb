@@ -35,30 +35,27 @@ class UserController
       case [method]
       when ['GET']
         get_user(client, user_id)
-      when ['PUT']
-        update_user(client)
       when ['DELETE']
         delete_user(client)
       else
         @logger.log('UserController', "No route found for: #{method} #{clean_path}")
         RequestHelper.not_found(client)
       end
+    elsif clean_path == '/api/user/'
+      case [method]
+      when ['PUT']
+        update_user(client, body, cookies)
+      end
     elsif clean_path == '/api/users'
       case [method]
       when ['GET']
         get_users_paginated(client)
-      else
-        @logger.log('UserController', "No route found for: #{method} #{clean_path}")
-        RequestHelper.not_found(client)
       end
     elsif user_page_match
       user_page = user_page_match[1]
       case [method]
       when ['GET']
         get_users_paginated(client, user_page)
-      else
-        @logger.log('UserController', "No route found for: #{method} #{clean_path}")
-        RequestHelper.not_found(client)
       end
     else
       return 1
@@ -84,8 +81,14 @@ class UserController
     RequestHelper.respond(client, status[:code], status)
   end
 
-  def update_user(client)
-    RequestHelper.respond(client, 200, { success: "User updated" })
+  def update_user(client, body, cookies)
+    user_id = @token_manager.get_user_id(cookies['access_token'])
+    status = @user_manager.update_user(user_id, body)
+    if status[:error]
+      RequestHelper.respond(client, status[:code], {error: status[:error]})
+      return
+    end
+    RequestHelper.respond(client, status[:code], {success: status[:success]})
   end
 
   def delete_user(client)

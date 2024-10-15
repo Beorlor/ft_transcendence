@@ -43,8 +43,6 @@ class AuthController
       handle_callback(client, body)
 	  when ['POST', '/api/auth/validate-code']
 		  validate_code(client, body, headers, cookies)
-    when ['POST', '/api/auth/update-profile']
-      update_profile(client, body, cookies)
     else
       return 1
     end
@@ -114,16 +112,6 @@ class AuthController
     access_token = @token_manager.generate_access_token(status[:user]["id"], true, status[:user]["id"])
     refresh_token = @token_manager.generate_refresh_token(status[:user]["id"])
     RequestHelper.respond(client, status[:code], {success: status[:success]}, ["access_token=#{access_token}; Path=/; Max-Age=3600; HttpOnly; Secure"])
-  end
-
-  def update_profile(client, body, cookies)
-    user_id = @token_manager.get_user_id(cookies['access_token'])
-    status = @auth_manager.update_profile(user_id, body)
-    if status[:error]
-      RequestHelper.respond(client, status[:code], {error: status[:error]})
-      return
-    end
-    RequestHelper.respond(client, status[:code], {success: status[:success]})
   end
 
 end
