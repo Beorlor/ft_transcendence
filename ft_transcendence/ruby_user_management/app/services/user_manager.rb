@@ -1,5 +1,6 @@
 require_relative '../repository/user_repository'
 require_relative '../log/custom_logger'
+require_relative 'external/img_api'
 require 'securerandom'
 require 'uri'
 require 'net/http'
@@ -7,9 +8,10 @@ require 'json'
 
 class UserManager
 
-  def initialize(user_repository = UserRepository.new, logger = Logger.new)
+  def initialize(user_repository = UserRepository.new, logger = Logger.new, img_api = ImgApi.new)
     @user_repository = user_repository
     @logger = logger
+    @img_api = img_api
   end
 
   def get_user(user_id)
@@ -53,7 +55,11 @@ class UserManager
       update[:username] = body['username']
     end
     if !body['img_url'].nil?
-      @logger.log('AuthManager', "Image URL: #{body['img_url']}")
+      res_body = @img_api.upload_img(body['img_url'], user_id)
+      if res_body != false
+        update[:img_url] = res_body['img_url']
+      end
+      @logger.log('AuthManager', "Image URL url: #{body['img_url']}")
     end
     if user['login_type'] == 0
       email_regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/

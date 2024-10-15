@@ -1,14 +1,37 @@
 require 'webrick'
 require 'mongo'
+require 'base64'
+require 'json'
 require_relative 'app/log/custom_logger'
 
 logger = Logger.new
 logger.log('Server', 'Starting server')
 
-client = Mongo::Client.new([ 'localhost:27017' ], :database => 'ft_transcendence_db', user: 'user', password: 'password')
+client = Mongo::Client.new('mongodb://user:password@mongodb:27017/ft_transcendence_db?authSource=admin')
 logger.log('Mongo', 'Connected to database')
 
-server = WEBrick::HTTPServer.new(:Port => 4572)
+images_collection = client[:images]
+
+logger.log('Server', 'Collections created')
+
+def mime_type_from_extension(filename)
+  case File.extname(filename).downcase
+  when '.png'
+    'image/png'
+  when '.jpg', '.jpeg'
+    'image/jpeg'
+  when '.gif'
+    'image/gif'
+  when '.bmp'
+    'image/bmp'
+  when '.svg'
+    'image/svg+xml'
+  else
+    'application/octet-stream'
+  end
+end
+
+server = WEBrick::HTTPServer.new(Port: 4572)
 
 server.mount_proc '/' do |req, res|
   logger.log('Server', "Request for #{req.path}")
@@ -16,21 +39,20 @@ server.mount_proc '/' do |req, res|
 end
 
 server.mount_proc '/img/upload' do |req, res|
-  if req.request_method == 'POST' && req.content_type.start_with?('multipart/form-data')
-    boundary = req.content_type.split('; ').find { |part| part.start_with?('boundary=') }.sub('boundary=', '')
-    parts = req.body.split("--#{boundary}").reject { |part| part.strip.empty? }
-
-    parts.each do |part|
-      if part =~ /Content-Disposition:.*name="image"; filename="([^"]+)"/
-        filename = $1
-        file_content = part.split("\r\n\r\n", 2).last.strip
-
-        File.open(File.join('uploads', filename), 'wb') do |file|
-          file.write(file_content)
-        end
-        res.body = "Image reçue: #{filename}"
-      end
+  logger.log('Server', "Request for #{req.path} with method #{req.request_method}")
+  if req.request_method == 'POST'
+    json = JSON.parse(req.body)
+    image_name = json['filename']
+    image_doc = images_collection.find(id: json['id']).first
+    if image_doc
+      images_collection.delete_one(id: json['id'])
     end
+    mime_type = mime_type_from_extension(image_name)
+
+    images_collection.insert_one({ id: json['id'], filename: image_name, content: json['content'], mime_type: mime_type })
+
+    logger.log('Server', "Received image: #{req.body}")
+    res.body = "{ \"img_url\": \"https://localhost/img/#{image_name}\" }"
   else
     res.body = "Erreur lors du traitement de l'image."
   end
@@ -38,27 +60,17 @@ end
 
 server.mount_proc '/img/' do |req, res|
   image_name = req.path.sub('/img/', '')
-  image_path = File.join('uploads', image_name)
+  image_doc = images_collection.find(filename: image_name).first
 
-  if File.exist?(image_path)
-    res.content_type = 'image/png'
-    res.body = File.binread(image_path)
+  if image_doc
+    res.content_type = image_doc[:mime_type]
+    res.body = Base64.strict_decode64(image_doc[:content])
   else
     res.status = 404
-    res.body = 'Image non trouvée.'
+    res.body = 'Image not found'
   end
 end
 
-server.mount_proc '/img/test' do |req, res|
-  logger.log('Server', "Request for #{req.path}")
-  image_data = {
-    filename: "752ce434251a6d55e68e37da5ef043ac.jpg",
-    content: "\xFF\xD8\xFF\xE1\x00\x16Exif\x00\x00MM\x00*\x00\x00\x00\b\x00\x00\x00\x00\x00\x00\xFF\xE2\x02(ICC_PROFILE\x00\x01\x01\x00\x00\x02\x18\x00\x00\x00\x00\x02\x10\x00\x00mntrRGB XYZ \x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00acsp\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\xF6\xD6\x00\x01\x00\x00\x00\x00\xD3-\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00XYZ \x00\x00\x00\x00\x00\x00o\xA2\x00\x008\xF5\x00\x00\x03\x90XYZ \x00\x00\x00\x00\x00\x00b\x99\x00\x00\xB7\x85\x00\x00\x18\xDAXYZ \x00\x00\x00\x00\x00\x00$\xA0\x00\x00\x0F\x84\x00\x00\xB6\xCFpara\x00\x00\x00\x00\x00\x04\x00\x00\x00\x02ff\x00\x00\xF2\xA7\x00\x00\rY\x00\x00\x13\xD0\x00\x00\n[\x00\x00\x00\x00\x00\x00\x00\x00XYZ \x00\x00\x00\x00\x00\x00\xF6\xD6\x00\x01\x00\x00\x00\x00\xD3-mluc\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\fenUS\x00\x00\x00 \x00\x00\x00\x1C\x00G\x00o\x00o\x00g\x00l\x00e\x00 \x00I\x00n\x00c\x00.\x00 \x002\x000\x001\x006\xFF\xDB\x00C\x00\x14\x0E\x0F\x12\x0F\r\x14\x12\x10\x12\x17\x15\x14\x18\x1E2!\x1E\x1C\x1C\x1E=,.$2I@LKG@FEPZsbPUmVEFd\x88emw{\x81\x82\x81N`\x8D\x97\x8C}\x96s~\x81|\xFF\xDB\x00C\x01\x15\x17\x17\x1E\x1A\x1E;!!;|SFS||||||||||||||||||||||||||||||||||||||||||||||||||\xFF\xC0\x00\x11\b\x02\xE0\x02\xE0\x03\x01\"\x00\x02\x11\x01\x03\x11\x01\xFF\xC4\x00\e\x00\x00\x03\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\a\xFF\xC4\x00A\x10\x00\x02\x02\x01\x03\x02\x03\x05\x06\x05\x02\x05\x04\x01\x05\x00\x00\x01\x02\x11\x03\x04!1\x12A\x05Qq\x13\"2a\x81\x06BR\x91\xA1\xB1\x14#3\xC1\xD1br\x154C\xE1\xF0DS\x82\xF1$5c\x92\xB2\xD2\xFF\xC4\x00\x18\x01\x01\x01\x01\x01\x01"
-  }
-   res['Content-Type'] = 'image/jpeg'
-   res.body = image_data[:content].b
-   res['Content-Length'] = image_data[:content].bytesize.to_s
-end
-
 trap('INT') { server.shutdown }
+
 server.start

@@ -3,7 +3,11 @@ require 'json'
 module RequestHelper
   def self.parse_request(client)
     begin
-      request = client.readpartial(2048)
+      request = ''
+      while (chunk = client.readpartial(2048))
+        request += chunk
+        break if chunk.length < 2048
+      end
     rescue EOFError
       return nil
     end
