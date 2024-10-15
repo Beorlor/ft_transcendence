@@ -122,14 +122,15 @@ services:
       - smtp_network
 
   mongodb:
-    image: mongo:latest
+    build: ./mongodb
     container_name: mongodb_container
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
     ports:
       - "27017:27017"
+    networks:
+      - mongo_network
     volumes:
       - mongodb_data:/data/db
 
@@ -140,6 +141,7 @@ services:
     ports:
       - "4572:4572"
     networks:
+      - mongo_network
       - nginx_network
 
 volumes:
@@ -152,4 +154,6 @@ networks:
   nginx_network:
     driver: bridge
   smtp_network:
+    driver: bridge
+  mongo_network:
     driver: bridge
