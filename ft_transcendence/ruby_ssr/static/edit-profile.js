@@ -9,8 +9,8 @@ function loadEditProfileFormAction() {
 
       formData.forEach((value, key) => console.log(`${key}: ${value}`));
 
-      fetch("https://localhost/api/auth/update-profile", {
-        method: "POST",
+      fetch("https://localhost/api/user/", {
+        method: "PUT",
         headers: {
           Accept: "*/*",
         },
