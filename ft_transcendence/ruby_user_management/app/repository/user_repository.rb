@@ -7,9 +7,8 @@ class UserRepository
     @logger = logger
   end
 
-  def register_complement_info(ranking, history)
+  def register_complement_info(history)
     @logger.log('AuthRepository', "Registering complement info")
-    Database.insert_into_table('_ranking', ranking)
     Database.insert_into_table('_pongHistory', history)
     @logger.log('AuthRepository', "Complement info for user registered")
   end

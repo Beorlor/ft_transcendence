@@ -68,6 +68,16 @@ function loadPageScript(game) {
       console.log(document.getElementById("form_edit_profile"));
       window.loadEditProfileFormAction();
     }
+    if (window.location == "https://localhost/pong") {
+      window.pongMain();
+      window.GAMESTATE = window.GAME_STATES.pong;
+    }
+    if (
+      window.location == "https://localhost/pongserv" ||
+      window.location == "https://localhost/pongserv-ranked"
+    ) {
+      window.startNormalGame();
+    }
   };
 }
 
@@ -102,6 +112,16 @@ function rebindEvents() {
         .getElementById("edit_profile_button")
         .addEventListener("click", handleEditProfileClick);
     }
+  }
+  if (document.getElementById("play_button")) {
+    document
+      .getElementById("play_button")
+      .addEventListener("click", handlePlayEventClick);
+  }
+  if (document.getElementById("ranked_button")) {
+    document
+      .getElementById("ranked_button")
+      .addEventListener("click", handleRankedEventClick);
   }
 }
 
@@ -183,6 +203,18 @@ function handleProfileClick(ev) {
 function handleEditProfileClick(ev) {
   ev.preventDefault();
   const url = "https://localhost/edit-profile";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
+
+function handlePlayEventClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/pongserv";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
+
+function handleRankedEventClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/pongserv-ranked";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 

@@ -78,6 +78,7 @@ class PongController
   def get_game_history(client, cookies)
     @logger.log('PongController', "Getting game history for user #{cookies}")
     in_game = @pong_manager.is_already_playing(cookies["user_id"])
+    @logger.log('PongController', "in game: #{in_game}")
     if in_game.nil?
       @logger.log('PongController', "No game found for user #{cookies}")
       RequestHelper.respond(client, 404, { no_game: 'No game found' })

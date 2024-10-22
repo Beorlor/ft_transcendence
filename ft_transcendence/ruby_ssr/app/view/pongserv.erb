@@ -1,4 +1,8 @@
-<script src="/static/pongsocket.js"></script>
+<% if @ranked %>
+	<script src="/static/pongsocket-ranked.js"></script>
+<% else %>
+	<script src="/static/pongsocket-normal.js"></script>
+<% end %>
 <div>
 	<div style="display: flex; justify-content: center;">
 		<h1 id="game_name">Pongpong<br></h1>

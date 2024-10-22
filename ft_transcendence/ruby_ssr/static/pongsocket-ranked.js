@@ -39,8 +39,9 @@ const makeBall = (x, y, radius) => {
 /* rueifrwhfreuywghwuighvrnicjmowobuuhjvimrfkruqotnhijmrvobqnivmrcqbjnmkv
 yvquicjodknjqouhvijmrocki brinqvmokclewvognrqbmviopc,w[r  evnbivom  pw  rbniu
 bvvwhrnjcmekdl,ckfvimwbguijmvoqc,vmreiqbtnuimvqoc,pem rnbiutmvo] */
-window.addEventListener("DOMContentLoaded", () => {
-  const url = "wss://localhost/pongsocket/pong";
+
+function startNormalGame() {
+  const url = "wss://localhost/pongsocket/ranked";
   const connection = new WebSocket(url);
   const canvas = document.getElementById("drawCanvas");
   const ball = makeBall(400, 300, 10);
@@ -58,6 +59,7 @@ window.addEventListener("DOMContentLoaded", () => {
   connection.onmessage = (event) => {
     if (!canvas) return;
     if (canvas.getContext) {
+      console.log("data : ", event.data);
       let json = JSON.parse(event.data);
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, 800, 600);
@@ -74,15 +76,14 @@ window.addEventListener("DOMContentLoaded", () => {
         leftBar.y = json.paddle1_y;
         console.log("leftBar.y", leftBar.y);
       }
-	  if(json.ball_x && json.ball_y) {
-		ball.x = json.ball_x
-		ball.y = json.ball_y
-	  }
+      if (json.ball_x && json.ball_y) {
+        ball.x = json.ball_x;
+        ball.y = json.ball_y;
+      }
       leftBar.render(ctx);
       rightBar.render(ctx);
       ball.render(ctx);
     }
-    console.log("Message reçu :", event.data);
   };
 
   connection.onclose = () => {
@@ -109,4 +110,10 @@ window.addEventListener("DOMContentLoaded", () => {
       connection.send('{ "direction": null }');
     }
   });
+}
+
+window.addEventListener("DOMContentLoaded", (_) => {
+  startNormalGame();
 });
+
+window.startNormalGame = startNormalGame;
