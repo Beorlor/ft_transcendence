@@ -16,7 +16,7 @@ class PongRepository
   end
 
   def get_game_one_user(user_id)
-    game = Database.get_one_element_from_table('_pong', { player_1_id: user_id, player_2_id: user_id }, 0)
+    game = Database.get_one_element_from_table('_pong', { player_1_id: user_id, player_2_id: user_id }, {state: 3})
     if game.length > 0
       game[0]
     else
@@ -26,7 +26,7 @@ class PongRepository
 
 
   def get_game_history(user_id)
-    history = Database.get_one_element_from_table('_pongHistory', { user_id: user_id })
+    history = Database.get_one_element_from_table('_pongHistory', {}, { user_id: user_id })
     if history.length > 0
       history[0]
     else
@@ -39,7 +39,7 @@ class PongRepository
   end
 
   def get_game(player_id)
-    game = Database.get_one_element_from_table('_pong', { player_1_id: player_id })
+    game = Database.get_one_element_from_table('_pong', {}, { player_1_id: player_id })
     if game.length > 0
       game[0]
     else

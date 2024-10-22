@@ -16,7 +16,7 @@ class PongController
       pong(client, headers)
     when '/pongsocket/ranked'
       @logger.log('PONG', "Received ping from #{headers['Origin']} for ranked")
-      client.send('pong ranked')
+      ranked(client, headers)
     when 'pongsocket/custom'
       @logger.log('PONG', "Received ping from #{headers['Origin']} for custom")
       client.send('pong custom')
@@ -30,7 +30,14 @@ class PongController
     @logger.log('PONG', "Received ping from #{headers}")
     cookie = headers['Cookie'].split('; ').map { |c| c.split('=', 2) }.to_h
     @logger.log('PONG', "Received ping with access token #{cookie['access_token']}")
-    @pong.matchmaking_normal(client, cookie)
+    @pong.matchmaking(client, cookie)
+  end
+
+  def ranked(client, headers)
+    @logger.log('PONG', "Received ping from #{headers}")
+    cookie = headers['Cookie'].split('; ').map { |c| c.split('=', 2) }.to_h
+    @logger.log('PONG', "Received ping with access token #{cookie['access_token']}")
+    @pong.matchmaking(client, cookie, true)
   end
 
 end

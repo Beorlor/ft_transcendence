@@ -13,13 +13,14 @@ logger = Logger.new
 
 def game_result(game, user_id)
   is_player_1 = game["player_1_id"] == user_id
+  is_player_1_winner = game["player_1_score"] > game["player_2_score"]
   user_score = is_player_1 ? game["player_1_score"] : game["player_2_score"]
   opponent_score = is_player_1 ? game["player_2_score"] : game["player_1_score"]
   rank_points = game["rank_points"] || 0
 
   result_text = user_score > opponent_score ? "Victory" : "Defeat"
   score_text = "Score: #{user_score} - #{opponent_score}"
-  rank_text = rank_points != 0 ? "(Rank points: #{rank_points > 0 ? '+' : ''}#{rank_points})" : ""
+  rank_text = rank_points != 0 ? "(Rank points: #{result_text == 'Victory' ?  '+' : '-'}#{rank_points})" : ""
 
   "<span class='badge bg-#{result_text == 'Victory' ? 'success' : 'danger'} me-2'>#{result_text}</span> " \
   "<span class='text-muted'>#{score_text}</span> " \
@@ -162,6 +163,12 @@ server.mount_proc '/callback-tmp' do |req, res|
 end
 
 server.mount_proc '/pongserv' do |req, res|
+  @ranked = false
+  handle_route(req, res, logger, "app/view/pongserv.erb")
+end
+
+server.mount_proc '/pongserv-ranked' do |req, res|
+  @ranked = true
   handle_route(req, res, logger, "app/view/pongserv.erb")
 end
 

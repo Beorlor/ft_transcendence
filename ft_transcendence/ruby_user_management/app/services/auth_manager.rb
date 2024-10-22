@@ -26,19 +26,15 @@ class AuthManager
 
   def register_complement_info(user_id)
     @logger.log('AuthManager', "Registering complement info for user with id #{user_id}")
-    ranking = {
-      user_id: user_id,
-      points: 0,
-      updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
-    }
     history = {
       user_id: user_id,
       nb_win: 0,
       nb_lose: 0,
       nb_game: 0,
+      rank_points: 0,
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
     }
-    @user_repository.register_complement_info(ranking, history)
+    @user_repository.register_complement_info(history)
     @logger.log('AuthManager', "Complement info for user with id #{user_id} registered")
   end
 

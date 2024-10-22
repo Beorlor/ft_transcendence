@@ -11,6 +11,7 @@ import {
 } from "./constants.mjs";
 
 function pong_main() {
+  console.log("test");
   let previousTime = 0;
   let delta = 0.0;
 
@@ -234,5 +235,9 @@ function pong_main() {
   window.refreshPongInputs();
 }
 
-pong_main();
-window.GAMESTATE = window.GAME_STATES.pong;
+document.addEventListener("DOMContentLoaded", (_) => {
+  pong_main();
+  window.GAMESTATE = window.GAME_STATES.pong;
+});
+
+window.pongMain = pong_main;

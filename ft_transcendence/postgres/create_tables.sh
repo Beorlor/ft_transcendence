@@ -24,15 +24,6 @@ CREATE TABLE IF NOT EXISTS _emailActivation (
     updated_at TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS _ranking (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES _user(id),
-    points INTEGER,
-    updated_at TIMESTAMP,
-    deleted_at TIMESTAMP,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
 CREATE TABLE IF NOT EXISTS _pong (
     id SERIAL PRIMARY KEY,
     player_1_id INTEGER REFERENCES _user(id),
@@ -52,6 +43,7 @@ CREATE TABLE IF NOT EXISTS _pongHistory (
     nb_win INTEGER,
     nb_lose INTEGER,
     nb_game INTEGER,
+    rank_points INTEGER,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

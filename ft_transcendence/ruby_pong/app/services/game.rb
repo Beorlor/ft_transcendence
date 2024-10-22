@@ -5,7 +5,7 @@ require 'json'
 class Game
   attr_accessor :client1, :client2, :game_data, :start_time, :game, :game_timer, :victory_points, :width, :height
 
-  def initialize(client1, client2, game_id, victory_points = 5, width = 800, height = 600, pong_api = PongApi.new, logger = Logger.new)
+  def initialize(client1, client2, game_id, ranked = false, victory_points = 5, width = 800, height = 600, pong_api = PongApi.new, logger = Logger.new)
     @client1 = client1
     @client2 = client2
     @game_data = { client1_pts: 0, client2_pts: 0,
@@ -19,6 +19,7 @@ class Game
     paddle2_y: height / 2 - 120 / 2 , paddle1_x: 20 ,
     player1_direction: 0, player2_direction: 0,
     paddle2_x: width - 20 - 12, delta_time: 0.016,
+    ranked: false,
 	ball_vx: 1, ball_vy: 1 }
     @start_time = Time.now
     @game = true
@@ -91,8 +92,8 @@ class Game
 	@game_data[:ball_y] = newY
 	if (newX >= @game_data[:paddle2_x] + @game_data[:bar_width] || newX <= @game_data[:paddle1_x])
 		#TODO
-		send_to_client(@client1, "end")
-		send_to_client(@client2, "end")
+		send_to_client(@client1, {end: "Time's up! The game has ended. (in handle move)"}.to_json)
+		send_to_client(@client2, {end: "Time's up! The game has ended. (in handle move)"}.to_json)
 		reset_ball()
 		#TODO
 	end
@@ -109,8 +110,8 @@ class Game
     start_timer(60)
 	@game_data[:ball_vx] = -cos(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
 	@game_data[:ball_vx] = -sin(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
-    send_to_client(@client1, "start")
-    send_to_client(@client2, "start")
+    send_to_client(@client1, {start: "start game"}.to_json)
+    send_to_client(@client2, {start: "start game"}.to_json)
     @game_timer = EM.add_periodic_timer(@game_data[:delta_time]) { game_loop }
   end
 
@@ -123,7 +124,7 @@ class Game
     send_to_client(@client2, message)
     @game = false
     stop_game_timer
-    @pong_api.end_game('http://ruby_pong_api:4571/api/pong/end_game', @client1[:player]["id"], @client2[:player]["id"], @game_data[:client1_pts], @game_data[:client2_pts], @game_data[:game_id]) do |status|
+    @pong_api.end_game('http://ruby_pong_api:4571/api/pong/end_game', @client1[:player]["id"], @client2[:player]["id"], @game_data[:client1_pts], @game_data[:client2_pts], @game_data[:game_id], @game_data[:ranked]) do |status|
       if status
         puts "Game ended with status: #{status}"
         @client1[:ws].close_connection
