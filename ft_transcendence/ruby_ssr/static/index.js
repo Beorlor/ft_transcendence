@@ -107,6 +107,12 @@ function rebindEvents() {
     document
       .getElementById("button_profile")
       .addEventListener("click", handleProfileClick);
+    document
+      .getElementById("add_friend_button")
+      .addEventListener("click", handleAddFriendClick);
+    document
+      .getElementById("submit_friend_request")
+      .addEventListener("click", handleSubmitFriendRequest);
     if (document.getElementById("edit_profile_button")) {
       document
         .getElementById("edit_profile_button")
@@ -216,6 +222,23 @@ function handleRankedEventClick(ev) {
   ev.preventDefault();
   const url = "https://localhost/pongserv-ranked";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
+
+function handleAddFriendClick(ev) {
+  ev.preventDefault();
+  const modal = new bootstrap.Modal(document.getElementById("addFriendModal"));
+  modal.show();
+}
+
+function handleSubmitFriendRequest(ev) {
+  ev.preventDefault();
+  const username = document.getElementById("friend_username").value;
+  console.log(`Sending friend request to ${username}`);
+  const modal = bootstrap.Modal.getInstance(
+    document.getElementById("addFriendModal")
+  );
+  modal.hide();
+  document.getElementById("friend_username").value = "";
 }
 
 window.addEventListener("popstate", function (_) {

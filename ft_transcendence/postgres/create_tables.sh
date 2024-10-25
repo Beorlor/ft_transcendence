@@ -49,6 +49,16 @@ CREATE TABLE IF NOT EXISTS _pongHistory (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS _friendship (
+    id SERIAL PRIMARY KEY,
+    requester_id INTEGER REFERENCES _user(id) ON DELETE CASCADE,
+    receiver_id INTEGER REFERENCES _user(id) ON DELETE CASCADE,
+    status VARCHAR(10) NOT NULL DEFAULT 'pending',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP
+);
+
 EOSQL
 
 echo "Tables '_user', '_emailActivation', '_ranking', '_game', et '_gameHistory' vérifiées ou créées avec succès."

@@ -15,6 +15,34 @@
     <div class="text-end">
       <button id="button_logout" type="button" class="btn btn-outline-light me-2">Logout</button>
       <button id="button_profile" type="button" class="btn btn-primary">Profile</button>
+
+      <div class="dropdown d-inline-block">
+        <button id="friends_button" type="button" class="btn btn-link text-white" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fas fa-user-friends fa-2x"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" style="max-height: 200px; overflow-y: auto;">
+          <li>
+            <a class="dropdown-item" id="add_friend_button">
+              <svg class="bi" width="16" height="16"><use xlink:href="#plus-circle"/></svg> Add Friend
+            </a>
+          </li>
+          <li><a class="dropdown-item">
+            <span class="status-indicator online"></span> Jean
+          </a></li>
+          <li><a class="dropdown-item">
+            <span class="status-indicator offline"></span> Marine
+          </a></li>
+          <li><a class="dropdown-item">
+            <span class="status-indicator online"></span> Pierre
+          </a></li>
+          <li><a class="dropdown-item">
+            <span class="status-indicator offline"></span> Matthieu
+          </a></li>
+          <li><a class="dropdown-item">
+            <span class="status-indicator online"></span> Corine
+          </a></li>
+        </ul>
+      </div>
     </div>
   <% else %>
     <div class="text-end">
