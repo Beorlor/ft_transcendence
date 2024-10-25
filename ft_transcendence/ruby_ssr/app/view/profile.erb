@@ -33,7 +33,7 @@
     <div class="col-md-4 text-center">
       <img src="<%= @user["img_url"] %>" alt="Profile Photo" class="profile-pic mb-3">
       <div class="profile-info">
-        <h3><%= @user["username"] %></h3>
+        <h3><%= @user["username"] %>#<%= @user["id"] %></h3>
         <p>Email: <%= @user["email"] %></p>
         <button id="edit_profile_button" class="btn btn-primary edit-profile-btn">Edit Profile</button>
       </div>
