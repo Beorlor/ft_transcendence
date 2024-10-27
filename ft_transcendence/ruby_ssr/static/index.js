@@ -234,11 +234,32 @@ function handleSubmitFriendRequest(ev) {
   ev.preventDefault();
   const username = document.getElementById("friend_username").value;
   console.log(`Sending friend request to ${username}`);
-  const modal = bootstrap.Modal.getInstance(
-    document.getElementById("addFriendModal")
-  );
-  modal.hide();
-  document.getElementById("friend_username").value = "";
+  const popUp = document.getElementById("pop-up");
+  popUp.innerHTML = "";
+  fetch("https://localhost/api/add-friend", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ friend_id: username }),
+  })
+    .then((res) => res.json())
+    .then((json) => {
+      if (json.success) {
+        console.log("Friend request sent successfully.");
+        const modal = bootstrap.Modal.getInstance(
+          document.getElementById("addFriendModal")
+        );
+        modal.hide();
+        document.getElementById("friend_username").value = "";
+      } else {
+        popUp.innerHTML = `<div class="alert alert-danger" role="alert">
+        ${json.error}
+        </div>`;
+        console.error("Error: ", json.error);
+      }
+    })
+    .catch((err) => console.error("Error: ", err));
 }
 
 window.addEventListener("popstate", function (_) {

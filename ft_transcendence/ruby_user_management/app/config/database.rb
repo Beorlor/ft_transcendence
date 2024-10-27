@@ -35,12 +35,19 @@ class Database
     begin
       execute(query)
     rescue PG::Error => e
-      Logger.log('Database', "Error inserting into table #{table_name}: #{e.message}")
+      puts("Error inserting into table #{table_name}: #{e.message}")
     end
   end
 
-  def self.get_one_element_from_table(table_name, column, value)
-    query = "SELECT * FROM #{table_name} WHERE #{column} = '#{value}'"
+  def self.get_one_element_from_table(table_name, or_conditions = {}, and_conditions = {})
+    or_where_clauses = or_conditions.map { |column, value| "#{column} = '#{value}'" }.join(' OR ') unless or_conditions.empty?
+    and_where_clauses = and_conditions.map { |column, value| "#{column} = '#{value}'" }.join(' AND ') unless and_conditions.empty?
+    
+    where_clauses = []
+    where_clauses << "(#{or_where_clauses})" if or_where_clauses
+    where_clauses << and_where_clauses if and_where_clauses
+
+    query = "SELECT * FROM #{table_name} WHERE #{where_clauses.join(' AND ')}"
     result = execute(query)
     result.map { |row| row }
   end

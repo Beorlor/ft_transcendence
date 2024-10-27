@@ -2,6 +2,7 @@ require 'socket'
 require_relative 'app/controllers/auth_controller'
 require_relative 'app/controllers/token_controller'
 require_relative 'app/controllers/user_controller'
+require_relative 'app/controllers/friend_controller'
 require_relative 'app/config/request_helper'
 require_relative 'app/log/custom_logger'
 
@@ -11,6 +12,7 @@ puts "Ruby User Management server running on port 4567"
 authController = AuthController.new
 tokenController = TokenController.new
 userController = UserController.new
+friendController = FriendController.new
 
 
 loop do
@@ -21,8 +23,9 @@ loop do
     foundAuth = authController.route_request(client, method, path, body, headers, cookies)
     foundToken = tokenController.route_request(client, method, path, body, headers, cookies)
     foundUser = userController.route_request(client, method, path, body, headers, cookies)
+    foundFriend = friendController.route_request(client, method, path, body, headers, cookies)
 
-    if foundUser == 1 && foundToken == 1 && foundAuth == 1
+    if foundUser == 1 && foundToken == 1 && foundAuth == 1 && foundFriend == 1
       RequestHelper.not_found(client)
     end
   rescue Errno::EPIPE => e

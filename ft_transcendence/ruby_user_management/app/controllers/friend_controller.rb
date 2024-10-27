@@ -1,6 +1,7 @@
 require_relative '../services/token_manager'
 require_relative '../log/custom_logger'
 require_relative '../services/friend_manager'
+require_relative '../config/request_helper'
 require 'uri'
 require 'net/http'
 require 'json'
@@ -27,14 +28,13 @@ class FriendController
     end
     query_string = uri.query
     params = query_string ? URI.decode_www_form(query_string).to_h : {}
-    clean_path = uri.clean_path
+    clean_path = uri.path
     case [method, clean_path]
       when ['POST', '/api/add-friend']
         add_friend(client, body, cookies)
       else
         return 1
       end
-    end
     return 0
   end
 
