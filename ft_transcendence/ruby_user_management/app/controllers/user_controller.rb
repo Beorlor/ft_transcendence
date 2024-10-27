@@ -57,6 +57,11 @@ class UserController
       when ['GET']
         get_users_paginated(client, user_page)
       end
+    elsif clean_path == '/api/add_friend'
+      case [method]
+      when ['POST']
+        add_friend(client, body, cookies)
+      end
     else
       return 1
     end
@@ -93,5 +98,15 @@ class UserController
 
   def delete_user(client)
     RequestHelper.respond(client, 200, { success: "User deleted" })
+  end
+
+  def add_friend(client, body, cookies)
+    user_id = @token_manager.get_user_id(cookies['access_token'])
+    status = @user_manager.add_friend(user_id, body)
+    if status[:error]
+      RequestHelper.respond(client, status[:code], {error: status[:error]})
+      return
+    end
+    RequestHelper.respond(client, status[:code], {success: status[:success]})
   end
 end
