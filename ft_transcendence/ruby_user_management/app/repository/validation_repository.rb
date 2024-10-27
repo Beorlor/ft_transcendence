@@ -19,7 +19,7 @@ class ValidationRepository
 
   def get_validation_by_user_id(user_id)
     @logger.log('AuthRepository', "Getting email activation for user with id #{user_id}")
-    Database.get_one_element_from_table('_emailActivation', 'user_id', user_id)
+    Database.get_one_element_from_table('_emailActivation', {user_id: user_id })
   end
 
 end

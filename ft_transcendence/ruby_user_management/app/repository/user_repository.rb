@@ -26,11 +26,11 @@ class UserRepository
   end
 
   def get_user_by_email(email)
-    Database.get_one_element_from_table('_user', 'email', email)
+    Database.get_one_element_from_table('_user', {email: email })
   end
 
   def get_user_by_id(id)
-    Database.get_one_element_from_table('_user', 'id', id)
+    Database.get_one_element_from_table('_user', {id: id })
   end
 
   def register(user_info)
@@ -45,6 +45,11 @@ class UserRepository
 
   def get_all_users()
     Database.get_all_from_table('_user')
+  end
+
+  def user_exists(user_id)
+    @logger.log('AuthRepository', "Checking if user exists with id #{user_id}")
+    Database.get_one_element_from_table('_user', {id: user_id }).empty?
   end
 
 end
