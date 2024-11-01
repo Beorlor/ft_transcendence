@@ -54,9 +54,18 @@ class Game
   def game_loop()
     @game_data[:paddle1_y] += @game_data[:player1_direction] * @game_data[:ball_move_speed] * @game_data[:delta_time]
     @game_data[:paddle2_y] += @game_data[:player2_direction] * @game_data[:ball_move_speed] * @game_data[:delta_time]
+	if (@game_data[:paddle1_y] <= 10)
+		@game_data[:paddle1_y] = 10
+	elsif (@game_data[:paddle1_y] + @game_data[:bar_height] >= 790)
+		@game_data[:paddle1_y] = 790 - @game_data[:bar_height]
+	if (@game_data[:paddle2_y] <= 10)
+		@game_data[:paddle2_y] = 10
+	elsif (@game_data[:paddle2_y] + @game_data[:bar_height] >= 790)
+		@game_data[:paddle2_y] = 790 - @game_data[:bar_height]
 	handle_ball_movement()
     sended_data = { client1_pts: @game_data[:client1_pts], client2_pts: @game_data[:client2_pts], ball_x: @game_data[:ball_x], ball_y: @game_data[:ball_y],
-    paddle1_y: @game_data[:paddle1_y], paddle2_y: @game_data[:paddle2_y], paddle1_x: @game_data[:paddle1_x], paddle2_x: @game_data[:paddle2_x], width: @game_data[:width], height: @game_data[:height] }
+    	paddle1_y: @game_data[:paddle1_y], paddle2_y: @game_data[:paddle2_y], paddle1_x: @game_data[:paddle1_x], paddle2_x: @game_data[:paddle2_x],
+		width: @game_data[:width], height: @game_data[:height], bar_width: @game_data[:bar_width], bar_height: @game_data[:bar_height] }
     send_to_client(@client1, sended_data.to_json)
     send_to_client(@client2, sended_data.to_json)
   end
@@ -64,15 +73,17 @@ class Game
   def handle_ball_movement()
 	newX = @game_data[:ball_x] + @game_data[:ball_vx] * @game_data[:ball_move_speed] * @game_data[:delta_time]
 	newY = @game_data[:ball_y] + @game_data[:ball_vy] * @game_data[:ball_move_speed] * @game_data[:delta_time]
+	# Left bar
 	if newX + @game_data[:ball_radius] + 3 >= (@game_data[:paddle2_x] + @game_data[:bar_width]) && newY >= @game_data[:paddle2_y] && newY <= @game_data[:paddle2_y] + @game_data[:bar_height]
 		newX = @game_data[:paddle2_x] - @game_data[:ball_radius] - 3
 		relY = (@game_data[:paddle2_y] + @game_data[:bar_height] / 2) - @game_data[:ball_y]
 		normRelY = relY / @game_data[:bar_height] / 2
-		angle = normRelY * PI
+		angle = normRelY * -PI
 		@game_data[:ball_vx] = cos(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
 		@game_data[:ball_vx] = -sin(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
-	elsif newX - @game_data[:ball_radius] - 3 <= @game_data[:paddle1_x] && newY >= @game_data[:paddle1_y] && newY <= @game_data[:paddle1_y] + @game_data[:bar_height]
-		newX = @game_data[:paddle1_x] + @game_data[:ball_radius] + 3
+	# Right bar
+	elsif newX + 3 <= @game_data[:paddle1_x] + @game_data[:bar_width] && newY >= @game_data[:paddle1_y] && newY <= @game_data[:paddle1_y] + @game_data[:bar_height]
+		newX = @game_data[:paddle1_x] + 3 + @game_data[:bar_width]
 		relY = (@game_data[:paddle1_y] + @game_data[:bar_height] / 2) - @game_data[:ball_y]
 		normRelY = relY / @game_data[:bar_height] / 2
 		angle = normRelY * PI

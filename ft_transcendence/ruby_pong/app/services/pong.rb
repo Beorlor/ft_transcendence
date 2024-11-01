@@ -42,6 +42,9 @@ class Pong
   def reconnection_game(client, game_info)
     @logger.log('Pong', "Reconnection game: #{game_info}")
     game = @games[game_info["id"]]
+	if game == nil
+		return nil
+	end
     @logger.log('Pong', "Reconnection game: #{game}")
     game.reconnection(client)
     client[:ws].onmessage do |message|
