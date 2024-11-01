@@ -37,4 +37,9 @@ class FriendManager
     return {code: 200, success: 'Friend added' }
   end
 
+  def get_friends(user_id)
+    friends = @friend_repository.get_friends(user_id)
+    return friends
+  end
+
 end

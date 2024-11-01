@@ -29,12 +29,21 @@ class FriendController
     query_string = uri.query
     params = query_string ? URI.decode_www_form(query_string).to_h : {}
     clean_path = uri.path
-    case [method, clean_path]
-      when ['POST', '/api/add-friend']
-        add_friend(client, body, cookies)
-      else
-        return 1
+    user_page_match = clean_path.match(%r{^/api/friends/(\d+)$})
+    if user_page_match
+      user_id = user_page_match[1]
+      case [method]
+      when ['GET']
+        get_friends(client, user_id)
       end
+    else
+      case [method, clean_path]
+        when ['POST', '/api/add-friend']
+          add_friend(client, body, cookies)
+        else
+          return 1
+        end
+    end
     return 0
   end
 
@@ -46,5 +55,10 @@ class FriendController
       return
     end
     RequestHelper.respond(client, status[:code], {success: status[:success]})
+  end
+
+  def get_friends(client, user_id)
+    friends = @friend_manager.get_friends(user_id)
+    RequestHelper.respond(client, 200, friends)
   end
 end

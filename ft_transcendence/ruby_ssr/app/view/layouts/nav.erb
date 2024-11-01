@@ -26,24 +26,42 @@
               <svg class="bi" width="16" height="16"><use xlink:href="#plus-circle"/></svg> Add Friend
             </a>
           </li>
-          <li><a class="dropdown-item">
-            <span class="status-indicator online"></span> Jean
-          </a></li>
-          <li><a class="dropdown-item">
-            <span class="status-indicator offline"></span> Marine
-          </a></li>
-          <li><a class="dropdown-item">
-            <span class="status-indicator online"></span> Pierre
-          </a></li>
-          <li><a class="dropdown-item">
-            <span class="status-indicator offline"></span> Matthieu
-          </a></li>
-          <li><a class="dropdown-item">
-            <span class="status-indicator online"></span> Corine
-          </a></li>
+        <% @friends.each do |friend| %>
+          <% friend_name = friend["requester_id"].to_i == @user_logged["user_id"].to_i ? friend["receiver_username"] : friend["requester_username"] %>
+
+          <% if friend["status"] == "pending" %>
+            <% if friend["receiver_id"].to_i == @user_logged["user_id"].to_i %>
+              <li>
+                <a class="dropdown-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <%= friend["requester_username"] %>
+                  </div>
+                  <div class="action-icons">
+                    <i class="fas fa-check-circle text-success" role="button" title="Accepter" 
+                      data-friendship-id="<%= friend["friendship_id"] %>" data-action="accepted"></i>
+                    <i class="fas fa-times-circle text-danger ms-2" role="button" title="Refuser" 
+                      data-friendship-id="<%= friend["friendship_id"] %>" data-action="rejected"></i>
+                  </div>
+                </a>
+              </li>
+            <% else %>
+              <li>
+                <a class="dropdown-item d-flex justify-content-between align-items-center text-muted">
+                  <span><%= friend_name %></span>
+                  <span style="background-color: #6c757d; color: white; padding: 2px 6px; border-radius: 12px; font-size: 0.8em;">En attente</span>
+                </a>
+              </li>
+            <% end %>
+          <% else %>
+            <li>
+              <a class="dropdown-item">
+                <span class="status-indicator online"></span> <%= friend_name %>
+              </a>
+            </li>
+          <% end %>
+        <% end %>
         </ul>
       </div>
-    </div>
   <% else %>
     <div class="text-end">
       <button id="button_login" type="button" class="btn btn-outline-light me-2">Login</button>
