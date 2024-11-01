@@ -76,4 +76,37 @@ class Database
     result.map { |row| row }
   end
 
+  def self.get_friendship_plus_information(user_id)
+    query = <<-SQL
+      SELECT 
+        f.id AS friendship_id,
+        f.status,
+        f.created_at AS friendship_created_at,
+        requester.id AS requester_id,
+        requester.username AS requester_username,
+        receiver.id AS receiver_id,
+        receiver.username AS receiver_username
+      FROM 
+        _friendship AS f
+      JOIN 
+        _user AS requester ON f.requester_id = requester.id
+      JOIN 
+        _user AS receiver ON f.receiver_id = receiver.id
+      WHERE 
+        f.requester_id = $1 OR f.receiver_id = $1;
+    SQL
+
+    result = pool.with { |conn| conn.exec_params(query, [user_id]) }
+    result.map do |row|
+      {
+        friendship_id: row["friendship_id"],
+        status: row["status"],
+        friendship_created_at: row["friendship_created_at"],
+        requester_id: row["requester_id"],
+        requester_username: row["requester_username"],
+        receiver_id: row["receiver_id"],
+        receiver_username: row["receiver_username"]
+      }
+    end
+  end
 end

@@ -92,6 +92,21 @@ def get_user_stats(user_id)
   end
 end
 
+def get_friends(user_id)
+  uri = URI("http://ruby_user_management:4567/api/friends/#{user_id}")
+  req = Net::HTTP::Get.new(uri)
+  http = Net::HTTP.new(uri.host, uri.port)
+  res = http.start do |http|
+    http.request(req)
+  end
+  res.finish if res.respond_to?(:finish)
+  if res.is_a?(Net::HTTPSuccess)
+    JSON.parse(res.body)
+  else
+    nil
+  end
+end
+
 def get_access_token(req)
 	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
 	if access_token
@@ -130,6 +145,11 @@ def handle_route(req, res, logger, template_path)
   logger.log('App', "Request received with access token: #{access_token}")
   
   @user_logged = user_logged(access_token, logger)
+  logger.log("debug", @user_logged)
+  @friends = {}
+  if @user_logged
+    @friends = get_friends(@user_logged["user_id"])
+  end
   @nav = generate_navigation
   
   page = ERB.new(File.read(template_path))
