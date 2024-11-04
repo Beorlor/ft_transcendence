@@ -34,4 +34,10 @@ class FriendRepository
     @logger.log("FriendRepository", "Friendship updated successfully")
   end
 
+  def delete_friendship(friendship_id)
+    @logger.log("FriendRepository", "Deleting friendship with friendship_id: #{friendship_id}")
+    Database.delete_from_table('_friendship', "id = '#{friendship_id}'")
+    @logger.log("FriendRepository", "Friendship deleted successfully")
+  end
+
 end

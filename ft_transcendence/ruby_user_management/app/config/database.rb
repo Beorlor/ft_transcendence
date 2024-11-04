@@ -109,4 +109,15 @@ class Database
       }
     end
   end
+
+  def self.delete_from_table(table_name, where_clause)
+    query = "DELETE FROM #{table_name} WHERE #{where_clause}"
+    begin
+      execute(query)
+      true
+    rescue PG::Error => e
+      Logger.new.log('Database', "Error deleting from table #{table_name}: #{e.message}")
+      false
+    end
+  end
 end

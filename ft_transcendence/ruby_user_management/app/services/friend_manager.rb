@@ -58,6 +58,11 @@ class FriendManager
       @logger.log('FriendManager', "User is not part of the friendship")
       return {code: 400, error: 'User is not part of the friendship' }
     end
+    if friendship["status"] != "accepted"
+      @logger.log('FriendManager', "Friendship is not accepted")
+      @friend_repository.delete_friendship(friendship_id)
+      return {code: 00, error: 'Friendship is refused' }  
+    end
     if friendship["requester_id"].to_i == user_id.to_i
       @logger.log('FriendManager', "Sender cannot accept friendship")
       return {code: 400, error: 'Sender cannot accept friendship' }
@@ -65,5 +70,21 @@ class FriendManager
     @friend_repository.update_friendship(friendship_id, status)
     @logger.log('FriendManager', "Friendship updated")
     return {code: 200, success: 'Friendship updated' }
+  end
+
+  def delete_friends(user_id, friendship_id)
+    friendship = @friend_repository.get_friendship(friendship_id)
+    if friendship.nil?
+      @logger.log('FriendManager', "Friendship does not exist")
+      return {code: 400, error: 'Friendship does not exist' }
+    end
+    @logger.log('FriendManager', "Friendship: #{friendship}")
+    if friendship["requester_id"].to_i != user_id.to_i && friendship["receiver_id"].to_i != user_id.to_i
+      @logger.log('FriendManager', "User is not part of the friendship")
+      return {code: 400, error: 'User is not part of the friendship' }
+    end
+    @friend_repository.delete_friendship(friendship_id)
+    @logger.log('FriendManager', "Friendship deleted")
+    return {code: 200, success: 'Friendship deleted' }
   end
 end
