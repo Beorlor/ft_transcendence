@@ -37,10 +37,8 @@
                     <%= friend["requester_username"] %>
                   </div>
                   <div class="action-icons">
-                    <i class="fas fa-check-circle text-success" role="button" title="Accepter" 
-                      data-friendship-id="<%= friend["friendship_id"] %>" data-action="accepted"></i>
-                    <i class="fas fa-times-circle text-danger ms-2" role="button" title="Refuser" 
-                      data-friendship-id="<%= friend["friendship_id"] %>" data-action="rejected"></i>
+                    <i class="fas fa-check-circle text-success accept-request" role="button" title="Accepter" data-friendship-id="<%= friend["friendship_id"] %>"></i>
+                    <i class="fas fa-times-circle text-danger ms-2 reject-request" role="button" title="Refuser" data-friendship-id="<%= friend["friendship_id"] %>"></i>
                   </div>
                 </a>
               </li>
@@ -60,6 +58,7 @@
             </li>
           <% end %>
         <% end %>
+
         </ul>
       </div>
   <% else %>

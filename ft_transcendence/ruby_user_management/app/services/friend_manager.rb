@@ -42,4 +42,28 @@ class FriendManager
     return friends
   end
 
+  def update_friends(user_id, friendship_id, body)
+    if body["status"].nil?
+      @logger.log('FriendManager', "Invalid status: #{body["status"]}")
+      return {code: 400, error: 'Invalid status' }
+    end
+    status = body["status"]
+    friendship = @friend_repository.get_friendship(friendship_id)
+    if friendship.nil?
+      @logger.log('FriendManager', "Friendship does not exist")
+      return {code: 400, error: 'Friendship does not exist' }
+    end
+    @logger.log('FriendManager', "Friendship: #{friendship}")
+    if friendship["requester_id"].to_i != user_id.to_i && friendship["receiver_id"].to_i != user_id.to_i
+      @logger.log('FriendManager', "User is not part of the friendship")
+      return {code: 400, error: 'User is not part of the friendship' }
+    end
+    if friendship["requester_id"].to_i == user_id.to_i
+      @logger.log('FriendManager', "Sender cannot accept friendship")
+      return {code: 400, error: 'Sender cannot accept friendship' }
+    end
+    @friend_repository.update_friendship(friendship_id, status)
+    @logger.log('FriendManager', "Friendship updated")
+    return {code: 200, success: 'Friendship updated' }
+  end
 end
