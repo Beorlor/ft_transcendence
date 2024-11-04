@@ -37,6 +37,8 @@ class FriendController
         get_friends(client, friends_id)
       when ['PATCH']
         update_friends(client, friends_id, cookies, body)
+      when ['DELETE']
+        delete_friends(client, friends_id, cookies)
       end
     else
       case [method, clean_path]
@@ -67,6 +69,16 @@ class FriendController
   def update_friends(client, friendship_id, cookies, body)
     user_id = @token_manager.get_user_id(cookies['access_token'])
     status = @friend_manager.update_friends(user_id, friendship_id, body)
+    if status[:error]
+      RequestHelper.respond(client, status[:code], {error: status[:error]})
+      return
+    end
+    RequestHelper.respond(client, status[:code], {success: status[:success]})
+  end
+
+  def delete_friends(client, friendship_id, cookies)
+    user_id = @token_manager.get_user_id(cookies['access_token'])
+    status = @friend_manager.delete_friends(user_id, friendship_id)
     if status[:error]
       RequestHelper.respond(client, status[:code], {error: status[:error]})
       return
