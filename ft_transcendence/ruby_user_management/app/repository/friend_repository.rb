@@ -23,4 +23,15 @@ class FriendRepository
     Database.get_friendship_plus_information(user_id)
   end
 
+  def get_friendship(friendship_id)
+    @logger.log("FriendRepository", "Getting friendship with friendship_id: #{friendship_id}")
+    Database.get_one_element_from_table('_friendship', {id: friendship_id}).first
+  end
+
+  def update_friendship(friendship_id, status)
+    @logger.log("FriendRepository", "Updating friendship with friendship_id: #{friendship_id} and status: #{status}")
+    Database.update_table('_friendship', {status: status}, "id = '#{friendship_id}'")
+    @logger.log("FriendRepository", "Friendship updated successfully")
+  end
+
 end

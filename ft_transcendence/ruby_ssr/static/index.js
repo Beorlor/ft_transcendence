@@ -118,6 +118,18 @@ function rebindEvents() {
         .getElementById("edit_profile_button")
         .addEventListener("click", handleEditProfileClick);
     }
+    document.querySelectorAll(".accept-request").forEach((button) => {
+      button.addEventListener("click", () => {
+        const friendshipId = button.getAttribute("data-friendship-id");
+        handleFriendRequestAction(friendshipId, "accepted");
+      });
+    });
+    document.querySelectorAll(".reject-request").forEach((button) => {
+      button.addEventListener("click", () => {
+        const friendshipId = button.getAttribute("data-friendship-id");
+        handleFriendRequestAction(friendshipId, "rejected");
+      });
+    });
   }
   if (document.getElementById("play_button")) {
     document
@@ -260,6 +272,26 @@ function handleSubmitFriendRequest(ev) {
       }
     })
     .catch((err) => console.error("Error: ", err));
+}
+
+function handleFriendRequestAction(friendshipId, action) {
+  fetch(`https://localhost/api/friends/${friendshipId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ status: action }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        console.log(`Friend request ${action}ed successfully.`);
+        rebindEvents();
+      } else {
+        console.error("Error:", data.error);
+      }
+    })
+    .catch((error) => console.error("Fetch error:", error));
 }
 
 window.addEventListener("popstate", function (_) {
