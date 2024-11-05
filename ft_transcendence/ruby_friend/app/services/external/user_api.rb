@@ -47,4 +47,19 @@ end
 	end
   end
 
+	def get_user_friends(user_id ,&callback)
+		uri = "http://ruby_user_management:4567/api/friends/#{user_id}"
+		http = EM::HttpRequest.new(uri).get()
+		http.callback do
+			if http.response_header.status == 200
+				callback.call(JSON.parse(http.response)) if callback
+			else
+				callback.call(nil) if callback
+			end
+		end
+		http.errback do
+			callback.call(nil) if callback
+		end
+	end
+
 end

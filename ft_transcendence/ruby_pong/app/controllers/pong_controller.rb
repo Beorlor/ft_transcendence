@@ -17,7 +17,7 @@ class PongController
     when '/pongsocket/ranked'
       @logger.log('PONG', "Received ping from #{headers['Origin']} for ranked")
       ranked(client, headers)
-    when 'pongsocket/custom'
+    when '/pongsocket/custom'
       @logger.log('PONG', "Received ping from #{headers['Origin']} for custom")
       client.send('pong custom')
     else

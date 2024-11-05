@@ -58,7 +58,7 @@ class FriendManager
       @logger.log('FriendManager', "User is not part of the friendship")
       return {code: 400, error: 'User is not part of the friendship' }
     end
-    if friendship["status"] != "accepted"
+    if status != "accepted"
       @logger.log('FriendManager', "Friendship is not accepted")
       @friend_repository.delete_friendship(friendship_id)
       return {code: 00, error: 'Friendship is refused' }  

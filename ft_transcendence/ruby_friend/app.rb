@@ -1,21 +1,21 @@
 require 'em-websocket'
 require 'eventmachine'
 require_relative 'app/log/custom_logger'
-require_relative 'app/controllers/pong_controller'
+require_relative 'app/controllers/friend_controller'
 
 class AppServer
-  def initialize(logger = Logger.new, pongController = PongController.new)
+  def initialize(logger = Logger.new, friendController = FriendController.new)
     @logger = logger
-    @pongController = pongController
+    @friendController = friendController
   end
 
   def start
     EM.run do
-      @logger.log('APP', "Starting server on localhost:4569")
-      EM::WebSocket.run(host: "0.0.0.0", port: 4569) do |ws|
+      @logger.log('APP', "Starting server on localhost:4560")
+      EM::WebSocket.run(host: "0.0.0.0", port: 4560) do |ws|
         ws.onopen do |event|
           @logger.log('APP', "Connection opened with #{event.headers} ")
-          @pongController.route_request(ws, event)
+          @friendController.route_request(ws, event)
         end
       end
     end

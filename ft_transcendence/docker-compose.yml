@@ -57,6 +57,17 @@ services:
     networks:
       - nginx_network
 
+  ruby_friend:
+    build: ./ruby_friend
+    environment:
+      SECRET_KEY: ${SECRET_KEY}
+    depends_on:
+      - postgres
+    volumes:
+      - ./ruby_friend:/app
+    networks:
+      - nginx_network
+
   ruby_rgpd:
     build: ./ruby_rgpd
     environment:
