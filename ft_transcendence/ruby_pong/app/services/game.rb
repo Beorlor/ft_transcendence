@@ -58,10 +58,12 @@ class Game
 		@game_data[:paddle1_y] = 10
 	elsif (@game_data[:paddle1_y] + @game_data[:bar_height] >= 790)
 		@game_data[:paddle1_y] = 790 - @game_data[:bar_height]
+  end
 	if (@game_data[:paddle2_y] <= 10)
 		@game_data[:paddle2_y] = 10
 	elsif (@game_data[:paddle2_y] + @game_data[:bar_height] >= 790)
 		@game_data[:paddle2_y] = 790 - @game_data[:bar_height]
+  end
 	handle_ball_movement()
     sended_data = { client1_pts: @game_data[:client1_pts], client2_pts: @game_data[:client2_pts], ball_x: @game_data[:ball_x], ball_y: @game_data[:ball_y],
     	paddle1_y: @game_data[:paddle1_y], paddle2_y: @game_data[:paddle2_y], paddle1_x: @game_data[:paddle1_x], paddle2_x: @game_data[:paddle2_x],
@@ -107,20 +109,20 @@ class Game
 		send_to_client(@client2, {end: "Time's up! The game has ended. (in handle move)"}.to_json)
 		reset_ball()
 		#TODO
-	end
+    end
   end
 
   def reset_ball()
-	@game_data[:ball_x] = @game_data[:width] / 2
-	@game_data[:ball_y] = @game_data[:height] / 2
-	@game_data[:ball_vx] = cos(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
-	@game_data[:ball_vx] = -sin(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+    @game_data[:ball_x] = @game_data[:width] / 2
+    @game_data[:ball_y] = @game_data[:height] / 2
+    @game_data[:ball_vx] = cos(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+    @game_data[:ball_vx] = -sin(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
   end
 
   def start
     start_timer(60)
-	@game_data[:ball_vx] = -cos(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
-	@game_data[:ball_vx] = -sin(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+    @game_data[:ball_vx] = -cos(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+    @game_data[:ball_vx] = -sin(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
     send_to_client(@client1, {start: "start game"}.to_json)
     send_to_client(@client2, {start: "start game"}.to_json)
     @game_timer = EM.add_periodic_timer(@game_data[:delta_time]) { game_loop }
