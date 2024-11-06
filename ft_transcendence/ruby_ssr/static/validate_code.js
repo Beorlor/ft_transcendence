@@ -26,6 +26,7 @@ function loadValidateForm() {
         .then((data) => {
           console.log(data);
           if (data.success) {
+            window.connexionFriendSocket();
             window.loadPage(
               document.getElementById("game"),
               "https://localhost/profil"

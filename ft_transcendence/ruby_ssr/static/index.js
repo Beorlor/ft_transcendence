@@ -146,6 +146,8 @@ function rebindEvents() {
 function loadPage(game, url, gamestate) {
   history.pushState(null, null, url);
   window.GAMESTATE = gamestate;
+  let popUp = document.getElementById("pop-up");
+  popUp.innerHTML = "";
   fetch(url, {
     headers: {
       "X-Requested-With": "XMLHttpRequest",
@@ -201,6 +203,12 @@ function handleLogoutClick(ev) {
     .then((res) => res.json())
     .then((json) => {
       if (json.success) {
+        if (
+          window.friendSocketConnection &&
+          window.friendSocketConnection.readyState === 1
+        ) {
+          window.friendSocketConnection.close();
+        }
         const url = "https://localhost";
         loadPage(
           document.getElementById("game"),
