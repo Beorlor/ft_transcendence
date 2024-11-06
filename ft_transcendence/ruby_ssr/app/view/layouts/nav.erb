@@ -28,6 +28,7 @@
           </li>
         <% @friends.each do |friend| %>
           <% friend_name = friend["requester_id"].to_i == @user_logged["user_id"].to_i ? friend["receiver_username"] : friend["requester_username"] %>
+          <% friend_id = friend["requester_id"].to_i == @user_logged["user_id"].to_i ? friend["receiver_id"] : friend["requester_id"] %>
 
           <% if friend["status"] == "pending" %>
             <% if friend["receiver_id"].to_i == @user_logged["user_id"].to_i %>
@@ -53,7 +54,7 @@
           <% else %>
             <li>
               <a class="dropdown-item">
-                <span class="status-indicator offline"></span> <%= friend_name %>
+                <span id="<%= friend_id %>"class="status-indicator offline"></span> <%= friend_name %>
               </a>
             </li>
           <% end %>
