@@ -38,6 +38,16 @@ function connexionFriendSocket() {
         window.popUpFonc("You have received a new friend request.");
       }
     }
+    if (json.type === "new_friend") {
+      const friendshipDivs = document.querySelectorAll(
+        'div[data-friendship-id="' + json.friendship_id + '"]'
+      );
+      let name = friendshipDivs[0].textContent;
+      friendshipDivs.forEach((div) => {
+        div.closest("li").remove();
+      });
+      window.addFriendAccepted(name, json.friend_id);
+    }
   };
 
   connection.onclose = () => {
