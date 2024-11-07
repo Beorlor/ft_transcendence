@@ -9,9 +9,9 @@ class Friend
     @user_connections = {}
   end
 
-  def add_friend(user_id)
-    if @user_connections[user_id]
-      @user_connections[user_id].send({type: 'friend_request'}.to_json)
+  def add_friend(data)
+    if @user_connections[data['user_id']]
+      @user_connections[data['user_id']].send({type: 'friend_request', username: data['sender_username'], friendship_id: data['friendship_id']}.to_json)
     end
   end
 
@@ -53,9 +53,10 @@ class Friend
         client.onmessage do |message|
           begin
             data = JSON.parse(message)
-            case data["type"]
-            when 'add_friend'
-              add_friend(data["user_id"])
+            @logger.log('Friend', "Received: #{data}")
+            case data['type']
+            when "add_friend"
+              add_friend(data)
             end
           rescue JSON::ParserError => e
             @logger.log('Friend', "Invalid JSON: #{message}")

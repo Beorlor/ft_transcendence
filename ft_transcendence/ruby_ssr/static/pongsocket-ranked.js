@@ -50,7 +50,6 @@ function startNormalGame() {
   const rightBar = makeBar(780, 250, 10, 100);
 
   connection.onopen = () => {
-    console.log("Connecté au serveur WebSocket");
     connection.send("Hello from the client!");
     document.getElementById("score_text").innerHTML =
       '<div class="spinner-border" role="status"> <span class="sr-only">Loading...</span></div>';
@@ -59,7 +58,6 @@ function startNormalGame() {
   connection.onmessage = (event) => {
     if (!canvas) return;
     if (canvas.getContext) {
-      console.log("data : ", event.data);
       let json = JSON.parse(event.data);
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, 800, 600);
@@ -67,14 +65,10 @@ function startNormalGame() {
       ctx.fillRect(0, 0, 800, 600);
       ctx.clearRect(10 / 2, 10 / 2, 800 - 10, 600 - 10);
       if (json.paddle2_y) {
-        console.log("paddle2_y", json.paddle2_y);
         rightBar.y = json.paddle2_y;
-        console.log("rightBar.y", rightBar.y);
       }
       if (json.paddle1_y) {
-        console.log("paddle1_y", json.paddle1_y);
         leftBar.y = json.paddle1_y;
-        console.log("leftBar.y", leftBar.y);
       }
       if (json.ball_x && json.ball_y) {
         ball.x = json.ball_x;
@@ -86,9 +80,7 @@ function startNormalGame() {
     }
   };
 
-  connection.onclose = () => {
-    console.log("Connexion fermée");
-  };
+  connection.onclose = () => {};
 
   connection.onerror = (error) => {
     console.error("Erreur WebSocket :", error);
@@ -96,17 +88,14 @@ function startNormalGame() {
 
   window.addEventListener("keydown", (event) => {
     if (event.key === "ArrowUp") {
-      console.log("up");
       connection.send('{ "direction": "up" }');
     } else if (event.key === "ArrowDown") {
-      console.log("down");
       connection.send('{ "direction": "down" }');
     }
   });
 
   window.addEventListener("keyup", (event) => {
     if (event.key === "ArrowUp" || event.key === "ArrowDown") {
-      console.log("stop");
       connection.send('{ "direction": null }');
     }
   });

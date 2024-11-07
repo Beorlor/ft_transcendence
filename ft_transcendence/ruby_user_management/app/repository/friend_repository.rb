@@ -15,7 +15,6 @@ class FriendRepository
   def add_friend(user_id, friend_id)
     @logger.log("FriendRepository", "Adding friend with user_id: #{user_id} and friend_id: #{friend_id}")
     Database.insert_into_table('_friendship', {requester_id: user_id, receiver_id: friend_id})
-    @logger.log("FriendRepository", "Friend added successfully")
   end
 
   def get_friends(user_id)

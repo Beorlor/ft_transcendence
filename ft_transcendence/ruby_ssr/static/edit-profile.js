@@ -7,8 +7,6 @@ function loadEditProfileFormAction() {
 
       const formData = new FormData(this);
 
-      formData.forEach((value, key) => console.log(`${key}: ${value}`));
-
       fetch("https://localhost/api/user/", {
         method: "PUT",
         headers: {
@@ -27,9 +25,7 @@ function loadEditProfileFormAction() {
               "https://localhost/profile"
             );
           } else {
-            popUp.innerHTML = `<div class="alert alert-danger" role="alert">
-              ${data.error}
-              </div>`;
+            window.popUpFonc(data.error);
           }
         })
         .catch((error) => console.error("Error:", error));

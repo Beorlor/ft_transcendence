@@ -31,13 +31,17 @@ class Database
   def self.insert_into_table(table_name, data)
     columns = data.keys.join(", ")
     values = data.values.map { |value| "'#{value}'" }.join(", ")
-    query = "INSERT INTO #{table_name} (#{columns}) VALUES (#{values})"
+    query = "INSERT INTO #{table_name} (#{columns}) VALUES (#{values}) RETURNING *"
+    
     begin
-      execute(query)
+      result = execute(query)
+      return result[0] if result.any?
     rescue PG::Error => e
       puts("Error inserting into table #{table_name}: #{e.message}")
+      return nil
     end
   end
+  
 
   def self.get_one_element_from_table(table_name, or_conditions = {}, and_conditions = {})
     or_where_clauses = or_conditions.map { |column, value| "#{column} = '#{value}'" }.join(' OR ') unless or_conditions.empty?

@@ -3,14 +3,20 @@ function connexionFriendSocket() {
   const connection = new WebSocket(url);
 
   connection.onopen = () => {
-    console.log("Connecté au serveur WebSocket friend");
+    console.log("Connected to the friend socket.");
     connection.send("Hello from the client!");
+
+    setInterval(() => {
+      connection.send(
+        JSON.stringify({
+          type: "ping",
+        })
+      );
+    }, 15000);
   };
 
   connection.onmessage = (event) => {
-    console.log("data : ", event.data);
     let json = JSON.parse(event.data);
-    console.log(json);
     if (json.type === "friend_connected") {
       let friend = document.getElementById(json.friend);
       if (friend) {
@@ -26,17 +32,16 @@ function connexionFriendSocket() {
       }
     }
     if (json.type === "friend_request") {
+      window.addFriendRequest(json.username, json.friendship_id, false);
       let pop_up = document.getElementById("pop-up");
       if (pop_up) {
-        pop_up.innerHTML = `<div class="alert alert-info" role="alert">
-            You have received a new friend request.
-          </div>`;
+        window.popUpFonc("You have received a new friend request.");
       }
     }
   };
 
   connection.onclose = () => {
-    console.log("Connexion fermée");
+    console.log("Disconnected from the friend socket.");
   };
 
   connection.onerror = (error) => {

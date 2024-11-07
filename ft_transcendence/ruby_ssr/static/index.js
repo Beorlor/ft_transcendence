@@ -38,6 +38,66 @@ window.resetHomePage = function () {
   game.innerHTML = "";
 };
 
+window.addFriendRequest = function (name, friendshipId, sender) {
+  const dropdownMenu = document.querySelector(".dropdown-menu");
+
+  const friendRequestItem = document.createElement("li");
+  friendRequestItem.className =
+    "dropdown-item d-flex justify-content-between align-items-center";
+
+  if (sender) {
+    friendRequestItem.innerHTML = `
+          <div class="text-muted" data-friendship-id=${friendshipId}>${name}</div>
+          <div class="badge badge-secondary">En attente</div>
+      `;
+  } else {
+    friendRequestItem.innerHTML = `
+          <div>${name}</div>
+          <div class="action-icons">
+              <i class="fas fa-check-circle text-success accept-request" role="button" title="Accepter" data-friendship-id=${friendshipId}></i>
+              <i class="fas fa-times-circle text-danger ms-2 reject-request" role="button" title="Refuser" data-friendship-id=${friendshipId}></i>
+          </div>
+      `;
+
+    friendRequestItem
+      .querySelector(".accept-request")
+      .addEventListener("click", () => {
+        handleFriendRequestAction(
+          friendshipId,
+          "accepted",
+          friendRequestItem.querySelector(".accept-request")
+        );
+      });
+
+    friendRequestItem
+      .querySelector(".reject-request")
+      .addEventListener("click", () => {
+        handleFriendRequestAction(
+          friendshipId,
+          "rejected",
+          friendRequestItem.querySelector(".reject-request")
+        );
+      });
+  }
+  dropdownMenu.appendChild(friendRequestItem);
+};
+
+window.popUpFonc = function showPopup(message) {
+  const popupContainer = document.getElementById("pop-up");
+
+  const popup = document.createElement("div");
+  popup.className = "alert alert-info fade show";
+  popup.style.animation = "slideIn 0.5s ease-out";
+  popup.innerHTML = message;
+
+  popupContainer.appendChild(popup);
+
+  setTimeout(() => {
+    popup.classList.add("fade");
+    popup.remove();
+  }, 6000);
+};
+
 function loadPageScript(game) {
   const script = game.querySelector("script");
   if (!script) return;
@@ -50,22 +110,16 @@ function loadPageScript(game) {
   game.appendChild(newScript);
 
   newScript.onload = () => {
-    console.log(`Script ${script.src} loaded.`);
-
     if (document.getElementById("form_login")) {
-      console.log(document.getElementById("form_login"));
       window.loadLoginFormAction();
     }
     if (document.getElementById("form_register")) {
-      console.log(document.getElementById("form_register"));
       window.loadRegisterFormAction();
     }
     if (document.getElementById("form_validate_code")) {
-      console.log(document.getElementById("form_validate_code"));
       window.loadValidateForm();
     }
     if (document.getElementById("form_edit_profile")) {
-      console.log(document.getElementById("form_edit_profile"));
       window.loadEditProfileFormAction();
     }
     if (window.location == "https://localhost/pong") {
@@ -83,7 +137,6 @@ function loadPageScript(game) {
 
 function rebindEvents() {
   removeAllListeners("click");
-  console.log("Rebinding events...");
   document
     .getElementById("home_link")
     .addEventListener("click", handleHomeClick);
@@ -121,13 +174,13 @@ function rebindEvents() {
     document.querySelectorAll(".accept-request").forEach((button) => {
       button.addEventListener("click", () => {
         const friendshipId = button.getAttribute("data-friendship-id");
-        handleFriendRequestAction(friendshipId, "accepted");
+        handleFriendRequestAction(friendshipId, "accepted", button);
       });
     });
     document.querySelectorAll(".reject-request").forEach((button) => {
       button.addEventListener("click", () => {
         const friendshipId = button.getAttribute("data-friendship-id");
-        handleFriendRequestAction(friendshipId, "rejected");
+        handleFriendRequestAction(friendshipId, "rejected", button);
       });
     });
   }
@@ -156,7 +209,6 @@ function loadPage(game, url, gamestate) {
   })
     .then((res) => res.json())
     .then((json) => {
-      console.log("body :", json.body);
       game.innerHTML = json.body;
       if (json.nav) {
         document.getElementById("nav").innerHTML = json.nav;
@@ -253,9 +305,6 @@ function handleAddFriendClick(ev) {
 function handleSubmitFriendRequest(ev) {
   ev.preventDefault();
   const username = document.getElementById("friend_username").value;
-  console.log(`Sending friend request to ${username}`);
-  const popUp = document.getElementById("pop-up");
-  popUp.innerHTML = "";
   fetch("https://localhost/api/add-friend", {
     method: "POST",
     headers: {
@@ -266,23 +315,33 @@ function handleSubmitFriendRequest(ev) {
     .then((res) => res.json())
     .then((json) => {
       if (json.success) {
-        console.log("Friend request sent successfully.");
         const modal = bootstrap.Modal.getInstance(
           document.getElementById("addFriendModal")
         );
         modal.hide();
+        window.addFriendRequest(json.friend_name, json.friendship_id, true);
         document.getElementById("friend_username").value = "";
+        if (
+          window.friendSocketConnection &&
+          window.friendSocketConnection.readyState === 1
+        ) {
+          window.friendSocketConnection.send(
+            JSON.stringify({
+              type: "add_friend",
+              user_id: json.friend_id,
+              sender_username: json.username,
+              friendship_id: json.friendship_id,
+            })
+          );
+        }
       } else {
-        popUp.innerHTML = `<div class="alert alert-danger" role="alert">
-        ${json.error}
-        </div>`;
-        console.error("Error: ", json.error);
+        window.popUpFonc(json.error);
       }
     })
     .catch((err) => console.error("Error: ", err));
 }
 
-function handleFriendRequestAction(friendshipId, action) {
+function handleFriendRequestAction(friendshipId, action, button) {
   fetch(`https://localhost/api/friends/${friendshipId}`, {
     method: "PATCH",
     headers: {
@@ -293,10 +352,11 @@ function handleFriendRequestAction(friendshipId, action) {
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        console.log(`Friend request ${action}ed successfully.`);
+        const parentLi = button.closest("li");
+        parentLi.remove();
         rebindEvents();
       } else {
-        console.error("Error:", data.error);
+        window.popUpFonc(data.error);
       }
     })
     .catch((error) => console.error("Fetch error:", error));

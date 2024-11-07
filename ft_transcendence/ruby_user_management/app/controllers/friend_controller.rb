@@ -58,7 +58,8 @@ class FriendController
       RequestHelper.respond(client, status[:code], {error: status[:error]})
       return
     end
-    RequestHelper.respond(client, status[:code], {success: status[:success]})
+    RequestHelper.respond(client, status[:code], {success: status[:success], username: status[:username], friendship_id: status[:friendship_id],
+      friend_name: status[:friend_name], friend_id: status[:friend_id]})
   end
 
   def get_friends(client, user_id)

@@ -59,6 +59,33 @@
 			.status-indicator.offline {
 				background-color: #dc3545;
 			}
+			#pop-up {
+				position: absolute;
+				right: 20px;
+				margin-top: 15px; /* Espace sous la navbar */
+				display: flex;
+				flex-direction: column;
+				align-items: flex-end;
+				width: 300px;
+				z-index: 1050;
+			}
+
+			.alert {
+				margin-top: 10px;
+				width: 100%;
+				animation: slideIn 0.5s ease-out;
+			}
+
+			@keyframes slideIn {
+				from {
+					opacity: 0;
+					transform: translateX(100%);
+				}
+				to {
+					opacity: 1;
+					transform: translateX(0);
+				}
+			}
     </style>
 </head>
 <body>
@@ -70,11 +97,13 @@
 	<nav id="nav" class="navbar navbar-expand-lg navbar-dark header">
 		<%= @nav %>
 	</nav>
-	<div class="container mt-5" id="pop-up"></div>
+	
+	<div id="pop-up"></div>
 	<div id="game">
 		<%= @pRes %>
 	</div>
 	
+
 	<div class="modal fade" id="addFriendModal" tabindex="-1" aria-labelledby="addFriendModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
