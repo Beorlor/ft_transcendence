@@ -15,6 +15,17 @@ class Friend
     end
   end
 
+  def new_friend(data)
+    if @user_connections[data['user_id']]
+      @user_connections[data['user_id']].send({type: 'new_friend', friend_id: data['friend_id'], friendship_id: data['friendship_id']}.to_json)
+      if @user_connections[data['friend_id']]
+        @user_connections[data['friend_id']].send({type: 'friend_connected', friend: data['user_id']}.to_json)
+        @user_connections[data['user_id']].send({type: 'friend_connected', friend: data['friend_id']}.to_json)
+      end
+    end
+  end
+  
+
   def friend(client, cookie)
     jwt = cookie['access_token']
     @user_api.user_logged(jwt) do |user|
@@ -53,10 +64,11 @@ class Friend
         client.onmessage do |message|
           begin
             data = JSON.parse(message)
-            @logger.log('Friend', "Received: #{data}")
             case data['type']
             when "add_friend"
               add_friend(data)
+            when "new_friend"
+              new_friend(data)
             end
           rescue JSON::ParserError => e
             @logger.log('Friend', "Invalid JSON: #{message}")

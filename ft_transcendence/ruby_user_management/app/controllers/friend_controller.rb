@@ -74,7 +74,7 @@ class FriendController
       RequestHelper.respond(client, status[:code], {error: status[:error]})
       return
     end
-    RequestHelper.respond(client, status[:code], {success: status[:success]})
+    RequestHelper.respond(client, status[:code], {success: status[:success], user_id: user_id, friend_id: status[:friendship]["requester_id"]})
   end
 
   def delete_friends(client, friendship_id, cookies)

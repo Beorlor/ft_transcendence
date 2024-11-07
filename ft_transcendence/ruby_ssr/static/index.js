@@ -52,7 +52,7 @@ window.addFriendRequest = function (name, friendshipId, sender) {
       `;
   } else {
     friendRequestItem.innerHTML = `
-          <div>${name}</div>
+          <div class="username">${name}</div>
           <div class="action-icons">
               <i class="fas fa-check-circle text-success accept-request" role="button" title="Accepter" data-friendship-id=${friendshipId}></i>
               <i class="fas fa-times-circle text-danger ms-2 reject-request" role="button" title="Refuser" data-friendship-id=${friendshipId}></i>
@@ -79,6 +79,20 @@ window.addFriendRequest = function (name, friendshipId, sender) {
         );
       });
   }
+  dropdownMenu.appendChild(friendRequestItem);
+};
+
+window.addFriendAccepted = function (friend_name, friend_id) {
+  const dropdownMenu = document.querySelector(".dropdown-menu");
+
+  const friendRequestItem = document.createElement("li");
+
+  friendRequestItem.innerHTML = `
+      <a class="dropdown-item">
+        <span id=${friend_id} class="status-indicator offline"></span> ${friend_name}
+      </a>
+    `;
+
   dropdownMenu.appendChild(friendRequestItem);
 };
 
@@ -353,7 +367,24 @@ function handleFriendRequestAction(friendshipId, action, button) {
     .then((data) => {
       if (data.success) {
         const parentLi = button.closest("li");
+        let username = parentLi.querySelector(".username").textContent;
         parentLi.remove();
+        if (action === "accepted") {
+          window.addFriendAccepted(username, data.friend_id);
+          if (
+            window.friendSocketConnection &&
+            window.friendSocketConnection.readyState === 1
+          ) {
+            window.friendSocketConnection.send(
+              JSON.stringify({
+                type: "new_friend",
+                friend_id: data.user_id,
+                user_id: data.friend_id,
+                friendship_id: friendshipId,
+              })
+            );
+          }
+        }
         rebindEvents();
       } else {
         window.popUpFonc(data.error);
