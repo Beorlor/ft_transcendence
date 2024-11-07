@@ -24,7 +24,9 @@ class FriendManager
       @logger.log('FriendManager', "Cannot add yourself as a friend")
       return {code: 400, error: 'Cannot add yourself as a friend' }
     end
-    if @user_repository.user_exists(friend_id)
+    friend = @user_repository.get_user_by_id(friend_id)[0]
+    @logger.log('FriendManager', "Friend: #{friend}")
+    if friend.nil?
       @logger.log('FriendManager', "Friend does not exist")
       return {code: 400, error: 'Friend does not exist' }
     end
@@ -32,9 +34,13 @@ class FriendManager
       @logger.log('FriendManager', "Friendship already exists")
       return {code: 400, error: 'Friendship already exists' }
     end
-    @friend_repository.add_friend(user_id, friend_id)
+    friendship = @friend_repository.add_friend(user_id, friend_id)
+    @logger.log('FriendManager', "Friendship: #{friendship}")
+    user = @user_repository.get_user_by_id(user_id)[0]
+    @logger.log('FriendManager', "User: #{user}")
     @logger.log('FriendManager', "Friend added")
-    return {code: 200, success: 'Friend added' }
+    return {code: 200, success: 'Friend added', username: user["username"], friendship_id: friendship["id"],
+      friend_name: friend["username"], friend_id: friend["id"] }
   end
 
   def get_friends(user_id)

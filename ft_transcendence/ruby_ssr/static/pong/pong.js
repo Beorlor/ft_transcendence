@@ -11,7 +11,6 @@ import {
 } from "./constants.mjs";
 
 function pong_main() {
-  console.log("test");
   let previousTime = 0;
   let delta = 0.0;
 
@@ -207,7 +206,6 @@ function pong_main() {
         if (!ke.repeat) startGame();
       } else if (ke.key == "O") {
         debugMode = !debugMode;
-        console.log("Debug mode " + (debugMode ? "activated" : "deactivated"));
       }
     });
 
