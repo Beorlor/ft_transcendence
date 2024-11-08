@@ -29,33 +29,32 @@
         <% @friends.each do |friend| %>
           <% friend_name = friend["requester_id"].to_i == @user_logged["user_id"].to_i ? friend["receiver_username"] : friend["requester_username"] %>
           <% friend_id = friend["requester_id"].to_i == @user_logged["user_id"].to_i ? friend["receiver_id"] : friend["requester_id"] %>
+          <% friendship_id = friend["friendship_id"] %>
 
           <% if friend["status"] == "pending" %>
             <% if friend["receiver_id"].to_i == @user_logged["user_id"].to_i %>
               <li>
                 <a class="dropdown-item d-flex justify-content-between align-items-center">
-                  <div>
+                  <div class="username">
                     <%= friend["requester_username"] %>
                   </div>
                   <div class="action-icons">
-                    <i class="fas fa-check-circle text-success accept-request" role="button" title="Accepter" data-friendship-id="<%= friend["friendship_id"] %>"></i>
-                    <i class="fas fa-times-circle text-danger ms-2 reject-request" role="button" title="Refuser" data-friendship-id="<%= friend["friendship_id"] %>"></i>
+                    <i class="fas fa-check-circle text-success accept-request" role="button" title="Accepter" data-friendship-id="<%= friendship_id %>"></i>
+                    <i class="fas fa-times-circle text-danger ms-2 reject-request" role="button" title="Refuser" data-friendship-id="<%= friendship_id %>"></i>
                   </div>
                 </a>
               </li>
             <% else %>
-              <li>
-                <a class="dropdown-item d-flex justify-content-between align-items-center text-muted">
-                  <span><%= friend_name %></span>
-                  <span style="background-color: #6c757d; color: white; padding: 2px 6px; border-radius: 12px; font-size: 0.8em;">En attente</span>
-                </a>
+              <li class="dropdown-item d-flex justify-content-between align-items-center">
+                <div class="text-muted" data-friendship-id="<%= friendship_id %>"><%= friend_name %></div>
+                <div class="badge badge-secondary">En attente</div>
               </li>
             <% end %>
           <% else %>
             <li>
-              <a class="dropdown-item">
-                <span id="<%= friend_id %>"class="status-indicator offline"></span> <%= friend_name %>
-              </a>
+                <a class="dropdown-item" data-friend-id="<%= friend_id %>" data-friend-name="<%= friend_name %>" data-friendship-id="<%= friendship_id %>" onclick="openFriendModal('<%= friend_id %>', '<%= friend_name %>', '<%= friendship_id%>')">
+                  <span id="<%= friend_id %>" class="status-indicator offline"></span> <%= friend_name %>
+                </a>
             </li>
           <% end %>
         <% end %>

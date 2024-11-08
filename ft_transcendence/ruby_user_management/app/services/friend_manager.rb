@@ -37,9 +37,8 @@ class FriendManager
     friendship = @friend_repository.add_friend(user_id, friend_id)
     @logger.log('FriendManager', "Friendship: #{friendship}")
     user = @user_repository.get_user_by_id(user_id)[0]
-    @logger.log('FriendManager', "User: #{user}")
     @logger.log('FriendManager', "Friend added")
-    return {code: 200, success: 'Friend added', username: user["username"], friendship_id: friendship["id"],
+    return {code: 200, success: 'Friend added', friendship_id: friendship["id"],
       friend_name: friend["username"], friend_id: friend["id"] }
   end
 

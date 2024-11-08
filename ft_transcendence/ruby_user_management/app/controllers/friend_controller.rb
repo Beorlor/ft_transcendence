@@ -58,8 +58,8 @@ class FriendController
       RequestHelper.respond(client, status[:code], {error: status[:error]})
       return
     end
-    RequestHelper.respond(client, status[:code], {success: status[:success], username: status[:username], friendship_id: status[:friendship_id],
-      friend_name: status[:friend_name], friend_id: status[:friend_id]})
+    RequestHelper.respond(client, status[:code], {success: status[:success], friend_id: status[:friend_id], friendship_id: status[:friendship_id],
+      friend_name: status[:friend_name]})
   end
 
   def get_friends(client, user_id)
@@ -74,7 +74,7 @@ class FriendController
       RequestHelper.respond(client, status[:code], {error: status[:error]})
       return
     end
-    RequestHelper.respond(client, status[:code], {success: status[:success], user_id: user_id, friend_id: status[:friendship]["requester_id"]})
+    RequestHelper.respond(client, status[:code], {success: status[:success], friend_id: status[:friendship]["requester_id"]})
   end
 
   def delete_friends(client, friendship_id, cookies)

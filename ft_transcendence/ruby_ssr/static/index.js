@@ -38,64 +38,6 @@ window.resetHomePage = function () {
   game.innerHTML = "";
 };
 
-window.addFriendRequest = function (name, friendshipId, sender) {
-  const dropdownMenu = document.querySelector(".dropdown-menu");
-
-  const friendRequestItem = document.createElement("li");
-  friendRequestItem.className =
-    "dropdown-item d-flex justify-content-between align-items-center";
-
-  if (sender) {
-    friendRequestItem.innerHTML = `
-          <div class="text-muted" data-friendship-id=${friendshipId}>${name}</div>
-          <div class="badge badge-secondary">En attente</div>
-      `;
-  } else {
-    friendRequestItem.innerHTML = `
-          <div class="username">${name}</div>
-          <div class="action-icons">
-              <i class="fas fa-check-circle text-success accept-request" role="button" title="Accepter" data-friendship-id=${friendshipId}></i>
-              <i class="fas fa-times-circle text-danger ms-2 reject-request" role="button" title="Refuser" data-friendship-id=${friendshipId}></i>
-          </div>
-      `;
-
-    friendRequestItem
-      .querySelector(".accept-request")
-      .addEventListener("click", () => {
-        handleFriendRequestAction(
-          friendshipId,
-          "accepted",
-          friendRequestItem.querySelector(".accept-request")
-        );
-      });
-
-    friendRequestItem
-      .querySelector(".reject-request")
-      .addEventListener("click", () => {
-        handleFriendRequestAction(
-          friendshipId,
-          "rejected",
-          friendRequestItem.querySelector(".reject-request")
-        );
-      });
-  }
-  dropdownMenu.appendChild(friendRequestItem);
-};
-
-window.addFriendAccepted = function (friend_name, friend_id) {
-  const dropdownMenu = document.querySelector(".dropdown-menu");
-
-  const friendRequestItem = document.createElement("li");
-
-  friendRequestItem.innerHTML = `
-      <a class="dropdown-item">
-        <span id=${friend_id} class="status-indicator offline"></span> ${friend_name}
-      </a>
-    `;
-
-  dropdownMenu.appendChild(friendRequestItem);
-};
-
 window.popUpFonc = function showPopup(message) {
   const popupContainer = document.getElementById("pop-up");
 
@@ -342,8 +284,7 @@ function handleSubmitFriendRequest(ev) {
           window.friendSocketConnection.send(
             JSON.stringify({
               type: "add_friend",
-              user_id: json.friend_id,
-              sender_username: json.username,
+              friend_id: json.friend_id,
               friendship_id: json.friendship_id,
             })
           );
@@ -370,7 +311,7 @@ function handleFriendRequestAction(friendshipId, action, button) {
         let username = parentLi.querySelector(".username").textContent;
         parentLi.remove();
         if (action === "accepted") {
-          window.addFriendAccepted(username, data.friend_id);
+          window.addFriendAccepted(username, data.friend_id, friendshipId);
           if (
             window.friendSocketConnection &&
             window.friendSocketConnection.readyState === 1
@@ -378,8 +319,22 @@ function handleFriendRequestAction(friendshipId, action, button) {
             window.friendSocketConnection.send(
               JSON.stringify({
                 type: "new_friend",
-                friend_id: data.user_id,
                 user_id: data.friend_id,
+                status: "accepted",
+                friendship_id: friendshipId,
+              })
+            );
+          }
+        } else {
+          if (
+            window.friendSocketConnection &&
+            window.friendSocketConnection.readyState === 1
+          ) {
+            window.friendSocketConnection.send(
+              JSON.stringify({
+                type: "new_friend",
+                user_id: data.friend_id,
+                status: "rejected",
                 friendship_id: friendshipId,
               })
             );

@@ -2,9 +2,10 @@ require_relative '../services/token_manager'
 require_relative '../log/custom_logger'
 
 class TokenController
-  def initialize(logger = Logger.new, token_manager = TokenManager.new(logger))
+  def initialize(logger = Logger.new, token_manager = TokenManager.new(logger), user_manager = UserManager.new)
     @logger = logger
     @token_manager = token_manager
+    @user_manager = user_manager
   end
 
   def route_request(client, method, path, body, headers, cookies)
@@ -60,7 +61,12 @@ class TokenController
     authorization_header = cookies['access_token']
     payload = @token_manager.verify_access_token(authorization_header)
     if payload
-      RequestHelper.respond(client, 200, { success: "Access token is valid.", user_id: payload['user_id'] })
+      user = @user_manager.get_user(payload['user_id'])
+      if user[:error]
+        RequestHelper.respond(client, 401, { error: "Invalid access token." })
+        return
+      end
+      RequestHelper.respond(client, 200, { success: "Access token is valid.", user_id: payload['user_id'], username: user[:user][0]["username"] })
     else
       RequestHelper.respond(client, 401, { error: "Invalid access token." })
     end
