@@ -154,6 +154,11 @@ services:
     networks:
       - mongo_network
       - nginx_network
+  
+  threejs:
+    build: ./threejs
+    ports:
+      - "4159:4159"
 
 volumes:
   postgres-data:
