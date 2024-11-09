@@ -187,6 +187,10 @@ server.mount_proc '/pongserv' do |req, res|
   handle_route(req, res, logger, "app/view/pongserv.erb")
 end
 
+server.mount_proc '/3dgame' do |req, res|
+  handle_route(req, res, logger, "app/view/threejs.erb")
+end
+
 server.mount_proc '/pongserv-ranked' do |req, res|
   @ranked = true
   handle_route(req, res, logger, "app/view/pongserv.erb")
