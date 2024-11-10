@@ -50,46 +50,46 @@ class TokenController
   def refresh_tokens(client, body)
     refresh_token = body['refresh_token']
     tokens = @token_manager.refresh_tokens(refresh_token)
-    if tokens
-      RequestHelper.respond(client, 200, tokens)
-    else
+    if tokens.nil?
       RequestHelper.respond(client, 401, { error: 'Invalid refresh token.' })
+      return
     end
+    RequestHelper.respond(client, 200, tokens)
   end
 
   def verify_token_user(client, headers, cookies)
     authorization_header = cookies['access_token']
     payload = @token_manager.verify_access_token(authorization_header)
-    if payload
-      user = @user_manager.get_user(payload['user_id'])
-      if user[:error]
-        RequestHelper.respond(client, 401, { error: "Invalid access token." })
-        return
-      end
-      RequestHelper.respond(client, 200, { success: "Access token is valid.", user_id: payload['user_id'], username: user[:user][0]["username"] })
-    else
+    if payload.nil?
       RequestHelper.respond(client, 401, { error: "Invalid access token." })
+      return
     end
+    user = @user_manager.get_user(payload['user_id'])
+    if user[:error]
+      RequestHelper.respond(client, 401, { error: "Invalid access token." })
+      return
+    end
+    RequestHelper.respond(client, 200, { success: "Access token is valid.", user_id: payload['user_id'], username: user[:user][0]["username"] })
   end
 
   def verify_token_user_code(client, headers, cookies)
     authorization_header = cookies['access_token']
     @logger.log('TokenController', "Authorization header: #{authorization_header}")
     payload = @token_manager.verify_token_user_code(authorization_header)
-    if payload
-      RequestHelper.respond(client, 200, { success: "Access token is valid (state can be false)." })
-    else
+    if payload.nil?
       RequestHelper.respond(client, 401, { error: "Invalid access token." })
+      return
     end
+    RequestHelper.respond(client, 200, { success: "Access token is valid (state can be false)." })
   end
 
   def verify_token_admin(client, headers, cookies)
     authorization_header = cookies['access_token']
     payload = @token_manager.verify_admin_token(authorization_header)
-    if payload
-      RequestHelper.respond(client, 200, { success: "Admin access token is valid." })
-    else
+    if payload.nil?
       RequestHelper.respond(client, 401, { error: "Invalid access token." })
+      return
     end
+    RequestHelper.respond(client, 200, { success: "Admin access token is valid." })
   end
 end
