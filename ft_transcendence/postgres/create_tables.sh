@@ -6,7 +6,7 @@ psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" <<-EOSQL
 CREATE TABLE IF NOT EXISTS _user (
     id SERIAL PRIMARY KEY,
     username VARCHAR(12) NOT NULL,
-    img_url VARCHAR(255) NOT NULL DEFAULT 'http://localhost:9000/profiles/default.jpg',
+    img_url VARCHAR(255) NOT NULL DEFAULT 'https://localhost/img/default.jpg',
     email VARCHAR(320) NOT NULL UNIQUE,
     password VARCHAR(255),
     role INTEGER,
