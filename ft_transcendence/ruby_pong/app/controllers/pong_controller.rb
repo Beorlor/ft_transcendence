@@ -12,13 +12,10 @@ class PongController
     headers = event.headers
     case path
     when '/pongsocket/pong'
-      @logger.log('PONG', "Received ping from #{headers['Origin']}")
       pong(client, headers)
     when '/pongsocket/ranked'
-      @logger.log('PONG', "Received ping from #{headers['Origin']} for ranked")
       ranked(client, headers)
     when '/pongsocket/custom'
-      @logger.log('PONG', "Received ping from #{headers['Origin']} for custom")
       client.send('pong custom')
     else
       client.send('Invalid path')
@@ -27,16 +24,12 @@ class PongController
   end
 
   def pong(client, headers)
-    @logger.log('PONG', "Received ping from #{headers}")
     cookie = headers['Cookie'].split('; ').map { |c| c.split('=', 2) }.to_h
-    @logger.log('PONG', "Received ping with access token #{cookie['access_token']}")
     @pong.matchmaking(client, cookie)
   end
 
   def ranked(client, headers)
-    @logger.log('PONG', "Received ping from #{headers}")
     cookie = headers['Cookie'].split('; ').map { |c| c.split('=', 2) }.to_h
-    @logger.log('PONG', "Received ping with access token #{cookie['access_token']}")
     @pong.matchmaking(client, cookie, true)
   end
 

@@ -43,10 +43,12 @@ class UserManager
     return {code: 200, users: users, nPages: nPages}
   end
 
-  def update_user(user_id, body)
+  def update_user(user_id, body, user_id_match)
+    if (user_id.to_i != user_id_match.to_i)
+      return {code: 401, error: 'Permission denied !'}
+    end
     user = @user_repository.get_user_by_id(user_id).first
     update= {}
-    @logger.log('AuthManager', "Updating profile with body: #{body}")
     if body.nil? || body.empty?
       return { code: 400, error: 'Invalid body' }
     end
@@ -59,7 +61,6 @@ class UserManager
       if res_body != false
         update[:img_url] = res_body['img_url']
       end
-      @logger.log('AuthManager', "Image URL url: #{body['img_url']}")
     end
     if user['login_type'] == 0
       email_regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/

@@ -68,7 +68,6 @@ class Friend
       if user
         user_id = user["user_id"]
         @userlogged[user_id] = { ws: client, friends: [], username: user["username"] }
-        @logger.log('Friend', "User connected: #{user}")
         @user_api.get_user_friends(user_id) do |friends|
           if friends
             friend_ids = friends
@@ -90,7 +89,6 @@ class Friend
           end
         end
         client.onclose do
-          @logger.log('Friend', "User disconnected: #{user}")
           @userlogged[user_id][:friends].each do |friend_id|
             if @userlogged[friend_id]
               @userlogged[friend_id][:ws].send({

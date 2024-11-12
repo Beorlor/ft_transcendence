@@ -15,11 +15,8 @@ class Pong
   end
 
   def create_game(client1, client2, ranked = false)
-    @logger.log('Debug', "client1[:player]: #{client1[:player].inspect}")
-    @logger.log('Debug', "client2[:player]: #{client2[:player].inspect}")
     @pong_api.create_game('http://ruby_pong_api:4571/api/pong/create_game', client1[:player]["id"], client2[:player]["id"], ranked) do |status|
       if status
-        @logger.log('Pong', "Creating game with status: #{status}")
         game = Game.new(client1, client2, status["game_info"]["id"], ranked)
         @games[status["game_info"]["id"]] = game
 
@@ -40,12 +37,10 @@ class Pong
   end
 
   def reconnection_game(client, game_info)
-    @logger.log('Pong', "Reconnection game: #{game_info}")
     game = @games[game_info["id"]]
 	if game == nil
 		return nil
 	end
-    @logger.log('Pong', "Reconnection game: #{game}")
     game.reconnection(client)
     client[:ws].onmessage do |message|
       game.receive_message(client, message)
@@ -56,7 +51,6 @@ class Pong
   def matchmaking(client, cookie, ranked = false)
     @logger.log("Matchmaking", "debut matchmaking")
     @user_api.user_logged(cookie['access_token']) do |logged|
-      @logger.log("Matchmaking", "logged #{logged}")
       @user_api.get_user_info("http://ruby_user_management:4567/api/user/#{logged["user_id"]}") do |player|
         @logger.log("Matchmaking", player)
         if player.nil?
@@ -64,13 +58,10 @@ class Pong
           next
         end
         @pong_api.get_game_history('http://ruby_pong_api:4571/api/pong/get_game_history', player['id']) do |game_data|
-          @logger.log('Pong', "Game data: #{game_data}")
           if game_data
             reconnection_game({ ws: client, player: player }, game_data["game_info"])
-            @logger.log('Pong', "Game data: #{game_data}")
             next
           end
-          @logger.log('Pong', "Matchmaking for player: #{player}")
           if ranked
             @users_matchmaking_ranked.push({
               ws: client,

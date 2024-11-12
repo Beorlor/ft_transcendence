@@ -21,7 +21,7 @@ class UserRepository
 
   def update_user(user_info, user_id)
     @logger.log('AuthRepository', "Updating user with email #{user_info[:email]}")
-    Database.update_table('_user', user_info, "id = #{user_id}")
+    Database.update_table('_user', user_info, {}, {id: user_id})
     @logger.log('AuthRepository', "User with email #{user_info[:email]} updated")
   end
 

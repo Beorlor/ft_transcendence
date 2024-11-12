@@ -38,7 +38,6 @@ class Game
   def receive_message(client, message)
     begin
       message = JSON.parse(message)
-      @logger.log("Game", "receive_message: #{message["direction"]} with id #{client[:player]["id"]}")
       if client[:player]["id"] == @client1[:player]["id"]
         @game_data[:player1_direction] = message["direction"] == "up" ? -1 : (message["direction"] == "down" ? 1 : 0)
       elsif client[:player]["id"] == @client2[:player]["id"]

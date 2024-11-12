@@ -36,16 +36,16 @@ class FriendController
       case [method]
       when ['GET']
         get_friends(client, friends_id)
-      when ['PATCH']
-        update_friends(client, friends_id, cookies, body)
-      when ['DELETE']
-        delete_friends(client, friends_id, cookies)
       end
     elsif friend_match
       friend_id = friend_match[1]
       case [method]
       when ['GET']
         get_friend(client, friend_id)
+      when ['PATCH']
+        update_friends(client, friends_id, cookies, body)
+      when ['DELETE']
+        delete_friends(client, friends_id, cookies)
       end
     else
       case [method, clean_path]

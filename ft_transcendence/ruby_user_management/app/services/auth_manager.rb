@@ -62,16 +62,14 @@ class AuthManager
   end
 
   def register(body)
-    @logger.log('AuthManager', "Registering new user")
+    @logger.log('AuthManager', "Registering new user : #{body['email']}")
     if body.nil? || body.empty?
       return { code: 400, error: 'Invalid body' }
     end
-    @logger.log('AuthManager', "Username: #{body['username']}")
     if body['username'].nil? || body['username'].size < 3 || body['username'].size > 12
       return { code: 400, error: 'Invalid username' }
     end
     email_regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    @logger.log('AuthManager', "Email: #{body['email']}")
     if body['email'].nil? || body['email'].size < 5 || body['email'].size > 320 || !body['email'].match(email_regex)
       return { code: 400, error: 'Invalid email' }
     end

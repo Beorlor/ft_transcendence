@@ -19,7 +19,6 @@ class ImgApi
     res = http.start do |http|
       http.request(req)
     end
-    @logger.log('App', "Response from /img/upload: #{res.body}")
     if res.is_a?(Net::HTTPSuccess)
       JSON.parse(res.body)
     else

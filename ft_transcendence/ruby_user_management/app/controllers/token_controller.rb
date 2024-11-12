@@ -74,7 +74,6 @@ class TokenController
 
   def verify_token_user_code(client, headers, cookies)
     authorization_header = cookies['access_token']
-    @logger.log('TokenController', "Authorization header: #{authorization_header}")
     payload = @token_manager.verify_token_user_code(authorization_header)
     if payload.nil?
       RequestHelper.respond(client, 401, { error: "Invalid access token." })

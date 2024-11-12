@@ -51,7 +51,6 @@ class AuthController
 
   def handle_callback(client, body)
     authorization_code = body['code']
-    @logger.log('AuthController', "Authorization code: #{authorization_code}")
     if authorization_code
       access_token = @auth_manager.get_access_token(client, authorization_code)
       if access_token
@@ -85,7 +84,6 @@ class AuthController
       RequestHelper.respond(client, status[:code], {error: status[:error]})
       return
     end
-    @logger.log('AuthController', "User registered: #{status}")
     access_token = @token_manager.generate_access_token(status[:user]["id"], false, status[:user]["role"])
     RequestHelper.respond(client, status[:code], {success: status[:success]}, ["access_token=#{access_token}; Path=/; Max-Age=3600; HttpOnly; Secure"])
   end
@@ -102,7 +100,6 @@ class AuthController
 
   def validate_code(client, body, headers, cookies)
     user_id = @token_manager.get_user_id(cookies['access_token'])
-    @logger.log('AuthController', "User ID: #{user_id}")
     token = body['token']
     status = @auth_manager.validate_code(user_id, token)
     if status[:error]
