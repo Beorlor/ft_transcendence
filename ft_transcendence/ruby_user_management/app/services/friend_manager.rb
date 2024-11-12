@@ -25,7 +25,6 @@ class FriendManager
       return {code: 400, error: 'Cannot add yourself as a friend' }
     end
     friend = @user_repository.get_user_by_id(friend_id)[0]
-    @logger.log('FriendManager', "Friend: #{friend}")
     if friend.nil?
       @logger.log('FriendManager', "Friend does not exist")
       return {code: 400, error: 'Friend does not exist' }
@@ -35,7 +34,6 @@ class FriendManager
       return {code: 400, error: 'Friendship already exists' }
     end
     friendship = @friend_repository.add_friend(user_id, friend_id)
-    @logger.log('FriendManager', "Friendship: #{friendship}")
     user = @user_repository.get_user_by_id(user_id)[0]
     @logger.log('FriendManager', "Friend added")
     return {code: 200, success: 'Friend added', friendship_id: friendship["id"],
@@ -58,7 +56,6 @@ class FriendManager
       @logger.log('FriendManager', "Friendship does not exist")
       return {code: 400, error: 'Friendship does not exist' }
     end
-    @logger.log('FriendManager', "Friendship: #{friendship}")
     if friendship["requester_id"].to_i != user_id.to_i && friendship["receiver_id"].to_i != user_id.to_i
       @logger.log('FriendManager', "User is not part of the friendship")
       return {code: 400, error: 'User is not part of the friendship' }
@@ -83,7 +80,6 @@ class FriendManager
       @logger.log('FriendManager', "Friendship does not exist")
       return {code: 400, error: 'Friendship does not exist' }
     end
-    @logger.log('FriendManager', "Friendship: #{friendship}")
     if friendship["requester_id"].to_i != user_id.to_i && friendship["receiver_id"].to_i != user_id.to_i
       @logger.log('FriendManager', "User is not part of the friendship")
       return {code: 400, error: 'User is not part of the friendship' }

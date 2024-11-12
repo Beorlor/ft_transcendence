@@ -297,7 +297,7 @@ function handleSubmitFriendRequest(ev) {
 }
 
 function handleFriendRequestAction(friendshipId, action, button) {
-  fetch(`https://localhost/api/friends/${friendshipId}`, {
+  fetch(`https://localhost/api/friend/${friendshipId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

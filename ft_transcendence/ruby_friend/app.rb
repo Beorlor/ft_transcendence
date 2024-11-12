@@ -14,7 +14,6 @@ class AppServer
       @logger.log('APP', "Starting server on localhost:4560")
       EM::WebSocket.run(host: "0.0.0.0", port: 4560) do |ws|
         ws.onopen do |event|
-          @logger.log('APP', "Connection opened with #{event.headers} ")
           @friendController.route_request(ws, event)
         end
       end

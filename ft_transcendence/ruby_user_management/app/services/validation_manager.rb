@@ -18,7 +18,6 @@ class ValidationManager
   def generate_validation(user)
     @logger.log('ValidationManager', "Generating validation for user with email #{user['email']}")
     code = SecureRandom.random_number(1_000_000).to_s.rjust(6, '0')
-    @logger.log('ValidationManager', "Code generated: #{code}")
     activation_info = {
       user_id: user['id'],
       token: code,

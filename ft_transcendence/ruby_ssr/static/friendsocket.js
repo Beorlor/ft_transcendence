@@ -145,7 +145,7 @@ window.addEventListener("DOMContentLoaded", (_) => {
     .addEventListener("click", function () {
       const friendShipId =
         document.getElementById("friendShipModalId").textContent;
-      fetch(`https://localhost/api/friends/${friendShipId}`, {
+      fetch(`https://localhost/api/friend/${friendShipId}`, {
         method: "DELETE",
       })
         .then((response) => response.json())

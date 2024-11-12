@@ -35,32 +35,19 @@ class UserController
       case [method]
       when ['GET']
         get_user(client, user_id)
+      when ['PUT']
+        update_user(client, body, cookies, user_id)
       when ['DELETE']
         delete_user(client)
       else
         @logger.log('UserController', "No route found for: #{method} #{clean_path}")
         RequestHelper.not_found(client)
       end
-    elsif clean_path == '/api/user/'
-      case [method]
-      when ['PUT']
-        update_user(client, body, cookies)
-      end
-    elsif clean_path == '/api/users'
-      case [method]
-      when ['GET']
-        get_users_paginated(client)
-      end
     elsif user_page_match
       user_page = user_page_match[1]
       case [method]
       when ['GET']
         get_users_paginated(client, user_page)
-      end
-    elsif clean_path == '/api/add_friend'
-      case [method]
-      when ['POST']
-        add_friend(client, body, cookies)
       end
     else
       return 1
@@ -69,26 +56,22 @@ class UserController
   end
 
   def get_users_paginated(client, user_page=1)
-    @logger.log('UserController', "Fetching users for page: #{user_page}")
     status = @user_manager.get_users_paginated(user_page)
     if status[:code] != 200
       RequestHelper.respond(client, status[:code], { error: status[:error] })
       return
     end
-    @logger.log('UserController', "Users found for page: #{user_page}, users: #{status[:users]}")
     RequestHelper.respond(client, status[:code], { users: status[:users], nPages: status[:nPages] })
   end
   
   def get_user(client, user_id)
-    @logger.log('UserController', "Fetching user with ID: #{user_id}")
     status = @user_manager.get_user(user_id)
-    @logger.log('UserController', "User found: #{status}")
     RequestHelper.respond(client, status[:code], status)
   end
 
-  def update_user(client, body, cookies)
+  def update_user(client, body, cookies, user_id_match)
     user_id = @token_manager.get_user_id(cookies['access_token'])
-    status = @user_manager.update_user(user_id, body)
+    status = @user_manager.update_user(user_id, body, user_id_match)
     if status[:error]
       RequestHelper.respond(client, status[:code], {error: status[:error]})
       return
@@ -100,13 +83,4 @@ class UserController
     RequestHelper.respond(client, 200, { success: "User deleted" })
   end
 
-  def add_friend(client, body, cookies)
-    user_id = @token_manager.get_user_id(cookies['access_token'])
-    status = @user_manager.add_friend(user_id, body)
-    if status[:error]
-      RequestHelper.respond(client, status[:code], {error: status[:error]})
-      return
-    end
-    RequestHelper.respond(client, status[:code], {success: status[:success]})
-  end
 end

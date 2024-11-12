@@ -26,7 +26,6 @@ class PongController
     query_string = uri.query
     params = query_string ? URI.decode_www_form(query_string).to_h : {}
     clean_path = uri.path
-    @logger.log('PongController', "Received #{method} request for path #{clean_path}")
     user_id_stats_match = clean_path.match(%r{^/api/pong/player/stats/(\d+)$})
     if user_id_stats_match
       user_id = user_id_stats_match[1]
@@ -34,7 +33,6 @@ class PongController
       when ['GET']
         get_user_stats(client, user_id)
       else
-        @logger.log('PongController', "No route found for: #{method} #{clean_path}")
         return 1
       end
     else
@@ -76,15 +74,11 @@ class PongController
   end
 
   def get_game_history(client, cookies)
-    @logger.log('PongController', "Getting game history for user #{cookies}")
     in_game = @pong_manager.is_already_playing(cookies["user_id"])
-    @logger.log('PongController', "in game: #{in_game}")
     if in_game.nil?
-      @logger.log('PongController', "No game found for user #{cookies}")
       RequestHelper.respond(client, 404, { no_game: 'No game found' })
       return
     end
-    @logger.log('PongController', "Game found for user #{cookies}")
     RequestHelper.respond(client, 200, { game_info: in_game[:game_info], success: 'Game found' })
   end
 

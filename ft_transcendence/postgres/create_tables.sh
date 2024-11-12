@@ -21,7 +21,8 @@ CREATE TABLE IF NOT EXISTS _emailActivation (
     user_id INTEGER REFERENCES _user(id),
     token VARCHAR(6) NOT NULL,
     expire_at TIMESTAMP,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP DEFAULT NULL
 );
 
 CREATE TABLE IF NOT EXISTS _pong (
@@ -54,9 +55,9 @@ CREATE TABLE IF NOT EXISTS _friendship (
     requester_id INTEGER REFERENCES _user(id) ON DELETE CASCADE,
     receiver_id INTEGER REFERENCES _user(id) ON DELETE CASCADE,
     status VARCHAR(10) NOT NULL DEFAULT 'pending',
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP,
-    deleted_at TIMESTAMP
+    deleted_at TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 EOSQL

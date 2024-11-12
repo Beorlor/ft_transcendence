@@ -7,7 +7,9 @@ function loadEditProfileFormAction() {
 
       const formData = new FormData(this);
 
-      fetch("https://localhost/api/user/", {
+      const userId = document.getElementById("user_id").value;
+
+      fetch(`https://localhost/api/user/${userId}`, {
         method: "PUT",
         headers: {
           Accept: "*/*",
