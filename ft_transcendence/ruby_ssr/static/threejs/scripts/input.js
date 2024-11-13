@@ -1,4 +1,4 @@
-const audioCtx = new AudioContext();
+const audioCtx = window.CUSTOM_AUDIO_CONTEXT;
 
 class InputManager {
 	constructor() {
