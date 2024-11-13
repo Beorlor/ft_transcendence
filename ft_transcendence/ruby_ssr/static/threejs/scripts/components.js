@@ -230,7 +230,7 @@ export class Level extends Component {
 			this._player = player;
 	}
 	clear() {
-		for (let obj in this._objects) {
+		for (let obj of this._objects) {
 			obj.remove();
 		}
 		this._objects.length = 0;

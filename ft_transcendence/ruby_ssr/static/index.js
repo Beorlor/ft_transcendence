@@ -1,6 +1,10 @@
 const WINDOW_EVENTS = {};
 
 window.WINDOW_ANIMATIONS_FRAMES = [];
+window.CUSTOM_AUDIO_CONTEXT = new AudioContext();
+window.CUSTOM_RENDERER = null;
+window.CUSTOM_SCENE = null;
+window.CUSTOM_LEVEL = null;
 window.GAME_STATES = {
   default: 0,
   pong: 1,
@@ -27,6 +31,9 @@ window.removeAllListeners = (event) => {
 window.cancelAnimations = () => {
   for (let v in WINDOW_ANIMATIONS_FRAMES) window.cancelAnimationFrame(v);
   WINDOW_ANIMATIONS_FRAMES.length = 0;
+  if (window.threeJSStop) {
+	window.threeJSStop();
+  }
 };
 
 window.resetHomePage = function () {
@@ -82,6 +89,15 @@ function loadPageScript(game) {
       window.pongMain();
       window.GAMESTATE = window.GAME_STATES.pong;
     }
+	if (window.location === "https://localhost/3dgame") {
+		window.threeJSMain();
+		window.GAMESTATE = window.GAME_STATES.threejs;
+	}
+	else {
+		if (window.threeJSStop) {
+			window.threeJSStop();
+		}
+	}
     if (
       window.location == "https://localhost/pongserv" ||
       window.location == "https://localhost/pongserv-ranked"
