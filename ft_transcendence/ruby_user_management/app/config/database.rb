@@ -135,24 +135,4 @@ class Database
     end
   end
 
-  def self.delete_from_table(table_name, or_conditions = {}, and_conditions = {})
-    or_where_clauses = or_conditions.map { |column, value| "#{column} = $#{or_conditions.keys.index(column) + 1}" }.join(' OR ') unless or_conditions.empty?
-    and_where_clauses = and_conditions.map { |column, value| "#{column} = $#{or_conditions.size + and_conditions.keys.index(column) + 1}" }.join(' AND ') unless and_conditions.empty?
-
-    where_clauses = []
-    where_clauses << "(#{or_where_clauses})" if or_where_clauses
-    where_clauses << and_where_clauses if and_where_clauses
-    where_clauses << "deleted_at IS NULL"
-
-    query = "DELETE FROM #{table_name} WHERE #{where_clauses.join(' AND ')}"
-    values = or_conditions.values + and_conditions.values
-
-    begin
-      pool.with { |conn| conn.exec_params(query, values) }
-      true
-    rescue PG::Error => e
-      Logger.new.log('Database', "Error deleting from table #{table_name}: #{e.message}")
-      false
-    end
-  end
 end

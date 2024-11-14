@@ -47,4 +47,14 @@ class UserRepository
     Database.get_all_from_table('_user')
   end
 
+  def delete_user(user_id)
+    @logger.log('AuthRepository', "Deleting user : #{user_id}")
+    Database.update_table('_user', {deleted_at: Time.now.strftime("%Y-%m-%d %H:%M:%S")}, {}, {id: user_id})
+    Database.update_table('_friendship', {deleted_at: Time.now.strftime("%Y-%m-%d %H:%M:%S")}, {requester_id: user_id, receiver_id: user_id}, {})
+    Database.update_table('_emailActivation', {deleted_at: Time.now.strftime("%Y-%m-%d %H:%M:%S")}, {}, {user_id: user_id})
+    Database.update_table('_pong', {deleted_at: Time.now.strftime("%Y-%m-%d %H:%M:%S")}, {player_1_id: user_id, player_2_id: user_id}, {})
+    Database.update_table('_pongHistory', {deleted_at: Time.now.strftime("%Y-%m-%d %H:%M:%S")}, {}, {user_id: user_id})
+    @logger.log('AuthRepository', "User deleted successfully")
+  end
+
 end

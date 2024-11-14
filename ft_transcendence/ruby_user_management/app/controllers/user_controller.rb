@@ -38,7 +38,7 @@ class UserController
       when ['PUT']
         update_user(client, body, cookies, user_id)
       when ['DELETE']
-        delete_user(client)
+        delete_user(client, user_id, cookies)
       else
         @logger.log('UserController', "No route found for: #{method} #{clean_path}")
         RequestHelper.not_found(client)
@@ -79,8 +79,14 @@ class UserController
     RequestHelper.respond(client, status[:code], {success: status[:success]})
   end
 
-  def delete_user(client)
-    RequestHelper.respond(client, 200, { success: "User deleted" })
+  def delete_user(client, user_id_match, cookies)
+    user_id = @token_manager.get_user_id(cookies['access_token'])
+    status = @user_manager.delete_user(user_id, user_id_match)
+    if status[:error]
+      RequestHelper.respond(client, status[:code], {error: status[:error]})
+      return
+    end
+    RequestHelper.respond(client, status[:code], {success: status[:success]})
   end
 
 end
