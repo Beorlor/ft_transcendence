@@ -32,7 +32,7 @@ window.cancelAnimations = () => {
   for (let v in WINDOW_ANIMATIONS_FRAMES) window.cancelAnimationFrame(v);
   WINDOW_ANIMATIONS_FRAMES.length = 0;
   if (window.threeJSStop) {
-	window.threeJSStop();
+    window.threeJSStop();
   }
 };
 
@@ -89,15 +89,14 @@ function loadPageScript(game) {
       window.pongMain();
       window.GAMESTATE = window.GAME_STATES.pong;
     }
-	if (window.location === "https://localhost/3dgame") {
-		window.threeJSMain();
-		window.GAMESTATE = window.GAME_STATES.threejs;
-	}
-	else {
-		if (window.threeJSStop) {
-			window.threeJSStop();
-		}
-	}
+    if (window.location === "https://localhost/3dgame") {
+      window.threeJSMain();
+      window.GAMESTATE = window.GAME_STATES.threejs;
+    } else {
+      if (window.threeJSStop) {
+        window.threeJSStop();
+      }
+    }
     if (
       window.location == "https://localhost/pongserv" ||
       window.location == "https://localhost/pongserv-ranked"
@@ -142,6 +141,11 @@ function rebindEvents() {
       document
         .getElementById("edit_profile_button")
         .addEventListener("click", handleEditProfileClick);
+    }
+    if (document.getElementById("delete_profile_button")) {
+      document
+        .getElementById("delete_profile_button")
+        .addEventListener("click", handleDeleteProfileClick);
     }
     document.querySelectorAll(".accept-request").forEach((button) => {
       button.addEventListener("click", () => {
@@ -362,6 +366,33 @@ function handleFriendRequestAction(friendshipId, action, button) {
       }
     })
     .catch((error) => console.error("Fetch error:", error));
+}
+
+function handleDeleteProfileClick(ev) {
+  ev.preventDefault();
+  const deleteProfileButton = document.getElementById("delete_profile_button");
+  const userId = deleteProfileButton.dataset.userId;
+  console.log(userId);
+  fetch(`https://localhost/api/user/${userId}`, {
+    method: "DELETE",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        if (
+          window.friendSocketConnection &&
+          window.friendSocketConnection.readyState === 1
+        ) {
+          window.friendSocketConnection.close();
+        }
+        const url = "https://localhost";
+        loadPage(
+          document.getElementById("game"),
+          url,
+          window.GAME_STATES.default
+        );
+      }
+    });
 }
 
 window.addEventListener("popstate", function (_) {
