@@ -89,7 +89,10 @@ function loadPageScript(game) {
       window.pongMain();
       window.GAMESTATE = window.GAME_STATES.pong;
     }
-	if (window.location === "https://localhost/3dgame") {
+	if (window.location == "https://localhost/3dgame") {
+		if (window.threeJSStop) {
+			window.threeJSStop();
+		}
 		window.threeJSMain();
 		window.GAMESTATE = window.GAME_STATES.threejs;
 	}
@@ -115,6 +118,9 @@ function rebindEvents() {
   document
     .getElementById("pong_link")
     .addEventListener("click", handlePongClick);
+	document
+    .getElementById("threejs_link")
+    .addEventListener("click", handleThreeJSClick);
   if (document.getElementById("button_login")) {
     document
       .getElementById("button_login")
@@ -194,8 +200,17 @@ function loadPage(game, url, gamestate) {
 function handleHomeClick(ev) {
   ev.preventDefault();
   const url = "https://localhost";
+  if (window.threeJSStop) {
+	window.threeJSStop();
+	}
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
+
+function handleThreeJSClick(ev) {
+	ev.preventDefault();
+	const url = "https://localhost/3dgame";
+	loadPage(document.getElementById("game"), url, window.GAME_STATES.threejs);
+  }
 
 function handlePongClick(ev) {
   ev.preventDefault();
