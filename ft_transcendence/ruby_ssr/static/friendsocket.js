@@ -161,11 +161,14 @@ window.addEventListener("DOMContentLoaded", (_) => {
 
   document.getElementById("sendMessage").addEventListener("click", function () {
     const friendId = document.getElementById("friendModalId").textContent;
+    const friendshipId =
+      document.getElementById("friendShipModalId").textContent;
     const message = document.getElementById("messageInput").value;
     if (message.length > 0) {
       window.friendSocketConnection.send(
         JSON.stringify({
           type: "message",
+          friendship_id: friendshipId,
           friend_id: friendId,
           message: message,
         })

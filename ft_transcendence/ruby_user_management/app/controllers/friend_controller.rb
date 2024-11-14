@@ -41,11 +41,11 @@ class FriendController
       friend_id = friend_match[1]
       case [method]
       when ['GET']
-        get_friend(client, friend_id)
+        get_friend(client, friend_id, body)
       when ['PATCH']
-        update_friends(client, friends_id, cookies, body)
+        update_friends(client, friend_id, cookies, body)
       when ['DELETE']
-        delete_friends(client, friends_id, cookies)
+        delete_friends(client, friend_id, cookies)
       end
     else
       case [method, clean_path]
@@ -94,7 +94,14 @@ class FriendController
     RequestHelper.respond(client, status[:code], {success: status[:success]})
   end
 
-  def get_friend(client, friend_id)
-    @logger.log('FriendController', "Get friend with id: #{friend_id}")
+  def get_friend(client, friendship_id, body)
+    body = JSON.parse(body) if body.is_a?(String)
+    user_id = body["user_id"]
+    status = @friend_manager.get_friend(user_id, friendship_id, body["friend_id"])
+    if status[:error]
+      RequestHelper.respond(client, status[:code], {error: status[:error]})
+      return
+    end
+    RequestHelper.respond(client, status[:code], {success: status[:success]})
   end
 end

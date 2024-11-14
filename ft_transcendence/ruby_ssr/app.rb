@@ -183,7 +183,6 @@ server.mount_proc '/callback-tmp' do |req, res|
 end
 
 server.mount_proc '/pongserv' do |req, res|
-  @ranked = false
   handle_route(req, res, logger, "app/view/pongserv.erb")
 end
 
@@ -192,8 +191,7 @@ server.mount_proc '/3dgame' do |req, res|
 end
 
 server.mount_proc '/pongserv-ranked' do |req, res|
-  @ranked = true
-  handle_route(req, res, logger, "app/view/pongserv.erb")
+  handle_route(req, res, logger, "app/view/pongserv-ranked.erb")
 end
 
 server.mount_proc '/profile' do |req, res|

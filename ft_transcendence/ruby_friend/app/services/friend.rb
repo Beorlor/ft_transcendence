@@ -42,8 +42,8 @@ class Friend
   end
 
   def new_friend(data, user_id)
-    if @userlogged[data['user_id']]
-      @userlogged[data['user_id']][:ws].send({
+    if @userlogged[data['friend_id']]
+      @userlogged[data['friend_id']][:ws].send({
         type: 'new_friend',
         friend_id: user_id,
         friendship_id: data['friendship_id'],
@@ -52,9 +52,9 @@ class Friend
       if @userlogged[user_id]
         @userlogged[user_id][:ws].send({
           type: 'friend_connected',
-          friend: data['user_id']
+          friend: data['friend_id']
         }.to_json)
-        @userlogged[data['user_id']][:ws].send({
+        @userlogged[data['friend_id']][:ws].send({
           type: 'friend_connected',
           friend: user_id
         }.to_json)
@@ -103,13 +103,19 @@ class Friend
         client.onmessage do |message|
           begin
             data = JSON.parse(message)
-            case data['type']
-            when "add_friend"
-              add_friend(data, user_id)
-            when "new_friend"
-              new_friend(data, user_id)
-            when "message"
-              send_message(data, user_id)
+            @user_api.user_in_friendship(data['friendship_id'], data['friend_id'], user_id) do |friendship|
+              if !friendship
+                client.send({ error: 'Unauthorized' }.to_json)
+              else
+                case data['type']
+                when "add_friend"
+                  add_friend(data, user_id)
+                when "new_friend"
+                  new_friend(data, user_id)
+                when "message"
+                  send_message(data, user_id)
+                end
+              end
             end
           rescue JSON::ParserError => e
             @logger.log('Friend', "Invalid JSON: #{message}")
