@@ -70,12 +70,13 @@ window.addFriendAccepted = function (friend_name, friend_id, friendship_id) {
 function connexionFriendSocket() {
   const url = "wss://localhost/friendsocket/";
   const connection = new WebSocket(url);
+  let pingInterval;
 
   connection.onopen = () => {
     console.log("Connected to the friend socket.");
     connection.send("Hello from the client!");
 
-    setInterval(() => {
+    pingInterval = setInterval(() => {
       connection.send(
         JSON.stringify({
           type: "ping",
@@ -127,6 +128,7 @@ function connexionFriendSocket() {
   };
 
   connection.onclose = () => {
+    clearInterval(pingInterval);
     console.log("Disconnected from the friend socket.");
   };
 

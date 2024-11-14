@@ -16,7 +16,7 @@
       border-radius: 8px;
     }
 
-    .edit-profile-btn {
+    .profile-btn {
       margin-top: 10px;
     }
 
@@ -36,7 +36,8 @@
         <h3><%= @user["username"] %></h3>
         <p> Friend id: <%= @user["id"] %></p>
         <p>Email: <%= @user["email"] %></p>
-        <button id="edit_profile_button" class="btn btn-primary edit-profile-btn">Edit Profile</button>
+        <button id="edit_profile_button" class="btn btn-primary profile-btn">Edit Profile</button>
+        <button id="delete_profile_button" data-user-id="<%= @user["id"] %>" class="btn btn-danger profile-btn">Delete</button>
       </div>
 
       <!-- Rank Points Section -->
