@@ -88,4 +88,20 @@ class FriendManager
     @logger.log('FriendManager', "Friendship deleted")
     return {code: 200, success: 'Friendship deleted' }
   end
+
+  def get_friend(user_id, friendship_id, friend_id)
+    @logger.log('FriendManager', "Checking friendship with user_id: #{user_id}, friendship_id: #{friendship_id}, friend_id: #{friend_id}")
+    friendship = @friend_repository.get_friendship(friendship_id)
+    if friendship.nil?
+      @logger.log('FriendManager', "Friendship does not exist")
+      return {code: 400, error: 'Friendship does not exist' }
+    end
+    if (friendship["requester_id"].to_i != friend_id.to_i && friendship["receiver_id"].to_i != user_id.to_i) &&
+      (friendship["requester_id"].to_i != user_id.to_i && friendship["receiver_id"].to_i != friend_id.to_i)
+      @logger.log('FriendManager', "User is not part of the friendship")
+      return {code: 400, error: 'User is not part of the friendship' }
+    end
+    @logger.log('FriendManager', "Friendship found")
+    return {code: 200, success: 'Friendship found' }
+  end
 end

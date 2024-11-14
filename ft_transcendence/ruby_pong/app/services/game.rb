@@ -21,10 +21,12 @@ class Game
     paddle2_x: width - 20 - 12, delta_time: 0.016,
     ranked: false,
 	ball_vx: 1, ball_vy: 1 }
+    @game_data[:ranked] = ranked
     @start_time = Time.now
     @game = true
     @pong_api = pong_api
     @logger = logger
+    @logger.log("Game", "Game created #{ranked}")
   end
 
   def reconnection(client)

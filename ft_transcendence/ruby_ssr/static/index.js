@@ -319,7 +319,7 @@ function handleFriendRequestAction(friendshipId, action, button) {
             window.friendSocketConnection.send(
               JSON.stringify({
                 type: "new_friend",
-                user_id: data.friend_id,
+                friend_id: data.friend_id,
                 status: "accepted",
                 friendship_id: friendshipId,
               })
@@ -333,7 +333,7 @@ function handleFriendRequestAction(friendshipId, action, button) {
             window.friendSocketConnection.send(
               JSON.stringify({
                 type: "new_friend",
-                user_id: data.friend_id,
+                friend_id: data.friend_id,
                 status: "rejected",
                 friendship_id: friendshipId,
               })

@@ -63,6 +63,7 @@ class Pong
             next
           end
           if ranked
+            @logger.log("Matchmaking", "ranked")
             @users_matchmaking_ranked.push({
               ws: client,
               player: player
@@ -71,6 +72,7 @@ class Pong
               create_game(@users_matchmaking_ranked.shift, @users_matchmaking_ranked.shift, true)
             end
           else
+            @logger.log("Matchmaking", "normal")
             @users_matchmaking_normal.push({
             ws: client,
             player: player
