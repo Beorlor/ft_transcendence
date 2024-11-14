@@ -86,17 +86,17 @@ function makeMainLevel(scene, inputManager, camera) {
 
 
 async function main() {
-	const scene = new THREE.Scene();
+	window.CUSTOM_SCENE = new THREE.Scene();
 	const camera = new THREE.PerspectiveCamera(90, WIN_WIDTH / WIN_HEIGHT, 0.1, 1000.0);
-	const renderer = new THREE.WebGLRenderer({antialias: true});
+	window.CUSTOM_RENDERER = new THREE.WebGLRenderer({antialias: true});
 
 	/* Textures initialization */
 
-	TextureManager.INSTANCE.pushTextureInfo("hitmarker", "../textures/hitmarker.png");
-	TextureManager.INSTANCE.pushTextureInfo("target", "../textures/target.png");
-	TextureManager.INSTANCE.pushTextureInfo("health_bar_good", "../textures/health_bar_good.jpg");
-	TextureManager.INSTANCE.pushTextureInfo("health_bar_bad", "../textures/health_bar_bad.jpg");
-	TextureManager.INSTANCE.pushTextureInfo("health_bar_dead", "../textures/health_bar_dead.jpg");
+	TextureManager.INSTANCE.pushTextureInfo("hitmarker", "/static/threejs/textures/hitmarker.png");
+	TextureManager.INSTANCE.pushTextureInfo("target", "/static/threejs/textures/target.png");
+	TextureManager.INSTANCE.pushTextureInfo("health_bar_good", "/static/threejs/textures/health_bar_good.jpg");
+	TextureManager.INSTANCE.pushTextureInfo("health_bar_bad", "/static/threejs/textures/health_bar_bad.jpg");
+	TextureManager.INSTANCE.pushTextureInfo("health_bar_dead", "/static/threejs/textures/health_bar_dead.jpg");
 
 	await TextureManager.INSTANCE.loadTextures();
 
@@ -104,14 +104,14 @@ async function main() {
 
 	/* Models initialization */
 
-	ModelManager.INSTANCE.pushModelInfo("zombie", "../models/zombie.glb");
-	ModelManager.INSTANCE.pushModelInfo("gun", "../models/gun.glb");
-	ModelManager.INSTANCE.pushModelInfo("rifle", "../models/rifle.glb");
-	ModelManager.INSTANCE.pushModelInfo("laser", "../models/raygun.glb");
-	ModelManager.INSTANCE.pushModelInfo("danceBomb", "../models/dancebomb.glb");
-	ModelManager.INSTANCE.pushModelInfo("box", "../models/box.glb");
-	ModelManager.INSTANCE.pushModelInfo("rock", "../models/rock.glb");
-	ModelManager.INSTANCE.pushModelInfo("tree", "../models/tree.glb");
+	ModelManager.INSTANCE.pushModelInfo("zombie", "/static/threejs/models/zombie.glb");
+	ModelManager.INSTANCE.pushModelInfo("gun", "/static/threejs/models/gun.glb");
+	ModelManager.INSTANCE.pushModelInfo("rifle", "/static/threejs/models/rifle.glb");
+	ModelManager.INSTANCE.pushModelInfo("laser", "/static/threejs/models/raygun.glb");
+	ModelManager.INSTANCE.pushModelInfo("danceBomb", "/static/threejs/models/dancebomb.glb");
+	ModelManager.INSTANCE.pushModelInfo("box", "/static/threejs/models/box.glb");
+	ModelManager.INSTANCE.pushModelInfo("rock", "/static/threejs/models/rock.glb");
+	ModelManager.INSTANCE.pushModelInfo("tree", "/static/threejs/models/tree.glb");
 
 	await ModelManager.INSTANCE.loadModels();
 
@@ -119,54 +119,70 @@ async function main() {
 
 	/* Sounds Initialization */
 
-	AudioManager.INSTANCE.pushSoundInfo("gunFire", "../sounds/gunFire.ogg");
-	AudioManager.INSTANCE.pushSoundInfo("raygun", "../sounds/raygun.ogg");
-	AudioManager.INSTANCE.pushSoundInfo("hit", "../sounds/hit.ogg");
-	AudioManager.INSTANCE.pushSoundInfo("gunReload", "../sounds/gunReload.ogg");
-	AudioManager.INSTANCE.pushSoundInfo("playerHit", "../sounds/playerHit.ogg");
-	AudioManager.INSTANCE.pushSoundInfo("dancebomb", "../sounds/dancebomb.ogg");
-	AudioManager.INSTANCE.pushSoundInfo("theme", "../sounds/theme.ogg");
+	AudioManager.INSTANCE.pushSoundInfo("gunFire", "/static/threejs/sounds/gunFire.ogg");
+	AudioManager.INSTANCE.pushSoundInfo("raygun", "/static/threejs/sounds/raygun.ogg");
+	AudioManager.INSTANCE.pushSoundInfo("hit", "/static/threejs/sounds/hit.ogg");
+	AudioManager.INSTANCE.pushSoundInfo("gunReload", "/static/threejs/sounds/gunReload.ogg");
+	AudioManager.INSTANCE.pushSoundInfo("playerHit", "/static/threejs/sounds/playerHit.ogg");
+	AudioManager.INSTANCE.pushSoundInfo("dancebomb", "/static/threejs/sounds/dancebomb.ogg");
+	AudioManager.INSTANCE.pushSoundInfo("theme", "/static/threejs/sounds/theme.ogg");
 
 
 	await AudioManager.INSTANCE.loadSounds();
 
 	/* --------------------- */
 
-	renderer.setPixelRatio(window.devicePixelRatio);
-	renderer.shadowMap.enabled = true;
-	renderer.outputEncoding = THREE.sRGBEncoding;
+	window.CUSTOM_RENDERER.setPixelRatio(window.devicePixelRatio);
+	window.CUSTOM_RENDERER.shadowMap.enabled = true;
+	window.CUSTOM_RENDERER.outputEncoding = THREE.sRGBEncoding;
 	const input = new InputManager();
-	const level = makeMainLevel(scene, input, camera);
+	window.CUSTOM_LEVEL = makeMainLevel(window.CUSTOM_SCENE, input, camera);
 	camera.position.y = 1;
 
-	renderer.setSize(WIN_WIDTH, WIN_HEIGHT);
-	renderer.setClearColor(0x00dddd);
-	document.body.appendChild(renderer.domElement);
+	const gameDiv = document.getElementById("game");
+
+	window.CUSTOM_RENDERER.setSize(WIN_WIDTH, WIN_HEIGHT);
+	window.CUSTOM_RENDERER.setClearColor(0x00dddd);
+	gameDiv.appendChild(window.CUSTOM_RENDERER.domElement);
 
 	camera.position.z = 5;
 	camera.updateProjectionMatrix();
 
 	function animationLoop() {
-		level.create();
-		level.update();
-		renderer.render(scene, camera);
+		window.CUSTOM_LEVEL.create();
+		window.CUSTOM_LEVEL.update();
+		window.CUSTOM_RENDERER.render(window.CUSTOM_SCENE, camera);
 	}
 	let scoreText = document.createElement("h1");
 	scoreText["id"] = "score_text";
 	scoreText.textContent = "0";
-	document.body.appendChild(scoreText);
+	gameDiv.appendChild(scoreText);
 	let roundText = document.createElement("h1");
 	roundText["id"] = "round_text";
 	roundText.textContent = "Test";
-	document.body.appendChild(roundText);
+	gameDiv.appendChild(roundText);
 	let infoText = document.createElement("h1");
 	infoText["id"] = "info_text";
-	document.body.appendChild(infoText);
-	renderer.setAnimationLoop(animationLoop);
-	AudioManager.INSTANCE.playSound("theme", level.find("Player").getComponent(PlayerController)._audioListener, true, 0.05);
-	level.find("SpawnerManager").getComponent(SpawnerManager).startRound();
-
+	gameDiv.appendChild(infoText);
+	window.CUSTOM_RENDERER.setAnimationLoop(animationLoop);
+	AudioManager.INSTANCE.playSound("theme", window.CUSTOM_LEVEL.find("Player").getComponent(PlayerController)._audioListener, true, 0.05);
+	window.CUSTOM_LEVEL.find("SpawnerManager").getComponent(SpawnerManager).startRound();
 }
 
-main();
+function stopThreeJS() {
+	console.log("BAKAKAKAKAKAKAKAKAKA");
+	window.CUSTOM_LEVEL.clear();
+	window.CUSTOM_SCENE.clear();
+	window.CUSTOM_RENDERER.dispose();
+	window.CUSTOM_AUDIO_CONTEXT.close().then(() => { window.CUSTOM_AUDIO_CONTEXT = new AudioContext(); });
+}
+
+document.addEventListener("DOMContentLoaded", (_) => {
+	main();
+	window.GAMESTATE = window.GAME_STATES.threejs;
+  });
+  
+window.threeJSMain = main;
+window.threeJSStop = stopThreeJS;
+
 
