@@ -56,6 +56,9 @@ class AuthManager
     }
     @user_repository.register_user_42(user_info)
     user42 = @user_repository.get_user_by_email(user['email'])
+    if user42.length == 0
+      return { code: 500, error: 'Error while registering user' }
+    end
     register_complement_info(user42[0]['id'])
     @validation_manager.generate_validation(user42[0])
     return { code: 200, user: user42[0] }
@@ -93,6 +96,9 @@ class AuthManager
     }
     @user_repository.register(user_info)
     user = @user_repository.get_user_by_email(body['email'])
+    if user.length == 0
+      return { code: 500, error: 'Error while registering user' }
+    end
     register_complement_info(user[0]['id'])
     @validation_manager.generate_validation(user[0])
     return { code: 200, success: 'User registered', user: user[0] }

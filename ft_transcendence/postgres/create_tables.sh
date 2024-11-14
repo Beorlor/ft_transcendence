@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS _user (
     id SERIAL PRIMARY KEY,
     username VARCHAR(12) NOT NULL,
     img_url VARCHAR(255) NOT NULL DEFAULT 'https://localhost/img/default.jpg',
-    email VARCHAR(320) NOT NULL UNIQUE,
+    email VARCHAR(320) NOT NULL,
     password VARCHAR(255),
     role INTEGER,
     login_type INTEGER,
@@ -15,6 +15,10 @@ CREATE TABLE IF NOT EXISTS _user (
     deleted_at TIMESTAMP,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE UNIQUE INDEX IF NOT EXISTS unique_email_not_deleted
+ON _user (email)
+WHERE deleted_at IS NULL;
 
 CREATE TABLE IF NOT EXISTS _emailActivation (
     id SERIAL PRIMARY KEY,

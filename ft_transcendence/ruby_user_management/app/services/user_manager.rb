@@ -80,4 +80,12 @@ class UserManager
     return { code: 200, success: 'Profile updated' }
   end
 
+  def delete_user(user_id, user_id_match)
+    if (user_id.to_i != user_id_match.to_i)
+      return {code: 401, error: 'Permission denied !'}
+    end
+    @user_repository.delete_user(user_id_match)
+    return { code: 200, success: 'Profile deleted' }
+  end
+
 end
