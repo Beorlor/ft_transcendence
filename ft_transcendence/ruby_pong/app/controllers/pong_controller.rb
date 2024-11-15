@@ -24,13 +24,13 @@ class PongController
   end
 
   def pong(client, headers)
-    @logger.log("pong")
+    @logger.log("pong", "hphgwhghewp")
     cookie = headers['Cookie'].split('; ').map { |c| c.split('=', 2) }.to_h
     @pong.matchmaking(client, cookie)
   end
 
   def ranked(client, headers)
-    @logger.log("ranked")
+    @logger.log("ranked", "jgfwepgehwoghewh")
     cookie = headers['Cookie'].split('; ').map { |c| c.split('=', 2) }.to_h
     @pong.matchmaking(client, cookie, true)
   end
