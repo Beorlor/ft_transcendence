@@ -36,6 +36,23 @@ const makeBall = (x, y, radius) => {
   };
 };
 
+function updateTimer(endTime, timerInterval) {
+  const now = new Date();
+  const timeRemaining = endTime - now; // Temps restant en millisecondes
+
+  if (timeRemaining <= 0) {
+    document.getElementById("timer").innerText =
+      "Le tournoi commence maintenant!";
+    clearInterval(timerInterval); // Arrêter le minuteur lorsque le temps est écoulé
+  } else {
+    const minutes = Math.floor(timeRemaining / 1000 / 60);
+    const seconds = Math.floor((timeRemaining / 1000) % 60);
+    document.getElementById(
+      "timer"
+    ).innerText = `Temps restant: ${minutes}m ${seconds}s`;
+  }
+}
+
 /* rueifrwhfreuywghwuighvrnicjmowobuuhjvimrfkruqotnhijmrvobqnivmrcqbjnmkv
 yvquicjodknjqouhvijmrocki brinqvmokclewvognrqbmviopc,w[r  evnbivom  pw  rbniu
 bvvwhrnjcmekdl,ckfvimwbguijmvoqc,vmreiqbtnuimvqoc,pem rnbiutmvo] */
@@ -51,6 +68,7 @@ function startTournamentGame() {
   const leftBar = makeBar(10, 250, 10, 100);
   leftBar.color = "#F00000";
   const rightBar = makeBar(780, 250, 10, 100);
+  let timerInterval = null;
 
   connection.onopen = () => {
     connection.send("Hello from the client!");
@@ -61,6 +79,19 @@ function startTournamentGame() {
   connection.onmessage = (event) => {
     let json = JSON.parse(event.data);
     console.log(json);
+    if (json.status === "Waiting") {
+      timerInterval = setInterval(() => {
+        updateTimer(new Date(json.time_end), timerInterval);
+      }, 1000);
+      document.getElementById("score_text").innerHTML =
+        "En attente d'un adversaire...";
+      return;
+    } else if (json.status === "end") {
+      document.getElementById("score_text").innerHTML =
+        "Le tournoi est terminé!";
+      clearInterval(timerInterval);
+      return;
+    }
     // if (!canvas) return;
     // if (canvas.getContext) {
 
@@ -85,7 +116,13 @@ function startTournamentGame() {
     // }
   };
 
-  connection.onclose = () => {};
+  connection.onclose = () => {
+    clearInterval(timerInterval);
+    window.loadPage(
+      document.getElementById("game"),
+      "https://localhost/tournaments"
+    );
+  };
 
   connection.onerror = (error) => {
     console.error("Erreur WebSocket :", error);

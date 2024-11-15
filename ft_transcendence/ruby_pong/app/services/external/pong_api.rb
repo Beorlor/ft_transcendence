@@ -79,5 +79,22 @@ class PongApi
       callback.call(nil) if callback
     end
   end
+
+  def start_tournament(api_url, id, jwt, &callback)
+    http = EM::HttpRequest.new(api_url).get(
+      head: { 'Content-Type' => 'application/json', 'Cookie' => "access_token=#{jwt}"}
+    )
+    http.callback do
+      if http.response_header.status == 200
+        callback.call(true) if callback
+      else
+        callback.call(false) if callback
+      end
+    end
+  
+    http.errback do
+      callback.call(false) if callback
+    end
+  end
   
 end

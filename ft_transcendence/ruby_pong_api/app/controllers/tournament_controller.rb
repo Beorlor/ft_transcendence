@@ -55,10 +55,21 @@ class TournamentController
       else
         return 1
       end
+    elsif clean_path == '/api/tournament/start'
+      case [method]
+      when ['GET']
+        start_tournament(client)
+      else
+        return 1
+      end
     else
       return 1
     end
     return 0
+  end
+
+  def start_tournament(client)
+    RequestHelper.respond(client, 200, {success: 'Tournament started'}.to_json)
   end
 
   def get_tournament(client, tournament_id)

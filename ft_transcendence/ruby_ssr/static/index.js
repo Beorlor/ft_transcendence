@@ -104,8 +104,9 @@ function loadPageScript(game) {
       }
     }
     if (
-      window.location == "https://localhost/pongserv" ||
-      window.location == "https://localhost/pongserv-ranked"
+      window.location.href === "https://localhost/pongserv" ||
+      window.location.href === "https://localhost/pongserv-ranked" ||
+      /^https:\/\/localhost\/tournament\/\d+$/.test(window.location.href)
     ) {
       window.startNormalGame();
     }

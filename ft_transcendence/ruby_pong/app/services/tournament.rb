@@ -15,8 +15,8 @@ class Tournament
   def create_game(client1, client2, tournament_id, type)
     @pong_api.create_game('http://ruby_pong_api:4571/api/pong/create_game', client1[:player]["id"], client2[:player]["id"], type) do |status|
       if status
-        game = Game.new(client1, client2, status["game_info"]["id"], ranked)
-        @games[status["game_info"]["id"]] = game
+        game = Game.new(client1, client2, status["game_info"]["id"], type)
+        @tournaments[tournament_id][:games][status["game_info"]["id"]] = game
 
         game.start
 
@@ -25,30 +25,33 @@ class Tournament
             client1.close_connection
             client2.close_connection
           else
-            if winner[:winner]
+            @logger.log('Pong', "winner #{winner}")
+            if winner["winner"]
               client2[:ws].send({status: "Lose"}.to_json)
-              @tournament[tournament_id][:players].each do |player|
+              @tournaments[tournament_id][:players].each do |player|
                 if player[:player]["id"] == client2[:player]["id"]
                   client2[:ws].close_connection
-                  @tournament[tournament_id][:players].delete(player)
-                  break
+                  @tournaments[tournament_id][:players].delete(player)
+                elsif player[:player]["id"] == client1[:player]["id"]
+                  player[:opponent] = nil
                 end
               end
+              @logger.log('Pong', "winner cl1 #{winner}")
               client1[:ws].send({status: "Win"}.to_json)
-              @tournament[tournament_id][client1[:player]["id"]][:opponent] = nil
-              next_game_tournament(tournament_id)
+              build_tournament(tournament_id)
             else
               client1[:ws].send({status: "Lose"}.to_json)
-              @tournament[tournament_id][:players].each do |player|
+              @tournaments[tournament_id][:players].each do |player|
                 if player[:player]["id"] == client1[:player]["id"]
                   client1[:ws].close_connection
-                  @tournament[tournament_id][:players].delete(player)
-                  break
+                  @tournaments[tournament_id][:players].delete(player)
+                elsif player[:player]["id"] == client2[:player]["id"]
+                  player[:opponent] = nil
                 end
               end
+              @logger.log('Pong', "winner cl2 #{winner}")
               client2[:ws].send({status: "Win"}.to_json)
-              @tournament[tournament_id][client2[:player]["id"]][:opponent] = nil
-              next_game_tournament(tournament_id)
+              build_tournament(tournament_id)
             end
           end
         end
@@ -68,7 +71,10 @@ class Tournament
   end
 
   def build_tournament(tournament_id)
-    if @tournaments[tournament_id].length == 1
+    @logger.log('Pong', "Building tournament")
+    if @tournaments[tournament_id][:players].length == 1
+      @tournaments[tournament_id][:players][0][:ws].send({status: "Win"}.to_json)
+      @tournaments[tournament_id][:players][0][:ws].close_connection
       @logger.log('Pong', "Tournament ended")
     end
     @tournaments[tournament_id][:players].each_with_index do |player, index|
@@ -87,11 +93,10 @@ class Tournament
     if @tournaments[tournament_id][:players].length % 2 != 0
       @tournaments[tournament_id][:players][-1][:ws].send({status: "Waiting"}.to_json)
     end
-    @tournaments[tournament_id][:players] = players
   end
 
-  def start_tournament(tournament_id)
-    @pong_api.start_tournament('http://ruby_pong_api:4571/api/pong/start_tournament', tournament_id) do |status|
+  def start_tournament(tournament_id, jwt)
+    @pong_api.start_tournament('http://ruby_pong_api:4571/api/tournament/start', tournament_id, jwt) do |status|
       if status
         @tournaments[tournament_id][:tournament]["tournament"]["status"] = "started"
         @tournaments[tournament_id][:players].each do |player|
@@ -111,7 +116,7 @@ class Tournament
           client.send({ error: "Invalid tournament" }.to_json)
           client.close
         else
-          @tournaments[tournament_id] = { tournament: status, players: [], start_timer: nil }
+          @tournaments[tournament_id] = { tournament: status, players: [], start_timer: nil, games: {} }
           @user_api.user_logged(cookie['access_token']) do |logged|
             @user_api.get_user_info("http://ruby_user_management:4567/api/user/#{logged["user_id"]}") do |player|
               if player.nil?
@@ -126,10 +131,11 @@ class Tournament
               @tournaments[tournament_id][:start_timer] = end_time
               current_time = Time.now
               delay = [end_time - current_time, 0].max
+              client.send({ status: "Waiting", time_end: @tournaments[tournament_id][:start_timer] }.to_json)
               if delay > 0
-                EM.add_timer(delay) do
+                EM.add_timer(delay - (14 * 60)) do
                   if @tournaments[tournament_id][:players].length >= 2
-                    start_tournament(tournament_id)
+                    start_tournament(tournament_id, cookie['access_token'])
                   else
                     @tournaments[tournament_id][:players].each do |player|
                       player[:ws].send({ end: "end" }.to_json)
@@ -138,7 +144,6 @@ class Tournament
                   end
                 end
               end
-              client.send({ status: "Waiting", time_end: @tournaments[tournament_id][:start_timer] }.to_json)
             end
           end
         end
