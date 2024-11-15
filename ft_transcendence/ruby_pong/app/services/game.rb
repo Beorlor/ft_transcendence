@@ -76,16 +76,16 @@ class Game
   def handle_ball_movement()
 	newX = @game_data[:ball_x] + @game_data[:ball_vx] * @game_data[:ball_move_speed] * @game_data[:delta_time]
 	newY = @game_data[:ball_y] + @game_data[:ball_vy] * @game_data[:ball_move_speed] * @game_data[:delta_time]
-	# Left bar
-	if newX + @game_data[:ball_radius] + 3 >= (@game_data[:paddle2_x] + @game_data[:bar_width]) && newY >= @game_data[:paddle2_y] && newY <= @game_data[:paddle2_y] + @game_data[:bar_height]
+	# Right bar
+	if newX + @game_data[:ball_radius] + 3 >= @game_data[:paddle2_x] && newY >= @game_data[:paddle2_y] && newY <= @game_data[:paddle2_y] + @game_data[:bar_height]
 		newX = @game_data[:paddle2_x] - @game_data[:ball_radius] - 3
 		relY = (@game_data[:paddle2_y] + @game_data[:bar_height] / 2) - @game_data[:ball_y]
 		normRelY = relY / @game_data[:bar_height] / 2
 		angle = normRelY * -PI
 		@game_data[:ball_vx] = cos(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
 		@game_data[:ball_vx] = -sin(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
-	# Right bar
-	elsif newX + 3 <= @game_data[:paddle1_x] + @game_data[:bar_width] && newY >= @game_data[:paddle1_y] && newY <= @game_data[:paddle1_y] + @game_data[:bar_height]
+	# Left bar
+	elsif newX - 3 <= @game_data[:paddle1_x] + @game_data[:bar_width] && newY >= @game_data[:paddle1_y] && newY <= @game_data[:paddle1_y] + @game_data[:bar_height]
 		newX = @game_data[:paddle1_x] + 3 + @game_data[:bar_width]
 		relY = (@game_data[:paddle1_y] + @game_data[:bar_height] / 2) - @game_data[:ball_y]
 		normRelY = relY / @game_data[:bar_height] / 2
@@ -96,7 +96,7 @@ class Game
 	if newY >= 590
 		newY = 590
 		@game_data[:ball_vy] *= -1
-	elsif newY < 10
+	elsif newY <= 10
 		newY = 10
 		@game_data[:ball_vy] *= -1
 	end
