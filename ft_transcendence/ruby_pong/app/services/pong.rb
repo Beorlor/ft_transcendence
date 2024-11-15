@@ -17,7 +17,7 @@ class Pong
   def create_game(client1, client2, type)
     @pong_api.create_game('http://ruby_pong_api:4571/api/pong/create_game', client1[:player]["id"], client2[:player]["id"], type) do |status|
       if status
-        game = Game.new(client1, client2, status["game_info"]["id"], ranked)
+        game = Game.new(client1, client2, status["game_info"]["id"], type)
         @games[status["game_info"]["id"]] = game
 
         game.start

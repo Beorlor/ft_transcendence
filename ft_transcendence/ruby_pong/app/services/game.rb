@@ -26,7 +26,6 @@ class Game
     @game = true
     @pong_api = pong_api
     @logger = logger
-    @logger.log("Game", "Game created #{ranked}")
   end
 
   def reconnection(client)
@@ -140,7 +139,7 @@ class Game
     stop_game_timer
     @pong_api.end_game('http://ruby_pong_api:4571/api/pong/end_game', @client1[:player]["id"], @client2[:player]["id"], @game_data[:client1_pts], @game_data[:client2_pts], @game_data[:game_id], @game_data[:type]) do |status|
       if status
-        puts "Game ended with status: #{status}"
+        @logger.log("GAME", "Game ended with status: #{status}")
         @on_game_end&.call({winner: @game_data[:client1_pts] > @game_data[:client2_pts] ? true : false}.to_json)
       else
         puts "Error ending game"

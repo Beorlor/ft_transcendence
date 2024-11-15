@@ -89,6 +89,9 @@ class Friend
           end
         end
         client.onclose do
+          if @userlogged[user_id][:friends].nil?
+            @userlogged[user_id][:friends] = []
+          end
           @userlogged[user_id][:friends].each do |friend_id|
             if @userlogged[friend_id]
               @userlogged[friend_id][:ws].send({
