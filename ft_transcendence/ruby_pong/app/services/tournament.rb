@@ -8,7 +8,7 @@ class Tournament
   def initialize(logger = Logger.new, user_api = UserApi.new, pong_api = PongApi.new)
     @logger = logger
     @user_api = user_api
-    @pong_api = ruby_pong_api
+    @pong_api = pong_api
     @tournaments = {}
   end
 
@@ -67,14 +67,6 @@ class Tournament
     end
   end
 
-  def next_game_tournament(tournament_id)
-    if @tournaments[tournament_id].length == 1
-      @logger.log('Pong', "Tournament ended")
-    end
-    @tournaments[tournament_id][:players].each do |player|
-
-  end
-
   def build_tournament(tournament_id)
     if @tournaments[tournament_id].length == 1
       @logger.log('Pong', "Tournament ended")
@@ -112,25 +104,25 @@ class Tournament
     end
   end
 
-  def tournament(client, tournament_id)
+  def tournament(client, tournament_id, cookie)
     if @tournaments[tournament_id].nil?
-      @pong_api.get_tournament('http://ruby_pong_api:4571/api/pong/tournament', tournament_id) do |status|
+      @pong_api.get_tournament('http://ruby_pong_api:4571/api/tournament', tournament_id) do |status|
         if status.nil?
-          client.send({error: "Invalid tournament"}.to_json)
+          client.send({ error: "Invalid tournament" }.to_json)
           client.close
         else
-          @tournaments[tournament_id] = {tournament: status, players: [], start_timer: nil}
+          @tournaments[tournament_id] = { tournament: status, players: [], start_timer: nil }
           @user_api.user_logged(cookie['access_token']) do |logged|
             @user_api.get_user_info("http://ruby_user_management:4567/api/user/#{logged["user_id"]}") do |player|
               if player.nil?
-                client.send({error: "Invalid player"}.to_json)
+                client.send({ error: "Invalid player" }.to_json)
                 client.close
                 @logger.log('Pong', "Error getting player info")
                 next
               end
               player[:opponent] = nil
-              @tournaments[tournament_id][:players].push({player: player, ws: client})
-              end_time = Time.strptime(@tournament[:tournament]["tournament"]["start_at"], "%Y-%m-%d %H:%M:%S")
+              @tournaments[tournament_id][:players].push({ player: player, ws: client })
+              end_time = Time.strptime(@tournaments[tournament_id][:tournament]["tournament"]["start_at"], "%Y-%m-%d %H:%M:%S")
               @tournaments[tournament_id][:start_timer] = end_time
               current_time = Time.now
               delay = [end_time - current_time, 0].max
@@ -140,13 +132,13 @@ class Tournament
                     start_tournament(tournament_id)
                   else
                     @tournaments[tournament_id][:players].each do |player|
-                      player[:ws].send({end: "end"}.to_json)
+                      player[:ws].send({ end: "end" }.to_json)
                       player[:ws].close
                     end
                   end
                 end
               end
-              client.send({status: "Waiting", time_end: @tournament[tournament_id][:start_timer]}.to_json)
+              client.send({ status: "Waiting", time_end: @tournaments[tournament_id][:start_timer] }.to_json)
             end
           end
         end
@@ -155,14 +147,15 @@ class Tournament
       @user_api.user_logged(cookie['access_token']) do |logged|
         @user_api.get_user_info("http://ruby_user_management:4567/api/user/#{logged["user_id"]}") do |player|
           if player.nil?
-            client.send({error: "Invalid player"}.to_json)
+            client.send({ error: "Invalid player" }.to_json)
             client.close
             @logger.log('Pong', "Error getting player info")
             next
           end
-          @tournaments[tournament_id][:players].push({player: player, ws: client})
-          @client.send({status: "Waiting", time_end: @tournament[tournament_id][:start_timer]}.to_json)
+          @tournaments[tournament_id][:players].push({ player: player, ws: client })
+          client.send({ status: "Waiting", time_end: @tournaments[tournament_id][:start_timer] }.to_json)
         end
+      end
     end
-  end
+  end  
 end

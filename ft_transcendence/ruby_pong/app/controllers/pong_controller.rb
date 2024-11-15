@@ -15,11 +15,8 @@ class PongController
       pong(client, headers)
     when '/pongsocket/ranked'
       ranked(client, headers)
-    when '/pongsocket/custom'
-      client.send('pong custom')
     else
-      client.send('Invalid path')
-      client.close
+      return 1;
     end
   end
 

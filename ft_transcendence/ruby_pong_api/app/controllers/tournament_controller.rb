@@ -62,6 +62,7 @@ class TournamentController
   end
 
   def get_tournament(client, tournament_id)
+    @logger.log('TournamentController', "Get tournament #{tournament_id}")
     tournament = @tournament_manager.get_tournament(tournament_id)
     if tournament.nil?
       RequestHelper.respond(client, 404, { error: 'Tournament not found' })
