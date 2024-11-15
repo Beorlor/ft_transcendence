@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS _user (
     role INTEGER,
     login_type INTEGER,
     updated_at TIMESTAMP,
-    deleted_at TIMESTAMP,
+    deleted_at TIMESTAMP default NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS _pong (
     player_1_score INTEGER,
     player_2_score INTEGER,
     updated_at TIMESTAMP,
-    deleted_at TIMESTAMP,
+    deleted_at TIMESTAMP default NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS _pongHistory (
     nb_game INTEGER,
     rank_points INTEGER,
     updated_at TIMESTAMP,
-    deleted_at TIMESTAMP,
+    deleted_at TIMESTAMP default NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -60,9 +60,30 @@ CREATE TABLE IF NOT EXISTS _friendship (
     receiver_id INTEGER REFERENCES _user(id) ON DELETE CASCADE,
     status VARCHAR(10) NOT NULL DEFAULT 'pending',
     updated_at TIMESTAMP,
-    deleted_at TIMESTAMP,
+    deleted_at TIMESTAMP default NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS _tournament (
+    id SERIAL PRIMARY KEY,
+    host_id INTEGER REFERENCES _user(id) ON DELETE CASCADE,
+    name VARCHAR(50) NOT NULL,
+    start_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP default NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS _tournamentRanking (
+    id SERIAL PRIMARY KEY,
+    tournament_id INTEGER REFERENCES _tournament(id) ON DELETE CASCADE,
+    player_id INTEGER REFERENCES _user(id) ON DELETE CASCADE,
+    position INTEGER NOT NULL, -- Position of the player in the tournament
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP default NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 
 EOSQL
 

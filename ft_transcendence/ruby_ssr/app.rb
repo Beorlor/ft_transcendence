@@ -107,6 +107,36 @@ def get_friends(user_id)
   end
 end
 
+def get_tournaments()
+  uri = URI("http://ruby_pong_api:4571/api/tournaments/")
+  req = Net::HTTP::Get.new(uri)
+  http = Net::HTTP.new(uri.host, uri.port)
+  res = http.start do |http|
+    http.request(req)
+  end
+  res.finish if res.respond_to?(:finish)
+  if res.is_a?(Net::HTTPSuccess)
+    JSON.parse(res.body)
+  else
+    nil
+  end
+end
+
+def get_tournament(tournament_id)
+  uri = URI("http://ruby_pong_api:4571/api/tournament/#{tournament_id}")
+  req = Net::HTTP::Get.new(uri)
+  http = Net::HTTP.new(uri.host, uri.port)
+  res = http.start do |http|
+    http.request(req)
+  end
+  res.finish if res.respond_to?(:finish)
+  if res.is_a?(Net::HTTPSuccess)
+    JSON.parse(res.body)
+  else
+    nil
+  end
+end
+
 def get_access_token(req)
 	access_token = req.cookies.find { |cookie| cookie.name == 'access_token' }
 	if access_token
@@ -255,6 +285,49 @@ server.mount_proc '/ranking' do |req, res|
     @pRes = "Erreur lors de la récupération des utilisateurs."
   end
 
+  generate_response(req, res, logger)
+end
+
+server.mount_proc '/tournaments' do |req, res|
+  @user_logged = user_logged(get_access_token(req), logger)
+  @nav = generate_navigation
+  tournaments = get_tournaments();
+  if tournaments
+    @tournaments = tournaments["tournaments"]
+  else
+    @tournaments = []
+  end
+  page = ERB.new(File.read("app/view/tournaments.erb"))
+  @pRes = page.result(binding)
+  generate_response(req, res, logger)
+end
+
+server.mount_proc '/create-tournament' do |req, res|
+  @user_logged = user_logged(get_access_token(req), logger)
+  @nav = generate_navigation
+  page = ERB.new(File.read("app/view/create-tournament.erb"))
+  @pRes = page.result(binding)
+  generate_response(req, res, logger)
+end
+
+server.mount_proc '/tournament/' do |req, res|
+  @user_logged = user_logged(get_access_token(req), logger)
+  @nav = generate_navigation
+  tournament_id = req.path.match(/\/tournament\/(\d+)/)[1].to_i rescue nil
+  if tournament_id
+    tournament = get_tournament(tournament_id)
+    if tournament
+      @tournament_id = tournament["tournament"]["id"]
+      page = ERB.new(File.read("app/view/tournament.erb"))
+      @pRes = page.result(binding)
+    else
+      res.status = 404
+      @pRes = "Tournoi introuvable."
+    end
+  else
+    res.status = 400
+    @pRes = "Identifiant de tournoi invalide."
+  end
   generate_response(req, res, logger)
 end
 
