@@ -41,7 +41,10 @@ yvquicjodknjqouhvijmrocki brinqvmokclewvognrqbmviopc,w[r  evnbivom  pw  rbniu
 bvvwhrnjcmekdl,ckfvimwbguijmvoqc,vmreiqbtnuimvqoc,pem rnbiutmvo] */
 
 function startTournamentGame() {
-  const url = `wss://localhost/pongsocket/tournament/#{document.getElementById("tournament_id").value}`;
+  const tournamentId = document
+    .getElementById("game_name")
+    .getAttribute("data-tournament-id");
+  const url = `wss://localhost/pongsocket/tournament/${tournamentId}`;
   const connection = new WebSocket(url);
   const canvas = document.getElementById("drawCanvas");
   const ball = makeBall(400, 300, 10);
@@ -56,28 +59,30 @@ function startTournamentGame() {
   };
 
   connection.onmessage = (event) => {
-    if (!canvas) return;
-    if (canvas.getContext) {
-      let json = JSON.parse(event.data);
-      const ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, 800, 600);
-      ctx.fillStyle = "#000000";
-      ctx.fillRect(0, 0, 800, 600);
-      ctx.clearRect(10 / 2, 10 / 2, 800 - 10, 600 - 10);
-      if (json.paddle2_y) {
-        rightBar.y = json.paddle2_y;
-      }
-      if (json.paddle1_y) {
-        leftBar.y = json.paddle1_y;
-      }
-      if (json.ball_x && json.ball_y) {
-        ball.x = json.ball_x;
-        ball.y = json.ball_y;
-      }
-      leftBar.render(ctx);
-      rightBar.render(ctx);
-      ball.render(ctx);
-    }
+    let json = JSON.parse(event.data);
+    console.log(json);
+    // if (!canvas) return;
+    // if (canvas.getContext) {
+
+    //   const ctx = canvas.getContext("2d");
+    //   ctx.clearRect(0, 0, 800, 600);
+    //   ctx.fillStyle = "#000000";
+    //   ctx.fillRect(0, 0, 800, 600);
+    //   ctx.clearRect(10 / 2, 10 / 2, 800 - 10, 600 - 10);
+    //   if (json.paddle2_y) {
+    //     rightBar.y = json.paddle2_y;
+    //   }
+    //   if (json.paddle1_y) {
+    //     leftBar.y = json.paddle1_y;
+    //   }
+    //   if (json.ball_x && json.ball_y) {
+    //     ball.x = json.ball_x;
+    //     ball.y = json.ball_y;
+    //   }
+    //   leftBar.render(ctx);
+    //   rightBar.render(ctx);
+    //   ball.render(ctx);
+    // }
   };
 
   connection.onclose = () => {};

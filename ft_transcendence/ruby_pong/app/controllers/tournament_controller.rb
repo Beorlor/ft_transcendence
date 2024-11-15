@@ -10,17 +10,18 @@ class TournamentController
   def route_request(client, event)
     path = event.path
     headers = event.headers
-    user_page_match = clean_path.match(%r{^/pongsocket/tournament/(\d+)$})
+    user_page_match = path.match(%r{^/pongsocket/tournament/(\d+)$})
     if user_page_match
-      tournament(client, user_page_match[1])
+      tournament(client, user_page_match[1], headers)
     else
       return 1
     end
   end
 
-  def tournament(client, tournament_id)
-    @logger.log("tournament")
-    @tournament.tournament(client, tournament_id)
+  def tournament(client, tournament_id, headers)
+    @logger.log("tournament", "tournament")
+    cookies = headers['Cookie'].split('; ').map { |c| c.split('=', 2) }.to_h
+    @tournament.tournament(client, tournament_id, cookies)
   end
 
 end
