@@ -14,13 +14,18 @@ class Pong
     @games = {}
   end
 
-  def create_game(client1, client2, ranked = false)
-    @pong_api.create_game('http://ruby_pong_api:4571/api/pong/create_game', client1[:player]["id"], client2[:player]["id"], ranked) do |status|
+  def create_game(client1, client2, type)
+    @pong_api.create_game('http://ruby_pong_api:4571/api/pong/create_game', client1[:player]["id"], client2[:player]["id"], type) do |status|
       if status
         game = Game.new(client1, client2, status["game_info"]["id"], ranked)
         @games[status["game_info"]["id"]] = game
 
         game.start
+
+        game.on_game_end = lambda do |winner|
+          client1.close_connection
+          client2.close_connection
+        end
 
         client1[:ws].onmessage do |message|
           game.receive_message(client1, message)
@@ -48,7 +53,7 @@ class Pong
     client[:ws].send({ reco: 'reconnected to game' }.to_json)
   end
 
-  def matchmaking(client, cookie, ranked = false)
+  def matchmaking(client, cookie, type)
     @logger.log("Matchmaking", "debut matchmaking")
     @user_api.user_logged(cookie['access_token']) do |logged|
       @user_api.get_user_info("http://ruby_user_management:4567/api/user/#{logged["user_id"]}") do |player|
@@ -69,7 +74,7 @@ class Pong
               player: player
             })
             if @users_matchmaking_ranked.size == 2
-              create_game(@users_matchmaking_ranked.shift, @users_matchmaking_ranked.shift, true)
+              create_game(@users_matchmaking_ranked.shift, @users_matchmaking_ranked.shift, 2)
             end
           else
             @logger.log("Matchmaking", "normal")
@@ -78,7 +83,7 @@ class Pong
             player: player
             })
             if @users_matchmaking_normal.size == 2
-              create_game(@users_matchmaking_normal.shift, @users_matchmaking_normal.shift)
+              create_game(@users_matchmaking_normal.shift, @users_matchmaking_normal.shift, 1)
             end
           end
         end

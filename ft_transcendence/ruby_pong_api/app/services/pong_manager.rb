@@ -12,7 +12,7 @@ class PongManager
       player_1_id: body['player1'],
       player_2_id: body['player2'],
       state: 3,
-      rank_points: body['ranked'] == false ? 0 : 1,
+      rank_points: body['type'].to_i == 1 ? 0 : 1,
       player_1_score: 0,
       player_2_score: 0,
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
@@ -52,14 +52,14 @@ class PongManager
     if body['player1_pts'] > body['player2_pts']
       result_player1[:nb_win] += 1
       result_player2[:nb_lose] += 1
-      if body['ranked'] == "true"
+      if body['type'].to_i == 2
         result_player1[:rank_points] += 30
         result_player2[:rank_points] -= 30
       end
     elsif body['player1_pts'] < body['player2_pts']
       result_player2[:nb_win] += 1
       result_player1[:nb_lose] += 1
-      if body['ranked'] == "true"
+      if body['type'].to_i == 2
         result_player1[:rank_points] -= 30
         result_player2[:rank_points] += 30
       end
@@ -70,11 +70,10 @@ class PongManager
   end
 
   def end_game(body)
-    @logger.log('PongManager', "Ending game #{body['ranked']}")
     game_update = {
       player_1_score: body['player1_pts'],
       player_2_score: body['player2_pts'],
-      rank_points: body['ranked'] == false ? 0 : 30,
+      rank_points: body['type'].to_i == 1 ? 0 : 30,
       state: 2,
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
     }

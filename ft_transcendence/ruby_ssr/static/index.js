@@ -85,22 +85,24 @@ function loadPageScript(game) {
     if (document.getElementById("form_edit_profile")) {
       window.loadEditProfileFormAction();
     }
+    if (document.getElementById("form_tournament")) {
+      window.loadTournamentFormAction();
+    }
     if (window.location == "https://localhost/pong") {
       window.pongMain();
       window.GAMESTATE = window.GAME_STATES.pong;
     }
-	if (window.location == "https://localhost/3dgame") {
-		if (window.threeJSStop) {
-			window.threeJSStop();
-		}
-		window.threeJSMain();
-		window.GAMESTATE = window.GAME_STATES.threejs;
-	}
-	else {
-		if (window.threeJSStop) {
-			window.threeJSStop();
-		}
-	}
+    if (window.location == "https://localhost/3dgame") {
+      if (window.threeJSStop) {
+        window.threeJSStop();
+      }
+      window.threeJSMain();
+      window.GAMESTATE = window.GAME_STATES.threejs;
+    } else {
+      if (window.threeJSStop) {
+        window.threeJSStop();
+      }
+    }
     if (
       window.location == "https://localhost/pongserv" ||
       window.location == "https://localhost/pongserv-ranked"
@@ -118,7 +120,7 @@ function rebindEvents() {
   document
     .getElementById("pong_link")
     .addEventListener("click", handlePongClick);
-	document
+  document
     .getElementById("threejs_link")
     .addEventListener("click", handleThreeJSClick);
   if (document.getElementById("button_login")) {
@@ -154,6 +156,14 @@ function rebindEvents() {
         .getElementById("delete_profile_button")
         .addEventListener("click", handleDeleteProfileClick);
     }
+    if (document.getElementById("create_tournaments")) {
+      document
+        .getElementById("create_tournaments")
+        .addEventListener("click", handleCreateTournamentClick);
+    }
+    document.querySelectorAll(".join_tournament_btn").forEach((button) => {
+      button.addEventListener("click", handleJoinTournamentClick);
+    });
     document.querySelectorAll(".accept-request").forEach((button) => {
       button.addEventListener("click", () => {
         const friendshipId = button.getAttribute("data-friendship-id");
@@ -176,6 +186,11 @@ function rebindEvents() {
     document
       .getElementById("ranked_button")
       .addEventListener("click", handleRankedEventClick);
+  }
+  if (document.getElementById("tournament_button")) {
+    document
+      .getElementById("tournament_button")
+      .addEventListener("click", handleTournamentClick);
   }
 }
 
@@ -206,16 +221,16 @@ function handleHomeClick(ev) {
   ev.preventDefault();
   const url = "https://localhost";
   if (window.threeJSStop) {
-	window.threeJSStop();
-	}
+    window.threeJSStop();
+  }
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
 function handleThreeJSClick(ev) {
-	ev.preventDefault();
-	const url = "https://localhost/3dgame";
-	loadPage(document.getElementById("game"), url, window.GAME_STATES.threejs);
-  }
+  ev.preventDefault();
+  const url = "https://localhost/3dgame";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.threejs);
+}
 
 function handlePongClick(ev) {
   ev.preventDefault();
@@ -238,6 +253,25 @@ function handleRegisterClick(ev) {
 function handleRankingClick(ev) {
   ev.preventDefault();
   const url = "https://localhost/ranking";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
+
+function handleTournamentClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/tournaments";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
+
+function handleCreateTournamentClick(ev) {
+  ev.preventDefault();
+  const url = "https://localhost/create-tournament";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
+
+function handleJoinTournamentClick(ev) {
+  ev.preventDefault();
+  const tournamentId = ev.target.getAttribute("data-tournament-id");
+  const url = `https://localhost/tournament/${tournamentId}`;
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 

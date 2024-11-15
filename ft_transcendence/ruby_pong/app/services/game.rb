@@ -3,9 +3,9 @@ require_relative '../log/custom_logger'
 require 'json'
 
 class Game
-  attr_accessor :client1, :client2, :game_data, :start_time, :game, :game_timer, :victory_points, :width, :height
+  attr_accessor :client1, :client2, :game_data, :start_time, :game, :game_timer, :victory_points, :width, :height, :on_game_end
 
-  def initialize(client1, client2, game_id, ranked = false, victory_points = 5, width = 800, height = 600, pong_api = PongApi.new, logger = Logger.new)
+  def initialize(client1, client2, game_id, type = 1, victory_points = 5, width = 800, height = 600, pong_api = PongApi.new, logger = Logger.new)
     @client1 = client1
     @client2 = client2
     @game_data = { client1_pts: 0, client2_pts: 0,
@@ -19,9 +19,9 @@ class Game
     paddle2_y: height / 2 - 120 / 2 , paddle1_x: 20 ,
     player1_direction: 0, player2_direction: 0,
     paddle2_x: width - 20 - 12, delta_time: 0.016,
-    ranked: false,
+    type: 0,
 	ball_vx: 1, ball_vy: 1 }
-    @game_data[:ranked] = ranked
+    @game_data[:type] = type
     @start_time = Time.now
     @game = true
     @pong_api = pong_api
@@ -138,13 +138,13 @@ class Game
     send_to_client(@client2, message)
     @game = false
     stop_game_timer
-    @pong_api.end_game('http://ruby_pong_api:4571/api/pong/end_game', @client1[:player]["id"], @client2[:player]["id"], @game_data[:client1_pts], @game_data[:client2_pts], @game_data[:game_id], @game_data[:ranked]) do |status|
+    @pong_api.end_game('http://ruby_pong_api:4571/api/pong/end_game', @client1[:player]["id"], @client2[:player]["id"], @game_data[:client1_pts], @game_data[:client2_pts], @game_data[:game_id], @game_data[:type]) do |status|
       if status
         puts "Game ended with status: #{status}"
-        @client1[:ws].close_connection
-        @client2[:ws].close_connection
+        @on_game_end&.call({winner: @game_data[:client1_pts] > @game_data[:client2_pts] ? true : false}.to_json)
       else
         puts "Error ending game"
+        @on_game_end&.call(false)
       end
     end
   end
