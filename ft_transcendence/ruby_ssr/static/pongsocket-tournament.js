@@ -53,6 +53,14 @@ function updateTimer(endTime, timerInterval) {
   }
 }
 
+function parseDate(dateString) {
+  const parsedDate = new Date(dateString);
+  if (isNaN(parsedDate.getTime())) {
+    return new Date(dateString.replace(" ", "T").replace(" +0000", "Z"));
+  }
+  return parsedDate;
+}
+
 /* rueifrwhfreuywghwuighvrnicjmowobuuhjvimrfkruqotnhijmrvobqnivmrcqbjnmkv
 yvquicjodknjqouhvijmrocki brinqvmokclewvognrqbmviopc,w[r  evnbivom  pw  rbniu
 bvvwhrnjcmekdl,ckfvimwbguijmvoqc,vmreiqbtnuimvqoc,pem rnbiutmvo] */
@@ -69,6 +77,7 @@ function startTournamentGame() {
   leftBar.color = "#F00000";
   const rightBar = makeBar(780, 250, 10, 100);
   let timerInterval = null;
+  let persistenceInterval = null;
 
   connection.onopen = () => {
     connection.send("Hello from the client!");
@@ -80,9 +89,16 @@ function startTournamentGame() {
     let json = JSON.parse(event.data);
     console.log(json);
     if (json.status === "Waiting") {
+      clearInterval(timerInterval);
+      clearInterval(persistenceInterval);
       timerInterval = setInterval(() => {
-        updateTimer(new Date(json.time_end), timerInterval);
+        updateTimer(new Date(parseDate(json.time_end)), timerInterval);
       }, 1000);
+
+      persistenceInterval = setInterval(() => {
+        connection.send(JSON.stringify({ type: "keep_alive" }));
+      }, 5000);
+
       document.getElementById("score_text").innerHTML =
         "En attente d'un adversaire...";
       return;
@@ -118,6 +134,7 @@ function startTournamentGame() {
 
   connection.onclose = () => {
     clearInterval(timerInterval);
+    clearInterval(persistenceInterval);
     window.loadPage(
       document.getElementById("game"),
       "https://localhost/tournaments"
