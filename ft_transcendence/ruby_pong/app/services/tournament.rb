@@ -1,6 +1,7 @@
 require_relative '../log/custom_logger'
 require_relative 'external/user_api'
 require_relative 'external/pong_api'
+require 'tzinfo'
 require_relative 'game'
 
 class Tournament
@@ -78,20 +79,24 @@ class Tournament
       @logger.log('Pong', "Tournament ended")
     end
     @tournaments[tournament_id][:players].each_with_index do |player, index|
+      @logger.log('Pong', "Checking player #{index}")
       if index % 2 == 0
         if @tournaments[tournament_id][:players][index + 1] && @tournaments[tournament_id][:players][index + 1][:opponent].nil?
-          player[:opponent] = @tournaments[tournament_id][:players][index + 1]
+          @logger.log('Pong', "Creating game +1")
+          @tournaments[tournament_id][:players][index][:opponent] = @tournaments[tournament_id][:players][index + 1]
+          @tournaments[tournament_id][:players][index + 1][:opponent] = @tournaments[tournament_id][:players][index]
           create_game(player, player[:opponent], tournament_id, 3)
         elsif @tournaments[tournament_id][:players][index - 1] && @tournaments[tournament_id][:players][index - 1][:opponent].nil?
-          player[:opponent] = @tournaments[tournament_id][:players][index - 1]
+          @logger.log('Pong', "Creating game -1")
+          @tournaments[tournament_id][:players][index][:opponent] = @tournaments[tournament_id][:players][index - 1]
+          @tournaments[tournament_id][:players][index - 1][:opponent] = @tournaments[tournament_id][:players][index]
           create_game(player, player[:opponent], tournament_id, 3)
         else
-          player[:ws].send({status: "Waiting"}.to_json)
+          @logger.log('Pong', "Waiting for opponent")
+          tz = TZInfo::Timezone.get('Europe/Paris')
+          player[:ws].send({status: "Waiting", time_end: (Time.now() + 1 * 60).strftime("%Y-%m-%d %H:%M:%S")}.to_json)
         end
       end
-    end
-    if @tournaments[tournament_id][:players].length % 2 != 0
-      @tournaments[tournament_id][:players][-1][:ws].send({status: "Waiting"}.to_json)
     end
   end
 
@@ -127,13 +132,14 @@ class Tournament
               end
               player[:opponent] = nil
               @tournaments[tournament_id][:players].push({ player: player, ws: client })
-              end_time = Time.strptime(@tournaments[tournament_id][:tournament]["tournament"]["start_at"], "%Y-%m-%d %H:%M:%S")
+              end_time = Time.now + 1 * 60 #Time.strptime(@tournaments[tournament_id][:tournament]["tournament"]["start_at"], "%Y-%m-%d %H:%M:%S")
+              tz = TZInfo::Timezone.get('Europe/Paris')
               @tournaments[tournament_id][:start_timer] = end_time
               current_time = Time.now
               delay = [end_time - current_time, 0].max
               client.send({ status: "Waiting", time_end: @tournaments[tournament_id][:start_timer] }.to_json)
               if delay > 0
-                EM.add_timer(delay - (14 * 60)) do
+                EM.add_timer(delay) do
                   if @tournaments[tournament_id][:players].length >= 2
                     start_tournament(tournament_id, cookie['access_token'])
                   else
