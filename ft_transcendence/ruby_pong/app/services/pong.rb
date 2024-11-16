@@ -67,7 +67,7 @@ class Pong
             reconnection_game({ ws: client, player: player }, game_data["game_info"])
             next
           end
-          if ranked
+          if type == 2
             @logger.log("Matchmaking", "ranked")
             @users_matchmaking_ranked.push({
               ws: client,
