@@ -51,7 +51,7 @@ function startNormalGame() {
 
   connection.onopen = () => {
     connection.send("Hello from the client!");
-    document.getElementById("score_text").innerHTML =
+    document.getElementById("loading_text").innerHTML =
       '<div class="spinner-border" role="status"> <span class="sr-only">Loading...</span></div>';
   };
 
@@ -64,6 +64,8 @@ function startNormalGame() {
       ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, 800, 600);
       ctx.clearRect(10 / 2, 10 / 2, 800 - 10, 600 - 10);
+	  document.getElementById("loading_text").innerHTML = "";
+
       if (json.paddle2_y) {
         rightBar.y = json.paddle2_y;
       }

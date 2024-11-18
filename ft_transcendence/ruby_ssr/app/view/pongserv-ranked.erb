@@ -7,7 +7,18 @@
 		<h2>Score</h2>
 	</div>
 	<div style="display: flex; justify-content: center;">
+		<h2 id="loading_text"></h2>
+	</div>
+	<div style="display: flex; justify-content: center;">
 		<h2 id="score_text">0 - 0</h2>
+	</div>
+	<div style="display: flex; justify-content: center; position: absolute; left: 10%;">
+		<h2 id="player1_name" style="position: absolute; top: 100%;">Player1</h2>
+		<img id="player1_img" src="/static/threejs/textures/health_bar_good.jpg" style="width: 192px;"/>
+	</div>
+	<div style="display: flex; justify-content: center; position: absolute; right: 10%; ">
+		<h2 id="player2_name" style="position: absolute; top: 100%;">Player2</h2>
+		<img id="player2_img" src="/static/threejs/textures/health_bar_bad.jpg" style="width: 192px;"/>
 	</div>
 	<div style="display: flex; align-items: center; justify-content: center;">
 		<canvas id="drawCanvas" width="800px" height="600px"
