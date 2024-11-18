@@ -81,7 +81,7 @@ function startTournamentGame() {
 
   connection.onopen = () => {
     connection.send("Hello from the client!");
-    document.getElementById("score_text").innerHTML =
+    document.getElementById("loading_text").innerHTML =
       '<div class="spinner-border" role="status"> <span class="sr-only">Loading...</span></div>';
   };
 
