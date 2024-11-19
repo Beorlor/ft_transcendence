@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS _user (
     password VARCHAR(255),
     role INTEGER,
     login_type INTEGER,
+    restrict BOOLEAN DEFAULT FALSE,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP default NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
