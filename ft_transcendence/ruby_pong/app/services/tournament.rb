@@ -23,15 +23,15 @@ class Tournament
 
         game.on_game_end = lambda do |winner|
           if winner == false
-            client1.close_connection
-            client2.close_connection
+            client1[:ws].close
+            client2[:ws].close
           else
             @logger.log('Pong', "winner #{winner}")
             if winner["winner"]
               client2[:ws].send({status: "Lose"}.to_json)
               @tournaments[tournament_id][:players].each do |player|
                 if player[:player]["id"] == client2[:player]["id"]
-                  client2[:ws].close_connection
+                  client2[:ws].close
                   @tournaments[tournament_id][:players].delete(player)
                 elsif player[:player]["id"] == client1[:player]["id"]
                   player[:opponent] = nil
@@ -44,7 +44,7 @@ class Tournament
               client1[:ws].send({status: "Lose"}.to_json)
               @tournaments[tournament_id][:players].each do |player|
                 if player[:player]["id"] == client1[:player]["id"]
-                  client1[:ws].close_connection
+                  client1[:ws].close
                   @tournaments[tournament_id][:players].delete(player)
                 elsif player[:player]["id"] == client2[:player]["id"]
                   player[:opponent] = nil
@@ -75,7 +75,7 @@ class Tournament
     @logger.log('Pong', "Building tournament")
     if @tournaments[tournament_id][:players].length == 1
       @tournaments[tournament_id][:players][0][:ws].send({status: "Win"}.to_json)
-      @tournaments[tournament_id][:players][0][:ws].close_connection
+      @tournaments[tournament_id][:players][0][:ws].close
       @logger.log('Pong', "Tournament ended")
     end
     @tournaments[tournament_id][:players].each_with_index do |player, index|

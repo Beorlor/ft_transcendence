@@ -40,7 +40,7 @@ const makeBall = (x, y, radius) => {
 yvquicjodknjqouhvijmrocki brinqvmokclewvognrqbmviopc,w[r  evnbivom  pw  rbniu
 bvvwhrnjcmekdl,ckfvimwbguijmvoqc,vmreiqbtnuimvqoc,pem rnbiutmvo] */
 
-function startNormalGame() {
+function startRankedGame() {
   const url = "wss://localhost/pongsocket/ranked";
   const connection = new WebSocket(url);
   const canvas = document.getElementById("drawCanvas");
@@ -55,34 +55,64 @@ function startNormalGame() {
       '<div class="spinner-border" role="status"> <span class="sr-only">Loading...</span></div>';
   };
 
-  connection.onmessage = (event) => {
+  function init_game_info(json) {
+    document.getElementById("player1_name").innerHTML = json.client1_username;
+    document.getElementById("player2_name").innerHTML = json.client2_username;
+    document.getElementById("player1_img").src = json.img_url1;
+    document.getElementById("player2_img").src = json.img_url2;
+  }
+
+  function play_game(json, canvas) {
     if (!canvas) return;
     if (canvas.getContext) {
-      let json = JSON.parse(event.data);
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, 800, 600);
       ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, 800, 600);
       ctx.clearRect(10 / 2, 10 / 2, 800 - 10, 600 - 10);
-	  document.getElementById("loading_text").innerHTML = "";
+      document.getElementById("loading_text").innerHTML = "";
+      document.getElementById(
+        "score_text"
+      ).innerHTML = `${json.client1_pts} - ${json.client2_pts}`;
 
-      if (json.paddle2_y) {
-        rightBar.y = json.paddle2_y;
+      if (json.paddle1_x && leftBar.x === 0) leftBar.x = json.paddle1_x;
+      if (json.paddle2_x && rightBar.x === 0) rightBar.x = json.paddle2_x;
+
+      if (json.paddle2_y) rightBar.y = json.paddle2_y;
+      if (json.paddle1_y) leftBar.y = json.paddle1_y;
+
+      if (json.bar_width) {
+        if (leftBar.width === 0) leftBar.width = json.bar_width;
+        if (rightBar.width === 0) rightBar.width = json.bar_width;
       }
-      if (json.paddle1_y) {
-        leftBar.y = json.paddle1_y;
-      }
+
       if (json.ball_x && json.ball_y) {
         ball.x = json.ball_x;
         ball.y = json.ball_y;
       }
+
       leftBar.render(ctx);
       rightBar.render(ctx);
       ball.render(ctx);
     }
+  }
+
+  connection.onmessage = (event) => {
+    let json = JSON.parse(event.data);
+    console.log(json);
+    if (json.start) {
+      init_game_info(json);
+    } else if (json.ingame) {
+      play_game(json, canvas);
+    }
   };
 
-  connection.onclose = () => {};
+  connection.onclose = () => {
+    window.loadPage(
+      document.getElementById("game"),
+      "https://localhost/profile"
+    );
+  };
 
   connection.onerror = (error) => {
     console.error("Erreur WebSocket :", error);
@@ -104,7 +134,7 @@ function startNormalGame() {
 }
 
 window.addEventListener("DOMContentLoaded", (_) => {
-  startNormalGame();
+  startRankedGame();
 });
 
-window.startNormalGame = startNormalGame;
+window.startRankedGame = startRankedGame;

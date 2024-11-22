@@ -73,7 +73,7 @@ class PongManager
     game_update = {
       player_1_score: body['player1_pts'],
       player_2_score: body['player2_pts'],
-      rank_points: body['type'].to_i == 1 ? 0 : 30,
+      rank_points: body['type'].to_i == 2 ? 30 : 0,
       state: 2,
       updated_at: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
     }
