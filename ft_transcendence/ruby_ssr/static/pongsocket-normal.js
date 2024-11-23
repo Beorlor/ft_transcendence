@@ -55,16 +55,25 @@ function startNormalGame() {
       '<div class="spinner-border" role="status"> <span class="sr-only">Loading...</span></div>';
   };
 
-  connection.onmessage = (event) => {
+  function init_game_info(json) {
+    document.getElementById("player1_name").innerHTML = json.client1_username;
+    document.getElementById("player2_name").innerHTML = json.client2_username;
+    document.getElementById("player1_img").src = json.img_url1;
+    document.getElementById("player2_img").src = json.img_url2;
+  }
+
+  function play_game(json, canvas) {
     if (!canvas) return;
     if (canvas.getContext) {
-      let json = JSON.parse(event.data);
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, 800, 600);
       ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, 800, 600);
       ctx.clearRect(10 / 2, 10 / 2, 800 - 10, 600 - 10);
-	  document.getElementById("loading_text").innerHTML = "";
+      document.getElementById("loading_text").innerHTML = "";
+      document.getElementById(
+        "score_text"
+      ).innerHTML = `${json.client1_pts} - ${json.client2_pts}`;
 
       if (json.paddle1_x && leftBar.x === 0) leftBar.x = json.paddle1_x;
       if (json.paddle2_x && rightBar.x === 0) rightBar.x = json.paddle2_x;
@@ -86,9 +95,24 @@ function startNormalGame() {
       rightBar.render(ctx);
       ball.render(ctx);
     }
+  }
+
+  connection.onmessage = (event) => {
+    let json = JSON.parse(event.data);
+    console.log(json);
+    if (json.start) {
+      init_game_info(json);
+    } else if (json.ingame) {
+      play_game(json, canvas);
+    }
   };
 
-  connection.onclose = () => {};
+  connection.onclose = () => {
+    window.loadPage(
+      document.getElementById("game"),
+      "https://localhost/profile"
+    );
+  };
 
   connection.onerror = (error) => {};
 
