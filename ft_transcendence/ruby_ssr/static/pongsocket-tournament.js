@@ -85,6 +85,59 @@ function startTournamentGame() {
       '<div class="spinner-border" role="status"> <span class="sr-only">Loading...</span></div>';
   };
 
+  function init_game_info(json) {
+    document.getElementById("player1_name").innerHTML = json.client1_username;
+    document.getElementById("player2_name").innerHTML = json.client2_username;
+    document.getElementById("player1_img").src = json.img_url1;
+    document.getElementById("player2_img").src = json.img_url2;
+  }
+
+  function play_game(json, canvas) {
+    if (!canvas) return;
+    if (canvas.getContext) {
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, 800, 600);
+      ctx.fillStyle = "#000000";
+      ctx.fillRect(0, 0, 800, 600);
+      ctx.clearRect(10 / 2, 10 / 2, 800 - 10, 600 - 10);
+      document.getElementById("loading_text").innerHTML = "";
+      document.getElementById(
+        "score_text"
+      ).innerHTML = `${json.client1_pts} - ${json.client2_pts}`;
+
+      if (json.paddle1_x && leftBar.x === 0) leftBar.x = json.paddle1_x;
+      if (json.paddle2_x && rightBar.x === 0) rightBar.x = json.paddle2_x;
+
+      if (json.paddle2_y) rightBar.y = json.paddle2_y;
+      if (json.paddle1_y) leftBar.y = json.paddle1_y;
+
+      if (json.bar_width) {
+        if (leftBar.width === 0) leftBar.width = json.bar_width;
+        if (rightBar.width === 0) rightBar.width = json.bar_width;
+      }
+
+      if (json.ball_x && json.ball_y) {
+        ball.x = json.ball_x;
+        ball.y = json.ball_y;
+      }
+
+      leftBar.render(ctx);
+      rightBar.render(ctx);
+      ball.render(ctx);
+    }
+  }
+
+  function clear_canvas(canvas) {
+    if (!canvas) return;
+    if (canvas.getContext) {
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, 800, 600);
+      ctx.fillStyle = "#000000";
+      ctx.fillRect(0, 0, 800, 600);
+      ctx.clearRect(10 / 2, 10 / 2, 800 - 10, 600 - 10);
+    }
+  }
+
   connection.onmessage = (event) => {
     let json = JSON.parse(event.data);
     console.log(json);
@@ -102,34 +155,19 @@ function startTournamentGame() {
       document.getElementById("score_text").innerHTML =
         "En attente d'un adversaire...";
       return;
+    } else if (json.start) {
+      init_game_info(json);
+      clearInterval(timerInterval);
+      clearInterval(persistenceInterval);
+    } else if (json.ingame) {
+      play_game(json, canvas);
     } else if (json.status === "end") {
       document.getElementById("score_text").innerHTML =
         "Le tournoi est terminé!";
+      clear_canvas();
       clearInterval(timerInterval);
       return;
     }
-    // if (!canvas) return;
-    // if (canvas.getContext) {
-
-    //   const ctx = canvas.getContext("2d");
-    //   ctx.clearRect(0, 0, 800, 600);
-    //   ctx.fillStyle = "#000000";
-    //   ctx.fillRect(0, 0, 800, 600);
-    //   ctx.clearRect(10 / 2, 10 / 2, 800 - 10, 600 - 10);
-    //   if (json.paddle2_y) {
-    //     rightBar.y = json.paddle2_y;
-    //   }
-    //   if (json.paddle1_y) {
-    //     leftBar.y = json.paddle1_y;
-    //   }
-    //   if (json.ball_x && json.ball_y) {
-    //     ball.x = json.ball_x;
-    //     ball.y = json.ball_y;
-    //   }
-    //   leftBar.render(ctx);
-    //   rightBar.render(ctx);
-    //   ball.render(ctx);
-    // }
   };
 
   connection.onclose = () => {

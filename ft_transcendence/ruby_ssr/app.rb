@@ -12,10 +12,9 @@ server = WEBrick::HTTPServer.new(:Port => 4568, :MimeTypes => mime_types)
 logger = Logger.new
 
 def game_result(game, user_id)
-  is_player_1 = game["player_1_id"] == user_id
-  is_player_1_winner = game["player_1_score"] > game["player_2_score"]
-  user_score = is_player_1 ? game["player_1_score"] : game["player_2_score"]
-  opponent_score = is_player_1 ? game["player_2_score"] : game["player_1_score"]
+  is_player_1 = game["player_1_id"].to_i == user_id.to_i
+  user_score = is_player_1 ? game["player_1_score"].to_i : game["player_2_score"].to_i
+  opponent_score = is_player_1 ? game["player_2_score"].to_i : game["player_1_score"].to_i
   rank_points = game["rank_points"] || 0
 
   result_text = user_score > opponent_score ? "Victory" : "Defeat"

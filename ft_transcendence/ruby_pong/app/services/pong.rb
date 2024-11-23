@@ -23,8 +23,8 @@ class Pong
         game.start
 
         game.on_game_end = lambda do |winner|
-          client1.close_connection
-          client2.close_connection
+          client1[:ws].close
+          client2[:ws].close
         end
 
         client1[:ws].onmessage do |message|

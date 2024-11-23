@@ -22,10 +22,13 @@ class Game
     type: 0,
 	ball_vx: 1, ball_vy: 1 }
     @game_data[:type] = type
+    logger.log("Game", "Game created with id: #{game_id} || type: #{type}, || player: #{client1}")
     @start_time = Time.now
     @game = true
     @pong_api = pong_api
     @logger = logger
+    client1[:ws].send({start: "Start game", client1_username: client1[:player]['username'], client2_username: client2[:player]['username'], img_url1: client1[:player]['img_url'], img_url2: client2[:player]['img_url']}.to_json)
+    client2[:ws].send({start: "Start game", client1_username: client1[:player]['username'], client2_username: client2[:player]['username'], img_url1: client1[:player]['img_url'], img_url2: client2[:player]['img_url']}.to_json)
   end
 
   def reconnection(client)
@@ -56,16 +59,16 @@ class Game
     @game_data[:paddle2_y] += @game_data[:player2_direction] * @game_data[:ball_move_speed] * @game_data[:delta_time]
 	if (@game_data[:paddle1_y] <= 10)
 		@game_data[:paddle1_y] = 10
-	elsif (@game_data[:paddle1_y] + @game_data[:bar_height] >= 790)
-		@game_data[:paddle1_y] = 790 - @game_data[:bar_height]
+	elsif (@game_data[:paddle1_y] + @game_data[:bar_height] >= 590)
+		@game_data[:paddle1_y] = 590 - @game_data[:bar_height]
   end
 	if (@game_data[:paddle2_y] <= 10)
 		@game_data[:paddle2_y] = 10
-	elsif (@game_data[:paddle2_y] + @game_data[:bar_height] >= 790)
-		@game_data[:paddle2_y] = 790 - @game_data[:bar_height]
+	elsif (@game_data[:paddle2_y] + @game_data[:bar_height] >= 590)
+		@game_data[:paddle2_y] = 590 - @game_data[:bar_height]
   end
 	handle_ball_movement()
-    sended_data = { client1_pts: @game_data[:client1_pts], client2_pts: @game_data[:client2_pts], ball_x: @game_data[:ball_x], ball_y: @game_data[:ball_y],
+    sended_data = { ingame: "ingame", client1_pts: @game_data[:client1_pts], client2_pts: @game_data[:client2_pts], ball_x: @game_data[:ball_x], ball_y: @game_data[:ball_y],
     	paddle1_y: @game_data[:paddle1_y], paddle2_y: @game_data[:paddle2_y], paddle1_x: @game_data[:paddle1_x], paddle2_x: @game_data[:paddle2_x],
 		width: @game_data[:width], height: @game_data[:height], bar_width: @game_data[:bar_width], bar_height: @game_data[:bar_height] }
     send_to_client(@client1, sended_data.to_json)
@@ -80,17 +83,17 @@ class Game
 		newX = @game_data[:paddle2_x] - @game_data[:ball_radius] - 3
 		relY = (@game_data[:paddle2_y] + @game_data[:bar_height] / 2) - @game_data[:ball_y]
 		normRelY = relY / @game_data[:bar_height] / 2
-		angle = normRelY * -PI
+		angle = normRelY * PI
 		@game_data[:ball_vx] = cos(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
-		@game_data[:ball_vx] = -sin(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+		@game_data[:ball_vy] = -sin(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
 	# Left bar
 	elsif newX - 3 <= @game_data[:paddle1_x] + @game_data[:bar_width] && newY >= @game_data[:paddle1_y] && newY <= @game_data[:paddle1_y] + @game_data[:bar_height]
 		newX = @game_data[:paddle1_x] + 3 + @game_data[:bar_width]
 		relY = (@game_data[:paddle1_y] + @game_data[:bar_height] / 2) - @game_data[:ball_y]
 		normRelY = relY / @game_data[:bar_height] / 2
-		angle = normRelY * PI
+		angle = normRelY * -PI
 		@game_data[:ball_vx] = -cos(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
-		@game_data[:ball_vx] = -sin(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+		@game_data[:ball_vy] = -sin(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
 	end
 	if newY >= 590
 		newY = 590
@@ -99,16 +102,17 @@ class Game
 		newY = 10
 		@game_data[:ball_vy] *= -1
 	end
-	newX = @game_data[:ball_x] + @game_data[:ball_vx] * @game_data[:ball_move_speed] * @game_data[:delta_time]
-	newY = @game_data[:ball_y] + @game_data[:ball_vy] * @game_data[:ball_move_speed] * @game_data[:delta_time]
-	@game_data[:ball_x] = newX
-	@game_data[:ball_y] = newY
+	#newX = @game_data[:ball_x] + @game_data[:ball_vx] * @game_data[:ball_move_speed] * @game_data[:delta_time]
+	#newY = @game_data[:ball_y] + @game_data[:ball_vy] * @game_data[:ball_move_speed] * @game_data[:delta_time]
+	@game_data[:ball_x] = newX + @game_data[:ball_vx] * @game_data[:ball_move_speed] * @game_data[:delta_time]
+	@game_data[:ball_y] = newY + @game_data[:ball_vy] * @game_data[:ball_move_speed] * @game_data[:delta_time]
 	if (newX >= @game_data[:paddle2_x] + @game_data[:bar_width] || newX <= @game_data[:paddle1_x])
-		#TODO
-		send_to_client(@client1, {end: "Time's up! The game has ended. (in handle move)"}.to_json)
-		send_to_client(@client2, {end: "Time's up! The game has ended. (in handle move)"}.to_json)
+		if newX >= @game_data[:paddle2_x] + @game_data[:bar_width]
+      @game_data[:client1_pts] += 1
+    else
+      @game_data[:client2_pts] += 1
+    end
 		reset_ball()
-		#TODO
     end
   end
 
@@ -123,8 +127,6 @@ class Game
     start_timer(60)
     @game_data[:ball_vx] = -cos(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
     @game_data[:ball_vx] = -sin(PI / 3) * @game_data[:ball_move_speed] * @game_data[:delta_time]
-    send_to_client(@client1, {start: "start game"}.to_json)
-    send_to_client(@client2, {start: "start game"}.to_json)
     @game_timer = EM.add_periodic_timer(@game_data[:delta_time]) { game_loop }
   end
 
