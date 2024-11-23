@@ -12,6 +12,59 @@ services:
     networks:
       - postgres_network
 
+    elasticsearch:
+      build:
+        context: ./elasticsearch
+      environment:
+        - node.name=es-node
+        - discovery.type=single-node
+        - xpack.security.enabled=true
+        - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+        - KIBANA_PASSWORD=${KIBANA_PASSWORD}
+      ulimits:
+        memlock:
+          soft: -1
+          hard: -1
+      volumes:
+        - ./elasticsearch/data:/usr/share/elasticsearch/data
+      ports:
+        - "9200:9200"
+      healthcheck:
+        test: curl -s http://localhost:9200 >/dev/null || exit 1
+        interval: 10s
+        timeout: 5s
+        retries: 50
+      networks:
+        - nginx_network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.12.2
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
+      - XPACK_ENCRYPTION_KEY=${KIBANA_ENCRYPTION_KEY}
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - nginx_network
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.12.2
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTIC_USERNAME=elastic
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+      - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+    depends_on:
+      - elasticsearch
+    networks:
+      - nginx_network
+
   ruby_user_management:
     build: ./ruby_user_management
     environment:
@@ -81,6 +134,8 @@ services:
       - ./ruby_rgpd:/app
     ports:
       - "4570:4570"
+    networks:
+      - nginx_network
 
   ruby_pong_api:
     build: ./ruby_pong_api
