@@ -202,4 +202,4 @@ window.addEventListener("DOMContentLoaded", (_) => {
   startTournamentGame();
 });
 
-window.startNormalGame = startTournamentGame;
+window.startTournamentGame = startTournamentGame;

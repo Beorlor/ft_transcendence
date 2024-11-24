@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS _pong (
     id SERIAL PRIMARY KEY,
     player_1_id INTEGER REFERENCES _user(id),
     player_2_id INTEGER REFERENCES _user(id),
+    type INTEGER,
     state INTEGER,
     rank_points INTEGER,
     player_1_score INTEGER,
@@ -69,16 +70,6 @@ CREATE TABLE IF NOT EXISTS _tournament (
     host_id INTEGER REFERENCES _user(id) ON DELETE CASCADE,
     name VARCHAR(50) NOT NULL,
     start_at TIMESTAMP,
-    updated_at TIMESTAMP,
-    deleted_at TIMESTAMP default NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS _tournamentRanking (
-    id SERIAL PRIMARY KEY,
-    tournament_id INTEGER REFERENCES _tournament(id) ON DELETE CASCADE,
-    player_id INTEGER REFERENCES _user(id) ON DELETE CASCADE,
-    position INTEGER NOT NULL, -- Position of the player in the tournament
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP default NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
