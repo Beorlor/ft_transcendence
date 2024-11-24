@@ -7,9 +7,9 @@ class PongApi
     @logger = logger
   end
 
-  def create_game(api_url, player1, player2, ranked, &callback)
+  def create_game(api_url, player1, player2, type, &callback)
     http = EM::HttpRequest.new(api_url).post(
-      body: { player1: player1, player2: player2, ranked: ranked }.to_json,
+      body: { player1: player1, player2: player2, type: type }.to_json,
       head: { 'Content-Type' => 'application/json' }
     )
     http.callback do

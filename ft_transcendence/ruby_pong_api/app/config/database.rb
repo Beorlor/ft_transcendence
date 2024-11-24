@@ -112,6 +112,7 @@ class Database
                       'id', p.id,
                       'player_1_id', p.player_1_id,
                       'player_2_id', p.player_2_id,
+                      'type', p.type,
                       'state', p.state,
                       'rank_points', p.rank_points,
                       'player_1_score', p.player_1_score,

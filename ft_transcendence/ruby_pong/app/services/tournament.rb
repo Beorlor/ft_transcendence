@@ -136,7 +136,7 @@ class Tournament
               end
               player[:opponent] = nil
               @tournaments[tournament_id][:players].push({ player: player, ws: client })
-              end_time = Time.now + 1 * 60 #Time.strptime(@tournaments[tournament_id][:tournament]["tournament"]["start_at"], "%Y-%m-%d %H:%M:%S")
+              end_time = Time.strptime(@tournaments[tournament_id][:tournament]["tournament"]["start_at"], "%Y-%m-%d %H:%M:%S")
               tz = TZInfo::Timezone.get('Europe/Paris')
               @tournaments[tournament_id][:start_timer] = end_time
               current_time = Time.now

@@ -15,7 +15,7 @@ class TournamentManager
     end
     tz = TZInfo::Timezone.get('Europe/Paris')
     france_time = Time.now
-    start_time = (france_time + 15 * 60).strftime("%Y-%m-%d %H:%M:%S")
+    start_time = (france_time + 1 * 60).strftime("%Y-%m-%d %H:%M:%S")
     updated_time = france_time.strftime("%Y-%m-%d %H:%M:%S")
 
     tournament_info = {
