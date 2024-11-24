@@ -40,12 +40,12 @@
         <button id="delete_profile_button" data-user-id="<%= @user["id"] %>" class="btn btn-danger profile-btn">Delete</button>
       </div>
 
-      <!-- Rank Points Section -->
       <div class="rank-info">
         <h4>Player stats</h4>
         <p>Wins: <%= @stats["nb_win"] %></p>
         <p>Losses: <%= @stats["nb_lose"] %></p>
         <p>Games Played: <%= @stats["nb_game"] %></p>
+        <p>Tournaments wins: <%= @stats["nb_win_tournament"] %></p>
         <p>Rank Points: <%= @stats["rank_points"] %></p>
       </div>
     </div>

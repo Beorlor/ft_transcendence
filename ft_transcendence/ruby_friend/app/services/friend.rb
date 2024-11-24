@@ -50,6 +50,8 @@ class Friend
         status: data['status']
       }.to_json)
       if @userlogged[user_id]
+        @userlogged[user_id][:friends].push(data['friend_id'])
+        @userlogged[data['friend_id']][:friends].push(user_id)
         @userlogged[user_id][:ws].send({
           type: 'friend_connected',
           friend: data['friend_id']
@@ -73,7 +75,11 @@ class Friend
             friend_ids = friends
               .select { |f| f["status"] == "accepted" }
               .map { |f| f["requester_id"] == user_id ? f["receiver_id"] : f["requester_id"] }
-            @userlogged[user_id][:friends] = friend_ids
+            if @userlogged[user_id].nil?
+              @userlogged[user_id] = { ws: client, friends: friend_ids, username: user["username"] }
+            else
+              @userlogged[user_id][:friends] = friend_ids
+            end
             friend_ids.each do |friend_id|
               if @userlogged[friend_id]
                 @userlogged[friend_id][:ws].send({

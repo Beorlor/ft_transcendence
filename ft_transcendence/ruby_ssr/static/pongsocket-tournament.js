@@ -38,12 +38,12 @@ const makeBall = (x, y, radius) => {
 
 function updateTimer(endTime, timerInterval) {
   const now = new Date();
-  const timeRemaining = endTime - now; // Temps restant en millisecondes
+  const timeRemaining = endTime - now;
 
   if (timeRemaining <= 0) {
     document.getElementById("timer").innerText =
       "Le tournoi commence maintenant!";
-    clearInterval(timerInterval); // Arrêter le minuteur lorsque le temps est écoulé
+    clearInterval(timerInterval);
   } else {
     const minutes = Math.floor(timeRemaining / 1000 / 60);
     const seconds = Math.floor((timeRemaining / 1000) % 60);
@@ -71,6 +71,7 @@ function startTournamentGame() {
     .getAttribute("data-tournament-id");
   const url = `wss://localhost/pongsocket/tournament/${tournamentId}`;
   const connection = new WebSocket(url);
+  window.connection = connection;
   const canvas = document.getElementById("drawCanvas");
   const ball = makeBall(400, 300, 10);
   const leftBar = makeBar(10, 250, 10, 100);
@@ -159,6 +160,9 @@ function startTournamentGame() {
       init_game_info(json);
       clearInterval(timerInterval);
       clearInterval(persistenceInterval);
+      timerInterval = setInterval(() => {
+        updateTimer(new Date(parseDate(json.time_end)), timerInterval);
+      }, 1000);
     } else if (json.ingame) {
       play_game(json, canvas);
     } else if (json.status === "end") {
@@ -173,10 +177,7 @@ function startTournamentGame() {
   connection.onclose = () => {
     clearInterval(timerInterval);
     clearInterval(persistenceInterval);
-    window.loadPage(
-      document.getElementById("game"),
-      "https://localhost/tournaments"
-    );
+    window.loadPage(document.getElementById("game"), "https://localhost/");
   };
 
   connection.onerror = (error) => {
@@ -184,6 +185,7 @@ function startTournamentGame() {
   };
 
   window.addEventListener("keydown", (event) => {
+    if (connection.readyState !== WebSocket.OPEN) return;
     if (event.key === "ArrowUp") {
       connection.send('{ "direction": "up" }');
     } else if (event.key === "ArrowDown") {
@@ -192,6 +194,7 @@ function startTournamentGame() {
   });
 
   window.addEventListener("keyup", (event) => {
+    if (connection.readyState !== WebSocket.OPEN) return;
     if (event.key === "ArrowUp" || event.key === "ArrowDown") {
       connection.send('{ "direction": null }');
     }

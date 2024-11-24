@@ -1,5 +1,6 @@
 include Math
 require_relative '../log/custom_logger'
+require 'tzinfo'
 require 'json'
 
 class Game
@@ -23,19 +24,23 @@ class Game
 	ball_vx: 1, ball_vy: 1 }
     @game_data[:type] = type
     logger.log("Game", "Game created with id: #{game_id} || type: #{type}, || player: #{client1}")
-    @start_time = Time.now
     @game = true
     @pong_api = pong_api
     @logger = logger
-    client1[:ws].send({start: "Start game", client1_username: client1[:player]['username'], client2_username: client2[:player]['username'], img_url1: client1[:player]['img_url'], img_url2: client2[:player]['img_url']}.to_json)
-    client2[:ws].send({start: "Start game", client1_username: client1[:player]['username'], client2_username: client2[:player]['username'], img_url1: client1[:player]['img_url'], img_url2: client2[:player]['img_url']}.to_json)
+    tz = TZInfo::Timezone.get('Europe/Paris')
+
+    @time_end = (Time.now + 61 * 60).strftime("%Y-%m-%d %H:%M:%S")
+    client1[:ws].send({start: "Start game", client1_username: client1[:player]['username'], client2_username: client2[:player]['username'], img_url1: client1[:player]['img_url'], img_url2: client2[:player]['img_url'], time_end: @time_end}.to_json)
+    client2[:ws].send({start: "Start game", client1_username: client1[:player]['username'], client2_username: client2[:player]['username'], img_url1: client1[:player]['img_url'], img_url2: client2[:player]['img_url'], time_end: @time_end}.to_json)
   end
 
   def reconnection(client)
     if client[:player]["id"] == @client1[:player]["id"]
       @client1 = client
+      client[:ws].send({start: "Start game", client1_username: @client1[:player]['username'], client2_username: @client2[:player]['username'], img_url1: @client1[:player]['img_url'], img_url2: @client2[:player]['img_url'], time_end: @time_end}.to_json)
     elsif client[:player]["id"] == @client2[:player]["id"]
       @client2 = client
+      client[:ws].send({start: "Start game", client1_username: @client1[:player]['username'], client2_username: @client2[:player]['username'], img_url1: @client1[:player]['img_url'], img_url2: @client2[:player]['img_url'], time_end: @time_end}.to_json)
     end
   end
 

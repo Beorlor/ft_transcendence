@@ -36,6 +36,31 @@ const makeBall = (x, y, radius) => {
   };
 };
 
+function updateTimer(endTime, timerInterval) {
+  const now = new Date();
+  const timeRemaining = endTime - now;
+
+  if (timeRemaining <= 0) {
+    document.getElementById("timer").innerText =
+      "Le tournoi commence maintenant!";
+    clearInterval(timerInterval);
+  } else {
+    const minutes = Math.floor(timeRemaining / 1000 / 60);
+    const seconds = Math.floor((timeRemaining / 1000) % 60);
+    document.getElementById(
+      "timer"
+    ).innerText = `Temps restant: ${minutes}m ${seconds}s`;
+  }
+}
+
+function parseDate(dateString) {
+  const parsedDate = new Date(dateString);
+  if (isNaN(parsedDate.getTime())) {
+    return new Date(dateString.replace(" ", "T").replace(" +0000", "Z"));
+  }
+  return parsedDate;
+}
+
 /* rueifrwhfreuywghwuighvrnicjmowobuuhjvimrfkruqotnhijmrvobqnivmrcqbjnmkv
 yvquicjodknjqouhvijmrocki brinqvmokclewvognrqbmviopc,w[r  evnbivom  pw  rbniu
 bvvwhrnjcmekdl,ckfvimwbguijmvoqc,vmreiqbtnuimvqoc,pem rnbiutmvo] */
@@ -43,11 +68,16 @@ bvvwhrnjcmekdl,ckfvimwbguijmvoqc,vmreiqbtnuimvqoc,pem rnbiutmvo] */
 function startRankedGame() {
   const url = "wss://localhost/pongsocket/ranked";
   const connection = new WebSocket(url);
+  window.connection = connection;
   const canvas = document.getElementById("drawCanvas");
   const ball = makeBall(400, 300, 10);
   const leftBar = makeBar(10, 250, 10, 100);
   leftBar.color = "#F00000";
   const rightBar = makeBar(780, 250, 10, 100);
+  let timerInterval = null;
+  let persistenceInterval = setInterval(() => {
+    connection.send(JSON.stringify({ type: "keep_alive" }));
+  }, 5000);
 
   connection.onopen = () => {
     connection.send("Hello from the client!");
@@ -102,16 +132,19 @@ function startRankedGame() {
     console.log(json);
     if (json.start) {
       init_game_info(json);
+      clearInterval(persistenceInterval);
+      timerInterval = setInterval(() => {
+        updateTimer(new Date(parseDate(json.time_end)), timerInterval);
+      }, 1000);
     } else if (json.ingame) {
       play_game(json, canvas);
     }
   };
 
   connection.onclose = () => {
-    window.loadPage(
-      document.getElementById("game"),
-      "https://localhost/profile"
-    );
+    clearInterval(timerInterval);
+    clearInterval(persistenceInterval);
+    window.loadPage(document.getElementById("game"), "https://localhost/");
   };
 
   connection.onerror = (error) => {

@@ -104,6 +104,7 @@ class Database
       SELECT 
           ph.rank_points,
           ph.nb_win,
+          ph.nb_win_tournament,
           ph.nb_lose,
           ph.nb_game,
           COALESCE(
@@ -131,7 +132,7 @@ class Database
       WHERE 
           u.id = #{user_id} AND p.deleted_at IS NULL AND ph.deleted_at IS NULL AND u.deleted_at IS NULL
       GROUP BY 
-          ph.rank_points, ph.nb_win, ph.nb_lose, ph.nb_game;
+          ph.rank_points, ph.nb_win, ph.nb_lose, ph.nb_game, ph.nb_win_tournament;
     SQL
     
     begin
