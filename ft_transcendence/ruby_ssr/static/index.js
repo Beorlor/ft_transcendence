@@ -197,8 +197,12 @@ function rebindEvents() {
   }
 }
 
-function loadPage(game, url, gamestate) {
-  history.pushState(null, null, url);
+function loadPage(game, url, gamestate, shouldPushState = true) {
+  if (shouldPushState)
+    history.pushState(gamestate, null, url);
+  if (window.threeJSStop) {
+    window.threeJSStop();
+  }
   window.GAMESTATE = gamestate;
   let popUp = document.getElementById("pop-up");
   popUp.innerHTML = "";
@@ -223,9 +227,6 @@ function loadPage(game, url, gamestate) {
 function handleHomeClick(ev) {
   ev.preventDefault();
   const url = "https://localhost";
-  if (window.threeJSStop) {
-    window.threeJSStop();
-  }
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
@@ -448,21 +449,16 @@ function handleDeleteProfileClick(ev) {
     });
 }
 
-window.addEventListener("popstate", function (_) {
+window.addEventListener("popstate", function (ev) {
   const currentUrl = window.location.pathname;
 
-  if (currentUrl !== window.location.pathname) {
-    fetch(currentUrl, {
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        IsLogged: document.getElementById("button_logout") ? true : false,
-      },
-    })
-      .then((response) => response.text())
-      .then((html) => {
-        document.getElementById("game").innerHTML = html;
-      })
-      .catch((err) => console.error("Error during popstate fetch: ", err));
+  if (currentUrl != ev.state) {
+    let state = window.GAME_STATES.default;
+    if (currentUrl == "https://localhost/pong")
+        state = window.GAME_STATES.pong;
+    else if (currentUrl == "https://localhost/3dgame")
+        state = window.GAME_STATES.threejs;
+    loadPage(document.getElementById("game"), currentUrl, state, false);
   }
 });
 
