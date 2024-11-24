@@ -37,7 +37,7 @@ class TournamentController
       when ['PUT']
         update_tournament(client, tournament_id, body)
       when ['DELETE']
-        delete_tournament(client, tournament_id)
+        delete_tournament(client, tournament_id, body)
       else
         return 1
       end
@@ -75,7 +75,7 @@ class TournamentController
   def get_tournament(client, tournament_id)
     @logger.log('TournamentController', "Get tournament #{tournament_id}")
     tournament = @tournament_manager.get_tournament(tournament_id)
-    if tournament.nil?
+    if tournament[:error]
       RequestHelper.respond(client, 404, { error: 'Tournament not found' })
       return
     end
@@ -107,9 +107,8 @@ class TournamentController
     RequestHelper.respond(client, 200, tournament)
   end
 
-  def delete_tournament(client, tournament_id)
-    user_id = @token_manager.get_user_id(cookies['access_token']);
-    tournament = @tournament_manager.delete_tournament(tournament_id, user_id)
+  def delete_tournament(client, tournament_id, body)
+    tournament = @tournament_manager.delete_tournament(tournament_id, body)
     if tournament[:error]
       RequestHelper.respond(client, 400, tournament)
       return

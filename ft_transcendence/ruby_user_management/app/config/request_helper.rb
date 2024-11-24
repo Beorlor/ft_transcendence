@@ -17,8 +17,7 @@ module RequestHelper
     headers = {}
     cookies = {}
     body = nil
-  
-    # Read headers
+    
     request.lines[1..-1].each_with_index do |line, index|
       if line.strip.empty?
         body = request.lines[(index + 2)..-1].join

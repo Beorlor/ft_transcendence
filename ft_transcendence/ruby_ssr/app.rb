@@ -320,6 +320,7 @@ server.mount_proc '/tournament/' do |req, res|
   tournament_id = req.path.match(/\/tournament\/(\d+)/)[1].to_i rescue nil
   if tournament_id
     tournament = get_tournament(tournament_id)
+    logger.log('App', "Tournament: #{tournament}")
     if tournament
       @tournament_id = tournament["tournament"]["id"]
       page = ERB.new(File.read("app/view/tournament.erb"))

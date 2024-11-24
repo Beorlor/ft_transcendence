@@ -96,5 +96,23 @@ class PongApi
       callback.call(false) if callback
     end
   end
+
+  def end_tournament(api_url, id, id_winner, &callback)
+    http = EM::HttpRequest.new("#{api_url}/#{id}").delete(
+      head: { 'Content-Type' => 'application/json'},
+      body: { id_winner: id_winner }.to_json
+    )
+    http.callback do
+      if http.response_header.status == 200
+        callback.call(true) if callback
+      else
+        callback.call(false) if callback
+      end
+    end
+  
+    http.errback do
+      callback.call(false) if callback
+    end
+  end
   
 end

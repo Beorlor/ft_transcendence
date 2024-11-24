@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS _pongHistory (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES _user(id),
     nb_win INTEGER,
+    nb_win_tournament INTEGER,
     nb_lose INTEGER,
     nb_game INTEGER,
     rank_points INTEGER,

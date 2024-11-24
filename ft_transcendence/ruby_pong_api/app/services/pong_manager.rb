@@ -39,7 +39,7 @@ class PongManager
     game_history_player_1 = @pong_repository.get_game_history(body['player1']);
     game_history_player_2 = @pong_repository.get_game_history(body['player2']);
     result_player1 = {
-      nb_game: game_history_player_2["nb_game"].to_i + 1,
+      nb_game: game_history_player_1["nb_game"].to_i + 1,
       nb_win: game_history_player_1["nb_win"].to_i,
       nb_lose: game_history_player_1["nb_lose"].to_i,
       rank_points: game_history_player_1["rank_points"].to_i

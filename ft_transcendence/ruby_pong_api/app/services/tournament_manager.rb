@@ -3,9 +3,10 @@ require 'tzinfo'
 
 class TournamentManager
 
-  def initialize(logger = Logger.new, tournament_repository = TournamentRepository.new)
+  def initialize(logger = Logger.new, tournament_repository = TournamentRepository.new, pong_repository = PongRepository.new)
     @logger = logger
     @tournament_repository = tournament_repository
+    @pong_repository = pong_repository
   end
 
   def create_tournament(body, user_id)
@@ -42,6 +43,23 @@ class TournamentManager
     @logger.log('TournamentManager', 'Getting tournaments')
     tournaments = @tournament_repository.get_tournaments()
     return { code: 200, tournaments: tournaments }
+  end
+
+  def delete_tournament(tournament_id, body)
+    @logger.log('TournamentManager', "Deleting tournament #{tournament_id}")
+    if (body['id_winner'].nil? || body['id_winner'].empty?)
+      return { code: 400, error: 'Invalid winner id' }
+    end
+    game_history_player_1 = @pong_repository.get_game_history(body['id_winner']);
+    if game_history_player_1.nil?
+      return { code: 404, error: 'Player not found' }
+    end
+    history_updated = {
+      nb_win_tournament: game_history_player_1["nb_win_tournament"].to_i + 1 
+    }
+    @pong_repository.save_game_history(history_updated, body['id_winner'])
+    @tournament_repository.delete_tournament(tournament_id)
+    return { code: 200, success: 'Tournament deleted' }
   end
 
 end

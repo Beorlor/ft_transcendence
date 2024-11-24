@@ -198,6 +198,9 @@ function rebindEvents() {
 }
 
 function loadPage(game, url, gamestate, shouldPushState = true) {
+  if (window.connection && window.connection.readyState === 1) {
+    window.connection.close();
+  }
   if (shouldPushState) history.pushState(gamestate, null, url);
   if (window.threeJSStop) {
     window.threeJSStop();
@@ -211,7 +214,9 @@ function loadPage(game, url, gamestate, shouldPushState = true) {
       IsLogged: document.getElementById("button_logout") ? true : false,
     },
   })
-    .then((res) => res.json())
+    .then((res) => {
+      return res.json();
+    })
     .then((json) => {
       game.innerHTML = json.body;
       if (json.nav) {
@@ -220,7 +225,14 @@ function loadPage(game, url, gamestate, shouldPushState = true) {
       rebindEvents();
       loadPageScript(game);
     })
-    .catch((err) => console.error("Error: ", err));
+    .catch((err) => {
+      loadPage(
+        document.getElementById("game"),
+        "https://localhost/",
+        window.GAME_STATES.default
+      );
+      console.error("Error: ", err);
+    });
 }
 
 function handleHomeClick(ev) {

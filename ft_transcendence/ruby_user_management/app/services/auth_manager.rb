@@ -29,6 +29,7 @@ class AuthManager
     history = {
       user_id: user_id,
       nb_win: 0,
+      nb_win_tournament: 0,
       nb_lose: 0,
       nb_game: 0,
       rank_points: 0,
