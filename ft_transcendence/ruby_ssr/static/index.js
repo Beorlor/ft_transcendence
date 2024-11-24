@@ -103,14 +103,14 @@ function loadPageScript(game) {
         window.threeJSStop();
       }
     }
-    if (
-      window.location.href === "https://localhost/pongserv" ||
-      /^https:\/\/localhost\/tournament\/\d+$/.test(window.location.href)
-    ) {
+    if (window.location.href === "https://localhost/pongserv") {
       window.startNormalGame();
     }
     if (window.location.href === "https://localhost/pongserv-ranked") {
       window.startRankedGame();
+    }
+    if (/^https:\/\/localhost\/tournament\/\d+$/.test(window.location.href)) {
+      window.startTournamentGame();
     }
   };
 }
@@ -198,8 +198,7 @@ function rebindEvents() {
 }
 
 function loadPage(game, url, gamestate, shouldPushState = true) {
-  if (shouldPushState)
-    history.pushState(gamestate, null, url);
+  if (shouldPushState) history.pushState(gamestate, null, url);
   if (window.threeJSStop) {
     window.threeJSStop();
   }
@@ -454,10 +453,9 @@ window.addEventListener("popstate", function (ev) {
 
   if (currentUrl != ev.state) {
     let state = window.GAME_STATES.default;
-    if (currentUrl == "https://localhost/pong")
-        state = window.GAME_STATES.pong;
+    if (currentUrl == "https://localhost/pong") state = window.GAME_STATES.pong;
     else if (currentUrl == "https://localhost/3dgame")
-        state = window.GAME_STATES.threejs;
+      state = window.GAME_STATES.threejs;
     loadPage(document.getElementById("game"), currentUrl, state, false);
   }
 });

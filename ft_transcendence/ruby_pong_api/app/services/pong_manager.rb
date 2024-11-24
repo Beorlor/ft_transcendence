@@ -11,6 +11,7 @@ class PongManager
     game_info = {
       player_1_id: body['player1'],
       player_2_id: body['player2'],
+      type: body['type'].to_i,
       state: 3,
       rank_points: body['type'].to_i == 1 ? 0 : 1,
       player_1_score: 0,
