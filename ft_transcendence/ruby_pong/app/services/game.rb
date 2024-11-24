@@ -112,6 +112,8 @@ class Game
       @game_data[:client2_pts] += 1
     end
 		reset_ball()
+    @game_data[:paddle1_y] = height / 2 - 120 / 2
+    @game_data[:paddle2_y] = height / 2 - 120 / 2
     end
   end
 
