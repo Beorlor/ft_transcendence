@@ -79,20 +79,20 @@ class Game
 	newX = @game_data[:ball_x] + @game_data[:ball_vx] * @game_data[:ball_move_speed] * @game_data[:delta_time]
 	newY = @game_data[:ball_y] + @game_data[:ball_vy] * @game_data[:ball_move_speed] * @game_data[:delta_time]
 	# Right bar
-	if newX + @game_data[:ball_radius] + 3 >= @game_data[:paddle2_x] && newY >= @game_data[:paddle2_y] && newY <= @game_data[:paddle2_y] + @game_data[:bar_height]
-		newX = @game_data[:paddle2_x] - @game_data[:ball_radius] - 3
+	if newX + @game_data[:ball_radius] >= @game_data[:paddle2_x] && newY >= @game_data[:paddle2_y] && newY <= @game_data[:paddle2_y] + @game_data[:bar_height]
+		newX = @game_data[:paddle2_x] - @game_data[:ball_radius]
 		relY = (@game_data[:paddle2_y] + @game_data[:bar_height] / 2) - @game_data[:ball_y]
-		normRelY = relY / @game_data[:bar_height] / 2
-		angle = normRelY * -PI
-		@game_data[:ball_vx] = cos(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+		normRelY = relY / (@game_data[:bar_height] / 2)
+		angle = normRelY * -(PI / 4)
+		@game_data[:ball_vx] = -cos(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
 		@game_data[:ball_vy] = -sin(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
 	# Left bar
 	elsif newX <= @game_data[:paddle1_x] + 3 + @game_data[:bar_width] && newY >= @game_data[:paddle1_y] && newY <= @game_data[:paddle1_y] + @game_data[:bar_height]
 		newX = @game_data[:paddle1_x] + 3 + @game_data[:bar_width]
 		relY = (@game_data[:paddle1_y] + @game_data[:bar_height] / 2) - @game_data[:ball_y]
-		normRelY = relY / @game_data[:bar_height] / 2
-		angle = normRelY * PI
-		@game_data[:ball_vx] = -cos(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
+		normRelY = relY / (@game_data[:bar_height] / 2)
+		angle = normRelY * (PI / 4)
+		@game_data[:ball_vx] = cos(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
 		@game_data[:ball_vy] = -sin(angle) * @game_data[:ball_move_speed] * @game_data[:delta_time]
 	end
 	if newY >= 590
@@ -101,11 +101,10 @@ class Game
 	elsif newY <= 10
 		newY = 10
 		@game_data[:ball_vy] *= -1
-	end
-	#newX = @game_data[:ball_x] + @game_data[:ball_vx] * @game_data[:ball_move_speed] * @game_data[:delta_time]
-	#newY = @game_data[:ball_y] + @game_data[:ball_vy] * @game_data[:ball_move_speed] * @game_data[:delta_time]
-	@game_data[:ball_x] = newX + @game_data[:ball_vx] * @game_data[:ball_move_speed] * @game_data[:delta_time]
-	@game_data[:ball_y] = newY + @game_data[:ball_vy] * @game_data[:ball_move_speed] * @game_data[:delta_time]
+  end
+
+	@game_data[:ball_x] = newX
+	@game_data[:ball_y] = newY
 	if (newX >= @game_data[:paddle2_x] + @game_data[:bar_width] || newX <= @game_data[:paddle1_x])
 		if newX >= @game_data[:paddle2_x] + @game_data[:bar_width]
       @game_data[:client1_pts] += 1
