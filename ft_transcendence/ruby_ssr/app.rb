@@ -23,7 +23,12 @@ def game_result(game, user_id)
 
   "<span class='badge bg-#{result_text == 'Victory' ? 'success' : 'danger'} me-2'>#{result_text}</span> " \
   "<span class='text-muted'>#{score_text}</span> " \
-  "<small class='text-secondary ms-2'>#{rank_text}</small>"
+  "<small class='text-secondary ms-2'>#{rank_text}</small>" \
+  "#{game_tournament(game)}"
+end
+
+def game_tournament(game)
+  game["type"].to_i == 3 ? "<span class='badge bg-primary'>Tournament</span>" : ""
 end
 
 
