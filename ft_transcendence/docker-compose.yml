@@ -12,30 +12,30 @@ services:
     networks:
       - postgres_network
 
-    elasticsearch:
-      build:
-        context: ./elasticsearch
-      environment:
-        - node.name=es-node
-        - discovery.type=single-node
-        - xpack.security.enabled=true
-        - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
-        - KIBANA_PASSWORD=${KIBANA_PASSWORD}
-      ulimits:
-        memlock:
-          soft: -1
-          hard: -1
-      volumes:
-        - ./elasticsearch/data:/usr/share/elasticsearch/data
-      ports:
-        - "9200:9200"
-      healthcheck:
-        test: curl -s http://localhost:9200 >/dev/null || exit 1
-        interval: 10s
-        timeout: 5s
-        retries: 50
-      networks:
-        - nginx_network
+  elasticsearch:
+    build:
+      context: ./elasticsearch
+    environment:
+      - node.name=es-node
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - KIBANA_PASSWORD=${KIBANA_PASSWORD}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    healthcheck:
+      test: curl -s http://localhost:9200 >/dev/null || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 50
+    networks:
+      - nginx_network
 
   kibana:
     image: docker.elastic.co/kibana/kibana:8.12.2
@@ -213,6 +213,7 @@ services:
 volumes:
   postgres-data:
   mongodb_data:
+  esdata:
 
 networks:
   postgres_network:

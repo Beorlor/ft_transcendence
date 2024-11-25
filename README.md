@@ -47,3 +47,7 @@ ft_transcendence/
 └── postgres/
     └── Dockerfile
 ```
+
+
+
+kibana pattern : nginx-access-logs-*

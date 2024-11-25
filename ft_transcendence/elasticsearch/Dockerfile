@@ -1,13 +1,21 @@
-# elasticsearch/Dockerfile
-
 FROM docker.elastic.co/elasticsearch/elasticsearch:8.12.2
 
-# Install curl
-RUN yum update -y && \
-    yum install -y curl
+# Switch to root user to install additional packages
+USER root
 
+# Install curl (if needed)
+RUN apt-get update && \
+    apt-get install -y curl && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy your custom script
+COPY create_users.sh /usr/local/bin/create_users.sh
+RUN chmod +x /usr/local/bin/create_users.sh
+
+# Switch back to the elasticsearch user
+USER elasticsearch
+
+# Copy your elasticsearch.yml configuration
 COPY elasticsearch.yml /usr/share/elasticsearch/config/
-COPY create_users.sh /usr/share/elasticsearch/
-RUN chmod +x /usr/share/elasticsearch/create_users.sh
 
-CMD ["/usr/share/elasticsearch/create_users.sh"]
+# Use the default ENTRYPOINT and CMD
