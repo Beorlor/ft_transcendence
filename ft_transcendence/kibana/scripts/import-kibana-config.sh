@@ -10,8 +10,9 @@ done
 echo "$(date) Kibana is ready. Importing configuration..."
 
 # Import the Kibana configuration
-curl -X POST "http://localhost:5601/api/saved_objects/_import" \
-  -H "kbn-xsrf: true" \
-  --form file=@/usr/share/kibana/config/nginx_access.ndjson
+# curl -X POST "http://localhost:5601/api/saved_objects/_import" \
+#   -H "kbn-xsrf: true" \
+#   -H "Content-Type: application/ndjson" \
+#   --form file=@/usr/share/kibana/config/nginx_access.ndjson
 
 echo "$(date) Kibana configuration imported successfully!"
