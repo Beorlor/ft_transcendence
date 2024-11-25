@@ -13,6 +13,7 @@ authController = AuthController.new
 tokenController = TokenController.new
 userController = UserController.new
 friendController = FriendController.new
+logger = CustomLogger.new
 
 
 loop do
@@ -29,7 +30,7 @@ loop do
       RequestHelper.not_found(client)
     end
   rescue Errno::EPIPE => e
-    Logger.new.log("test", "Erreur : Broken pipe - #{e.message}")
+    logger.log("test", "Erreur : Broken pipe - #{e.message}")
   ensure
     client.close if client
   end

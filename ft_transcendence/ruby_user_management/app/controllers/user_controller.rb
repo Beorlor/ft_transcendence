@@ -7,7 +7,7 @@ require 'json'
 
 class UserController
 
-  def initialize(logger = Logger.new, user_manager = UserManager.new, token_manager = TokenManager.new)
+  def initialize(logger = CustomLogger.new, user_manager = UserManager.new, token_manager = TokenManager.new)
     @logger = logger
     @token_manager = token_manager
     @user_manager = user_manager

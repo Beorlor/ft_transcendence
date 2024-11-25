@@ -8,7 +8,7 @@ require 'json'
 
 class AuthController
 
-  def initialize(logger = Logger.new, auth_manager = AuthManager.new, token_manager = TokenManager.new)
+  def initialize(logger = CustomLogger.new, auth_manager = AuthManager.new, token_manager = TokenManager.new)
     @logger = logger
     @auth_manager = auth_manager
     @token_manager = token_manager

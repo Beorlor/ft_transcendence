@@ -79,6 +79,7 @@ services:
       REDIR_URL: ${REDIR_URL42}
     depends_on:
       - postgres
+      - logstash
     volumes:
       - ./ruby_user_management:/app
     networks:
@@ -106,6 +107,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     depends_on:
       - postgres
+      - logstash
     volumes:
       - ./ruby_pong:/app
     networks:
@@ -117,6 +119,7 @@ services:
       SECRET_KEY: ${SECRET_KEY}
     depends_on:
       - postgres
+      - logstash
     volumes:
       - ./ruby_friend:/app
     networks:
@@ -131,6 +134,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     depends_on:
       - postgres
+      - logstash
     volumes:
       - ./ruby_rgpd:/app
     ports:
@@ -147,6 +151,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     depends_on:
       - postgres
+      - logstash
     volumes:
       - ./ruby_pong_api:/app
     ports:

@@ -8,7 +8,7 @@ require 'json'
 
 class UserManager
 
-  def initialize(user_repository = UserRepository.new, logger = Logger.new, img_api = ImgApi.new)
+  def initialize(user_repository = UserRepository.new, logger = CustomLogger.new, img_api = ImgApi.new)
     @user_repository = user_repository
     @logger = logger
     @img_api = img_api
