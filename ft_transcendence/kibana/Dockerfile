@@ -5,7 +5,7 @@ FROM docker.elastic.co/kibana/kibana:8.12.2
 USER root
 
 # Copy the saved objects file and import script
-COPY ./config/nginx_access.ndjson /usr/share/kibana/config/kibana-config.ndjson
+COPY ./config/nginx_access.ndjson /usr/share/kibana/config/nginx_access.ndjson
 COPY ./scripts/import-kibana-config.sh /usr/share/kibana/scripts/import-kibana-config.sh
 
 # Make the import script executable
