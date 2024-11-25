@@ -1,9 +1,0 @@
-# kibana/kibana.yml
-
-server.host: "0.0.0.0"
-
-elasticsearch.hosts: ["http://elasticsearch:9200"]
-elasticsearch.username: "kibana_system"
-elasticsearch.password: "${KIBANA_PASSWORD}"
-
-xpack.security.encryptionKey: "${KIBANA_ENCRYPTION_KEY}"

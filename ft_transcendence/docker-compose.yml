@@ -38,7 +38,8 @@ services:
       - nginx_network
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:8.12.2
+    build:
+      context: ./kibana
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
       - ELASTICSEARCH_USERNAME=kibana_system
