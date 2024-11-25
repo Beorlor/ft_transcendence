@@ -336,6 +336,30 @@ server.mount_proc '/tournament/' do |req, res|
   generate_response(req, res, logger)
 end
 
+server.mount_proc '/rgpd' do |req, res|
+  @user_logged = user_logged(get_access_token(req), logger)
+  @nav = generate_navigation
+
+  if @user_logged
+    user_info = get_user_info("http://ruby_user_management:4567/api/user/#{@user_logged["user_id"]}")
+    if user_info
+      @stats = get_user_stats(user_info["id"])
+      logger.log('App', "Stats: #{@stats}")
+      @user = user_info
+      page = ERB.new(File.read("app/view/rgpd.erb"))
+      @pRes = page.result(binding)
+    else
+      res.status = 500
+      @pRes = "Erreur lors de la récupération des informations utilisateur."
+    end
+  else
+    res.status = 401
+    @pRes = "Utilisateur non authentifié."
+  end
+
+  generate_response(req, res, logger)
+end
+
 server.mount '/static', WEBrick::HTTPServlet::FileHandler, './static'
 server.mount '/assets', WEBrick::HTTPServlet::FileHandler, './assets'
 
