@@ -1,0 +1,122 @@
+[33mcommit b63355be27ff24cf07473527b4e47ddc5b49ebb6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mrgpd[m[33m, [m[1;31morigin/rgpd[m[33m)[m
+Author: root <root@LAPTOP-6T0QOFSG.>
+Date:   Mon Nov 25 14:06:17 2024 +0100
+
+    kibana first auto config
+
+[33mcommit 703c103c0f02bfa4f4b5a57007bbc1215bc040fc[m
+Author: root <root@LAPTOP-6T0QOFSG.>
+Date:   Mon Nov 25 10:32:19 2024 +0100
+
+    elk working not secure
+
+[33mcommit 167f37543b0a258a5bf43cf89e4267723585329e[m
+Author: root <root@LAPTOP-6T0QOFSG.>
+Date:   Sat Nov 23 05:43:18 2024 +0100
+
+    nginx log first draft
+
+[33mcommit 07464a7a4abe230bd8ef689c6f42fd7d85fce508[m
+Author: root <root@LAPTOP-6T0QOFSG.>
+Date:   Sat Nov 23 05:31:38 2024 +0100
+
+    draft of ELK without nginx
+
+[33mcommit ac548142458e3cd2c18ac90f57fc502dc059678e[m
+Merge: 1e7e274 20909f4
+Author: root <root@LAPTOP-6T0QOFSG.>
+Date:   Sat Nov 23 03:22:37 2024 +0100
+
+    Merge remote-tracking branch 'origin/main' into rgpd
+    merge main into rgpd
+
+[33mcommit 20909f4c61f01af26c8f167a0ec46e245849147d[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: zom <contact.zomzd@gmail.com>
+Date:   Fri Nov 22 22:13:19 2024 +0100
+
+    hope i fixed the pong bounces
+
+[33mcommit a12e1eacc69865a46fc428a59021225af4844f09[m
+Author: Thomas <thomasribalta@gmail.com>
+Date:   Fri Nov 22 15:21:21 2024 +0100
+
+    fixe victory/loose in history, add realname + img profile + score in game
+
+[33mcommit eaac712962bab83149d33fd57e6c9a3ba7cbc26b[m
+Author: Thomas <thomasribalta@gmail.com>
+Date:   Tue Nov 19 12:59:42 2024 +0100
+
+    remove http 1 nginx
+
+[33mcommit 1e7e274b1c7d75cb20babe91f8ed175fc6d4ce5f[m
+Author: root <root@LAPTOP-6T0QOFSG.>
+Date:   Tue Nov 19 02:07:32 2024 +0100
+
+    first draft, not tested, rgpd module backend
+
+[33mcommit c21ea10dbc68a99691d734890d506437c771c671[m
+Author: ZomDev3343 <contact.zomzd@gmail.com>
+Date:   Mon Nov 18 17:05:12 2024 +0100
+
+    Added placeholder for pongserv infos (Score, Player images and player names)
+
+[33mcommit 61e91c227bfc67fb969dbdf6d912701a7ed56de4[m
+Author: Thomas <thomasribalta@gmail.com>
+Date:   Sat Nov 16 18:38:07 2024 +0100
+
+    fix pong serv
+
+[33mcommit 1c651ae2f17c6c0870a665773b478265fb9f9757[m
+Author: Thomas <thomasribalta@gmail.com>
+Date:   Sat Nov 16 15:10:51 2024 +0100
+
+    pong tournois partiellement fini
+
+[33mcommit 429d3298d8d559934fb925c3955f3ef750abba77[m
+Author: Thomas <thomasribalta@gmail.com>
+Date:   Fri Nov 15 17:46:14 2024 +0100
+
+    fix bug
+
+[33mcommit 109765414d04997812df58fa6a5ffa25f2302797[m
+Author: Thomas <thomasribalta@gmail.com>
+Date:   Fri Nov 15 15:56:29 2024 +0100
+
+    add getter tournament
+
+[33mcommit 3e90a4a438e3879af039e42f8e04e8c16dfd825d[m
+Merge: 5ac839d 9839ea7
+Author: Thomas <thomasribalta@gmail.com>
+Date:   Fri Nov 15 15:23:22 2024 +0100
+
+    Merge branch 'main' of github.com:Beorlor/ft_transcendence
+
+[33mcommit 5ac839d1818178c1cf67f1ec9ca0ceaffcb4eeb6[m
+Author: Thomas <thomasribalta@gmail.com>
+Date:   Fri Nov 15 15:23:09 2024 +0100
+
+    start tournament systeme
+
+[33mcommit 9839ea71b8ee2ff915a2e82eecc2714211abd4d0[m
+Author: ZomDev3343 <contact.zomzd@gmail.com>
+Date:   Fri Nov 15 13:16:29 2024 +0100
+
+    Removed debug logs in threejs game
+
+[33mcommit 7881dc73d7732d123584b5a494870ff4ef73bfba[m
+Author: ZomDev3343 <contact.zomzd@gmail.com>
+Date:   Fri Nov 15 13:09:32 2024 +0100
+
+    Fix logging in pong controller
+
+[33mcommit 7e2eafcb23658cd1ab82afc677461e22af7a1753[m
+Author: ZomDev3343 <contact.zomzd@gmail.com>
+Date:   Fri Nov 15 13:08:40 2024 +0100
+
+    Fix pongserv collisions
+
+[33mcommit 09dab737d8bd91da042b1ac1ccb2eaeb8bf923e4[m
+Author: ZomDev3343 <contact.zomzd@gmail.com>
+Date:   Fri Nov 15 12:39:29 2024 +0100
+
+    Added game reloading when player die

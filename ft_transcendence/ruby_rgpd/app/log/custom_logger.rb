@@ -1,7 +1,7 @@
 require 'logstash-logger'
 require 'tzinfo'
 
-class Logger
+class CustomLogger
   def initialize(
     logstash_host = 'logstash',
     logstash_port = 5001,
