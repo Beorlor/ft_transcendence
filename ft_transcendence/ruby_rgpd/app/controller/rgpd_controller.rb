@@ -1,5 +1,6 @@
 require_relative '../service/rgpd_service'
 require_relative '../config/request_helper'
+require_relative '../log/custom_logger'
 
 class RGPDController
   def initialize(rgpd_service = RGPDService.new)
