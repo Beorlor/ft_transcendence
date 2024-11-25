@@ -12,7 +12,7 @@ class AuthManager
 
   def initialize(
     user_repository = UserRepository.new,
-    logger = Logger.new,
+    logger = CustomLogger.new,
     validation_manager = ValidationManager.new,
     security = Security.new,
     token_manager = TokenManager.new(logger)
