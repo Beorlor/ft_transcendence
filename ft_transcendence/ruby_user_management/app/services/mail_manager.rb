@@ -12,7 +12,7 @@ class MailManager
         openssl_verify_mode: 'none'
       }
     end
-	@logger = Logger.new
+	@logger = CustomLogger.new
   end
 
   def send_email(from:, to:, subject:, body:)

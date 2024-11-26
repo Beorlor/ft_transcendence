@@ -5,7 +5,7 @@ require_relative '../repository/user_repository'
 class TokenManager
   SECRET_KEY = ENV['SECRET_KEY']
 
-  def initialize(logger = Logger.new)
+  def initialize(logger = CustomLogger.new)
     @logger = logger
   end
 

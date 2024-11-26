@@ -83,7 +83,7 @@ class Database
       pool.with { |conn| conn.exec_params(query, values) }
       true
     rescue PG::Error => e
-      Logger.new.log('Database', "Error updating table #{table_name}: #{e.message}")
+      CustomLogger.new.log('Database', "Error updating table #{table_name}: #{e.message}")
       false
     end
   end

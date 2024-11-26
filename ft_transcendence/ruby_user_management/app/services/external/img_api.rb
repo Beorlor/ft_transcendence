@@ -2,7 +2,7 @@ require_relative '../../log/custom_logger'
 require 'net/http'
 
 class ImgApi
-  def initialize(logger = Logger.new)
+  def initialize(logger = CustomLogger.new)
     @logger = logger
   end
 

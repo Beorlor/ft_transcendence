@@ -9,7 +9,7 @@ require 'json'
 
 class ValidationManager
 
-  def initialize(validation_repository = ValidationRepository.new, mail_manager = MailManager.instance, logger = Logger.new)
+  def initialize(validation_repository = ValidationRepository.new, mail_manager = MailManager.instance, logger = CustomLogger.new)
     @validation_repository = validation_repository
     @mail_manager = mail_manager
     @logger = logger

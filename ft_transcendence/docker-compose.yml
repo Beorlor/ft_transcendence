@@ -12,6 +12,65 @@ services:
     networks:
       - postgres_network
 
+  elasticsearch:
+    build:
+      context: ./elasticsearch
+    environment:
+      - node.name=es-node
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - KIBANA_PASSWORD=${KIBANA_PASSWORD}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    healthcheck:
+      test: curl -s http://localhost:9200 >/dev/null || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 50
+    networks:
+      - nginx_network
+
+  kibana:
+    build:
+      context: ./kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
+      - XPACK_ENCRYPTED_SAVED_OBJECTS_ENCRYPTION_KEY=${KIBANA_ENCRYPTION_KEY}
+      - XPACK_SECURITY_ENCRYPTION_KEY=${KIBANA_ENCRYPTION_KEY}
+      - XPACK_REPORTING_ENCRYPTION_KEY=${KIBANA_ENCRYPTION_KEY}
+      - XPACK_SCREENSHOTTING_BROWSER_CHROMIUM_DISABLE_SANDBOX=true
+      - XPACK_OBSERVABILITY_AI_ASSISTANT_ENABLED=false
+      # - NODE_OPTIONS=--no-legacy-provider
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - nginx_network
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.12.2
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTIC_USERNAME=elastic
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+      - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+    depends_on:
+      - elasticsearch
+    networks:
+      - nginx_network
+
   ruby_user_management:
     build: ./ruby_user_management
     environment:
@@ -25,6 +84,7 @@ services:
       REDIR_URL: ${REDIR_URL42}
     depends_on:
       - postgres
+      - logstash
     volumes:
       - ./ruby_user_management:/app
     networks:
@@ -52,6 +112,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     depends_on:
       - postgres
+      - logstash
     volumes:
       - ./ruby_pong:/app
     networks:
@@ -63,6 +124,7 @@ services:
       SECRET_KEY: ${SECRET_KEY}
     depends_on:
       - postgres
+      - logstash
     volumes:
       - ./ruby_friend:/app
     networks:
@@ -77,10 +139,13 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     depends_on:
       - postgres
+      - logstash
     volumes:
       - ./ruby_rgpd:/app
     ports:
       - "4570:4570"
+    networks:
+      - nginx_network
 
   ruby_pong_api:
     build: ./ruby_pong_api
@@ -91,6 +156,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     depends_on:
       - postgres
+      - logstash
     volumes:
       - ./ruby_pong_api:/app
     ports:
@@ -158,6 +224,7 @@ services:
 volumes:
   postgres-data:
   mongodb_data:
+  esdata:
 
 networks:
   postgres_network:

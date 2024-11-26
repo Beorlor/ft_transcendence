@@ -3,7 +3,7 @@ require_relative '../log/custom_logger'
 
 class UserRepository
 
-  def initialize(logger = Logger.new)
+  def initialize(logger = CustomLogger.new)
     @logger = logger
   end
 

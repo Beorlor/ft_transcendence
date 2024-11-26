@@ -6,3 +6,5 @@ gem 'tzinfo'
 gem 'jwt'
 gem 'connection_pool'
 gem 'bcrypt'
+gem 'logstash-logger'
+
