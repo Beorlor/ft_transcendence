@@ -71,6 +71,23 @@ server.mount_proc '/img/' do |req, res|
   end
 end
 
+server.mount_proc '/img/delete/' do |req, res|
+  image_name = req.path.sub('/img/delete/', '')
+
+  image_doc = images_collection.find(filename: /^#{Regexp.escape(image_name)}(\..+)?$/).first
+
+  if image_doc
+    images_collection.delete_one(filename: image_doc[:filename])
+    res.body = 'Image deleted'
+    logger.log('Server', "Image '#{image_doc[:filename]}' supprimée")
+  else
+    res.status = 404
+    res.body = 'Image not found'
+    logger.log('Server', "Image '#{image_name}' introuvable")
+  end
+end
+
+
 trap('INT') { server.shutdown }
 
 server.start

@@ -84,6 +84,7 @@ class UserManager
     if (user_id.to_i != user_id_match.to_i)
       return {code: 401, error: 'Permission denied !'}
     end
+    @img_api.delete_img(user_id)
     @user_repository.delete_user(user_id_match)
     return { code: 200, success: 'Profile deleted' }
   end
