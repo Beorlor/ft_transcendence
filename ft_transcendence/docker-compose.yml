@@ -167,6 +167,7 @@ services:
       - "4567"
     networks:
       - nginx_network
+      - postgres_network
 
   ruby_pong_api:
     build: ./ruby_pong_api
