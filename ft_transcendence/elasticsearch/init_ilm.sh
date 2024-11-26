@@ -2,13 +2,13 @@
 
 # Wait for Elasticsearch to start
 echo "Waiting for Elasticsearch to start..."
-until curl -s -k http://localhost:9200 >/dev/null; do
+until curl -s -k http://elasticsearch:9200 >/dev/null; do
   sleep 5
 done
 
 # Create ILM policy
 echo "Creating ILM policy..."
-curl -X PUT "http://localhost:9200/_ilm/policy/nginx" \
+curl -X PUT "http://elasticsearch:9200/_ilm/policy/nginx" \
 -H "Content-Type: application/json" \
 -d '{
   "policy": {
@@ -48,7 +48,7 @@ curl -X PUT "http://localhost:9200/_ilm/policy/nginx" \
 
 # Create Index Template
 echo "Creating index template..."
-curl -X PUT "http://localhost:9200/_index_template/nginx-template" \
+curl -X PUT "http://elasticsearch:9200/_index_template/nginx-template" \
 -H "Content-Type: application/json" \
 -d '{
   "index_patterns": ["nginx-access-logs-*"],
@@ -63,7 +63,7 @@ curl -X PUT "http://localhost:9200/_index_template/nginx-template" \
 
 # Create Initial Index with Alias
 echo "Creating initial index and alias..."
-curl -X PUT "http://localhost:9200/nginx-access-logs-000001" \
+curl -X PUT "http://elasticsearch:9200/nginx-access-logs-000001" \
 -H "Content-Type: application/json" \
 -d '{
   "aliases": {

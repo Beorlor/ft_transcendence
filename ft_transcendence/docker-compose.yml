@@ -27,8 +27,8 @@ services:
         hard: -1
     volumes:
       - esdata:/usr/share/elasticsearch/data
-    ports:
-      - "9200:9200"
+    expose:
+      - "9200"
     healthcheck:
       test: curl -s http://localhost:9200 >/dev/null || exit 1
       interval: 10s
@@ -49,9 +49,11 @@ services:
       - XPACK_REPORTING_ENCRYPTION_KEY=${KIBANA_ENCRYPTION_KEY}
       - XPACK_SCREENSHOTTING_BROWSER_CHROMIUM_DISABLE_SANDBOX=true
       - XPACK_OBSERVABILITY_AI_ASSISTANT_ENABLED=false
+      - SERVER_BASEPATH=/kibana
+      - SERVER_REWRITEBASEPATH=true
       # - NODE_OPTIONS=--no-legacy-provider
-    ports:
-      - "5601:5601"
+    expose:
+      - "5601"
     depends_on:
       - elasticsearch
     networks:
