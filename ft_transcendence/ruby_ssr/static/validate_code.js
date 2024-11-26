@@ -30,6 +30,9 @@ function loadValidateForm() {
               document.getElementById("game"),
               "https://localhost/profil"
             );
+            const expirationTime = Math.floor(Date.now() / 1000) + 3600;
+            localStorage.setItem("accessTokenExpiry", expirationTime);
+            window.startTokenTimer(3600, refreshAccessToken);
           } else {
             popUp.innerHTML = `<div class="alert alert-danger" role="alert">
               ${data.error}

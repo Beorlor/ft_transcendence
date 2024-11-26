@@ -5,8 +5,9 @@ require_relative '../repository/user_repository'
 class TokenManager
   SECRET_KEY = ENV['SECRET_KEY']
 
-  def initialize(logger = CustomLogger.new)
+  def initialize(logger = CustomLogger.new, user_repository = UserRepository.new)
     @logger = logger
+    @user_repository = user_repository
   end
 
   def generate_access_token(user_id, state, role)
@@ -23,7 +24,11 @@ class TokenManager
 
   def generate_tokens(user_id, state, role)
     access_token = generate_access_token(user_id, state, role)
-    refresh_token = generate_refresh_token(user_id) if state == true
+    refresh_token = ''
+    if state == true
+      refresh_token = generate_refresh_token(user_id) 
+      @user_repository.update_user({ refresh_token: refresh_token }, user_id)
+    end
     { access_token: access_token, refresh_token: refresh_token }
   end
 
@@ -75,15 +80,23 @@ class TokenManager
   end
 
   def refresh_tokens(refresh_token)
+    @logger.log('TokenManager', "Refresh token: #{refresh_token}")
     if refresh_token.nil?
       @logger.log('TokenManager', 'Token is nil')
       return nil
     end
     payload = decode(refresh_token)
+    @logger.log('TokenManager', "Payload: #{payload}")
     if !payload || payload['type'] != 'refresh'
+      @logger.log('TokenManager', 'Invalid token type')
       return nil
     end
     user_id = payload['user_id']
+    user = @user_repository.get_user_by_id(user_id)
+    if user.nil? || user[0]['refresh_token'] != refresh_token
+      @logger.log('TokenManager', 'Invalid refresh token')
+      return nil
+    end
     new_access_token = generate_access_token(user_id, true, get_user_role(user_id))
     new_refresh_token = generate_refresh_token(user_id)
     { access_token: new_access_token, refresh_token: new_refresh_token }

@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS _user (
     role INTEGER,
     login_type INTEGER,
     restrict BOOLEAN DEFAULT FALSE,
+    refresh_token VARCHAR(1024) DEFAULT NULL,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP DEFAULT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

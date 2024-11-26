@@ -106,9 +106,10 @@ class AuthController
       RequestHelper.respond(client, status[:code], {error: status[:error]})
       return
     end
-    access_token = @token_manager.generate_access_token(status[:user]["id"], true, status[:user]["id"])
-    refresh_token = @token_manager.generate_refresh_token(status[:user]["id"])
-    RequestHelper.respond(client, status[:code], {success: status[:success]}, ["access_token=#{access_token}; Path=/; Max-Age=3600; HttpOnly; Secure"])
+    token = @token_manager.generate_tokens(status[:user]["id"], true, status[:user]["role"])
+    access_token = token[:access_token]
+    refresh_token = token[:refresh_token]
+    RequestHelper.respond(client, status[:code], {success: status[:success]}, ["access_token=#{access_token}; Path=/; Max-Age=3600; HttpOnly; Secure", "refresh_token=#{refresh_token}; Path=/; Max-Age=604800; HttpOnly; Secure"])
   end
 
 end

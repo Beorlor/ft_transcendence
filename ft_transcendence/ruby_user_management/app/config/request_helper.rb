@@ -1,4 +1,5 @@
 require 'json'
+require_relative '../log/custom_logger'
 
 module RequestHelper
   def self.parse_request(client)
@@ -26,7 +27,7 @@ module RequestHelper
       header, value = line.split(': ', 2)
       headers[header] = value.strip if header && value
     end
-  
+
     # Parse cookies
     if headers['Cookie']
       headers['Cookie'].split('; ').each do |cookie|

@@ -61,6 +61,32 @@ window.popUpFonc = function showPopup(message) {
   }, 6000);
 };
 
+async function refreshAccessToken() {
+  const response = await fetch("/api/auth/refresh", {
+    method: "POST",
+  });
+
+  if (response.ok) {
+    const newExpirationTime = Math.floor(Date.now() / 1000) + 3600;
+    localStorage.setItem("accessTokenExpiry", newExpirationTime);
+
+    startTokenTimer(3600, refreshAccessToken);
+  } else {
+    console.error("Échec du rafraîchissement du jeton.");
+  }
+}
+
+window.startTokenTimer = function startTokenTimer(
+  expirationTimeInSeconds,
+  refreshTokenCallback
+) {
+  const remainingTime = expirationTimeInSeconds * 1000;
+
+  window.timerToken = setTimeout(() => {
+    refreshTokenCallback();
+  }, remainingTime - 5000);
+};
+
 function loadPageScript(game) {
   const script = game.querySelector("script");
   if (!script) return;
@@ -302,6 +328,8 @@ function handleLogoutClick(ev) {
         ) {
           window.friendSocketConnection.close();
         }
+        localStorage.removeItem("accessToken");
+        clearInterval(window.timerToken);
         const url = "https://localhost";
         loadPage(
           document.getElementById("game"),
@@ -471,6 +499,26 @@ window.addEventListener("popstate", function (ev) {
     loadPage(document.getElementById("game"), currentUrl, state, false);
   }
 });
+
+function onAppLoad() {
+  const accessTokenExpiry = localStorage.getItem("accessTokenExpiry");
+  const now = Math.floor(Date.now() / 1000);
+
+  if (accessToken && refreshToken && accessTokenExpiry) {
+    if (now < accessTokenExpiry) {
+      const remainingTime = accessTokenExpiry - now;
+      startTokenTimer(remainingTime, refreshAccessToken);
+    } else {
+      refreshAccessToken();
+    }
+  } else {
+    window.loadPage(
+      document.getElementById("game"),
+      "https://localhost",
+      window.GAME_STATES.default
+    );
+  }
+}
 
 document.addEventListener("DOMContentLoaded", (ev) => {
   rebindEvents();

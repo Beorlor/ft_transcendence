@@ -28,7 +28,7 @@ class TokenController
 
     case [method, clean_path]
     when ['POST', '/api/auth/refresh']
-      refresh_tokens(client, body)
+      refresh_tokens(client, cookies)
     when ['GET', '/api/auth/logout']
       logout(client)
     when ['GET', '/api/auth/verify-token-user']
@@ -44,17 +44,20 @@ class TokenController
   end
 
   def logout(client)
-    RequestHelper.respond(client, 200, { success: 'Logout.' }, ["access_token=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0"])
+    RequestHelper.respond(client, 200, { success: 'Logout.' }, ["access_token=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0", "refresh_token=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0"])
   end
 
-  def refresh_tokens(client, body)
-    refresh_token = body['refresh_token']
+  def refresh_tokens(client,  cookies)
+    @logger.log('TokenController', "cookie #{cookies}")
+    refresh_token = cookies['refresh_token']
     tokens = @token_manager.refresh_tokens(refresh_token)
     if tokens.nil?
       RequestHelper.respond(client, 401, { error: 'Invalid refresh token.' })
       return
     end
-    RequestHelper.respond(client, 200, tokens)
+    access_token = tokens[:access_token]
+    refresh_token = tokens[:refresh_token]
+    RequestHelper.respond(client, 200, {success: 'Re generation token'}, ["access_token=#{access_token}; Path=/; Max-Age=3600; HttpOnly; Secure", "refresh_token=#{refresh_token}; Path=/; Max-Age=604800; HttpOnly; Secure"])
   end
 
   def verify_token_user(client, headers, cookies)
