@@ -8,11 +8,8 @@ done
 
 # Set password for 'elastic' user
 echo "Setting password for 'elastic' user..."
-/usr/share/elasticsearch/bin/elasticsearch-users passwd elastic -p "$ELASTIC_PASSWORD"
+echo "$ELASTIC_PASSWORD" | /usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic --auto -b
 
 # Set password for 'kibana_system' user
 echo "Setting password for 'kibana_system' user..."
-/usr/share/elasticsearch/bin/elasticsearch-users passwd kibana_system -p "$KIBANA_PASSWORD"
-
-# Keep the container running
-tail -f /dev/null
+echo "$KIBANA_PASSWORD" | /usr/share/elasticsearch/bin/elasticsearch-reset-password -u kibana_system --auto -b
