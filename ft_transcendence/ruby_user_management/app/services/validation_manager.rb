@@ -34,7 +34,7 @@ class ValidationManager
     end
     @logger.log('ValidationManager', "Sending email to user with email #{user['email']}")
     @mail_manager.send_email(
-      from: 'noreply@ft_transcendence.com',
+      from: 'transcendence42perpi@gmail.com',
       to: user['email'],
       subject: 'Validation code',
       body: "Your validation code is: #{code}"

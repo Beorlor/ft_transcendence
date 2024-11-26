@@ -7,9 +7,12 @@ class MailManager
   def initialize
     Mail.defaults do
       delivery_method :smtp, {
-        address: 'smtp4dev',
-        port: 25,
-        openssl_verify_mode: 'none'
+        address: 'smtp.gmail.com',
+        port: 587,
+        user_name: ENV['EMAIL'],
+        password: ENV['EMAIL_PASSWORD'],
+        authentication: :plain,
+        enable_starttls_auto: true
       }
     end
 	@logger = CustomLogger.new

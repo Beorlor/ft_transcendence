@@ -82,6 +82,8 @@ services:
       API_CLIENT: ${API_CLIENT42}
       API_SECRET: ${API_SECRET42}
       REDIR_URL: ${REDIR_URL42}
+      EMAIL: ${EMAIL}
+      EMAIL_PASSWORD: ${EMAIL_PASSWORD}
     depends_on:
       - postgres
       - logstash
