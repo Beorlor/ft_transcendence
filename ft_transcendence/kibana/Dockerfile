@@ -4,12 +4,14 @@ FROM docker.elastic.co/kibana/kibana:8.12.2
 # Switch to root user for file operations
 USER root
 
-# Copy the saved objects file and import script
+# Copy the saved objects file and scripts
 COPY ./config/nginx_access.ndjson /usr/share/kibana/config/nginx_access.ndjson
 COPY ./scripts/import-kibana-config.sh /usr/share/kibana/scripts/import-kibana-config.sh
+COPY ./scripts/startup.sh /usr/local/bin/startup.sh
 
-# Make the import script executable
+# Make the scripts executable
 RUN chmod +x /usr/share/kibana/scripts/import-kibana-config.sh
+RUN chmod +x /usr/local/bin/startup.sh
 
 # Switch back to the Kibana user
 USER kibana
@@ -19,5 +21,3 @@ RUN /usr/share/kibana/bin/kibana-keystore create && \
     echo "fr3vcbkZAiE+unC6Uj1edTaBMrhVMbJ4p7OhiHlsxvk=" | \
     /usr/share/kibana/bin/kibana-keystore add xpack.encryptedSavedObjects.encryptionKey --stdin
 
-# Start Kibana and run the import script
-CMD ["/bin/bash", "-c", "/usr/share/kibana/bin/kibana & sleep 30 && /usr/share/kibana/scripts/import-kibana-config.sh && tail -f /dev/null"]
