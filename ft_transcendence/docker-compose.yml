@@ -146,8 +146,8 @@ services:
       - logstash
     volumes:
       - ./ruby_rgpd:/app
-    ports:
-      - "4570:4570"
+    expose:
+      - "4567"
     networks:
       - nginx_network
 
@@ -163,8 +163,8 @@ services:
       - logstash
     volumes:
       - ./ruby_pong_api:/app
-    ports:
-      - "4571:4571"
+    expose:
+      - "4571"
     networks:
       - nginx_network
       - postgres_network
@@ -208,8 +208,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-    ports:
-      - "27017:27017"
+    expose:
+      - "27017"
     networks:
       - mongo_network
     volumes:
@@ -219,8 +219,8 @@ services:
     build: ./image_ruby
     volumes:
       - ./image_ruby:/app
-    ports:
-      - "4572:4572"
+    expose:
+      - "4572"
     networks:
       - mongo_network
       - nginx_network
