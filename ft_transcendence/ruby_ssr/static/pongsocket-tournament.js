@@ -141,7 +141,6 @@ function startTournamentGame() {
 
   connection.onmessage = (event) => {
     let json = JSON.parse(event.data);
-    console.log(json);
     if (json.status === "Waiting") {
       clearInterval(timerInterval);
       clearInterval(persistenceInterval);

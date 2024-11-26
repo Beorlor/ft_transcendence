@@ -130,7 +130,6 @@ function startNormalGame() {
 
   connection.onmessage = (event) => {
     let json = JSON.parse(event.data);
-    console.log(json);
     if (json.start) {
       init_game_info(json);
       clearInterval(persistenceInterval);

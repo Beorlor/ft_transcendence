@@ -211,15 +211,6 @@ services:
     networks:
       - postgres_network
 
-  smtp4dev:
-    image: rnwood/smtp4dev:v3
-    restart: always
-    ports:
-      - "9081:80"
-      - "9025:25"
-    networks:
-      - smtp_network
-
   mongodb:
     build: ./mongodb
     container_name: mongodb_container
