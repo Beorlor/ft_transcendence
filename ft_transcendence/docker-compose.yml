@@ -1,6 +1,23 @@
 version: "3.8"
 
 services:
+  crontab:
+    build:
+      context: ./crontab
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      DB_HOST: postgres
+      DB_PORT: 5432
+    volumes:
+      - ./crontab/clean.sh:/usr/local/bin/script.sh
+    depends_on:
+      - postgres
+    networks:
+      - postgres_network
+      - nginx_network
+
   postgres:
     build: ./postgres
     environment:

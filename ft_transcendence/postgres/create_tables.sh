@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sleep 5
-
 psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" <<-EOSQL
 CREATE TABLE IF NOT EXISTS _user (
     id SERIAL PRIMARY KEY,
@@ -13,7 +11,7 @@ CREATE TABLE IF NOT EXISTS _user (
     login_type INTEGER,
     restrict BOOLEAN DEFAULT FALSE,
     updated_at TIMESTAMP,
-    deleted_at TIMESTAMP default NULL,
+    deleted_at TIMESTAMP DEFAULT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -40,7 +38,7 @@ CREATE TABLE IF NOT EXISTS _pong (
     player_1_score INTEGER,
     player_2_score INTEGER,
     updated_at TIMESTAMP,
-    deleted_at TIMESTAMP default NULL,
+    deleted_at TIMESTAMP DEFAULT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -53,7 +51,7 @@ CREATE TABLE IF NOT EXISTS _pongHistory (
     nb_game INTEGER,
     rank_points INTEGER,
     updated_at TIMESTAMP,
-    deleted_at TIMESTAMP default NULL,
+    deleted_at TIMESTAMP DEFAULT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -63,7 +61,7 @@ CREATE TABLE IF NOT EXISTS _friendship (
     receiver_id INTEGER REFERENCES _user(id) ON DELETE CASCADE,
     status VARCHAR(10) NOT NULL DEFAULT 'pending',
     updated_at TIMESTAMP,
-    deleted_at TIMESTAMP default NULL,
+    deleted_at TIMESTAMP DEFAULT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -73,11 +71,10 @@ CREATE TABLE IF NOT EXISTS _tournament (
     name VARCHAR(50) NOT NULL,
     start_at TIMESTAMP,
     updated_at TIMESTAMP,
-    deleted_at TIMESTAMP default NULL,
+    deleted_at TIMESTAMP DEFAULT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-
 EOSQL
 
-echo "Tables '_user', '_emailActivation', '_ranking', '_game', et '_gameHistory' vérifiées ou créées avec succès."
+echo "Tables configurés avec succès."
