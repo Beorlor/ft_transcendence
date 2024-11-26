@@ -8,7 +8,7 @@ require 'json'
 
 class FriendController
 
-  def initialize(logger = Logger.new, friend_manager = FriendManager.new, token_manager = TokenManager.new)
+  def initialize(logger = CustomLogger.new, friend_manager = FriendManager.new, token_manager = TokenManager.new)
     @logger = logger
     @token_manager = token_manager
     @friend_manager = friend_manager

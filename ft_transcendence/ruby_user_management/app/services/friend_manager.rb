@@ -8,7 +8,7 @@ require 'json'
 
 class FriendManager
 
-  def initialize(friend_repository = FriendRepository.new, user_repository = UserRepository.new, logger = Logger.new)
+  def initialize(friend_repository = FriendRepository.new, user_repository = UserRepository.new, logger = CustomLogger.new)
     @friend_repository = friend_repository
     @logger = logger
     @user_repository = user_repository

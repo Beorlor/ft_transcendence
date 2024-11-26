@@ -47,3 +47,10 @@ ft_transcendence/
 └── postgres/
     └── Dockerfile
 ```
+
+
+
+kibana pattern : nginx-access-logs-*
+
+kibana script encryption key and kibana elac port in compose
+elac ilm

@@ -2,7 +2,7 @@ require_relative '../services/token_manager'
 require_relative '../log/custom_logger'
 
 class TokenController
-  def initialize(logger = Logger.new, token_manager = TokenManager.new(logger), user_manager = UserManager.new)
+  def initialize(logger = CustomLogger.new, token_manager = TokenManager.new(logger), user_manager = UserManager.new)
     @logger = logger
     @token_manager = token_manager
     @user_manager = user_manager
