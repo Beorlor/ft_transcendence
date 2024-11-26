@@ -52,5 +52,5 @@ ft_transcendence/
 
 kibana pattern : nginx-access-logs-*
 
-kibana script encryption key and kibana elac port in compose
-elac ilm
+kibana elac port in compose
+elac password

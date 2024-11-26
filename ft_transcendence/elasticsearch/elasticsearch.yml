@@ -6,4 +6,6 @@ discovery.type: single-node
 
 xpack.security.enabled: false
 xpack.security.http.ssl.enabled: false
+
+# ilm enable per default in our version (8.12.2), this option doesnt exist
 # xpack.ilm.enabled : true
