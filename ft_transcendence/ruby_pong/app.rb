@@ -13,7 +13,7 @@ class AppServer
 
   def start
     EM.run do
-      @logger.log('APP', "Starting server on question-pour-un-piscineux.fr:4569")
+      @logger.log('APP', "Starting server on www.question-pour-un-piscineux.fr:4569")
       EM::WebSocket.run(host: "0.0.0.0", port: 4569) do |ws|
         ws.onopen do |event|
           pong = @pongController.route_request(ws, event)

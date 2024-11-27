@@ -4,7 +4,7 @@ function getQueryParams() {
 }
 
 document.addEventListener("DOMContentLoaded", (ev) => {
-  fetch("https://question-pour-un-piscineux.fr/api/auth/callback", {
+  fetch("https://www.question-pour-un-piscineux.fr/api/auth/callback", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", (ev) => {
         localStorage.setItem("Authorization", json.access_token);
         window.loadPage(
           document.getElementById("game"),
-          "https://question-pour-un-piscineux.fr/validate-code"
+          "https://www.question-pour-un-piscineux.fr/validate-code"
         );
       } else {
         window.popUpFonc(json.error);

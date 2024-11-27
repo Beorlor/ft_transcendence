@@ -9,7 +9,7 @@ function loadEditProfileFormAction() {
 
       const userId = document.getElementById("user_id").value;
 
-      fetch(`https://question-pour-un-piscineux.fr/api/user/${userId}`, {
+      fetch(`https://www.question-pour-un-piscineux.fr/api/user/${userId}`, {
         method: "PUT",
         headers: {
           Accept: "*/*",
@@ -24,7 +24,7 @@ function loadEditProfileFormAction() {
           if (data.success) {
             window.loadPage(
               document.getElementById("game"),
-              "https://question-pour-un-piscineux.fr/profile"
+              "https://www.question-pour-un-piscineux.fr/profile"
             );
           } else {
             window.popUpFonc(data.error);

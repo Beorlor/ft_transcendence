@@ -169,7 +169,7 @@ class AuthManager
       client_id: ENV['API_CLIENT'],
       client_secret: ENV['API_SECRET'],
       code: authorization_code,
-      redirect_uri: 'https://question-pour-un-piscineux.fr/callback-tmp'
+      redirect_uri: 'https://www.question-pour-un-piscineux.fr/callback-tmp'
     }
 
     response = Net::HTTP.post_form(uri, params)

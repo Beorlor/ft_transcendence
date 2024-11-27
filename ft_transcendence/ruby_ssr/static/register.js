@@ -14,7 +14,7 @@ function loadRegisterFormAction() {
         formObject[key] = value;
       });
 
-      fetch("https://question-pour-un-piscineux.fr/api/auth/register", {
+      fetch("https://www.question-pour-un-piscineux.fr/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,7 +26,7 @@ function loadRegisterFormAction() {
           if (data.success) {
             window.loadPage(
               document.getElementById("game"),
-              "https://question-pour-un-piscineux.fr/validate-code"
+              "https://www.question-pour-un-piscineux.fr/validate-code"
             );
           } else {
             popUp.innerHTML = `<div class="alert alert-danger" role="alert">

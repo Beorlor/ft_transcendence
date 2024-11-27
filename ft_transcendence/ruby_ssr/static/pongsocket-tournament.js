@@ -69,7 +69,7 @@ function startTournamentGame() {
   const tournamentId = document
     .getElementById("game_name")
     .getAttribute("data-tournament-id");
-  const url = `wss://question-pour-un-piscineux.fr/pongsocket/tournament/${tournamentId}`;
+  const url = `wss://www.question-pour-un-piscineux.fr/pongsocket/tournament/${tournamentId}`;
   const connection = new WebSocket(url);
   window.connection = connection;
   const canvas = document.getElementById("drawCanvas");
@@ -178,7 +178,7 @@ function startTournamentGame() {
     clearInterval(persistenceInterval);
     window.loadPage(
       document.getElementById("game"),
-      "https://question-pour-un-piscineux.fr/"
+      "https://www.question-pour-un-piscineux.fr/"
     );
   };
 

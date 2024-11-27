@@ -66,7 +66,7 @@ yvquicjodknjqouhvijmrocki brinqvmokclewvognrqbmviopc,w[r  evnbivom  pw  rbniu
 bvvwhrnjcmekdl,ckfvimwbguijmvoqc,vmreiqbtnuimvqoc,pem rnbiutmvo] */
 
 function startRankedGame() {
-  const url = "wss://question-pour-un-piscineux.fr/pongsocket/ranked";
+  const url = "wss://www.question-pour-un-piscineux.fr/pongsocket/ranked";
   const connection = new WebSocket(url);
   window.connection = connection;
   const canvas = document.getElementById("drawCanvas");
@@ -145,7 +145,7 @@ function startRankedGame() {
     clearInterval(persistenceInterval);
     window.loadPage(
       document.getElementById("game"),
-      "https://question-pour-un-piscineux.fr/"
+      "https://www.question-pour-un-piscineux.fr/"
     );
   };
 

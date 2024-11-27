@@ -14,21 +14,24 @@ function loadValidateForm() {
         formObject[key] = value;
       });
 
-      fetch("https://question-pour-un-piscineux.fr/api/auth/validate-code", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: localStorage.getItem("Authorization"),
-        },
-        body: JSON.stringify(formObject),
-      })
+      fetch(
+        "https://www.question-pour-un-piscineux.fr/api/auth/validate-code",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("Authorization"),
+          },
+          body: JSON.stringify(formObject),
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
             window.connexionFriendSocket();
             window.loadPage(
               document.getElementById("game"),
-              "https://question-pour-un-piscineux.fr/profil"
+              "https://www.question-pour-un-piscineux.fr/profil"
             );
             const expirationTime = Math.floor(Date.now() / 1000) + 3600;
             localStorage.setItem("accessTokenExpiry", expirationTime);
