@@ -15,3 +15,6 @@ ft_transcendence/*.lock
 
 # Ignore les dossiers d'installation locale
 ft_transcendence/.bundle
+
+#Ignore vrai certificat ssl
+ft_transcendence/nginx/ssl/*
