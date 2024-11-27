@@ -13,8 +13,8 @@ class Game
     victory_points: victory_points, ball_radius: 8,
     width: width, height: height,
     bar_width: 12, bar_height: 120,
-    ball_move_speed: 120, ball_max_speed: 185,
-    ball_acceleration: 2, game_id: game_id,
+    ball_move_speed: 120, ball_max_speed: 250,
+    ball_acceleration: 3, game_id: game_id,
     ball_x: width / 2, ball_y: height / 2,
     ball_speed: 120, paddle1_y: height / 2 - 120 / 2,
     paddle2_y: height / 2 - 120 / 2 , paddle1_x: 20 ,
@@ -60,8 +60,8 @@ class Game
   end
 
   def game_loop()
-    @game_data[:paddle1_y] += @game_data[:player1_direction] * @game_data[:ball_move_speed] * @game_data[:delta_time]
-    @game_data[:paddle2_y] += @game_data[:player2_direction] * @game_data[:ball_move_speed] * @game_data[:delta_time]
+    @game_data[:paddle1_y] += @game_data[:player1_direction] * 250 * @game_data[:delta_time]
+    @game_data[:paddle2_y] += @game_data[:player2_direction] * 250  * @game_data[:delta_time]
 	if (@game_data[:paddle1_y] <= 10)
 		@game_data[:paddle1_y] = 10
 	elsif (@game_data[:paddle1_y] + @game_data[:bar_height] >= 590)
@@ -72,7 +72,10 @@ class Game
 	elsif (@game_data[:paddle2_y] + @game_data[:bar_height] >= 590)
 		@game_data[:paddle2_y] = 590 - @game_data[:bar_height]
   end
-    game_data[:ball_move_speed] += 2 / 60
+  @game_data[:ball_move_speed] += @game_data[:ball_acceleration] * @game_data[:delta_time]
+  if (@game_data[:ball_move_speed] > @game_data[:ball_max_speed])
+    @game_data[:ball_move_speed] = @game_data[:ball_max_speed]
+  end
 	handle_ball_movement()
     sended_data = { ingame: "ingame", client1_pts: @game_data[:client1_pts], client2_pts: @game_data[:client2_pts], ball_x: @game_data[:ball_x], ball_y: @game_data[:ball_y],
     	paddle1_y: @game_data[:paddle1_y], paddle2_y: @game_data[:paddle2_y], paddle1_x: @game_data[:paddle1_x], paddle2_x: @game_data[:paddle2_x],
