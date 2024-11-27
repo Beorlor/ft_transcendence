@@ -14,7 +14,7 @@ function loadTournamentFormAction() {
         formObject[key] = value;
       });
 
-      fetch("https://localhost/api/tournament/create", {
+      fetch("https://question-pour-un-piscineux.fr/api/tournament/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,7 +26,7 @@ function loadTournamentFormAction() {
           if (data.success) {
             window.loadPage(
               document.getElementById("game"),
-              "https://localhost/tournaments"
+              "https://question-pour-un-piscineux.fr/tournaments"
             );
           } else {
             popUp.innerHTML = `<div class="alert alert-danger" role="alert">

@@ -68,7 +68,7 @@ window.addFriendAccepted = function (friend_name, friend_id, friendship_id) {
 };
 
 function connexionFriendSocket() {
-  const url = "wss://localhost/friendsocket/";
+  const url = "wss://question-pour-un-piscineux.fr/friendsocket/";
   const connection = new WebSocket(url);
   let pingInterval;
 
@@ -147,9 +147,12 @@ window.addEventListener("DOMContentLoaded", (_) => {
     .addEventListener("click", function () {
       const friendShipId =
         document.getElementById("friendShipModalId").textContent;
-      fetch(`https://localhost/api/friend/${friendShipId}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://question-pour-un-piscineux.fr/api/friend/${friendShipId}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {

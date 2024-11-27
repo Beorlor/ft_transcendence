@@ -68,7 +68,7 @@ yvquicjodknjqouhvijmrocki brinqvmokclewvognrqbmviopc,w[r  evnbivom  pw  rbniu
 bvvwhrnjcmekdl,ckfvimwbguijmvoqc,vmreiqbtnuimvqoc,pem rnbiutmvo] */
 
 function startNormalGame() {
-  const url = "wss://localhost/pongsocket/pong";
+  const url = "wss://question-pour-un-piscineux.fr/pongsocket/pong";
   const connection = new WebSocket(url);
   window.connection = connection;
   const canvas = document.getElementById("drawCanvas");
@@ -145,7 +145,10 @@ function startNormalGame() {
   connection.onclose = () => {
     clearInterval(timerInterval);
     clearInterval(persistenceInterval);
-    window.loadPage(document.getElementById("game"), "https://localhost/");
+    window.loadPage(
+      document.getElementById("game"),
+      "https://question-pour-un-piscineux.fr/"
+    );
   };
 
   connection.onerror = (error) => {};

@@ -52,7 +52,7 @@ server.mount_proc '/img/upload' do |req, res|
     images_collection.insert_one({ id: json['id'], filename: image_name, content: json['content'], mime_type: mime_type })
 
     logger.log('Server', "Received image: #{req.body}")
-    res.body = "{ \"img_url\": \"https://localhost/img/#{image_name}\" }"
+    res.body = "{ \"img_url\": \"https://question-pour-un-piscineux.fr/img/#{image_name}\" }"
   else
     res.body = "Erreur lors du traitement de l'image."
   end

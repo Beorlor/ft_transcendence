@@ -14,7 +14,7 @@ function loadValidateForm() {
         formObject[key] = value;
       });
 
-      fetch("https://localhost/api/auth/validate-code", {
+      fetch("https://question-pour-un-piscineux.fr/api/auth/validate-code", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,7 +28,7 @@ function loadValidateForm() {
             window.connexionFriendSocket();
             window.loadPage(
               document.getElementById("game"),
-              "https://localhost/profil"
+              "https://question-pour-un-piscineux.fr/profil"
             );
             const expirationTime = Math.floor(Date.now() / 1000) + 3600;
             localStorage.setItem("accessTokenExpiry", expirationTime);

@@ -114,11 +114,11 @@ function loadPageScript(game) {
     if (document.getElementById("form_tournament")) {
       window.loadTournamentFormAction();
     }
-    if (window.location == "https://localhost/pong") {
+    if (window.location == "https://question-pour-un-piscineux.fr/pong") {
       window.pongMain();
       window.GAMESTATE = window.GAME_STATES.pong;
     }
-    if (window.location == "https://localhost/3dgame") {
+    if (window.location == "https://question-pour-un-piscineux.fr/3dgame") {
       if (window.threeJSStop) {
         window.threeJSStop();
       }
@@ -129,13 +129,22 @@ function loadPageScript(game) {
         window.threeJSStop();
       }
     }
-    if (window.location.href === "https://localhost/pongserv") {
+    if (
+      window.location.href === "https://question-pour-un-piscineux.fr/pongserv"
+    ) {
       window.startNormalGame();
     }
-    if (window.location.href === "https://localhost/pongserv-ranked") {
+    if (
+      window.location.href ===
+      "https://question-pour-un-piscineux.fr/pongserv-ranked"
+    ) {
       window.startRankedGame();
     }
-    if (/^https:\/\/localhost\/tournament\/\d+$/.test(window.location.href)) {
+    if (
+      /^https:\/\/question-pour-un-piscineux.fr\/tournament\/\d+$/.test(
+        window.location.href
+      )
+    ) {
       window.startTournamentGame();
     }
   };
@@ -254,7 +263,7 @@ function loadPage(game, url, gamestate, shouldPushState = true) {
     .catch((err) => {
       loadPage(
         document.getElementById("game"),
-        "https://localhost/",
+        "https://question-pour-un-piscineux.fr/",
         window.GAME_STATES.default
       );
       console.error("Error: ", err);
@@ -263,62 +272,62 @@ function loadPage(game, url, gamestate, shouldPushState = true) {
 
 function handleHomeClick(ev) {
   ev.preventDefault();
-  const url = "https://localhost";
+  const url = "https://question-pour-un-piscineux.fr";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
 function handleThreeJSClick(ev) {
   ev.preventDefault();
-  const url = "https://localhost/3dgame";
+  const url = "https://question-pour-un-piscineux.fr/3dgame";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.threejs);
 }
 
 function handlePongClick(ev) {
   ev.preventDefault();
-  const url = "https://localhost/pong";
+  const url = "https://question-pour-un-piscineux.fr/pong";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.pong);
 }
 
 function handleLoginClick(ev) {
   ev.preventDefault();
-  const url = "https://localhost/login";
+  const url = "https://question-pour-un-piscineux.fr/login";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
 function handleRegisterClick(ev) {
   ev.preventDefault();
-  const url = "https://localhost/register";
+  const url = "https://question-pour-un-piscineux.fr/register";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
 function handleRankingClick(ev) {
   ev.preventDefault();
-  const url = "https://localhost/ranking";
+  const url = "https://question-pour-un-piscineux.fr/ranking";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
 function handleTournamentClick(ev) {
   ev.preventDefault();
-  const url = "https://localhost/tournaments";
+  const url = "https://question-pour-un-piscineux.fr/tournaments";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
 function handleCreateTournamentClick(ev) {
   ev.preventDefault();
-  const url = "https://localhost/create-tournament";
+  const url = "https://question-pour-un-piscineux.fr/create-tournament";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
 function handleJoinTournamentClick(ev) {
   ev.preventDefault();
   const tournamentId = ev.target.getAttribute("data-tournament-id");
-  const url = `https://localhost/tournament/${tournamentId}`;
+  const url = `https://question-pour-un-piscineux.fr/tournament/${tournamentId}`;
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
 function handleLogoutClick(ev) {
   ev.preventDefault();
-  fetch("https://localhost/api/auth/logout")
+  fetch("https://question-pour-un-piscineux.fr/api/auth/logout")
     .then((res) => res.json())
     .then((json) => {
       if (json.success) {
@@ -330,7 +339,7 @@ function handleLogoutClick(ev) {
         }
         localStorage.removeItem("accessToken");
         clearInterval(window.timerToken);
-        const url = "https://localhost";
+        const url = "https://question-pour-un-piscineux.fr";
         loadPage(
           document.getElementById("game"),
           url,
@@ -343,25 +352,25 @@ function handleLogoutClick(ev) {
 
 function handleProfileClick(ev) {
   ev.preventDefault();
-  const url = "https://localhost/profile";
+  const url = "https://question-pour-un-piscineux.fr/profile";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
 function handleEditProfileClick(ev) {
   ev.preventDefault();
-  const url = "https://localhost/edit-profile";
+  const url = "https://question-pour-un-piscineux.fr/edit-profile";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
 function handlePlayEventClick(ev) {
   ev.preventDefault();
-  const url = "https://localhost/pongserv";
+  const url = "https://question-pour-un-piscineux.fr/pongserv";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
 function handleRankedEventClick(ev) {
   ev.preventDefault();
-  const url = "https://localhost/pongserv-ranked";
+  const url = "https://question-pour-un-piscineux.fr/pongserv-ranked";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
@@ -374,7 +383,7 @@ function handleAddFriendClick(ev) {
 function handleSubmitFriendRequest(ev) {
   ev.preventDefault();
   const username = document.getElementById("friend_username").value;
-  fetch("https://localhost/api/add-friend", {
+  fetch("https://question-pour-un-piscineux.fr/api/add-friend", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -410,7 +419,7 @@ function handleSubmitFriendRequest(ev) {
 }
 
 function handleFriendRequestAction(friendshipId, action, button) {
-  fetch(`https://localhost/api/friend/${friendshipId}`, {
+  fetch(`https://question-pour-un-piscineux.fr/api/friend/${friendshipId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -466,7 +475,7 @@ function handleDeleteProfileClick(ev) {
   const deleteProfileButton = document.getElementById("delete_profile_button");
   const userId = deleteProfileButton.dataset.userId;
   console.log(userId);
-  fetch(`https://localhost/api/user/${userId}`, {
+  fetch(`https://question-pour-un-piscineux.fr/api/user/${userId}`, {
     method: "DELETE",
   })
     .then((response) => response.json())
@@ -478,7 +487,7 @@ function handleDeleteProfileClick(ev) {
         ) {
           window.friendSocketConnection.close();
         }
-        const url = "https://localhost";
+        const url = "https://question-pour-un-piscineux.fr";
         loadPage(
           document.getElementById("game"),
           url,
@@ -493,8 +502,9 @@ window.addEventListener("popstate", function (ev) {
 
   if (currentUrl != ev.state) {
     let state = window.GAME_STATES.default;
-    if (currentUrl == "https://localhost/pong") state = window.GAME_STATES.pong;
-    else if (currentUrl == "https://localhost/3dgame")
+    if (currentUrl == "https://question-pour-un-piscineux.fr/pong")
+      state = window.GAME_STATES.pong;
+    else if (currentUrl == "https://question-pour-un-piscineux.fr/3dgame")
       state = window.GAME_STATES.threejs;
     loadPage(document.getElementById("game"), currentUrl, state, false);
   }
@@ -514,7 +524,7 @@ function onAppLoad() {
   } else {
     window.loadPage(
       document.getElementById("game"),
-      "https://localhost",
+      "https://question-pour-un-piscineux.fr",
       window.GAME_STATES.default
     );
   }
