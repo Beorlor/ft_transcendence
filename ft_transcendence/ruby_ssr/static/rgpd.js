@@ -1,4 +1,4 @@
-function handleRGPDRequest(action) {
+window.handleRGPDRequest = function (action) {
   let endpoint;
   const userId = document.getElementById("user_id").value;
   switch (action) {
