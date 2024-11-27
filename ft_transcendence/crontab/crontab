@@ -1,0 +1,7 @@
+DB_HOST=postgres
+DB_PORT=5432
+POSTGRES_DB=ft_transcendence_db
+POSTGRES_USER=user
+POSTGRES_PASSWORD=password
+
+* * * * * root /usr/local/bin/script.sh >> /var/log/script.log 2>&1
