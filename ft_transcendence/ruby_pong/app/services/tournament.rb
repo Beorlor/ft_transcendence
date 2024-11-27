@@ -159,9 +159,11 @@ class Tournament
                   if @tournaments[tournament_id][:players].length >= 2
                     start_tournament(tournament_id, cookie['access_token'])
                   else
-                    if websocket_open(@tournaments[tournament_id][:players][player["id"]][:ws])
-                      @tournaments[tournament_id][:players][player["id"]][:ws].send({ end: "end" }.to_json)
-                      @tournaments[tournament_id][:players][player["id"]][:ws].close
+                    @pong_api.end_tournament('http://ruby_pong_api:4571/api/tournament', tournament_id, nil) do |status|
+                      if websocket_open(@tournaments[tournament_id][:players][player["id"]][:ws])
+                        @tournaments[tournament_id][:players][player["id"]][:ws].send({ end: "end" }.to_json)
+                        @tournaments[tournament_id][:players][player["id"]][:ws].close
+                      end
                     end
                   end
                 end

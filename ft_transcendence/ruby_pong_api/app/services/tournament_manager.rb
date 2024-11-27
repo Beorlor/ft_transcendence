@@ -48,7 +48,8 @@ class TournamentManager
   def delete_tournament(tournament_id, body)
     @logger.log('TournamentManager', "Deleting tournament #{tournament_id}")
     if (body['id_winner'].nil? || body['id_winner'].empty?)
-      return { code: 400, error: 'Invalid winner id' }
+      @tournament_repository.delete_tournament(tournament_id)
+      return { code: 200, success: 'Tournament' }
     end
     game_history_player_1 = @pong_repository.get_game_history(body['id_winner']);
     if game_history_player_1.nil?
