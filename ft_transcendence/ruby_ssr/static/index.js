@@ -174,6 +174,9 @@ function rebindEvents() {
       .getElementById("ranking_link")
       .addEventListener("click", handleRankingClick);
     document
+      .getElementById("rgpd_link")
+      .addEventListener("click", handleRGPDClick);
+    document
       .getElementById("button_logout")
       .addEventListener("click", handleLogoutClick);
     document
@@ -304,6 +307,12 @@ function handleRegisterClick(ev) {
 function handleRankingClick(ev) {
   ev.preventDefault();
   const url = "https://www.question-pour-un-piscineux.fr/ranking";
+  loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
+}
+
+function handleRGPDClick(ev) {
+  ev.preventDefault();
+  const url = "https://www.question-pour-un-piscineux.fr/rgpd";
   loadPage(document.getElementById("game"), url, window.GAME_STATES.default);
 }
 
