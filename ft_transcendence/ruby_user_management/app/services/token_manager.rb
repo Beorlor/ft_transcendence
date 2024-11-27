@@ -73,7 +73,7 @@ class TokenManager
       return nil
     end
     payload = verify_access_token(token)
-    if !payload || payload['role'] != 1
+    if !payload || payload['role'].to_i != 1
       return nil
     end
     payload
