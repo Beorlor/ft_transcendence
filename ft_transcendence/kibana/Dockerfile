@@ -1,6 +1,9 @@
 # Base image for Kibana
 FROM docker.elastic.co/kibana/kibana:8.12.2
 
+# Declare the build-time argument
+ARG XPACK_ENCRYPTED_SAVED_OBJECTS_ENCRYPTION_KEY
+
 # Switch to root user for file operations
 USER root
 
@@ -18,6 +21,5 @@ USER kibana
 
 # Add the encryption key to the keystore
 RUN /usr/share/kibana/bin/kibana-keystore create && \
-    echo "fr3vcbkZAiE+unC6Uj1edTaBMrhVMbJ4p7OhiHlsxvk=" | \
+    echo "$XPACK_ENCRYPTED_SAVED_OBJECTS_ENCRYPTION_KEY" | \
     /usr/share/kibana/bin/kibana-keystore add xpack.encryptedSavedObjects.encryptionKey --stdin
-
